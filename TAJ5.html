@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuffled Video Playlist</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('Space-Wallpaper-for-Phone-024-7.3.2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 235vh;
+    }
+    #video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #video-container video {
+        max-width: 67%;
+    }
+    #info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        margin-top: 20px;
+    }
+    #like-button {
+        background-color: #3498db;
+        color: white;
+        border: navy;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    #info-text {
+        padding: 10px;
+        border: 1px solid white;
+        border-radius: 5px;
+        margin-top: 20px;
+        text-align: left;
+        min-height: 10px; /* Altura mínima para mostrar contenido */
+        font-weight: bold;
+        font-size: larger;
+    }
+    a {
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+<script>
+    const videos = [
+        "madonna.mp4",
+        "sonique.mp4",
+        "macy.mp4"
+        // Agrega más URLs de videos según sea necesario
+    ];
+
+    const songInfo = {
+        "madonna.mp4": { name: "What it feels like for a Girl", artist: "Madonna", links: "https://youtu.be/qYwgG2oyUbA" },
+        "sonique.mp4": { name: "It Feels So Good", artist: "Sonique", links: "https://youtu.be/zns8Y8phigk" },
+        "macy.mp4": { name: "I Try", artist: "Macy Gray", links: "https://www.youtube.com/embed/WEQ0l_m3Xm0" }
+        // Agrega más información de canciones según sea necesario
+    };
+
+    let currentVideoIndex = 0;
+    const videoPlayer = document.createElement("video");
+    videoPlayer.controls = true;
+    videoPlayer.autoplay = true;
+    videoPlayer.muted = true;
+    videoPlayer.addEventListener("ended", playNextVideo);
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function playNextVideo() {
+        if (currentVideoIndex < videos.length) {
+            videoPlayer.src = videos[currentVideoIndex];
+            videoPlayer.load();
+            videoPlayer.play();
+            currentVideoIndex++;
+
+            const likeButton = document.getElementById("like-button");
+            likeButton.disabled = false; // Habilitar botón para cada nuevo video
+        }
+    }
+
+    function likeSong() {
+        const currentVideo = videos[currentVideoIndex - 1];
+        const currentSong = songInfo[currentVideo];
+        const infoContainer = document.getElementById("info-text");
+
+        if (currentSong) {
+            infoContainer.innerHTML = `Liked Song: ${currentSong.name} by ${currentSong.artist}. Links: <a href="${currentSong.links}" target="_blank">${currentSong.links}</a>`;
+
+            const likeButton = document.getElementById("like-button");
+            likeButton.disabled = true; // Deshabilitar botón después de dar like
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoContainer = document.getElementById("video-container");
+        videoContainer.appendChild(videoPlayer);
+        shuffleArray(videos);
+        playNextVideo();
+    });
+</script>
+</head>
+<body>
+<div id="video-container">
+    <!-- Videos se cargarán aquí -->
+</div>
+<div id="info-container">
+    <button id="like-button" onclick="likeSong()" disabled>I like this song</button>
+    <div id="info-text">Enjoy !!</div>
+</div>
+</body>
+</html>

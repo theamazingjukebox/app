@@ -59,6 +59,14 @@
         cursor: pointer;
         font-weight: bold;
     }
+
+    /* Ajustar imagen de fondo en dispositivos móviles */
+    @media (max-width: 768px) {
+        body {
+            background-size: contain;
+            background-position: top;
+        }
+    }
 </style>
 <script>
     const videos = [

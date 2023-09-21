@@ -8,7 +8,7 @@ Welcome to The Amazing Jukebox repository!
 
 - Shuffled playlist of videos
 - Like/Dislike functionality for videos
-- Display of liked songs
+- Display of liked songs with links to the artist´s official platforms
 - Responsive design with background image
 - Customizable styles and colors
 

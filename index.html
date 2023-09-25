@@ -111,6 +111,16 @@
         cursor: pointer;
         font-weight: bold;
     }
+    #video-container,
+#info-container {
+    position: relative;
+}
+
+    #ad-container {
+        text-align: center; /* Centra horizontalmente el anuncio */
+        margin-top: 1400px; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
+        position: absolute;
+    }
 </style>
 <script>
     const videos = [
@@ -471,6 +481,8 @@
     <div style="text-align: center; margin-top: 10px;">
         <button class="custom-button" onclick="closeLikedSongs()">Close</button>
     </div>
+    <div id="ad-container">
+    <img src="billboard.gif" alt="Anuncio" style="max-width: 55%; height: auto;">
 </div>
 </body>
 </html>

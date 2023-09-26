@@ -130,6 +130,14 @@
         margin-top: 1285px; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
         position: absolute;
     }
+    #donate-button-container {
+    text-align: center; /* Centra el botón horizontalmente */
+    position: absolute;
+    top: 1300px;
+    z-index: 2;
+    padding: 10px; /* Agrega espacio interno */
+    /* Puedes ajustar el tamaño del contenedor y otros estilos aquí */
+}
 </style>
 <script>
     const videos = [
@@ -490,6 +498,21 @@
     <div style="text-align: center; margin-top: 10px;">
         <button class="custom-button" onclick="closeLikedSongs()">Close</button>
     </div>
+</div>
+    <div id="donate-button-container">
+<div id="donate-button"></div>
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+<script>
+PayPal.Donation.Button({
+env:'production',
+hosted_button_id:'Q52DFRN8D4BS8',
+image: {
+src:'https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif',
+alt:'Donate with PayPal button',
+title:'PayPal - The safer, easier way to pay online!',
+}
+}).render('#donate-button');
+</script>
 </div>
 <div id="ad-container">
     <a href="https://www.nyan.cat">

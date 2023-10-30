@@ -470,6 +470,7 @@ body {
     videoPlayer.controls = true;
     videoPlayer.autoplay = true;
     videoPlayer.muted = true;
+    videoPlayer.playsInline = true; // Agrega esta línea
     videoPlayer.addEventListener("ended", playNextVideo);
 
     const likedSongs = [];

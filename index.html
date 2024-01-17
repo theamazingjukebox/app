@@ -44,6 +44,21 @@
         background-size: cover;
     }
 }
+    #rockola-container {
+    position: absolute;
+    top: 1;
+    left: 4;
+    width: 80%;
+    height: 80%;
+    z-index: 1; /* Coloca la rockola detrás del video */
+}
+
+#rockola-image {
+    width: 100%;
+    height: 100%;
+    top: 5;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+}
     #video-container {
         display: flex;
         align-items: center;
@@ -52,6 +67,7 @@
         top: 13px;
         width: 375px; /* Establece el ancho deseado */
         height: 500px; /* Establece la altura deseada */
+        z-index: 2;
     }
     #video-container video {
         max-width: 79%;
@@ -585,6 +601,9 @@ body {
 </script>
 </head>
 <body>
+    <div id="rockola-container">
+    <img src="Sin_título3-removebg.png" alt="Rockola" id="rockola-image">
+</div>
 <div id="video-container">
     <!-- Videos se cargarán aquí -->
 </div>

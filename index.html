@@ -301,83 +301,73 @@ body {
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
-      authDomain: "the-amazing-jukebox.firebaseapp.com",
-      projectId: "the-amazing-jukebox",
-      storageBucket: "the-amazing-jukebox.appspot.com",
-      messagingSenderId: "778454163688",
-      appId: "1:778454163688:web:f5077005c3a74694cb695d",
-      measurementId: "G-L7EYF8QM2F"
+        apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+        authDomain: "the-amazing-jukebox.firebaseapp.com",
+        projectId: "the-amazing-jukebox",
+        storageBucket: "the-amazing-jukebox.appspot.com",
+        messagingSenderId: "778454163688",
+        appId: "1:778454163688:web:f5077005c3a74694cb695d",
+        measurementId: "G-L7EYF8QM2F"
     };
 
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
-    var username = ""; // Variable para almacenar el nombre de usuario
+    var username = "";
 
-    // Agregar un mensaje a la base de datos
     async function addMessageToFirebase(username, message) {
-      const messagesRef = collection(db, "messages");
-      await addDoc(messagesRef, { username, message });
+        const messagesRef = collection(db, "messages");
+        await addDoc(messagesRef, { username, message });
     }
 
     function setUsername() {
-      const usernameInput = document.getElementById("username-input");
-      username = usernameInput.value.trim();
+        const usernameInput = document.getElementById("username-input");
+        username = usernameInput.value.trim();
 
-      if (username !== "") {
-        const chatUsername = document.getElementById("chat-username");
-        chatUsername.style.display = "none"; // Ocultar la ventana emergente
+        if (username !== "") {
+            const chatUsername = document.getElementById("chat-username");
+            chatUsername.style.display = "none";
 
-        // Mostrar el contenedor principal del chat
-        const chatContainer = document.getElementById("chat-container");
-        chatContainer.style.bottom = "-730px";
+            const chatContainer = document.getElementById("chat-container");
+            chatContainer.style.bottom = "-730px";
 
-        // Pausa breve antes de mostrar el cuadro de chat
-        setTimeout(() => {
-          chatContainer.style.bottom = "-730px";
-        }, 10);
+            setTimeout(() => {
+                chatContainer.style.bottom = "-730px";
+            }, 10);
 
-        // Puedes mostrar un mensaje de bienvenida si lo deseas
-        const chatMessages = document.getElementById("chat-messages");
-        const welcomeMessage = document.createElement("div");
-        welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
-        chatMessages.appendChild(welcomeMessage);
-      }
+            const chatMessages = document.getElementById("chat-messages");
+            const welcomeMessage = document.createElement("div");
+            welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
+            chatMessages.appendChild(welcomeMessage);
+        }
     }
 
-    // Agrega esta función para enviar el mensaje a Firebase
     function sendMessage() {
-      const messageInput = document.getElementById("message-input");
-      const message = messageInput.value.trim();
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value.trim();
 
-      if (message !== "") {
-        // Agrega el mensaje al cuadro de chat local
-        const chatMessages = document.getElementById("chat-messages");
-        const newMessage = document.createElement("div");
-        newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
-        chatMessages.appendChild(newMessage);
+        if (message !== "") {
+            const chatMessages = document.getElementById("chat-messages");
+            const newMessage = document.createElement("div");
+            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
+            chatMessages.appendChild(newMessage);
 
-        // Limpiar el cuadro de entrada después de enviar el mensaje
-        messageInput.value = "";
+            messageInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        // Hacer scroll hasta el final del contenedor de mensajes
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        // Llamar a la función para agregar el mensaje a Firebase
-        addMessageToFirebase(username, message);
-      }
+            addMessageToFirebase(username, message);
+        }
     }
-         // Agregar un mensaje a la base de datos
-    async function addMessage(username, message) {
-      const messagesRef = collection(db, "messages");
-      await addDoc(messagesRef, { username, message });
-    }
-  
-    // Ejemplo de cómo agregar un mensaje
-    addMessage("EjemploUsuario", "Hola, esto es un mensaje de prueba2");
-  </script>
+
+    // Event listener para el botón de enviar mensaje
+    const sendButton = document.getElementById("send-button");
+    sendButton.addEventListener("click", sendMessage);
+
+    // Event listener para el botón de establecer nombre de usuario
+    const setUsernameButton = document.getElementById("set-username-button");
+    setUsernameButton.addEventListener("click", setUsername);
+</script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario
 

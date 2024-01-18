@@ -327,6 +327,7 @@ const messagesRef = collection(db, "messages");
 // Esta función obtendrá los mensajes iniciales y los mostrará en el chat
 async function loadInitialMessages() {
   try {
+    console.log("Loading initial messages...");
     const querySnapshot = await getDocs(messagesRef);
     const chatMessages = document.getElementById("chat-messages");
 
@@ -341,6 +342,7 @@ async function loadInitialMessages() {
 
     // Scroll automático al final
     chatMessages.scrollTop = chatMessages.scrollHeight;
+    console.log("Initial messages loaded successfully!");
   } catch (error) {
     console.error("Error cargando mensajes iniciales:", error);
   }
@@ -348,6 +350,7 @@ async function loadInitialMessages() {
 
 
 onSnapshot(messagesRef, (querySnapshot) => {
+    console.log("Query Snapshot:", querySnapshot.docs);
     const chatMessages = document.getElementById("chat-messages");
     querySnapshot.docChanges().forEach((change) => {
         try {
@@ -355,7 +358,7 @@ onSnapshot(messagesRef, (querySnapshot) => {
         const newMessage = document.createElement("div");
         newMessage.textContent = `${data.username}: ${data.message}`;
         chatMessages.appendChild(newMessage);
-        
+
         // Scroll automático al final
       chatMessages.scrollTop = chatMessages.scrollHeight;
     } catch (error) {
@@ -367,7 +370,7 @@ onSnapshot(messagesRef, (querySnapshot) => {
 // Llama a la función para cargar mensajes iniciales al cargar la página
 loadInitialMessages();
   </script>
-<script>
+    <script>
  var username = ""; // Variable para almacenar el nombre de usuario
 
 function showUsernameInput() {

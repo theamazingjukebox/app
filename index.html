@@ -295,79 +295,6 @@ body {
     margin-right: 10px;
 }
 </style>
-     <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
-        authDomain: "the-amazing-jukebox.firebaseapp.com",
-        projectId: "the-amazing-jukebox",
-        storageBucket: "the-amazing-jukebox.appspot.com",
-        messagingSenderId: "778454163688",
-        appId: "1:778454163688:web:f5077005c3a74694cb695d",
-        measurementId: "G-L7EYF8QM2F"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getDatabase(app);
-
-    var username = "";
-
-    function addMessageToFirebase(username, message) {
-        const messagesRef = ref(db, "messages");
-        push(messagesRef, { username, message });
-    }
-
-    function setUsername() {
-        const usernameInput = document.getElementById("username-input");
-        username = usernameInput.value.trim();
-
-        if (username !== "") {
-            const chatUsername = document.getElementById("chat-username");
-            chatUsername.style.display = "none";
-
-            const chatContainer = document.getElementById("chat-container");
-            chatContainer.style.bottom = "-730px";
-
-            setTimeout(() => {
-                chatContainer.style.bottom = "-730px";
-            }, 10);
-
-            const chatMessages = document.getElementById("chat-messages");
-            const welcomeMessage = document.createElement("div");
-            welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
-            chatMessages.appendChild(welcomeMessage);
-        }
-    }
-
-    function sendMessage() {
-        const messageInput = document.getElementById("message-input");
-        const message = messageInput.value.trim();
-
-        if (message !== "") {
-            const chatMessages = document.getElementById("chat-messages");
-            const newMessage = document.createElement("div");
-            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
-            chatMessages.appendChild(newMessage);
-
-            messageInput.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            addMessageToFirebase(username, message);
-        }
-    }
-
-    // Event listener para el botón de enviar mensaje
-    const sendButton = document.getElementById("send-button");
-    sendButton.addEventListener("click", sendMessage);
-
-    // Event listener para el botón de establecer nombre de usuario
-    const setUsernameButton = document.getElementById("set-username-button");
-    setUsernameButton.addEventListener("click", setUsername);
-</script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario
 
@@ -953,5 +880,82 @@ title:'PayPal - The safer, easier way to pay online!',
         // Mostrar la ventana emergente al principio
         showUsernameInput();
     </script>
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+        authDomain: "the-amazing-jukebox.firebaseapp.com",
+        projectId: "the-amazing-jukebox",
+        storageBucket: "the-amazing-jukebox.appspot.com",
+        messagingSenderId: "778454163688",
+        appId: "1:778454163688:web:f5077005c3a74694cb695d",
+        measurementId: "G-L7EYF8QM2F"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    var username = "";
+
+    function addMessageToFirebase(username, message) {
+        const messagesRef = ref(db, "messages");
+        push(messagesRef, { username, message });
+    }
+
+    function setUsername() {
+        const usernameInput = document.getElementById("username-input");
+        username = usernameInput.value.trim();
+
+        if (username !== "") {
+            const chatUsername = document.getElementById("chat-username");
+            chatUsername.style.display = "none";
+
+            const chatContainer = document.getElementById("chat-container");
+            chatContainer.style.bottom = "-730px";
+
+            setTimeout(() => {
+                chatContainer.style.bottom = "-730px";
+            }, 10);
+
+            const chatMessages = document.getElementById("chat-messages");
+            const welcomeMessage = document.createElement("div");
+            welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
+            chatMessages.appendChild(welcomeMessage);
+        }
+    }
+
+    function sendMessage() {
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value.trim();
+
+        if (message !== "") {
+            const chatMessages = document.getElementById("chat-messages");
+            const newMessage = document.createElement("div");
+            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
+            chatMessages.appendChild(newMessage);
+
+            messageInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            addMessageToFirebase(username, message);
+        }
+    }
+
+    // Event listener para el botón de enviar mensaje
+    const sendButton = document.getElementById("send-button");
+        console.log(sendButton);  // Verifica si sendButton es null en la consola
+    // Ahora puedes agregar el event listener
+if (sendButton) {
+    sendButton.addEventListener("click", sendMessage);
+}
+
+    // Event listener para el botón de establecer nombre de usuario
+    const setUsernameButton = document.getElementById("set-username-button");
+    setUsernameButton.addEventListener("click", setUsername);
+</script>
 </body>
 </html>

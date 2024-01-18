@@ -863,7 +863,7 @@ title:'PayPal - The safer, easier way to pay online!',
   </div>
 <div id="chat-username">
     <input type="text" id="username-input" placeholder="Your username">
-    <button onclick="setUsername()">Set Username</button>
+    <button id="set-username-button" onclick="setUsername()">Set Username</button>
 </div>
 <div id="chat-container">
     <div id="chat-messages">
@@ -947,8 +947,6 @@ title:'PayPal - The safer, easier way to pay online!',
 
     // Event listener para el botón de enviar mensaje
     const sendButton = document.getElementById("send-button");
-        console.log(sendButton);  // Verifica si sendButton es null en la consola
-    // Ahora puedes agregar el event listener
 if (sendButton) {
     sendButton.addEventListener("click", sendMessage);
 }

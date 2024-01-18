@@ -298,7 +298,7 @@ body {
      <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
@@ -312,13 +312,13 @@ body {
 
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-    const db = getFirestore(app);
+    const db = getDatabase(app);
 
     var username = "";
 
-    async function addMessageToFirebase(username, message) {
-        const messagesRef = collection(db, "messages");
-        await addDoc(messagesRef, { username, message });
+    function addMessageToFirebase(username, message) {
+        const messagesRef = ref(db, "messages");
+        push(messagesRef, { username, message });
     }
 
     function setUsername() {
@@ -367,8 +367,6 @@ body {
     // Event listener para el botón de establecer nombre de usuario
     const setUsernameButton = document.getElementById("set-username-button");
     setUsernameButton.addEventListener("click", setUsername);
-         // Ejemplo de cómo agregar un mensaje
-    addMessage("EjemploUsuario", "Hola, esto es un mensaje de prueba2");
 </script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario

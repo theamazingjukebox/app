@@ -321,6 +321,7 @@ import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://w
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
+    
     // Escuchar mensajes en tiempo real
 const messagesRef = collection(db, "messages");
 
@@ -348,6 +349,20 @@ async function loadInitialMessages() {
   }
 }
 
+ // Función que contiene el código Firebase
+ function initFirebase() {
+    // Tu código Firebase aquí...
+  }
+
+  // Esperar a que el documento HTML se cargue completamente
+  document.addEventListener("DOMContentLoaded", function () {
+    // Llamar a la función que contiene el código Firebase
+    initFirebase();
+
+    // Llamar a la función para cargar mensajes iniciales al cargar la página
+    loadInitialMessages();
+  });
+
 
 onSnapshot(messagesRef, (querySnapshot) => {
     console.log("Query Snapshot:", querySnapshot.docs);
@@ -364,12 +379,11 @@ onSnapshot(messagesRef, (querySnapshot) => {
     } catch (error) {
       console.error("Error al procesar cambio en tiempo real:", error);
     }   
+    
+
     });
 });
-
-// Llama a la función para cargar mensajes iniciales al cargar la página
-loadInitialMessages();
-  </script>
+</script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario
 

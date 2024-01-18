@@ -875,6 +875,9 @@ title:'PayPal - The safer, easier way to pay online!',
         <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
         <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
         <button id="send-button" onclick="sendMessage()">Send</button>
+        <!-- Agrega este botón en algún lugar de tu documento HTML -->
+<button id="send-test-message-button" onclick="sendTestMessage()">Send Test Message</button>
+        
     </div>
     <script>
         // Mostrar la ventana emergente al principio
@@ -954,6 +957,13 @@ if (sendButton) {
     // Event listener para el botón de establecer nombre de usuario
     const setUsernameButton = document.getElementById("set-username-button");
     setUsernameButton.addEventListener("click", setUsername);
+        
+        function sendTestMessage() {
+    const testMessage = "Hola, esto es un mensaje de prueba.";
+    
+    // Llamar a la función para agregar el mensaje de prueba a Firebase
+    addMessageToFirebase("TestUser", testMessage);
+}
 </script>
 </body>
 </html>

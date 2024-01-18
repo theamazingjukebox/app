@@ -296,33 +296,48 @@ body {
 }
 </style>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
-    authDomain: "the-amazing-jukebox.firebaseapp.com",
-    projectId: "the-amazing-jukebox",
-    storageBucket: "the-amazing-jukebox.appspot.com",
-    messagingSenderId: "778454163688",
-    appId: "1:778454163688:web:f5077005c3a74694cb695d",
-    measurementId: "G-L7EYF8QM2F"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+      authDomain: "the-amazing-jukebox.firebaseapp.com",
+      projectId: "the-amazing-jukebox",
+      storageBucket: "the-amazing-jukebox.appspot.com",
+      messagingSenderId: "778454163688",
+      appId: "1:778454163688:web:f5077005c3a74694cb695d",
+      measurementId: "G-L7EYF8QM2F"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
-  // Agregar un mensaje a la base de datos
-  async function addMessage(username, message) {
-    const messagesRef = collection(db, "messages");
-    await addDoc(messagesRef, { username, message });
-  }
+    // Función para agregar un mensaje a la base de datos
+    async function addMessage(username, message) {
+      const messagesRef = collection(db, "messages");
+      await addDoc(messagesRef, { username, message });
+    }
 
-  // Ejemplo de cómo agregar un mensaje
-  addMessage("EjemploUsuario", "Hola, esto es un mensaje de prueba");
-</script>
+    // Función que se ejecuta cuando se hace clic en el botón "Enviar mensaje"
+    function sendMessage() {
+      const username = "NombreUsuario"; // Puedes obtener el nombre de usuario de tu aplicación
+      const message = document.getElementById("mensajeInput").value; // Obtener el mensaje del input
+
+      // Verificar que el mensaje no esté vacío antes de enviar
+      if (message.trim() !== "") {
+        // Agregar el mensaje a la base de datos
+        addMessage(username, message);
+
+        // Limpiar el cuadro de entrada después de enviar el mensaje
+        document.getElementById("mensajeInput").value = "";
+      } else {
+        // Puedes manejar el caso de mensaje vacío aquí
+        console.log("Mensaje vacío, no se enviará a la base de datos");
+      }
+    }
+  </script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario
 

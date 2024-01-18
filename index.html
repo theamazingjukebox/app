@@ -420,6 +420,9 @@ function sendMessage() {
 
         // Limpiar el cuadro de entrada después de enviar el mensaje
         messageInput.value = "";
+
+        // Hacer scroll hasta el final del contenedor de mensajes
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 }
 </script>

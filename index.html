@@ -296,86 +296,30 @@ body {
 }
 </style>
     <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
-        authDomain: "the-amazing-jukebox.firebaseapp.com",
-        projectId: "the-amazing-jukebox",
-        storageBucket: "the-amazing-jukebox.appspot.com",
-        messagingSenderId: "778454163688",
-        appId: "1:778454163688:web:f5077005c3a74694cb695d",
-        measurementId: "G-L7EYF8QM2F"
-    };
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+    authDomain: "the-amazing-jukebox.firebaseapp.com",
+    databaseURL: "https://the-amazing-jukebox-default-rtdb.firebaseio.com",
+    projectId: "the-amazing-jukebox",
+    storageBucket: "the-amazing-jukebox.appspot.com",
+    messagingSenderId: "778454163688",
+    appId: "1:778454163688:web:f5077005c3a74694cb695d",
+    measurementId: "G-L7EYF8QM2F"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getDatabase(app);
-
-    var username = "";
-
-    function addMessageToFirebase(username, message) {
-        const messagesRef = ref(db, "messages");
-        push(messagesRef, { username, message });
-    }
-
-    function setUsername() {
-        const usernameInput = document.getElementById("username-input");
-        username = usernameInput.value.trim();
-
-        if (username !== "") {
-            const chatUsername = document.getElementById("chat-username");
-            chatUsername.style.display = "none";
-
-            const chatContainer = document.getElementById("chat-container");
-            chatContainer.style.bottom = "-730px";
-
-            setTimeout(() => {
-                chatContainer.style.bottom = "-730px";
-            }, 10);
-
-            const chatMessages = document.getElementById("chat-messages");
-            const welcomeMessage = document.createElement("div");
-            welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
-            chatMessages.appendChild(welcomeMessage);
-        }
-    }
-
-    function sendMessage() {
-        const messageInput = document.getElementById("message-input");
-        const message = messageInput.value.trim();
-
-        if (message !== "") {
-            const chatMessages = document.getElementById("chat-messages");
-            const newMessage = document.createElement("div");
-            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
-            chatMessages.appendChild(newMessage);
-
-            messageInput.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            addMessageToFirebase(username, message);
-        }
-    }
-
-    // Event listener para el botón de enviar mensaje
-    const sendButton = document.getElementById("send-button");
-if (sendButton) {
-    sendButton.addEventListener("click", sendMessage);
-}
-
-    // Event listener para el botón de establecer nombre de usuario
-    const setUsernameButton = document.getElementById("set-username-button");
-    setUsernameButton.addEventListener("click", setUsername);
-        
-        function sendTestMessage() {
-    const testMessage = "Hola, esto es un mensaje de prueba.";
-    
-    // Llamar a la función para agregar el mensaje de prueba a Firebase
-    addMessageToFirebase("TestUser", testMessage);
-}
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+        // Ejemplo de cómo agregar un mensaje
+    addMessage("EjemploUsuario", "Hola, esto es un mensaje de prueba2");
 </script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario
@@ -957,8 +901,6 @@ title:'PayPal - The safer, easier way to pay online!',
         <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
         <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
         <button id="send-button" onclick="sendMessage()">Send</button>
-        <!-- Agrega este botón en algún lugar de tu documento HTML -->
-<button id="send-test-message-button" onclick="sendTestMessage()">Send Test Message</button>
         
     </div>
     <script>

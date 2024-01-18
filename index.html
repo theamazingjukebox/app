@@ -340,22 +340,18 @@ async function loadInitialMessages() {
   }
 }
 
+    onSnapshot(messagesRef, (querySnapshot) => {
+    const chatMessages = document.getElementById("chat-messages");
+    querySnapshot.docChanges().forEach((change) => {
+        const data = change.doc.data();
+        const newMessage = document.createElement("div");
+        newMessage.textContent = `${data.username}: ${data.message}`;
+        chatMessages.appendChild(newMessage);
+    });
+});
+
 // Llama a la función para cargar mensajes iniciales al cargar la página
 loadInitialMessages();
-
-    
-onSnapshot(messagesRef, (querySnapshot) => {
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    console.log(`${data.username}: ${data.message}`);
-    // Aquí puedes manejar la actualización del chat en tiempo real
-    // Por ejemplo, puedes agregar el mensaje al DOM para mostrarlo en la interfaz de usuario
-    const chatMessages = document.getElementById("chat-messages");
-    const newMessage = document.createElement("div");
-    newMessage.textContent = `${data.username}: ${data.message}`;
-    chatMessages.appendChild(newMessage);
-  });
-});
   </script>
 <script>
  var username = ""; // Variable para almacenar el nombre de usuario

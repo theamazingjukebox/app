@@ -163,7 +163,249 @@ body {
     padding: 10px; /* Agrega espacio interno */
     /* Puedes ajustar el tamaño del contenedor y otros estilos aquí */
 }
+#chat-username {
+        position: absolute;
+        top: 190%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        border: 2px solid palegreen;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        color: white;
+        display: none; /* Inicialmente oculto */
+    }
+
+    #username-input {
+        margin-bottom: 10px;
+    }
+    #chat-container #chat-messages .chat-username {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    border-radius: 0%;
+    border: 0cap;
+    box-shadow: none;
+    /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
+}
+    #chat-container #chat-messages .username {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: #ffcc00; /* Cambia el color según tus preferencias */
+}
+    #chat-container #chat-messages strong {
+    background-color: #34db9b; /* Cambia el color de fondo aquí */
+    color: white; /* Cambia el color del texto aquí */
+    padding: 0px; /* Ajusta el espacio interno si es necesario */
+    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
+    border-top-right-radius: 0px;
+    border: 2px solid rgba(152, 251, 152, 0.5);
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-size: larger;
+}
+#chat-container {
+            position: absolute;
+            align-items: center;
+        justify-content: center;
+        bottom: -650px;
+        left: 50%;
+        transform: translateX(-50%);
+            background-color: black;
+            border: 2px solid palegreen;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: bottom 0.3s ease;
+        }
+
+        #chat-messages {
+            flex-grow: 1;
+            max-height: 200px;
+            padding: 10px;
+            overflow-y: auto;
+            color: white;
+        }
+
+        #chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: black;
+        }
+
+        #emoji-button {
+            margin-left: auto;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+        }
+
+        #send-button {
+            margin-left: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        #send-button:hover {
+            background-color: #2980b9;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        /* Agrega este estilo para el contenedor de emojis */
+        #emoji-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute; /* Utiliza posición absoluta */
+    top: calc(180% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
+    left: 50%; /* Centra el contenedor horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centrar en pantalla */
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    display: none; /* Oculta el contenedor inicialmente */
+    z-index: 1;
+    width: 225px;
+}
+
+
+/* Agrega estilo para los emojis individuales */
+.emoji {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+}
 </style>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+      authDomain: "the-amazing-jukebox.firebaseapp.com",
+      projectId: "the-amazing-jukebox",
+      storageBucket: "the-amazing-jukebox.appspot.com",
+      messagingSenderId: "778454163688",
+      appId: "1:778454163688:web:f5077005c3a74694cb695d",
+      measurementId: "G-L7EYF8QM2F"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+    // Escuchar mensajes en tiempo real
+const messagesRef = collection(db, "messages");
+
+onSnapshot(messagesRef, (querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    console.log(`${data.username}: ${data.message}`);
+    // Aquí puedes manejar la actualización del chat en tiempo real
+    // Por ejemplo, puedes agregar el mensaje al DOM para mostrarlo en la interfaz de usuario
+    const chatMessages = document.getElementById("chat-messages");
+    const newMessage = document.createElement("div");
+    newMessage.textContent = `${data.username}: ${data.message}`;
+    chatMessages.appendChild(newMessage);
+  });
+});
+  </script>
+<script>
+ var username = ""; // Variable para almacenar el nombre de usuario
+
+function showUsernameInput() {
+    const chatUsername = document.getElementById("chat-username");
+    chatUsername.style.display = "flex";
+}
+
+function setUsername() {
+    const usernameInput = document.getElementById("username-input");
+    username = usernameInput.value.trim();
+
+    if (username !== "") {
+        const chatUsername = document.getElementById("chat-username");
+        chatUsername.style.display = "none"; // Ocultar la ventana emergente
+
+        // Mostrar el contenedor principal del chat
+        const chatContainer = document.getElementById("chat-container");
+        chatContainer.style.bottom = "-650px";
+
+         // Pausa breve antes de mostrar el cuadro de chat
+         setTimeout(() => {
+                chatContainer.style.bottom = "-650px";
+            }, 10);
+        // Puedes mostrar un mensaje de bienvenida si lo deseas
+        const chatMessages = document.getElementById("chat-messages");
+        const welcomeMessage = document.createElement("div");
+        welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
+        chatMessages.appendChild(welcomeMessage);
+    }
+}
+
+// Agrega esta función para seleccionar un emoji
+function selectEmoji(emoji) {
+    const messageInput = document.getElementById("message-input");
+    messageInput.value += emoji;
+
+    // También puedes cerrar el contenedor de emojis si es necesario
+    const emojiContainer = document.getElementById("emoji-container");
+    emojiContainer.style.display = "none"; // Oculta el contenedor de emojis después de seleccionar uno
+}
+
+// Actualiza la función toggleEmojiPicker para mostrar/ocultar el contenedor de emojis
+function toggleEmojiPicker() {
+    const emojiContainer = document.getElementById("emoji-container");
+    emojiContainer.style.display = emojiContainer.style.display === "none" ? "flex" : "none";
+}
+
+function sendMessage() {
+    const messageInput = document.getElementById("message-input");
+    const message = messageInput.value.trim();
+
+    if (message !== "") {
+        const chatMessages = document.getElementById("chat-messages");
+        const newMessage = document.createElement("div");
+        
+        // Agregar el nombre de usuario al mensaje si existe
+        if (username !== "") {
+            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
+        } else {
+            newMessage.textContent = message;
+        }
+
+        chatMessages.appendChild(newMessage);
+
+        // Limpiar el cuadro de entrada después de enviar el mensaje
+        messageInput.value = "";
+    }
+}
+</script>
 <script>
     const videos = [
         { src: "madonna.mp4", liked: false },
@@ -601,6 +843,53 @@ body {
         <button class="custom-button" onclick="closeLikedSongs()">Close</button>
     </div>
 </div>
+<div id="emoji-container" style="display: none;">
+    <!-- Aquí puedes agregar más emojis según sea necesario -->
+        <div class="emoji" onclick="selectEmoji('😊')">😊</div>
+        <div class="emoji" onclick="selectEmoji('❤️')">❤️</div>
+        <div class="emoji" onclick="selectEmoji('👍')">👍</div>
+        <div class="emoji" onclick="selectEmoji('😂')">😂</div>
+        <div class="emoji" onclick="selectEmoji('🙌')">🙌</div>
+<div class="emoji" onclick="selectEmoji('🎉')">🎉</div>
+<div class="emoji" onclick="selectEmoji('🔥')">🔥</div>
+<div class="emoji" onclick="selectEmoji('👏')">👏</div>
+<div class="emoji" onclick="selectEmoji('🎶')">🎶</div>
+<div class="emoji" onclick="selectEmoji('🤔')">🤔</div>
+<div class="emoji" onclick="selectEmoji('😍')">😍</div>
+<div class="emoji" onclick="selectEmoji('🌟')">🌟</div>
+<div class="emoji" onclick="selectEmoji('😎')">😎</div>
+<div class="emoji" onclick="selectEmoji('💖')">💖</div>
+<div class="emoji" onclick="selectEmoji('🚀')">🚀</div>
+<div class="emoji" onclick="selectEmoji('🌈')">🌈</div>
+<div class="emoji" onclick="selectEmoji('💯')">💯</div>
+<div class="emoji" onclick="selectEmoji('🤗')">🤗</div>
+<div class="emoji" onclick="selectEmoji('👌')">👌</div>
+<div class="emoji" onclick="selectEmoji('😜')">😜</div>
+<div class="emoji" onclick="selectEmoji('🙏')">🙏</div>
+<div class="emoji" onclick="selectEmoji('💪')">💪</div>
+<div class="emoji" onclick="selectEmoji('😇')">😇</div>
+<div class="emoji" onclick="selectEmoji('🌺')">🌺</div>
+    <!-- Agrega más emojis según tus preferencias -->
+  </div>
+<div id="chat-username">
+    <input type="text" id="username-input" placeholder="Your username">
+    <button onclick="setUsername()">Set Username</button>
+</div>
+<div id="chat-container">
+    <div id="chat-messages">
+        <strong>Live Chat on The Amazing Jukebox</strong>
+        <!-- Aquí se mostrarían los mensajes del chat -->
+    </div>
+    <div id="chat-input">
+        <textarea id="message-input" placeholder="Type your message..."></textarea>
+        <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
+        <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
+        <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+        // Mostrar la ventana emergente al principio
+        showUsernameInput();
+    </script>
     <div id="mobile-gif2">
     <img class="rotated-gif2" 
     src="1659513992_924596_gif-url.gif" alt="Descripción del GIF" style="width: 97%; height: auto;">

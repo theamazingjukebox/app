@@ -369,6 +369,14 @@ body {
         addMessageToFirebase(username, message);
       }
     }
+         // Agregar un mensaje a la base de datos
+    async function addMessage(username, message) {
+      const messagesRef = collection(db, "messages");
+      await addDoc(messagesRef, { username, message });
+    }
+  
+    // Ejemplo de cómo agregar un mensaje
+    addMessage("EjemploUsuario", "Hola, esto es un mensaje de prueba2");
   </script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario

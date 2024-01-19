@@ -329,7 +329,9 @@ body {
           const chatMessages = document.getElementById("chat-messages");
           const messagesRef = ref(db, "messages");
           onChildAdded(messagesRef, (snapshot) => {
+              console.log("onChildAdded called");
               const message = snapshot.val();
+              console.log("Received message:", message);
               const newMessage = document.createElement("div");
               newMessage.innerHTML = `<strong class="chat-username">${message.username}:</strong> ${message.message}`;
               chatMessages.appendChild(newMessage);
@@ -385,6 +387,7 @@ function showUsernameInput() {
 }
 
 function setUsername() {
+    console.log("Setting username:", username);
     const usernameInput = document.getElementById("username-input");
     username = usernameInput.value.trim();
     console.log("Setting username:", username);
@@ -426,6 +429,7 @@ function toggleEmojiPicker() {
 }
 
 function sendMessage() {
+    console.log("sendMessage function called");
     const messageInput = document.getElementById("message-input");
     const message = messageInput.value.trim();
 

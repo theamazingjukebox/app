@@ -323,6 +323,7 @@ body {
           function addMessage(username, message) {
               const messagesRef = ref(db, "messages");
               push(messagesRef, { username, message });
+              console.log("Message added to Firebase:", { username, message });
           }
       
           // Escucha los nuevos mensajes y los agrega al chat
@@ -371,7 +372,9 @@ body {
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         // Llamar a la función para agregar el mensaje a la base de datos
-        addMessage(username, message);
+        if (username !== "") {
+            addMessage(username, message);
+        }
 
          // Verificar si la función se está llamando correctamente
          console.log("sendMessage function completed");

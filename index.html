@@ -338,8 +338,12 @@ body {
       
           // Resto del código...
           function sendMessage() {
+    console.log("sendMessage function called");
+
     const messageInput = document.getElementById("message-input");
     const message = messageInput.value.trim();
+
+    console.log("Message:", message);
 
     if (message !== "") {
         const chatMessages = document.getElementById("chat-messages");

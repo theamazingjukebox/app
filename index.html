@@ -320,55 +320,57 @@ body {
     const db = getDatabase(app);
   
     // Función para agregar un mensaje al chat
-          function addMessage(username, message) {
-              const messagesRef = ref(db, "messages");
-              push(messagesRef, { username, message });
-          }
-      
-          // Escucha los nuevos mensajes y los agrega al chat
-          const chatMessages = document.getElementById("chat-messages");
-          const messagesRef = ref(db, "messages");
-          onChildAdded(messagesRef, (snapshot) => {
-              const message = snapshot.val();
-              const newMessage = document.createElement("div");
-              newMessage.innerHTML = `<strong class="chat-username">${message.username}:</strong> ${message.message}`;
-              chatMessages.appendChild(newMessage);
-              chatMessages.scrollTop = chatMessages.scrollHeight;
-          });
-      
-          // Resto del código...
-          function sendMessage() {
-    console.log("sendMessage function called");
-
-    const messageInput = document.getElementById("message-input");
-    const message = messageInput.value.trim();
-
-    console.log("Message:", message);
-
-    if (message !== "") {
-        const chatMessages = document.getElementById("chat-messages");
-        const newMessage = document.createElement("div");
-
-        // Agregar el nombre de usuario al mensaje si existe
-        if (username !== "") {
-            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
-        } else {
-            newMessage.textContent = message;
-        }
-
-        chatMessages.appendChild(newMessage);
-
-        // Limpiar el cuadro de entrada después de enviar el mensaje
-        messageInput.value = "";
-
-        // Hacer scroll hasta el final del contenedor de mensajes
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        // Llamar a la función para agregar el mensaje a la base de datos
-        addMessage(username, message);
+    function addMessage(username, message) {
+        const messagesRef = ref(db, "messages");
+        push(messagesRef, { username, message });
+        console.log("Message added to the database:", { username, message });
     }
-}
-      </script>
+  
+    // Escucha los nuevos mensajes y los agrega al chat
+    const chatMessages = document.getElementById("chat-messages");
+    const messagesRef = ref(db, "messages");
+    onChildAdded(messagesRef, (snapshot) => {
+        const message = snapshot.val();
+        const newMessage = document.createElement("div");
+        newMessage.innerHTML = `<strong class="chat-username">${message.username}:</strong> ${message.message}`;
+        chatMessages.appendChild(newMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        console.log("New message received:", message);
+    });
+  
+    // Resto del código...
+    function sendMessage() {
+        console.log("sendMessage function called");
+
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value.trim();
+
+        console.log("Message:", message);
+
+        if (message !== "") {
+            const chatMessages = document.getElementById("chat-messages");
+            const newMessage = document.createElement("div");
+
+            // Agregar el nombre de usuario al mensaje si existe
+            if (username !== "") {
+                newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
+            } else {
+                newMessage.textContent = message;
+            }
+
+            chatMessages.appendChild(newMessage);
+
+            // Limpiar el cuadro de entrada después de enviar el mensaje
+            messageInput.value = "";
+
+            // Hacer scroll hasta el final del contenedor de mensajes
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Llamar a la función para agregar el mensaje a la base de datos
+            addMessage(username, message);
+        }
+    }
+</script>
     <script>
  var username = ""; // Variable para almacenar el nombre de usuario
 

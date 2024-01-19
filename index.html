@@ -387,6 +387,7 @@ function showUsernameInput() {
 function setUsername() {
     const usernameInput = document.getElementById("username-input");
     username = usernameInput.value.trim();
+    console.log("Setting username:", username);
 
     if (username !== "") {
         const chatUsername = document.getElementById("chat-username");

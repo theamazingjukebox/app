@@ -907,13 +907,6 @@ title:'PayPal - The safer, easier way to pay online!',
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getDatabase(app);
-  
-    // Función para agregar un mensaje al chat
-          function addMessage(username, message) {
-              const messagesRef = ref(db, "messages");
-              push(messagesRef, { username, message });
-              console.log("Message added to Firebase:", { username, message });
-          }
       
           // Escucha los nuevos mensajes y los agrega al chat
           const chatMessages = document.getElementById("chat-messages");
@@ -928,6 +921,13 @@ title:'PayPal - The safer, easier way to pay online!',
               chatMessages.appendChild(newMessage);
               chatMessages.scrollTop = chatMessages.scrollHeight;
           });
+
+        // Función para agregar un mensaje al chat
+              function addMessage(username, message) {
+                  const messagesRef = ref(db, "messages");
+                  push(messagesRef, { username, message });
+                  console.log("Message added to Firebase:", { username, message });
+              }
       
           // Resto del código...
           function sendMessage() {

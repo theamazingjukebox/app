@@ -1,29 +1,975 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Firebase RealTime Chat</title>
-    <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
-    <header>
-      <h2>Firebase RealTime Chat</h2>
-    </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Amazing Jukebox</title>
+<style>
+    /* Estilos del botón personalizado */
+    .custom-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
 
-    <div id="chat">
-      <!-- messages will display here -->
-      <ul id="messages"></ul>
+    /* Efecto de sombra y cambio de color al pasar el cursor */
+    .custom-button:hover {
+        background-color: #2980b9;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
 
-      <!-- form to send message -->
-      <form id="message-form">
-        <input id="message-input" type="text" />
-        <button id="message-btn" type="submit">Send</button>
-      </form>
+    /* Estilos de otros elementos (sin cambios) */
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('webimg,,,.3.3.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 235vh;
+    }
+    @media (max-width: 768px) {
+    body {
+        background-image: url('Nov2023-5.png'); /* Cambia el nombre de la imagen */
+        background-size: cover;
+    }
+}
+    #video-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: 13px;
+        width: 375px; /* Establece el ancho deseado */
+        height: 500px; /* Establece la altura deseada */
+    }
+    #video-container video {
+        max-width: 79%;
+        border: 2px solid rgba(152, 251, 152, 0.5);
+        border-radius: 10px; 
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+        
+    }
+    #info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: palevioletred;
+        margin-top: 20px;
+    }
+    #info-container > div {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    #like-button {
+        position: relative;
+        top: -37px;
+        margin-left: 0px;
+        border: 3px solid white;
+    }
+    #next-song-button {
+        position: relative;
+        top: -37px;
+        border: 3px solid white
+    }
+    #liked-songs-button {
+        position: relative;
+        top: -130px;
+        padding: 10px 20px;
+        background-color: black;
+        border: 2px solid palegreen;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: larger;
+        text-shadow: 3px 3px 3px rgba(219, 112, 147, 0.5);
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+    #liked-songs-popup {
+        display: none;
+        position: fixed;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        max-height: 80%;
+        padding: 15px;
+        background-color: black; /* Cambia el color de fondo aquí */
+        border: 2px solid white;
+        border-radius: 5px;
+        overflow-y: auto;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        z-index: 9999;
+    }
+    #liked-songs-content {
+        color: white; /* Cambia el color de letra aquí */
+    }
+    a {
+        color: yellowgreen;
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
+    #video-container,
+#info-container {
+    position: relative;
+}
+
+body {
+    overflow-x: hidden; /* Evitar la barra de desplazamiento horizontal */
+}
+    
+    #mobile-gif2 {
+        text-align: center; left: 55%; /* Centra horizontalmente el anuncio */
+        margin-top: -328%; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .rotated-gif2 {
+    transform: rotate(-30deg);
+}
+    
+    #mobile-gif3 {
+        text-align: center; right: 70%; /* Centra horizontalmente el anuncio */
+        margin-top: -328%; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
+        position: absolute;
+    }
+
+    .rotated-gif3 {
+    transform: rotate(30deg);
+}
+    
+    #ad-container {
+        text-align: center; /* Centra horizontalmente el anuncio */
+        margin-top: 355%; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
+        position: absolute;
+    }
+    #donate-button-container {
+    text-align: center; /* Centra el botón horizontalmente */
+    position: absolute;
+    top: 230%;
+    z-index: 2;
+    padding: 10px; /* Agrega espacio interno */
+    /* Puedes ajustar el tamaño del contenedor y otros estilos aquí */
+}
+#chat-username {
+        position: absolute;
+        top: 205%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        border: 2px solid palegreen;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        color: white;
+        display: none; /* Inicialmente oculto */
+        z-index: 2;
+    }
+
+    #username-input {
+        margin-bottom: 10px;
+    }
+    #chat-container #chat-messages .chat-username {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    border-radius: 0%;
+    border: 0cap;
+    box-shadow: none;
+    /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
+}
+    #chat-container #chat-messages .username {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: #ffcc00; /* Cambia el color según tus preferencias */
+}
+    #chat-container #chat-messages strong {
+    background-color: #34db9b; /* Cambia el color de fondo aquí */
+    color: white; /* Cambia el color del texto aquí */
+    padding: 0px; /* Ajusta el espacio interno si es necesario */
+    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
+    border-top-right-radius: 0px;
+    border: 2px solid rgba(152, 251, 152, 0.5);
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-size: larger;
+}
+#chat-container {
+            position: absolute;
+            align-items: center;
+        justify-content: center;
+        bottom: -730px;
+        left: 50%;
+        transform: translateX(-50%);
+            background-color: black;
+            border: 2px solid palegreen;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: bottom 0.3s ease;
+        }
+
+        #chat-messages {
+            flex-grow: 1;
+            max-height: 200px;
+            padding: 10px;
+            overflow-y: auto;
+            color: white;
+        }
+
+        #chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: black;
+        }
+
+        #emoji-button {
+            margin-left: auto;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+        }
+
+        #send-button {
+            margin-left: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        #send-button:hover {
+            background-color: #2980b9;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        /* Agrega este estilo para el contenedor de emojis */
+        #emoji-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute; /* Utiliza posición absoluta */
+    top: calc(180% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
+    left: 50%; /* Centra el contenedor horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centrar en pantalla */
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    display: none; /* Oculta el contenedor inicialmente */
+    z-index: 1;
+    width: 225px;
+}
+
+
+/* Agrega estilo para los emojis individuales */
+.emoji {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+}
+</style>
+    <script>
+ var username = ""; // Variable para almacenar el nombre de usuario
+
+function showUsernameInput() {
+    const chatUsername = document.getElementById("chat-username");
+    chatUsername.style.display = "flex";
+}
+
+function setUsername() {
+    console.log("Setting username:", username);
+    const usernameInput = document.getElementById("username-input");
+    username = usernameInput.value.trim();
+    console.log("Setting username:", username);
+
+    if (username !== "") {
+        const chatUsername = document.getElementById("chat-username");
+        chatUsername.style.display = "none"; // Ocultar la ventana emergente
+
+        // Mostrar el contenedor principal del chat
+        const chatContainer = document.getElementById("chat-container");
+        chatContainer.style.bottom = "-730px";
+
+         // Pausa breve antes de mostrar el cuadro de chat
+         setTimeout(() => {
+                chatContainer.style.bottom = "-730px";
+            }, 10);
+        // Puedes mostrar un mensaje de bienvenida si lo deseas
+        const chatMessages = document.getElementById("chat-messages");
+        const welcomeMessage = document.createElement("div");
+        welcomeMessage.innerHTML = `<strong class="username">Bienvenido, ${username}!</strong>`;
+        chatMessages.appendChild(welcomeMessage);
+    }
+}
+
+// Agrega esta función para seleccionar un emoji
+function selectEmoji(emoji) {
+    const messageInput = document.getElementById("message-input");
+    messageInput.value += emoji;
+
+    // También puedes cerrar el contenedor de emojis si es necesario
+    const emojiContainer = document.getElementById("emoji-container");
+    emojiContainer.style.display = "none"; // Oculta el contenedor de emojis después de seleccionar uno
+}
+
+// Actualiza la función toggleEmojiPicker para mostrar/ocultar el contenedor de emojis
+function toggleEmojiPicker() {
+    const emojiContainer = document.getElementById("emoji-container");
+    emojiContainer.style.display = emojiContainer.style.display === "none" ? "flex" : "none";
+}
+
+function sendMessage() {
+    console.log("sendMessage function called");
+    const messageInput = document.getElementById("message-input");
+    const message = messageInput.value.trim();
+
+    if (message !== "") {
+        const chatMessages = document.getElementById("chat-messages");
+        const newMessage = document.createElement("div");
+        
+        // Agregar el nombre de usuario al mensaje si existe
+        if (username !== "") {
+            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
+        } else {
+            newMessage.textContent = message;
+        }
+
+        chatMessages.appendChild(newMessage);
+
+        // Limpiar el cuadro de entrada después de enviar el mensaje
+        messageInput.value = "";
+
+        // Hacer scroll hasta el final del contenedor de mensajes
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+}
+</script>
+<script>
+    const videos = [
+        { src: "madonna.mp4", liked: false },
+        { src: "D.A.N.K. - My Planet [The Treehouse] [W DOWNLOAD LINK].mp4", liked: false },
+        { src: "macy.mp4", liked: false },
+        // Agrega más URLs de videos según sea necesario
+        { src: "deacon.mp4", liked: false },
+        { src: "Earth, Wind  Fire - Fantasy (Audio).mp4", liked: false },
+        { src: "Dont Dream Its Over Official Video Sixpence None The Richer.mp4", liked: false },
+        { src: "Brandi Carlile   -   The Story  (Live).mp4", liked: false },
+        { src: "D.A.N.K  ROTE  OFF NEW MIXTAPE THE STONED AGE.mp4", liked: false },
+        { src: "Janis Joplin - Me And Bobby McGee.mp4", liked: false },
+        { src: "Fairground Attraction - Perfect.mp4", liked: false },
+        { src: "Im only sleeping - The Vines.mp4", liked: false },
+        { src: "Mariah Carey - Without You (Official Video).mp4", liked: false },
+        { src: "Nelly Furtado - Turn Off The Light.mp4", liked: false },
+        { src: "Lady Gaga - Your Song (Elton John GRAMMY Salute) (Rehearsal) (January 29th 2018).mp4", liked: false },
+        { src: "Michael Jackson - Scream.mp4", liked: false },
+        { src: "Paramore Hate To See Your Heart Break ft. Joy Williams [OFFICIAL VIDEO].mp4", liked: false },
+        { src: "Pulp - Disco 2000.mp4", liked: false },
+        { src: "Rod Stewart - I Dont Want To Talk About It ft. Amy Belle.mp4", liked: false },
+        { src: "Vienna (Official Music Video) - Ultravox.mp4", liked: false },
+        { src: "Roxy Music - Jealous Guy.mp4", liked: false },
+        { src: "SAMANTHA SANG ~ EMOTION (with The Bee Gees) highest def. audiovideo~ 1977.mp4", liked: false },
+        { src: "The Dead Weather - I Cut Like A Buffalo (Version II - Official Video).mp4", liked: false },
+        { src: "The Sounds Living In America.mp4", liked: false },
+        { src: "The Zutons - Valerie (Video).mp4", liked: false },
+        { src: "Come Back Lover (Fiord Remix).mp4", liked: false },
+        { src: "Danny Wilson - Marys Prayer.mp4", liked: false },
+        { src: "James Morrison - You Give Me Something (New Version).mp4", liked: false },
+        { src: "Peter Gabriel - In Your Eyes.mp4", liked: false },
+        { src: "Róisín Murphy - Fader (Official Music Video).mp4", liked: false },
+        { src: "Seinabo Sey - Pretend.mp4", liked: false },
+        { src: "Shakespears Sister - Stay (Official Video).mp4", liked: false },
+        { src: "Sheryl Crow - All I Wanna Do (Official Music Video).mp4", liked: false },
+        { src: "Robbie Williams - Millennium.mp4", liked: false },
+        { src: "The Darkness - I Believe In A Thing Called Love (Official Music Video).mp4", liked: false },
+        { src: "Will To Power - Baby I Love Your Way.mp4", liked: false },
+        { src: "Kylie Minogue - Say Something (Official Video).mp4", liked: false },
+        { src: "Delta Goodrem - Lost Without You (Official Video), Full HD (Digitally Remastered and Upscaled).mp4", liked: false },
+        { src: "Scissor Sisters - Mary.mp4", liked: false },
+        { src: "Natasha Bedingfield - Unwritten.mp4", liked: false },
+        { src: "All Saints - Pure Shores (Official Music Video).mp4", liked: false },
+        { src: "The Cranberries - Analyse.mp4", liked: false },
+        { src: "Suzanne Vega - Luka.mp4", liked: false },
+        { src: "Pretenders - Back on the Chain Gang (Official Music Video).mp4", liked: false },
+        { src: "Jeanette - Corazón de poeta.mp4", liked: false },
+        { src: "NEW  Glenn Miller - In The Mood 1941 [5K] (Color, Stereo) HD.mp4", liked: false },
+        { src: "Five Star - System Addict (Video).mp4", liked: false },
+        { src: "The Cardigans - Erase  Rewind Directors Cut.mp4", liked: false },
+        { src: "Travis - Why Does It Always Rain On Me.mp4", liked: false },
+        { src: "The Cardigans - My Favourite Game Stone Version.mp4", liked: false },
+        { src: "Not Gonna Get Us (EN).mp4", liked: false },
+        { src: "Player - Baby Come Back.mp4", liked: false },
+        { src: "Damien Rice - The Blowers Daughter - Official Video.mp4", liked: false },
+        { src: "Robin Beck - The Very First Time (HQ).mp4", liked: false },
+        { src: "Jeff Buckley - Hallelujah (Official Video).mp4", liked: false },
+        { src: "Walkin In The Rain With The One I Love.mp4", liked: false },
+        { src: "Frankie Goes To Hollywood - The Power Of Love.mp4", liked: false },
+        { src: "The Communards - Don't Leave Me This Way.mp4", liked: false },
+        { src: "Alison Moyet - Love Resurrection (Promo).mp4", liked: false },
+        { src: "Ariana Grande - the light is coming ft. Nicki Minaj.mp4", liked: false },
+        { src: "Heart - Crazy On You (1977) • TopPop.mp4", liked: false },
+        { src: "Michael Gray - The Weekend (Official Video).mp4", liked: false },
+        { src: "Bananarama - Na Na Hey Hey (Kiss Him Goodbye) (Official Video).mp4", liked: false },
+        { src: "Ace of Base - The Sign (Official Music Video).mp4", liked: false },
+        { src: "Sophie Ellis-Bextor - Death Of Love (Mariachi version).mp4", liked: false },
+        { src: "SWV - Right Here (Human Nature Radio Mix - Official Video).mp4", liked: false },
+        { src: "OZZY OSBOURNE - _Dreamer_ (Official Video).mp4", liked: false },
+        { src: "Joan Osborne - One Of Us.mp4", liked: false },
+        { src: "Wilson Phillips - Hold On (Official Music Video).mp4", liked: false },
+        { src: "The Beatles - Don't Let Me Down.mp4", liked: false },
+        { src: "Soul II Soul - Keep On Movin'.mp4", liked: false },
+        { src: "Mariah Carey - We Belong Together (Official Music Video).mp4", liked: false },
+        { src: "Lady Gaga - Look What I Found (from A Star Is Born) (Official Music Video).mp4", liked: false },
+        { src: "Save Me.mp4", liked: false },
+        { src: "To Love Somebody.mp4", liked: false },
+        { src: "videoplayback (1).mp4", liked: false },
+        { src: "Suzanne Vega, DNA - Tom's Diner.mp4", liked: false },
+        { src: "Goldfrapp - Rocket.mp4", liked: false },
+        { src: "Mariah Carey - Against All Odds (Take a Look at Me Now) (Official HD Video) ft. Westlife.mp4", liked: false },
+        { src: "Roxette - It Must Have Been Love (Official Music Video).mp4", liked: false },
+        { src: "The Alan Parsons Project - Don't Answer Me (Official HD Video).mp4", liked: false },
+        { src: "The Alan Parsons Project - Games People Play (Official HD Video).mp4", liked: false },
+        { src: "Toto - Hold The Line (Official Video).mp4", liked: false },
+        { src: "ABBA - The Winner Takes It All.mp4", liked: false },
+        { src: "A Flock Of Seagulls - I Ran (So Far Away) (Video).mp4", liked: false },
+        { src: "Paula Abdul - Straight Up.mp4", liked: false },
+        { src: "Martika - Toy Soldiers.mp4", liked: false },
+        { src: "Kix - Dont Close Your Eyes (Official Music Video).mp4", liked: false },
+        { src: "MIKA - Grace Kelly (Extended Version) (Official Music Video).mp4", liked: false },
+        { src: "Savage Garden - To The Moon  Back (Extended Version).mp4", liked: false },
+        { src: "Janis Joplin- Try (just a little bit harder).mp4", liked: false },
+        { src: "N Sync - Gone.mp4", liked: false },
+        { src: "Christina Aguilera - Accelerate (Official Video) ft. Ty Dolla $ign, 2 Chainz.mp4", liked: false },
+        { src: "All Saints - Never Ever (UK Version) (Official Music Video).mp4", liked: false },
+        { src: "Christina Aguilera - The Voice Within (Official HD Video).mp4", liked: false },
+        { src: "Kiss Me - There She Goes-Version (Official).mp4", liked: false },
+        { src: "Lisa Loeb _Stay (I Missed You)_ Music Video.mp4", liked: false },
+        { src: "Edie Brickell & New Bohemians - What I Am (Official Music Video).mp4", liked: false },
+        { src: "Debbie Gibson - Electric Youth (Official Music Video).mp4", liked: false },
+        { src: "Mariah Carey - Always Be My Baby (Official Music Video).mp4", liked: false },
+        { src: "Climie Fisher  - Love Changes Everything.mp4", liked: false },
+        { src: "Boy Meets Girl - Waiting for a Star to Fall.mp4", liked: false },
+        { src: "DEF LEPPARD - _Love Bites_ (Official Music Video).mp4", liked: false },
+        { src: "Heart - Never (Official Music Video).mp4", liked: false },
+        { src: "Pretenders - Don't Get Me Wrong (Official Music Video).mp4", liked: false },
+        { src: "Def Leppard - Hysteria (Long Version).mp4", liked: false },
+        { src: "Phil Collins _Against All Odds_.mp4", liked: false },
+        { src: "Whitney Houston - I'm Every Woman (Official Video).mp4", liked: false },
+        { src: "2892784037 (1).mp4", liked: false },
+        { src: "Moby - Porcelain.mp4", liked: false },
+        { src: "Elton John - Tiny Dancer.mp4", liked: false },
+        { src: "Sergio Mendes & Brasil 66 -  The Fool On The Hill (1968).mp4", liked: false },
+        { src: "The Way It Is.mp4", liked: false },
+        { src: "Kylie Minogue & Jessie Ware - Kiss of Life (Official Video).mp4", liked: false },
+        { src: "Nightcrawlers - Push The Feeling On (Official Video).mp4", liked: false },
+        { src: "Talk Talk - It's My Life (Official Video).mp4", liked: false },
+        { src: "Cornershop - Brimful Of Asha, Norman Cook Mix (Tjinder Singh) Official Music Video.mp4", liked: false },
+        { src: "Shanks & Bigfoot - Sweet Like Chocolate.mp4", liked: false },
+        { src: "Sophie Ellis-Bextor - Crying At The Discotheque (Official Video).mp4", liked: false },
+        { src: "Sophie Ellis-Bextor ''Yes Sir, I Can Boogie'' (NSMGUK Extended Version).mp4", liked: false },
+        { src: "Blondie - Call me.mp4", liked: false },
+        { src: "Seal - Crazy (Official Music Video) [HD].mp4", liked: false },
+        { src: "Donna Lewis - I Could Be The One (Official Music Video).mp4", liked: false },
+        { src: "(MCM 90'S) OLIVE You're not alone.mp4", liked: false },
+        { src: "Fleetwood Mac - Gypsy (Official Music Video).mp4", liked: false },
+        { src: "Simply Red - Fairground (Official Video).mp4", liked: false },
+        { src: "Frankie Valli & The Four Seasons - Who Loves You (Official Music Video).mp4", liked: false },
+        { src: "Kim Wilde - Kids In America (1981) • TopPop.mp4", liked: false },
+        { src: "Disclosure - Omen ft. Sam Smith.mp4", liked: false },
+        { src: "Wham! - Last Christmas (Official Video).mp4", liked: false },
+        { src: "Robbie Williams Nicole Kidman - Somethin' Stupid.mp4", liked: false },
+        { src: "R.E.M. - The One I Love (Official Music Video).mp4", liked: false },
+        { src: "Prefab Sprout - The King of Rock N Roll.mp4", liked: false },
+        { src: "Don Henley - The Boys Of Summer (Official Music Video).mp4", liked: false },
+        { src: "John Farnham - You're the Voice (Official Video).mp4", liked: false },
+        { src: "Lily Allen  LDN (Official Video).mp4", liked: false },
+        { src: "Adele - Chasing Pavements (Official Music Video).mp4", liked: false },
+        { src: "Sophie Ellis-Bextor - Music Gets The Best Of Me.mp4", liked: false },
+        { src: "Natalie Imbruglia - Wrong Impression.mp4", liked: false },
+        { src: "Abba - Dancing Queen (Official Music Video Remastered).mp4", liked: false },
+        { src: "Tasmin Archer - Sleeping Satellite.mp4", liked: false },
+        { src: "Daniel Bedingfield - Gotta Get Thru This (2000) (Music Video).mp4", liked: false },
+        { src: "Cars and girls.mp4", liked: false },
+        { src: "Vídeo sin título ‐ Hecho con Clipchamp (8).mp4", liked: false },
+        { src: "Vídeo sin título ‐ Hecho con Clipchamp (9).mp4", liked: false },
+        { src: "Vídeo sin título ‐ Hecho con Clipchamp (10).mp4", liked: false },
+        { src: "Vídeo sin título ‐ Hecho con Clipchamp (16).mp4", liked: false },
+        { src: "Swing Out Sister - Breakout (Official Video).mp4", liked: false },
+        { src: "Ill Fly with You (Original  Lyrics Video) von Gigi DAgostino.mp4", liked: false },
+        { src: "Björk - It's Oh So Quiet (HQ).mp4", liked: false },
+        { src: "Underworld - Born Slippy [Trainspotting].mp4", liked: false },
+        { src: "ABBA - Take A Chance On Me (Official Music Video).mp4", liked: false },
+        { src: "ABBA - Knowing Me Knowing You (Official Music Video).mp4", liked: false },
+        { src: "Debbie Gibson - Foolish Beat (Official Music Video).mp4", liked: false },
+        { src: "Glenn Frey - You Belong To The City.mp4", liked: false },
+        { src: "Deftones - Rocket Skates [Official Music Video].mp4", liked: false },
+        { src: "My Chemical Romance - I Don't Love You [Official Music Video] [HD].mp4", liked: false },
+        { src: "The Sounds Seven Days A Week.mp4", liked: false },
+        { src: "NSYNC - It's Gonna Be Me (Official Video).mp4", liked: false },
+        { src: "Christina Aguilera - Genie In A Bottle (Official Video).mp4", liked: false },
+        { src: "Tears For Fears - Sowing The Seeds Of Love.mp4", liked: false },
+        { src: "Paramore_ Ignorance [OFFICIAL VIDEO].mp4", liked: false },
+        { src: "AFI - The Leaving Song Pt. II (Official Music Video).mp4", liked: false },
+        { src: "Iggy Pop - Lust For Life.mp4", liked: false },
+        { src: "Zedd - Clarity ft. Foxes.mp4", liked: false },
+        { src: "Backstreet Boys - Quit Playing Games (With My Heart) (Official HD Video).mp4", liked: false },
+        { src: "Santana - The Game Of Love (Video) ft. Michelle Branch.mp4", liked: false },
+        { src: "Put a Light On Me (Eva Be Remix).mp4", liked: false },
+        { src: "Mario Basanov feat. Athena Radford - Like A Child (Eugene Filatov Remix).mp4", liked: false }
+    ];
+
+    const songInfo = {
+        "madonna.mp4": { name: "What it feels like for a Girl", artist: "Madonna", links: "https://youtu.be/qYwgG2oyUbA" },
+        "D.A.N.K. - My Planet [The Treehouse] [W DOWNLOAD LINK].mp4": { name: "My Planet", artist: "D.A.N.K", links: "https://youtu.be/aoe-qo5jgGk?si=bnA9IrJsKyn3zfBc" },
+        "macy.mp4": { name: "I Try", artist: "Macy Gray", links: "https://www.youtube.com/embed/WEQ0l_m3Xm0" },
+        // Agrega más información de canciones según sea necesario
+        "deacon.mp4": { name: "Real Gone Kid", artist: "Deacon Blue", links: "https://youtu.be/5SD4lI9GKUE" },
+        "Earth, Wind  Fire - Fantasy (Audio).mp4": { name: "Fantasy", artist: "Earth, Wind &Fire", links: "https://youtu.be/r58GQYFZeLE?si=K_9W1tc98bAy5w99" },
+        "Dont Dream Its Over Official Video Sixpence None The Richer.mp4": { name: "Dont Dream Its Over", artist: "Sixpence None The Richer", links: "https://youtu.be/ZUHKDHkRasc?si=0iCyg7D1VJp3sb9B" },
+        "Brandi Carlile   -   The Story  (Live).mp4": { name: "The Story", artist: "Brandi Carlile", links: "https://youtu.be/ODgr5SAk97A" },
+        "D.A.N.K  ROTE  OFF NEW MIXTAPE THE STONED AGE.mp4": { name: "Rote", artist: "D.A.N.K", links: "https://youtu.be/S3a-mKUxIew?si=pZP-lpTeO2QnZtZc" },
+        "Janis Joplin - Me And Bobby McGee.mp4": { name: "Me And Bobby McGee", artist: "Janis Joplin ", links: "https://youtu.be/sfjon-ZTqzU?si=w1l1eTEea-gvLf-A" },
+        "Fairground Attraction - Perfect.mp4": { name: "Perfect", artist: "Fairground Attraction", links: "https://youtu.be/txapREGWHp0" },
+        "Im only sleeping - The Vines.mp4": { name: "Im only sleeping", artist: "The Vines", links: "https://youtu.be/ZSFjLTROTfY" },
+        "Mariah Carey - Without You (Official Video).mp4": { name: "Without You", artist: "Mariah Carey", links: "https://youtu.be/Hat1Hc9SNwE?si=2e37QmoeGo6RJMEX" },
+        "Nelly Furtado - Turn Off The Light.mp4": { name: "Turn Off The Light", artist: "Nelly Furtado", links: "https://youtu.be/kOL7aeIDruA?si=q4NQO6FHZSi7TXRX" },
+        "Lady Gaga - Your Song (Elton John GRAMMY Salute) (Rehearsal) (January 29th 2018).mp4": { name: "Your Song (Elton John GRAMMY Salute) (Rehearsal) (January 29th 2018)", artist: "Lady Gaga", links: "https://youtu.be/OAuIY_eaL5U" },
+        "Michael Jackson - Scream.mp4": { name: "Scream", artist: "Michael Jackson &Janet Jackson", links: "https://youtu.be/0P4A1K4lXDo" },
+        "Paramore Hate To See Your Heart Break ft. Joy Williams [OFFICIAL VIDEO].mp4": { name: "Hate to see Your Heart Brake", artist: "Paramore ft. Joy Williams", links: "https://youtu.be/QZweyIKNwX4" },
+        "Pulp - Disco 2000.mp4": { name: "Disco 2000", artist: "Pulp", links: "https://youtu.be/qJS3xnD7Mus" },
+        "Rod Stewart - I Dont Want To Talk About It ft. Amy Belle.mp4": { name: "I Dont Want To Talk About It", artist: "Rod Stewart ft. Amy Belle", links: "https://youtu.be/w46bWxS9IjY" },
+        "Vienna (Official Music Video) - Ultravox.mp4": { name: "Vienna", artist: "Ultravox", links: "https://youtu.be/xJeWySiuq1I?si=4MXzb4ByJDltzlvA" },
+        "Roxy Music - Jealous Guy.mp4": { name: "Jealous Guy", artist: "Roxy Music", links: "https://youtu.be/hRzGzRqNj58" },
+        "SAMANTHA SANG ~ EMOTION (with The Bee Gees) highest def. audiovideo~ 1977.mp4": { name: "Emotion", artist: "Samantha Sang with the Bee Gees", links: "https://youtu.be/zPwpVJ-eIgg" },
+        "The Dead Weather - I Cut Like A Buffalo (Version II - Official Video).mp4": { name: "I Cut Like A Buffalo (Version II - Official Video)", artist: "The Dead Weather", links: "https://youtu.be/RYDhw8_lAn0" },
+        "The Sounds Living In America.mp4": { name: "Living In America", artist: "The Sounds", links: "https://youtu.be/5vSVkDkpfpA" },
+        "The Zutons - Valerie (Video).mp4": { name: "Valerie", artist: "The Zutons", links: "https://youtu.be/L3xpmfJp0Xc" },
+        "Come Back Lover (Fiord Remix).mp4": { name: "Come Back Lover", artist: "Charlie Ash (Fiord remix)", links: "https://youtu.be/DRnmNeizUk4?si=Pp_TYswBg4CjgPpw" },
+        "Danny Wilson - Marys Prayer.mp4": { name: "Marys Prayer", artist: "Danny Wilson", links: "https://youtu.be/7hqgC3W9GUI" },
+        "James Morrison - You Give Me Something (New Version).mp4": { name: "You Give Me Something (New Version)", artist: "James Morrison", links: "https://youtu.be/Y8_Qhq7XpFU" },
+        "Peter Gabriel - In Your Eyes.mp4": { name: "In Your Eyes", artist: "Peter Gabriel", links: "https://youtu.be/kU8OJAOMbPg?si=E6uopdXKPI2KX55J" },
+        "Róisín Murphy - Fader (Official Music Video).mp4": { name: "Fader", artist: "Róisín Murphy", links: "https://youtu.be/C6HcP8pK6_w?si=6LV07xNpHnog12TT" },
+        "Seinabo Sey - Pretend.mp4": { name: "Pretend", artist: "Seinabo Sey", links: "https://youtu.be/6xbX5hCk9FE" },
+        "Shakespears Sister - Stay (Official Video).mp4": { name: "Stay", artist: "Shakespears Sister", links: "https://youtu.be/YCYaALgW80c?si=gSq2ynzUDnqmHSQj" },
+        "Sheryl Crow - All I Wanna Do (Official Music Video).mp4": { name: "All I Wanna Do", artist: "Sheryl Crow", links: "https://youtu.be/ClbmWkbocoY" },
+        "Robbie Williams - Millennium.mp4": { name: "Millenium", artist: "Robbie Williams", links: "https://youtu.be/xcWOviMI6Lk?si=PoV413ihabgXM0tp" },
+        "The Darkness - I Believe In A Thing Called Love (Official Music Video).mp4": { name: "I Believe In A Thing Called Love ", artist: "The Darkness", links: "https://youtu.be/tKjZuykKY1I" },
+        "Will To Power - Baby I Love Your Way.mp4": { name: "Baby I Love Your Way", artist: "Will To Power ", links: "https://youtu.be/79r_XaUU7yE" },
+        "Kylie Minogue - Say Something (Official Video).mp4": { name: "Say Something (Official Video)", artist: "Kylie Minogue", links: "https://youtu.be/l73FJBnjp28?si=avUkVy3ivvZD4KyJ" },
+        "Delta Goodrem - Lost Without You (Official Video), Full HD (Digitally Remastered and Upscaled).mp4": { name: "Lost Without You", artist: "Delta Goodrem", links: "https://youtu.be/j8J874vYp60?si=0FHrOUMKUQKyU80m" },
+        "Scissor Sisters - Mary.mp4": { name: "Mary", artist: "Scissor Sisters", links: "https://youtu.be/ThYOmxGgXzw?si=pEINnwzAmuzLXZbp" },
+        "Natasha Bedingfield - Unwritten.mp4": { name: "Unwritten", artist: "Natasha Bedingfield", links: "https://youtu.be/cFFBSSntZgs?si=tN3Fo_RxAxkhy5Zj" },
+        "All Saints - Pure Shores (Official Music Video).mp4": { name: "Pure Shores", artist: "All Saints", links: "https://youtu.be/dVNdTXEJv1A?si=YTtbhi1KyjrxDpi4" },
+        "The Cranberries - Analyse.mp4": { name: "Analyse", artist: "The Cranberries", links: "https://youtu.be/DaBWlBknNgs?si=jfKZDs5yI9lbufAV" },
+        "Suzanne Vega - Luka.mp4": { name: "Luka", artist: "Suzanne Vega", links: "https://youtu.be/VZt7J0iaUD0?si=a66XYDFlsjMTQnlY" },
+        "Pretenders - Back on the Chain Gang (Official Music Video).mp4": { name: "Back on the Chain Gang", artist: "The Pretenders", links: "https://youtu.be/cMOKamtpUA8?si=Ih3JZpMqOPt2vg5N" },
+        "Jeanette - Corazón de poeta.mp4": { name: "Corazón de poeta", artist: "Jeanette", links: "https://youtu.be/mlg4fV1MEQ8?si=oR2GPWKH9cSYIR8p" },
+        "NEW  Glenn Miller - In The Mood 1941 [5K] (Color, Stereo) HD.mp4": { name: "In The Mood 1941 [5K] (Colorized, Stereo)", artist: "Glenn Miller", links: "https://youtu.be/aME0qvhZ37o?si=OsgeEZZc6rIicTfa" },
+        "Five Star - System Addict (Video).mp4": { name: "System Addict", artist: "Five Star", links: "https://youtu.be/wsA7rdZelLc?si=bjuf8WCnUZi7wI3-" },
+        "The Cardigans - Erase  Rewind Directors Cut.mp4": { name: "Erase  Rewind Directors Cut", artist: "The Cardigans", links: "https://youtu.be/6WOYnv59Bi8?si=eZ0LPQCIqLtw4DJb" },
+        "Travis - Why Does It Always Rain On Me.mp4": { name: "Why Does It Always Rain On Me", artist: "Travis", links: "https://youtu.be/PXatLOWjr-k?si=SxA4kMgpItAbLfux" },
+        "The Cardigans - My Favourite Game Stone Version.mp4": { name: "My Favourite Game Stone Version", artist: "The Cardigans", links: "https://youtu.be/u9WgtlgGAgs?si=gQtgH5Da5Cu2Tmb1" },
+        "Not Gonna Get Us (EN).mp4": { name: "Not Gonna Get Us", artist: "t.A.T.u.", links: "https://youtu.be/0HL-N9oOjcs?si=JdBEdiuCZNha7RHu" },
+        "Player - Baby Come Back.mp4": { name: "Baby Come Back", artist: "Player", links: "https://youtu.be/Hn-enjcgV1o?si=0pAZA0R3bigAG6_V" },
+        "Damien Rice - The Blowers Daughter - Official Video.mp4": { name: "The Blowers Daughter", artist: "Damien Rice", links: "https://youtu.be/5YXVMCHG-Nk?si=Qt7E0WR6QXLnD2pm" },
+        "Robin Beck - The Very First Time (HQ).mp4": { name: "The Very First Time", artist: "Robin Beck", links: "https://youtu.be/oXk-PPmH5ak?si=0cD_A_ar_ImN4MBt" },
+        "Jeff Buckley - Hallelujah (Official Video).mp4": { name: "Hallelujah", artist: "Jeff Buckley", links: "https://youtu.be/y8AWFf7EAc4?si=80NfXmAlrpA0oNpp" },
+        "Walkin In The Rain With The One I Love.mp4": { name: "Walkin In The Rain With The One I Love", artist: "Love Unlimited", links: "https://youtu.be/THTklwIscew?si=FoaThF0pZKpfvmju" },
+        "Frankie Goes To Hollywood - The Power Of Love.mp4": { name: "The Power Of Love", artist: "Frankie Goes To Hollywood", links: "https://youtu.be/WtdRv6GT9Zg?si=GQzQegLreiGzWsgg" },
+        "The Communards - Don't Leave Me This Way.mp4": { name: "Don't Leave Me This Way", artist: "The Communards", links: "https://youtu.be/uxk7aSCLj4g?si=aSdpO4vkCJAPi6Ud" },
+        "Alison Moyet - Love Resurrection (Promo).mp4": { name: "Love Resurrection", artist: "Alison Moyet", links: "https://youtu.be/o2n-blwYJ4s?si=wxCt0klHUSEdOvkY" },
+        "Ariana Grande - the light is coming ft. Nicki Minaj.mp4": { name: "the light is coming ft. Nicki Minaj", artist: "Ariana Grande", links: "https://youtu.be/OQitfe8u7i4?si=1N2tK1SIbEy4aMNa" },
+        "Heart - Crazy On You (1977) • TopPop.mp4": { name: "Crazy On You", artist: "Heart", links: "https://youtu.be/yZjEC4WhCvg?si=iIQaxo24mkMF_ar3" },
+        "Michael Gray - The Weekend (Official Video).mp4": { name: "The Weekend", artist: "Michael Gray", links: "https://youtu.be/N3kkNfH4yco?si=EVc-0yvNqYCTreBO" },
+        "Bananarama - Na Na Hey Hey (Kiss Him Goodbye) (Official Video).mp4": { name: "Na Na Hey Hey (Kiss Him Goodbye)", artist: "Bananarama", links: "https://youtu.be/HnYWmgSZdlM?si=-Iym310hE1ae2TCn" },
+        "Ace of Base - The Sign (Official Music Video).mp4": { name: "The Sign", artist: "Ace of Base", links: "https://youtu.be/iqu132vTl5Y?si=0jBQYVc2jjDz5BZv" },
+        "Sophie Ellis-Bextor - Death Of Love (Mariachi version).mp4": { name: "Death Of Love (Mariachi version)", artist: "Sophie Ellis-Bextor", links: "https://youtu.be/r9ljDWnducY?si=5-it5IGYMbywu7CX" },
+        "SWV - Right Here (Human Nature Radio Mix - Official Video).mp4": { name: "Right Here (Human Nature Radio Mix - Official Video)", artist: "SWV", links: "https://youtu.be/vHwXoY0LiQk?si=ZBvy1sNu6ZN2WoVZ" },
+        "OZZY OSBOURNE - _Dreamer_ (Official Video).mp4": { name: "Dreamer", artist: "OZZY OSBOURNE", links: "https://youtu.be/LCCiwPEdEpg?si=Z77u485WXkfCIsps" },
+        "Joan Osborne - One Of Us.mp4": { name: "One Of Us", artist: "Joan Osborne", links: "https://youtu.be/aDdOnl0bHO4?si=r-_6K0ESTNO00CeI" },
+        "Wilson Phillips - Hold On (Official Music Video).mp4": { name: "Hold On", artist: "Wilson Phillips", links: "https://youtu.be/uIbXvaE39wM?si=Jh-IsSaHo_DETiqT" },
+        "The Beatles - Don't Let Me Down.mp4": { name: "Don't Let Me Down", artist: "The Beatles", links: "https://youtu.be/NCtzkaL2t_Y?si=91IyjAJgqwoBVZA7" },
+        "Soul II Soul - Keep On Movin'.mp4": { name: "Keep On Movin'", artist: "Soul II Soul", links: "https://youtu.be/1iQl46-zIcM?si=VFCjqhE3VsevX_51" },
+        "Mariah Carey - We Belong Together (Official Music Video).mp4": { name: "We Belong Together", artist: "Mariah Carey", links: "https://youtu.be/0habxsuXW4g?si=HfroASJVcl0xNjSm" },
+        "Lady Gaga - Look What I Found (from A Star Is Born) (Official Music Video).mp4": { name: "Look What I Found (from A Star Is Born) (Official Music Video)", artist: "Lady Gaga", links: "https://youtu.be/8uGVZoqJjn4?si=FVKE5576MQbrLqFi" },
+        "Save Me.mp4": { name: "Save Me", artist: "Remy Zero", links: "https://youtu.be/Qu0dIn3_2Zc?si=II52ksqxh48Y3MQd" },
+        "To Love Somebody.mp4": { name: "To Love Somebody", artist: "BEE GEES", links: "https://youtu.be/RQCT1f8IHK0?si=gnXzT6QuqRyqwzDE" },
+        "videoplayback (1).mp4": { name: "Say What You Want (Version 2) (Official Video)", artist: "Texas", links: "https://youtu.be/ikI3dB8Sc-4?si=sGAt_33ezh25FHPv" },
+        "Suzanne Vega, DNA - Tom's Diner.mp4": { name: "Tom's Diner", artist: "Suzanne Vega, DNA", links: "https://youtu.be/j4jtIDaeaWI?si=3lQEVsN4sTmTWzuf" },
+        "Goldfrapp - Rocket.mp4": { name: "Rocket", artist: "Goldfrapp", links: "https://youtu.be/rJppnG1tflU?si=_UNRXHgUNr9Gobzq" },
+        "Mariah Carey - Against All Odds (Take a Look at Me Now) (Official HD Video) ft. Westlife.mp4": { name: "Against All Odds (Take a Look at Me Now) (Official HD Video) ft. Westlife", artist: "Mariah Carey", links: "https://youtu.be/Dc3YAINjlyE?si=yRhsL34lgEMyoHOQ" },
+        "Roxette - It Must Have Been Love (Official Music Video).mp4": { name: "It Must Have Been Love", artist: "Roxette", links: "https://youtu.be/k2C5TjS2sh4?si=gnMi6EGm_yuU877u" },
+        "The Alan Parsons Project - Don't Answer Me (Official HD Video).mp4": { name: "Don't Answer Me", artist: "The Alan Parsons Project", links: "https://youtu.be/JLvFbBR4XOg?si=pkt_M5X_4X0y_Nn4" },
+        "The Alan Parsons Project - Games People Play (Official HD Video).mp4": { name: "Games People Play", artist: "The Alan Parsons Project", links: "https://youtu.be/SLi7Ljcy6n8?si=FLzNABpa-C9jUkoD" },
+        "Toto - Hold The Line (Official Video).mp4": { name: "Hold The Line", artist: "Toto", links: "https://youtu.be/htgr3pvBr-I?si=aliUj5bQYIvEmai5" },
+        "ABBA - The Winner Takes It All.mp4": { name: "The Winner Takes It All", artist: "ABBA", links: "https://youtu.be/92cwKCU8Z5c?si=de1HMTzqfgMrKRxD" },
+        "A Flock Of Seagulls - I Ran (So Far Away) (Video).mp4": { name: "I Ran (So Far Away)", artist: "A Flock Of Seagulls", links: "https://youtu.be/iIpfWORQWhU?si=hs00bjY1xB0ITE39" },
+        "Paula Abdul - Straight Up.mp4": { name: "Straight Up", artist: "Paula Abdul", links: "https://youtu.be/El1kgCqD7Xk?si=m5bkUQojUlym7JAH" },
+        "Martika - Toy Soldiers.mp4": { name: "Toy Soldiers", artist: "Martika", links: "https://youtu.be/LvdLovAaYzM?si=GxT1f8Y5FZkixg69" },
+        "Kix - Dont Close Your Eyes (Official Music Video).mp4": { name: "Dont Close Your Eyes", artist: "Kix", links: "https://youtu.be/DeM3CmMA9K0?si=WDwNs2EasdhA-d4j" },
+        "MIKA - Grace Kelly (Extended Version) (Official Music Video).mp4": { name: "Grace Kelly (Extended Version)", artist: "MIKA", links: "https://youtu.be/EaEPCsQ4608?si=LR-7xxIyLixOUIna" },
+        "Savage Garden - To The Moon  Back (Extended Version).mp4": { name: "To The Moon  Back (Extended Version)", artist: "Savage Garden", links: "https://youtu.be/HCm6gRHINqA?si=c9WCONxnuUXoWJjm" },
+        "Janis Joplin- Try (just a little bit harder).mp4": { name: "Try (just a little bit harder)", artist: "Janis Joplin", links: "https://youtu.be/vU9Dsl89UGo?si=CXp2xfeUjrhrP5ZH" },
+        "N Sync - Gone.mp4": { name: "Gone", artist: "N Sync", links: "https://youtu.be/IbRwSI8yi1o?si=EZJp9L2iWd_wSCd7" },
+        "Christina Aguilera - Accelerate (Official Video) ft. Ty Dolla $ign, 2 Chainz.mp4": { name: "Accelerate", artist: "Christina Aguilera ft. Ty Dolla $ign, 2 Chainz", links: "https://youtu.be/DSRSgMp5X1w?si=BsUhljQHWVwzsC0b" },
+        "All Saints - Never Ever (UK Version) (Official Music Video).mp4": { name: "Never Ever (UK Version)", artist: "All Saints", links: "https://youtu.be/X28-olxweYk?si=yVNiBQyKB0O5T98W" },
+        "Christina Aguilera - The Voice Within (Official HD Video).mp4": { name: "The Voice Within", artist: "Christina Aguilera", links: "https://youtu.be/nA2k79EGHbc?si=0qBs1jy9tg6YnuJy" },
+        "Kiss Me - There She Goes-Version (Official).mp4": { name: "Kiss Me - There She Goes _ Version", artist: "Sixpence None the Richer", links: "https://youtu.be/v45F0YesdZM?si=yTI1pkmMOyZnJppr" },
+        "Lisa Loeb _Stay (I Missed You)_ Music Video.mp4": { name: "Stay (I Missed You)", artist: "Lisa Loeb", links: "https://youtu.be/i9HGwRbMiVY?si=gG2EQ5n-MoCZ4YoA" },
+        "Edie Brickell & New Bohemians - What I Am (Official Music Video).mp4": { name: "What I Am (Official Music Video)", artist: "Edie Brickell & New Bohemians", links: "https://youtu.be/tDl3bdE3YQA?si=Xh8CxiI4VRhf73Z2" },
+        "Debbie Gibson - Electric Youth (Official Music Video).mp4": { name: "Electric Youth", artist: "Debbie Gibson", links: "https://youtu.be/lqAOB143KqY?si=i7CG_R5qmWJIkQpG" },
+        "Mariah Carey - Always Be My Baby (Official Music Video).mp4": { name: "Always Be My Baby (Official Music Video)", artist: "Mariah Carey", links: "https://youtu.be/LfRNRymrv9k?si=Nb9RApj31VyYw9F7" },
+        "Climie Fisher  - Love Changes Everything.mp4": { name: "Love Changes Everything", artist: "Climie Fisher", links: "https://youtu.be/b8dy8tfUCEg?si=WPpTfZ9ilr6Q26gp" },
+        "Boy Meets Girl - Waiting for a Star to Fall.mp4": { name: "Waiting for a Star to Fall", artist: "Boy Meets Girl", links: "https://youtu.be/RhxF9Qg5mOU?si=HMrs-QQgdKEzHa6E" },
+        "DEF LEPPARD - _Love Bites_ (Official Music Video).mp4": { name: "Love Bites (Official Music Video)", artist: "DEF LEPPARD", links: "https://youtu.be/0T1IVyXBGjM?si=JSKuPblCjYA5Dy8w" },
+        "Heart - Never (Official Music Video).mp4": { name: "Never (Official Music Video)", artist: "Heart", links: "https://youtu.be/zWzy5q_M5Ho?si=qN3_SfYUhuJ1Qwvk" },
+        "Pretenders - Don't Get Me Wrong (Official Music Video).mp4": { name: "Don't Get Me Wrong", artist: "The Pretenders", links: "https://youtu.be/qbAab1hTxN4?si=2ycitKieRClpzLY4" },
+        "Def Leppard - Hysteria (Long Version).mp4": { name: "Hysteria (Long Version)", artist: "Def Leppard", links: "https://youtu.be/yMzyleT2FqY?si=cbhae9mYMA1Wo5HS" },
+        "Phil Collins _Against All Odds_.mp4": { name: "Against All Odds", artist: "Phil Collins", links: "https://youtu.be/uVjEcIANv1o?si=tc7CEBbY7tiO_PRP" },
+        "Whitney Houston - I'm Every Woman (Official Video).mp4": { name: "I'm Every Woman (Official Video)", artist: "Whitney Houston", links: "https://youtu.be/H7_sqdkaAfo?si=HjF_SPhOWt79DL0k" },
+        "2892784037 (1).mp4": { name: "I Believe I Can Fly", artist: "R. Kelly", links: "https://youtu.be/4qPOWeA-L5I?si=FdLdn86aNAYOchTV" },
+        "Moby - Porcelain.mp4": { name: "Porcelain", artist: "Moby", links: "https://youtu.be/13EifDb4GYs?si=a0BbhzTZ4SmLtnAF" },
+        "Elton John - Tiny Dancer.mp4": { name: "Tiny Dancer", artist: "Elton John", links: "https://youtu.be/yYcyacLRPNs?si=hsSf2nAF91IcwF-N" },
+        "Sergio Mendes & Brasil 66 -  The Fool On The Hill (1968).mp4": { name: "The Fool On The Hill (1968)", artist: "Sergio Mendes & Brasil 66", links: "https://youtu.be/qFe0sc8XW94?si=mj9ByhRaeQVJV3xY" },
+        "The Way It Is.mp4": { name: "The Way It Is", artist: "Bruce Hornsby", links: "https://youtu.be/GlRQjzltaMQ?si=ZS3qQWF6R2TMuyGA" },
+        "Kylie Minogue & Jessie Ware - Kiss of Life (Official Video).mp4": { name: "Kiss of Life (Official Video)", artist: "Kylie Minogue & Jessie Ware", links: "https://youtu.be/yBX-33bbK6I?si=YueVKZSKtvTmAABu" },
+        "Nightcrawlers - Push The Feeling On (Official Video).mp4": { name: "Push The Feeling On (Official Video)", artist: "Nightcrawlers", links: "https://youtu.be/7-BnB3xxUoA?si=XUkVt6fyQqHPSw0U" },
+        "Talk Talk - It's My Life (Official Video).mp4": { name: "It's My Life (Official Video)", artist: "Talk Talk", links: "https://youtu.be/cFH5JgyZK1I?si=t8CYnsXPiWSrsr_O" },
+        "Cornershop - Brimful Of Asha, Norman Cook Mix (Tjinder Singh) Official Music Video.mp4": { name: "Brimful Of Asha, Norman Cook Mix (Tjinder Singh)", artist: "Cornershop", links: "https://youtu.be/5LBnMRWeV-E?si=Ke8uTb0r03tNc6BN" },
+        "Shanks & Bigfoot - Sweet Like Chocolate.mp4": { name: "Sweet Like Chocolate", artist: "Shanks & Bigfoot", links: "https://youtu.be/ehQSFcHOWc8?si=CKsQsWaKNHJ53qBy" },
+        "Sophie Ellis-Bextor - Crying At The Discotheque (Official Video).mp4": { name: "Crying At The Discotheque (Official Video)", artist: "Sophie Ellis-Bextor", links: "https://youtu.be/JdXecuVl7_4?si=1RxMKpFlMuXuF_Ac" },
+        "Sophie Ellis-Bextor ''Yes Sir, I Can Boogie'' (NSMGUK Extended Version).mp4": { name: "''Yes Sir, I Can Boogie'' (NSMGUK Extended Version)", artist: "Sophie Ellis-Bextor", links: "https://youtu.be/HASBaqR8pl8?si=QukGDRa-1UsZEdNF" },
+        "Blondie - Call me.mp4": { name: "Call me", artist: "Blondie", links: "https://youtu.be/o3hHsVtqNFQ?si=lya4KwzewrPiumdC" },
+        "Seal - Crazy (Official Music Video) [HD].mp4": { name: "Crazy (Official Music Video)", artist: "Seal", links: "https://youtu.be/4Fc67yQsPqQ?si=ThZFXJz8V_enySTq" },
+        "Donna Lewis - I Could Be The One (Official Music Video).mp4": { name: "I Could Be The One (Official Music Video)", artist: "Donna Lewis", links: "https://youtu.be/Ds-MkhyZfmw?si=J8ZMI71sA5DIP-ub" },
+        "(MCM 90'S) OLIVE You're not alone.mp4": { name: "You're not alone", artist: "OLIVE", links: "https://youtu.be/Cz0UdxIJ7uk?si=epxOYO5ARq7q6sg8" },
+        "Fleetwood Mac - Gypsy (Official Music Video).mp4": { name: "Gypsy (Official Music Video)", artist: "Fleetwood Mac", links: "https://youtu.be/mwgg1Pu6cNg?si=z6dcDHVxxPi9mq9C" },
+        "Simply Red - Fairground (Official Video).mp4": { name: "Fairground (Official Video)", artist: "Simply Red", links: "https://youtu.be/KiRyiVgWj6g?si=mIWTWduKQSHpmmWb" },
+        "Frankie Valli & The Four Seasons - Who Loves You (Official Music Video).mp4": { name: "Who Loves You (Official Music Video)", artist: "Frankie Valli & The Four Seasons", links: "https://youtu.be/-KtYgOM62fk?si=IuBJznAWRaHYRJC-" },
+        "Kim Wilde - Kids In America (1981) • TopPop.mp4": { name: "Kids In America (1981) • TopPop", artist: "Kim Wilde", links: "https://youtu.be/8BYKpQ_6GbM?si=A4I8D9VRz7-b2CjV" },
+        "Disclosure - Omen ft. Sam Smith.mp4": { name: "Omen", artist: "Disclosure ft. Sam Smith", links: "https://youtu.be/fB63ztKnGvo?si=SdXGqDDOPvnC_sZy" },
+        "Wham! - Last Christmas (Official Video).mp4": { name: "Last Christmas (Official Video)", artist: "Wham!", links: "https://youtu.be/E8gmARGvPlI?si=m_LQPU6FoY_qkHam" },
+        "Robbie Williams Nicole Kidman - Somethin' Stupid.mp4": { name: "Somethin' Stupid", artist: "Robbie Williams, Nicole Kidman", links: "https://youtu.be/f43nR8Wu_1Y?si=u7VMDGOUqKD7rMMB" },
+        "R.E.M. - The One I Love (Official Music Video).mp4": { name: "The One I Love (Official Music Video)", artist: "R.E.M.", links: "https://youtu.be/j7oQEPfe-O8?si=Vyl4sbx9n5wEnfh9" },
+        "Prefab Sprout - The King of Rock N Roll.mp4": { name: "The King of Rock N Roll", artist: "Prefab Sprout", links: "https://youtu.be/4T6e3GJCjow?si=vY29ozTPJPWVEJIU" },
+        "Don Henley - The Boys Of Summer (Official Music Video).mp4": { name: "The Boys Of Summer (Official Music Video)", artist: "Don Henley", links: "https://youtu.be/6RUIeX6UCT8?si=_Whvvy7GcZVHOCjG" },
+        "John Farnham - You're the Voice (Official Video).mp4": { name: "You're the Voice (Official Video)", artist: "John Farnham", links: "https://youtu.be/tbkOZTSvrHs?si=Dj1qxaQYBSD3qic6" },
+        "Lily Allen  LDN (Official Video).mp4": { name: "LDN (Official Video)", artist: "Lily Allen", links: "https://youtu.be/wmYT79tPvLg?si=_QDq5r6g2xszPQb7" },
+        "Adele - Chasing Pavements (Official Music Video).mp4": { name: "Chasing Pavements (Official Music Video)", artist: "Adele", links: "https://youtu.be/08DjMT-qR9g?si=SoF7OHmEFzzOJXcZ" },
+        "Sophie Ellis-Bextor - Music Gets The Best Of Me.mp4": { name: "Music Gets The Best Of Me", artist: "Sophie Ellis-Bextor", links: "https://youtu.be/K_lhBNtXwBY?si=dx4FlJreCUpqiJ3C" },
+        "Natalie Imbruglia - Wrong Impression.mp4": { name: "Wrong Impression", artist: "Natalie Imbruglia", links: "https://youtu.be/3Vt0d9YlTC4?si=MkH7jdpf63yuYXQi" },
+        "Abba - Dancing Queen (Official Music Video Remastered).mp4": { name: "Dancing Queen (Official Music Video)", artist: "ABBA", links: "https://youtu.be/xFrGuyw1V8s?si=8EkbeDp4e2Tpskxs" },
+        "Tasmin Archer - Sleeping Satellite.mp4": { name: "Sleeping Satellite", artist: "Tasmin Archer", links: "https://youtu.be/yGL2lcaRYqk?si=_l-RktvEroa4312o" },
+        "Daniel Bedingfield - Gotta Get Thru This (2000) (Music Video).mp4": { name: "Gotta Get Thru This (2000) (Music Video)", artist: "Daniel Bedingfield", links: "https://youtu.be/9HEdLmbZoJQ?si=pqSrvhimruYL9UTz" },
+        "Cars and girls.mp4": { name: "Cars and Girls (Official Video)", artist: "Prefab Sprout", links: "https://youtu.be/jEJdfDD4dVg?si=EVrmQ8p4JCOJtNmw" },
+        "Vídeo sin título ‐ Hecho con Clipchamp (8).mp4": { name: "Hidden Message", artist: "The Amazing Jukebox", links: "https://youtu.be/LJcnAKenIuM?si=YL7yc6QYcPScbxjO" },
+        "Vídeo sin título ‐ Hecho con Clipchamp (9).mp4": { name: "Hidden Message", artist: "The Amazing Jukebox", links: "https://youtu.be/ZUwBCvUxhqk?si=6UHMaPKIlJGlwiKr" },
+        "Vídeo sin título ‐ Hecho con Clipchamp (10).mp4": { name: "Hidden Message", artist: "The Amazing Jukebox", links: "https://youtu.be/dVHiAOQHn9g?si=61FrNVsFFTu6gtJs" },
+        "Vídeo sin título ‐ Hecho con Clipchamp (16).mp4": { name: "Hidden Message", artist: "The Amazing Jukebox", links: "https://youtu.be/heHdOTt_iGc?si=KMlh35E2BtCVtk-F" },
+        "Swing Out Sister - Breakout (Official Video).mp4": { name: "Breakout", artist: "Swing Out Sister", links: "https://youtu.be/IIOJdMdS56k?si=oJvDGRSR2Lpj628A" },
+        "Ill Fly with You (Original  Lyrics Video) von Gigi DAgostino.mp4": { name: "I'll Fly with You", artist: "Gigi D'Agostino", links: "https://youtu.be/OHZQqGdDIQE?si=pOWTz8f8ZwGFakQC" },
+        "Björk - It's Oh So Quiet (HQ).mp4": { name: "It's Oh So Quiet", artist: "Björk", links: "https://youtu.be/gLF-_Z8TK1k?si=GCBBYsdJzVLdyGcc" },
+        "Underworld - Born Slippy [Trainspotting].mp4": { name: "Born Slippy [Trainspotting]", artist: "Underworld", links: "https://youtu.be/6iKFn8dlxX8?si=qUUKkQHoG6192uPk" },
+        "ABBA - Take A Chance On Me (Official Music Video).mp4": { name: "Take A Chance On Me (Official Music Video)", artist: "ABBA", links: "https://youtu.be/-crgQGdpZR0?si=yahGbNpy1fKxqGkz" },
+        "ABBA - Knowing Me Knowing You (Official Music Video).mp4": { name: "Knowing Me Knowing You (Official Music Video)", artist: "ABBA", links: "https://youtu.be/iUrzicaiRLU?si=Br6lED1E1fQac6w-" },
+        "Debbie Gibson - Foolish Beat (Official Music Video).mp4": { name: "Foolish Beat (Official Music Video)", artist: "Debbie Gibson", links: "https://youtu.be/qf8BoWKeHow?si=GLnw92ZwgVze0oXr" },
+        "Glenn Frey - You Belong To The City.mp4": { name: "You Belong To The City", artist: "Glenn Frey", links: "https://youtu.be/8TToLgW7zuc?si=3USvQZIIGHArnzUP" },
+        "Deftones - Rocket Skates [Official Music Video].mp4": { name: "Rocket Skates [Official Music Video]", artist: "Deftones", links: "https://youtu.be/woR6ohiFeYE?si=lQKXkcH3C_hU0x0r" },
+        "My Chemical Romance - I Don't Love You [Official Music Video] [HD].mp4": { name: "I Don't Love You [Official Music Video] [HD]", artist: "My Chemical Romance", links: "https://youtu.be/pyi0ZfuIIvo?si=gmZKkRCvDAeppSFa" },
+        "The Sounds Seven Days A Week.mp4": { name: "Seven Days A Week", artist: "The Sounds", links: "https://youtu.be/3xigVJMJRi4?si=u35lCxIVJjcXMZnJ" },
+        "NSYNC - It's Gonna Be Me (Official Video).mp4": { name: "It's Gonna Be Me (Official Video)", artist: "NSYNC", links: "https://youtu.be/GQMlWwIXg3M?si=qqB54bgrFc8rq0bK" },
+        "Christina Aguilera - Genie In A Bottle (Official Video).mp4": { name: "Genie In A Bottle (Official Video)", artist: "Christina Aguilera", links: "https://youtu.be/kIDWgqDBNXA?si=1XGwdUOGiu3axeNI" },
+        "Tears For Fears - Sowing The Seeds Of Love.mp4": { name: "Sowing The Seeds Of Love", artist: "Tears For Fears", links: "https://youtu.be/VAtGOESO7W8?si=-LJSTwCP31BkVcbq" },
+        "Paramore_ Ignorance [OFFICIAL VIDEO].mp4": { name: "Ignorance [OFFICIAL VIDEO]", artist: "Paramore", links: "https://youtu.be/OH9A6tn_P6g?si=C1FMutPXupRLHjQl" },
+        "AFI - The Leaving Song Pt. II (Official Music Video).mp4": { name: "The Leaving Song Pt. II (Official Music Video)", artist: "AFI", links: "https://youtu.be/5fwGZohSJ9g?si=2pzP0r0sDPROkh7G" },
+        "Iggy Pop - Lust For Life.mp4": { name: "Lust For Life", artist: "Iggy Pop", links: "https://youtu.be/jQvUBf5l7Vw?si=7gy3NTWi9oOHy80t" },
+        "Zedd - Clarity ft. Foxes.mp4": { name: "Clarity ft. Foxes", artist: "Zedd", links: "https://youtu.be/IxxstCcJlsc?si=-t1yV-d_3s5_AqsL" },
+        "Backstreet Boys - Quit Playing Games (With My Heart) (Official HD Video).mp4": { name: "Quit Playing Games (With My Heart)", artist: "Backstreet Boys", links: "https://youtu.be/Ug88HO2mg44?si=AaGPwqJSgH6T3uCc" },
+        "Santana - The Game Of Love (Video) ft. Michelle Branch.mp4": { name: "The Game Of Love (Video) ft. Michelle Branch", artist: "Santana", links: "https://youtu.be/HKLnmMacEB4?si=nv00DoqX5rmU6eVT" },
+        "Put a Light On Me (Eva Be Remix).mp4": { name: "Put a Light On Me (Eva Be Remix)", artist: "KASAR", links: "https://youtu.be/PnARSBuy47c?si=JRzuTgbNhMotWEU4" },
+        "Mario Basanov feat. Athena Radford - Like A Child (Eugene Filatov Remix).mp4": { name: "Like A Child (Eugene Filatov Remix)", artist: "Mario Basanov feat. Athena Radford", links: "https://youtu.be/Z6gehTVBpEs?si=5_xu3tvaoOftJ5kF" }
+    };
+
+    let currentVideoIndex = -1;
+    const videoPlayer = document.createElement("video");
+    videoPlayer.controls = true;
+    videoPlayer.autoplay = true;
+    videoPlayer.muted = true;
+    videoPlayer.playsInline = true; // Agrega esta línea
+    videoPlayer.addEventListener("ended", playNextVideo);
+
+    const likedSongs = [];
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function playNextVideo() {
+        currentVideoIndex++;
+        if (currentVideoIndex >= videos.length) {
+            currentVideoIndex = 0;
+            shuffleArray(videos);
+        }
+
+        while (videos[currentVideoIndex].liked) {
+            currentVideoIndex++;
+            if (currentVideoIndex >= videos.length) {
+                currentVideoIndex = 0;
+                shuffleArray(videos);
+            }
+        }
+
+        videoPlayer.src = videos[currentVideoIndex].src;
+        videoPlayer.load();
+        videoPlayer.play();
+
+        const likeButton = document.getElementById("like-button");
+        likeButton.disabled = false; // Habilitar botón para cada nuevo video
+    }
+
+    function likeSong() {
+        if (currentVideoIndex >= 0 && currentVideoIndex < videos.length) {
+            if (!videos[currentVideoIndex].liked) {
+                videos[currentVideoIndex].liked = true;
+                const currentSong = songInfo[videos[currentVideoIndex].src];
+                if (currentSong) {
+                    likedSongs.push(currentSong);
+                }
+            }
+        }
+    }
+
+    function showLikedSongs() {
+        const likedSongsPopup = document.getElementById("liked-songs-popup");
+        const likedSongsContent = document.getElementById("liked-songs-content");
+        likedSongsContent.innerHTML = "<strong>Liked Songs:</strong><br>";
+        for (const song of likedSongs) {
+            likedSongsContent.innerHTML += `${song.name} by ${song.artist}. Links: <a href="${song.links}" target="_blank">${song.links}</a><br>`;
+        }
+        likedSongsPopup.style.display = "block";
+    }
+
+    function closeLikedSongs() {
+        const likedSongsPopup = document.getElementById("liked-songs-popup");
+        likedSongsPopup.style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const videoContainer = document.getElementById("video-container");
+        videoContainer.appendChild(videoPlayer);
+        shuffleArray(videos);
+        playNextVideo();
+    });
+</script>
+</head>
+<body>
+<div id="video-container">
+    <!-- Videos se cargarán aquí -->
+</div>
+<div id="info-container">
+    <div>
+        <button class="custom-button" id="like-button" onclick="likeSong()" disabled>I like this song</button>
+        <button class="custom-button" id="next-song-button" onclick="playNextVideo()">Next Song</button>
     </div>
-    <!-- scripts -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
-    <script src="index2.js"></script>
-  </body>
+    <div id="liked-songs-button" onclick="showLikedSongs()">Show Liked Songs</div>
+</div>
+<div id="liked-songs-popup">
+    <div id="liked-songs-content"></div>
+    <div style="text-align: center; margin-top: 10px;">
+        <button class="custom-button" onclick="closeLikedSongs()">Close</button>
+    </div>
+</div>
+    <div id="mobile-gif2">
+    <img class="rotated-gif2" 
+    src="1659513992_924596_gif-url.gif" alt="Descripción del GIF" style="width: 97%; height: auto;">
+</div>
+    <div id="mobile-gif3">
+    <img class="rotated-gif3"
+    src="1659513992_924596_gif-url.gif" alt="Descripción del GIF" style="width: 143%; height: auto;">
+</div>
+    <div id="donate-button-container">
+<div id="donate-button"></div>
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+<script>
+PayPal.Donation.Button({
+env:'production',
+hosted_button_id:'Q52DFRN8D4BS8',
+image: {
+src:'https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif',
+alt:'Donate with PayPal button',
+title:'PayPal - The safer, easier way to pay online!',
+}
+}).render('#donate-button');
+</script>
+</div>
+<div id="ad-container">
+    <a href="https://www.instagram.com/flodz_/">
+    <img src="quarter-removebg-preview.png" alt="Go Follow" style="width: 44%; height: auto;">
+    </a>
+</div>
+    <div id="emoji-container" style="display: none;">
+    <!-- Aquí puedes agregar más emojis según sea necesario -->
+        <div class="emoji" onclick="selectEmoji('😊')">😊</div>
+        <div class="emoji" onclick="selectEmoji('❤️')">❤️</div>
+        <div class="emoji" onclick="selectEmoji('👍')">👍</div>
+        <div class="emoji" onclick="selectEmoji('😂')">😂</div>
+        <div class="emoji" onclick="selectEmoji('🙌')">🙌</div>
+<div class="emoji" onclick="selectEmoji('🎉')">🎉</div>
+<div class="emoji" onclick="selectEmoji('🔥')">🔥</div>
+<div class="emoji" onclick="selectEmoji('👏')">👏</div>
+<div class="emoji" onclick="selectEmoji('🎶')">🎶</div>
+<div class="emoji" onclick="selectEmoji('🤔')">🤔</div>
+<div class="emoji" onclick="selectEmoji('😍')">😍</div>
+<div class="emoji" onclick="selectEmoji('🌟')">🌟</div>
+<div class="emoji" onclick="selectEmoji('😎')">😎</div>
+<div class="emoji" onclick="selectEmoji('💖')">💖</div>
+<div class="emoji" onclick="selectEmoji('🚀')">🚀</div>
+<div class="emoji" onclick="selectEmoji('🌈')">🌈</div>
+<div class="emoji" onclick="selectEmoji('💯')">💯</div>
+<div class="emoji" onclick="selectEmoji('🤗')">🤗</div>
+<div class="emoji" onclick="selectEmoji('👌')">👌</div>
+<div class="emoji" onclick="selectEmoji('😜')">😜</div>
+<div class="emoji" onclick="selectEmoji('🙏')">🙏</div>
+<div class="emoji" onclick="selectEmoji('💪')">💪</div>
+<div class="emoji" onclick="selectEmoji('😇')">😇</div>
+<div class="emoji" onclick="selectEmoji('🌺')">🌺</div>
+    <!-- Agrega más emojis según tus preferencias -->
+  </div>
+<div id="chat-username">
+    <input type="text" id="username-input" placeholder="Your username">
+    <button id="set-username-button" onclick="setUsername()">Set Username</button>
+</div>
+<div id="chat-container">
+    <div id="chat-messages">
+        <strong>Live Chat on The Amazing Jukebox</strong>
+        <!-- Aquí se mostrarían los mensajes del chat -->
+    </div>
+    <div id="chat-input">
+        <textarea id="message-input" placeholder="Type your message..."></textarea>
+        <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
+        <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
+        <button id="send-button" onclick="sendMessage()">Send</button>
+        
+    </div>
+    <script>
+        // Mostrar la ventana emergente al principio
+        showUsernameInput();
+    </script>
+    <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+    import { getDatabase, ref, push, child, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+      authDomain: "the-amazing-jukebox.firebaseapp.com",
+      databaseURL: "https://the-amazing-jukebox-default-rtdb.firebaseio.com",
+      projectId: "the-amazing-jukebox",
+      storageBucket: "the-amazing-jukebox.appspot.com",
+      messagingSenderId: "778454163688",
+      appId: "1:778454163688:web:f5077005c3a74694cb695d",
+      measurementId: "G-L7EYF8QM2F"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+      
+          // Escucha los nuevos mensajes y los agrega al chat
+          const chatMessages = document.getElementById("chat-messages");
+          const messagesRef = ref(db, "messages");
+          onChildAdded(messagesRef, (snapshot) => {
+              console.log("onChildAdded called");
+              const message = snapshot.val();
+              console.log("Received message:", message);
+
+              const newMessage = document.createElement("div");
+              newMessage.innerHTML = `<strong class="chat-username">${message.username}:</strong> ${message.message}`;
+              chatMessages.appendChild(newMessage);
+              chatMessages.scrollTop = chatMessages.scrollHeight;
+          });
+
+        // Función para agregar un mensaje al chat
+              function addMessage(username, message) {
+                  const messagesRef = ref(db, "messages");
+                  push(messagesRef, { username, message });
+                  console.log("Message added to Firebase:", { username, message });
+              }
+      
+          // Resto del código...
+          function sendMessage() {
+    console.log("sendMessage function called");
+
+    const messageInput = document.getElementById("message-input");
+    const message = messageInput.value.trim();
+
+    console.log("Message:", message);
+
+    // Verificar el valor de username
+    console.log("Username:", username);
+
+
+    if (message !== "") {
+        const chatMessages = document.getElementById("chat-messages");
+        const newMessage = document.createElement("div");
+
+        // Agregar el nombre de usuario al mensaje si existe
+        if (username !== "") {
+            newMessage.innerHTML = `<strong class="chat-username">${username}:</strong> ${message}`;
+        } else {
+            newMessage.textContent = message;
+        }
+
+        chatMessages.appendChild(newMessage);
+
+        // Limpiar el cuadro de entrada después de enviar el mensaje
+        messageInput.value = "";
+
+        // Hacer scroll hasta el final del contenedor de mensajes
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Llamar a la función para agregar el mensaje a la base de datos
+        if (username !== "") {
+            addMessage(username, message);
+        }
+
+         // Verificar si la función se está llamando correctamente
+         console.log("sendMessage function completed");
+    }
+}
+      </script>
+</body>
 </html>

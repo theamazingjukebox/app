@@ -123,16 +123,16 @@
     
     #listen-button {
         position: relative;
-        top: 300px;
+        display: block; /* Hacer que sea un elemento de bloque */
+    width: 100%; /* Ocupar el ancho completo */
     background-color: #e74c3c; /* Cambia el color según tus preferencias */
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 0;
     cursor: pointer;
-    display: inline-block;
     font-weight: bold;
     border-radius: 5px;
-    margin-right: -165px; /* Ajusta el margen según sea necesario */
+    margin-right: 0px; /* Ajusta el margen según sea necesario */
 }
 
     #video-container,
@@ -181,11 +181,11 @@ body {
 </style>
 <script>
     const videos = [
-        { src: "madonna.mp4", liked: false },
-        { src: "D.A.N.K. - My Planet [The Treehouse] [W DOWNLOAD LINK].mp4", liked: false },
-        { src: "macy.mp4", liked: false },
+    { src: "madonna.mp4", liked: false },
+    { src: "D.A.N.K. - My Planet [The Treehouse] [W DOWNLOAD LINK].mp4", liked: false },
+    { src: "macy.mp4", liked: false },
         // Agrega más URLs de videos según sea necesario
-         { src: "deacon.mp4", liked: false },
+        { src: "deacon.mp4", liked: false },
         { src: "Earth, Wind  Fire - Fantasy (Audio).mp4", liked: false },
         { src: "Dont Dream Its Over Official Video Sixpence None The Richer.mp4", liked: false },
         { src: "Brandi Carlile   -   The Story  (Live).mp4", liked: false },
@@ -357,7 +357,7 @@ body {
         "D.A.N.K. - My Planet [The Treehouse] [W DOWNLOAD LINK].mp4": { name: "My Planet", artist: "D.A.N.K", links: "https://youtu.be/aoe-qo5jgGk?si=bnA9IrJsKyn3zfBc" },
         "macy.mp4": { name: "I Try", artist: "Macy Gray", links: "https://www.youtube.com/embed/WEQ0l_m3Xm0" },
         // Agrega más información de canciones según sea necesario
-         "deacon.mp4": { name: "Real Gone Kid", artist: "Deacon Blue", links: "https://youtu.be/5SD4lI9GKUE" },
+        "deacon.mp4": { name: "Real Gone Kid", artist: "Deacon Blue", links: "https://youtu.be/5SD4lI9GKUE" },
         "Earth, Wind  Fire - Fantasy (Audio).mp4": { name: "Fantasy", artist: "Earth, Wind &Fire", links: "https://youtu.be/r58GQYFZeLE?si=K_9W1tc98bAy5w99" },
         "Dont Dream Its Over Official Video Sixpence None The Richer.mp4": { name: "Dont Dream Its Over", artist: "Sixpence None The Richer", links: "https://youtu.be/ZUHKDHkRasc?si=0iCyg7D1VJp3sb9B" },
         "Brandi Carlile   -   The Story  (Live).mp4": { name: "The Story", artist: "Brandi Carlile", links: "https://youtu.be/ODgr5SAk97A" },
@@ -597,6 +597,7 @@ body {
         shuffleArray(videos);
         playNextVideo();
     });
+
 </script>
 </head>
 <body>
@@ -677,7 +678,7 @@ title:'PayPal - The safer, easier way to pay online!',
     <!-- messages will display here -->
     <ul id="messages">
      <!-- Agrega el mensaje de bienvenida aquí -->
-     <li class="system2">Live Chat on The Amazing Jukebox</li>
+     <li class="system2">🟢 Live Chat on The Amazing Jukebox</li>
     </ul>
 
     <!-- form to send message -->
@@ -687,8 +688,8 @@ title:'PayPal - The safer, easier way to pay online!',
         <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
       <button id="message-btn" type="submit">Send</button>
     </form>
+    <button class="custom-button" id="listen-button" onclick="shareCurrentSong()">🎶 Now playing</button>
   </div>
-  <button class="custom-button" id="listen-button" onclick="shareCurrentSong()">🎶 Now playing</button>
   <div id="username-modal" class="modal">
     <div class="modal-content">
       <input type="text" id="username-input" placeholder="Your username" />
@@ -697,6 +698,6 @@ title:'PayPal - The safer, easier way to pay online!',
   </div>
   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
-<script src="index10.js"></script>
+<script src="index11.js"></script>
 </body>
 </html>

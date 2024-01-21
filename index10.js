@@ -41,7 +41,7 @@ var firebaseConfig = {
     displayMessage("", welcomeMessage);
 
     // Enviar mensaje de bienvenida a la base de datos
-    db.ref("messages/").push({
+    db.ref("messages").push({
       username: "The Amazing Jukebox",
       message: welcomeMessage,
     });
@@ -103,18 +103,11 @@ function shareCurrentSong() {
             displayMessage(username, message);
             
             // También envía el mensaje a la base de datos cada vez que se llama
-            db.ref("messages/").push({
+            db.ref("messages").push({
                 username: username,
                 message: message,
             });
 
-             // Manejo del clic en el enlace para evitar la recarga de la página
-             const songLink = document.querySelector('.song-link');
-             songLink.addEventListener('click', function (event) {
-                 event.preventDefault(); // Evita la acción predeterminada del enlace
-                 // Tu lógica adicional aquí, como cargar el video correspondiente
-                 loadVideo(songSrc);
-             });
          }
      }
  }

@@ -61,7 +61,7 @@
             border-radius: 10px;
             overflow: hidden;
             width: 300px;
-            height: 275px;
+            height: 320px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
@@ -218,9 +218,9 @@
 .system {
     font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
     font-weight: bold;
-    color: #ffcc00;
-    background-color: #34db9b;
-    border: 2px solid rgba(152, 251, 152, 0.5);
+    color: #ff0080;
+    background-color: #34db9b8f;
+    border: 2px solid rgba(152, 251, 152, 0);
     border-radius: 5px; 
     box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
     display: flex;

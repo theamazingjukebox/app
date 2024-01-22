@@ -628,7 +628,7 @@ body {
     function updateChatState() {
         isChatExpanded = !isChatExpanded;
         const newHeight = isChatExpanded ? "320px" : "200px";
-        const newSymbol = isChatExpanded ? "↡" : "▲";
+        const newSymbol = isChatExpanded ? "▼" : "▲";
         chatContainer.style.height = newHeight;
         toggleChatBtn.innerHTML = newSymbol;
     }

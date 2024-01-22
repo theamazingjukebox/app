@@ -1,0 +1,318 @@
+#chat-username {
+        position: absolute;
+        top: 205%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        border: 2px solid palegreen;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        color: white;
+        display: none; /* Inicialmente oculto */
+        z-index: 2;
+    }
+
+    #username-input {
+        margin-bottom: 10px;
+    }
+    #chat #messages .chat-username {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    border-radius: 0%;
+    border: 0cap;
+    box-shadow: none;
+    /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
+}
+    #chat #messages .username {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: #ffcc00; /* Cambia el color según tus preferencias */
+}
+    #chat #messages strong {
+    background-color: #34db9b; /* Cambia el color de fondo aquí */
+    color: white; /* Cambia el color del texto aquí */
+    padding: 0px; /* Ajusta el espacio interno si es necesario */
+    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
+    border-top-right-radius: 0px;
+    border: 2px solid rgba(152, 251, 152, 0.5);
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-size: larger;
+}
+#chat {
+            position: absolute;
+            align-items: center;
+        justify-content: center;
+        bottom: -755px;
+        left: 50%;
+        transform: translateX(-50%);
+            background-color: black;
+            border: 2px solid palegreen;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            height: 320px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: bottom 0.3s ease;
+        }
+
+        
+#chat.chat-contracted {
+    height: 50px; /* Cambia la altura según tus preferencias */
+    bottom: 0; /* Ajusta la posición inferior para que se vea correctamente */
+}
+
+/* Agrega esta clase para ocultar el chat */
+.chat-hidden {
+    display: none !important;
+}
+
+        #messages {
+            flex-grow: 1;
+            max-height: 200px;
+            padding: 10px;
+            top: 100px;
+            margin-top: 0;
+            overflow-y: auto;
+            overflow-wrap: normal;
+            color: white;
+            font-size: 16px;
+            
+    
+        }
+
+        #chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: black;
+        }
+
+        #emoji-button {
+            margin-left: auto;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+        }
+
+        #message-btn {
+            margin-left: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+
+        #message-btn:hover {
+            background-color: #2980b9;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        /* Agrega este estilo para el contenedor de emojis */
+        #emoji-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute; /* Utiliza posición absoluta */
+    top: calc(180% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
+    left: 50%; /* Centra el contenedor horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centrar en pantalla */
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    display: none; /* Oculta el contenedor inicialmente */
+    z-index: 1;
+    width: 225px;
+}
+
+
+/* Agrega estilo para los emojis individuales */
+.emoji {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 10px;
+}
+/* Agrega estilos para la ventana emergente */
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 205%;
+    width: 350%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    flex-direction: column;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 10px;
+  }
+  
+  .modal-content {
+    top: 205%;
+        left: 50%;
+    flex-direction: column;
+    background-color: #fefefe00;
+    margin: 0% auto;
+    padding: 10px;
+    border: 0px solid #888;
+    width: 300%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  #username-modal {
+    position: absolute;
+        top: 205%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        border: 2px solid palegreen;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        color: white;
+        display: none; /* Inicialmente oculto */
+        z-index: 2;
+}
+
+#username-modal label {
+    margin-bottom: 5px;
+    background-color: aqua;
+}
+
+#username-input {
+    margin-bottom: 10px;
+    
+}
+
+#set-username-button {
+    background-color: palegreen;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.system {
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: #ff0080;
+    background-color: #34db9b8f;
+    border: 2px solid rgba(152, 251, 152, 0);
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+ 
+
+  .system2 {
+    background-color: #34db9b; /* Cambia el color de fondo aquí */
+    color: white; /* Cambia el color del texto aquí */
+    padding: 0px; /* Ajusta el espacio interno si es necesario */
+    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
+    border-top-right-radius: 0px;
+    border: 2px solid rgba(152, 251, 152, 0.5);
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  #message-form {
+    display: flex;
+    align-items: center;
+}
+
+#message-input {
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+#emoji-button {
+    margin-left: auto;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#message-btn {
+    margin-left: 10px; /* Ajusta el espacio entre los botones según sea necesario */
+    margin-bottom: 10px;
+}
+
+#messages .message {
+    list-style: none;
+    margin: 5px 0;
+    
+}
+
+#messages .username {
+    font-weight: bold;
+    margin-right: 0px; /* Agrega un pequeño espacio entre el nombre de usuario y el mensaje */
+}
+
+#messages .system {
+    list-style: none;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+#messages li.sent span,
+#messages li.receive span {
+    /* Estilos específicos para el nombre de usuario */
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: white;
+    font-size: larger;
+    margin-right: -1px;
+    /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
+}
+
+.share-current-song {
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-weight: bold;
+    color: #ff0080;
+    background-color: #34db9b8f;
+    border: 2px solid rgba(152, 251, 152, 0);
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

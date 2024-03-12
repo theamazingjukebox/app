@@ -174,7 +174,7 @@ function saveMessageToDatabase(sender, message) {
 
   
   
-  const MESSAGES_TO_LOAD = 3;
+  const MESSAGES_TO_LOAD = 7;
   // Referencia para el chat
   const fetchChat = db.ref("messages/");
   

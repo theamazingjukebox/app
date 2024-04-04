@@ -113,7 +113,7 @@ function shareCurrentSong() {
         const currentSong = songInfo[videos[currentVideoIndex].src];
         if (currentSong) {
             const timestamp = Date.now();
-            const message = `🎶 Now playing: <a href="#" onclick="playSongById(${currentSong.id}); return false;">${currentSong.name} by ${currentSong.artist}</a>`;
+            const message = `🎶 Listen to this one: <a href="#" onclick="playSongById(${currentSong.id}); return false;">${currentSong.name} by ${currentSong.artist}</a>`;
             
             // Guardar el mensaje en la base de datos
             db.ref("messages/" + timestamp).set({

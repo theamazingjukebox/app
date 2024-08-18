@@ -217,3 +217,26 @@ fetchChat.limitToLast(MESSAGES_TO_LOAD).on("child_added", function (snapshot) {
       message,
     });
   }
+
+
+  const toggleChatBtn = document.getElementById("toggle-chat-btn");
+const toggleIcon = document.getElementById("toggle-icon");
+
+// Agrega un evento para 'touchend' y 'click'
+toggleChatBtn.addEventListener("touchend", function() {
+    toggleIcon.classList.add('active');
+    
+    // Elimina la clase después de 900ms
+    setTimeout(function() {
+        toggleIcon.classList.remove('active');
+    }, 900);
+});
+
+toggleChatBtn.addEventListener("click", function() {
+    toggleIcon.classList.add('active');
+    
+    // Elimina la clase después de 900ms
+    setTimeout(function() {
+        toggleIcon.classList.remove('active');
+    }, 600);
+});

@@ -40,11 +40,10 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease; /* Suaviza la transición */
 }
 
-#toggle-chat-btn:hover #toggle-icon,
-#toggle-chat-btn:focus #toggle-icon,
-#toggle-chat-btn:active #toggle-icon {
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
-    transform: translateY(-3px); /* Eleva la imagen ligeramente */
+#toggle-icon.active {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
     
     .custom-button {

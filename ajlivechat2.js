@@ -240,3 +240,30 @@ toggleChatBtn.addEventListener("click", function() {
         toggleIcon.classList.remove('active');
     }, 600);
 });
+
+document.querySelectorAll('.custom-button').forEach(button => {
+  button.addEventListener('touchstart', function() {
+      // Agrega la clase para el efecto
+      this.classList.add('active');
+      
+      // Elimina la clase después de 400ms para simular el "toque"
+      setTimeout(() => {
+          this.classList.remove('active');
+      }, 400); // Ajusta el tiempo según la duración que quieras para el efecto
+  });
+  
+  button.addEventListener('mousedown', function() {
+      this.classList.add('active');
+  });
+
+  button.addEventListener('mouseup', function() {
+      setTimeout(() => {
+          this.classList.remove('active');
+      }, 400);
+  });
+  
+  button.addEventListener('mouseleave', function() {
+      this.classList.remove('active');
+  });
+});
+

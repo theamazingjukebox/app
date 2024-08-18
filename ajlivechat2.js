@@ -229,7 +229,7 @@ toggleChatBtn.addEventListener("touchend", function() {
     // Elimina la clase después de 900ms
     setTimeout(function() {
         toggleIcon.classList.remove('active');
-    }, 900);
+    }, 600);
 });
 
 toggleChatBtn.addEventListener("click", function() {
@@ -249,7 +249,7 @@ document.querySelectorAll('.custom-button').forEach(button => {
       // Elimina la clase después de 400ms para simular el "toque"
       setTimeout(() => {
           this.classList.remove('active');
-      }, 400); // Ajusta el tiempo según la duración que quieras para el efecto
+      }, 600); // Ajusta el tiempo según la duración que quieras para el efecto
   });
   
   button.addEventListener('mousedown', function() {
@@ -259,7 +259,7 @@ document.querySelectorAll('.custom-button').forEach(button => {
   button.addEventListener('mouseup', function() {
       setTimeout(() => {
           this.classList.remove('active');
-      }, 400);
+      }, 600);
   });
   
   button.addEventListener('mouseleave', function() {

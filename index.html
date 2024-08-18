@@ -223,13 +223,14 @@
     width: 300px; /* Ajusta el ancho del botón según la imagen */
     height: 40px; /* Ajusta la altura del botón según la imagen */
     text-indent: -9999px; /* Oculta el texto */
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: transform -2.0s ease;
 }
 
-#listen-button:hover {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Añade una sombra */
-    transform: translateY(-3px); /* Eleva el botón ligeramente */
+#listen-button:active {
+    transform: scale(0.93); /* Contrae el botón un 3% */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
 }
+
 
     #video-container,
 #info-container {

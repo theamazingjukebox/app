@@ -30,6 +30,19 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
         }
 
+    #toggle-icon {
+    width: 35px; /* Ajusta el ancho de la imagen */
+    height: 35px; /* Ajusta la altura de la imagen */
+    margin-left: -15px;
+    margin-top: -5px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Suaviza la transición */
+}
+
+#toggle-chat-btn:hover #toggle-icon {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
+    transform: translateY(-3px); /* Eleva la imagen ligeramente */
+}
+    
     .custom-button {
         background-color:#3498db;
         color: white;
@@ -864,6 +877,7 @@ li.system2 {
     
         const chatContainer = document.getElementById("chat");
     const toggleChatBtn = document.getElementById("toggle-chat-btn");
+    const toggleIcon = document.getElementById("toggle-icon");
 
     let isChatExpanded = chatContainer.style.height === "320px";
 
@@ -871,10 +885,11 @@ li.system2 {
     function updateChatState() {
         isChatExpanded = !isChatExpanded;
         const newHeight = isChatExpanded ? "200px" : "320px";
-        const newSymbol = isChatExpanded ? "▲" : "▼";
+        const newSymbol = isChatExpanded ? "pngwing.png" : "pngwing2.png";
         chatContainer.style.height = newHeight;
-        toggleChatBtn.innerHTML = newSymbol;
-    }
+    toggleIcon.src = newSymbol;
+        
+}
 
     // Agregar el evento de clic al botón
     toggleChatBtn.addEventListener("click", updateChatState);

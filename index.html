@@ -17,6 +17,7 @@
     cursor: pointer;
     font-weight: bold;
     border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
     width: 20px;
     height: 20px;
     
@@ -37,6 +38,7 @@
 }
 
 #toggle-icon.active {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     transform: translateY(-3px);
     transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
@@ -226,6 +228,7 @@
 
 #listen-button:active {
     transform: scale(0.93); /* Contrae el botón un 3% */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
 }
 
 
@@ -325,7 +328,7 @@ li.system2 {
     height: 13px;
     vertical-align: middle; /* Centra la imagen verticalmente dentro del botón */
     pointer-events: none; /* Para que el clic pase a través de la imagen y no la bloquee */
-    transform: scale(2.1);
+    transform: scale(2.2);
 }
     
 </style>

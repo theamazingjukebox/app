@@ -894,7 +894,7 @@ li.system2 {
     function updateChatState() {
         isChatExpanded = !isChatExpanded;
         const newHeight = isChatExpanded ? "200px" : "320px";
-        const newSymbol = isChatExpanded ? "pngwing.png" : "pngwing2.png";
+        const newSymbol = isChatExpanded ? "down17.png" : "down17-2.png";
         chatContainer.style.height = newHeight;
     toggleIcon.src = newSymbol;
         
@@ -1001,7 +1001,8 @@ title:'PayPal - The safer, easier way to pay online!',
 <!-- Agrega más emojis según tus preferencias -->
 </div>
 <div id="chat">
-    <button id="toggle-chat-btn">↡</button>
+    <button id="toggle-chat-btn"><img src="down17.png" alt="Expandir/Colapsar" id="toggle-icon">
+    </button>
     <!-- messages will display here -->
     <ul id="messages">
         <!-- Agrega el mensaje de bienvenida aquí -->

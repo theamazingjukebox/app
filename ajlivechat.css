@@ -316,3 +316,8 @@
     align-items: center;
     justify-content: center;
 }
+
+button, a, img {
+    outline: none;
+}
+

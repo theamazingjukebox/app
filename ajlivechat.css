@@ -190,7 +190,7 @@
   
   #username-modal {
     position: absolute;
-        top: 180%;
+        top: 185%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: black;

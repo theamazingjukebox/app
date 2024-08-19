@@ -332,8 +332,13 @@ li.system2 {
     height: 13px;
     vertical-align: middle; /* Centra la imagen verticalmente dentro del botón */
     pointer-events: none; /* Para que el clic pase a través de la imagen y no la bloquee */
-    transform: scale(2.3);
+    transform: scale(2.1);
 }
+
+button, a, img {
+    outline: none;
+}
+
     
 </style>
 <script>
@@ -944,7 +949,7 @@ li.system2 {
 <div id="info-container">
     <div>
         <button class="custom-button" id="like-button" onclick="likeSong()" disabled>❤️</button>
-        <button class="custom-button" id="next-song-button" onclick="playNextVideo()"><img src="fast-forward.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 15px; width: auto;"></button>
+        <button class="custom-button" id="next-song-button" onclick="playNextVideo()"><img src="fast-forward.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 15px; width: auto; margin-top: -3px;"></button>
     </div>
     <div id="liked-songs-button" onclick="showLikedSongs()">Show Liked Songs</div>
 </div>
@@ -970,7 +975,7 @@ li.system2 {
     <img class="rotated-gif5"
     src="1659513992_924596_gif-url.gif" alt="Descripción del GIF" style="width: 143%; height: auto;">
 </div>
-    <div id="donate-button-container">
+    <div id="donate-button-container" style="display: none;">
 <div id="donate-button"></div>
 <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
 <script>

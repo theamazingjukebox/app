@@ -267,8 +267,3 @@ document.querySelectorAll('.custom-button').forEach(button => {
   });
 });
 
-const toggleIcon = document.getElementById('toggle-icon');
-toggleIcon.addEventListener('focus', function() {
-    this.style.outline = 'none';
-    this.style.boxShadow = 'none';
-});

@@ -190,14 +190,14 @@
   
   #username-modal {
     position: absolute;
-        top: 205%;
+        top: 175%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: black;
         border: 2px solid palegreen;
         border-radius: 10px;
         overflow: hidden;
-        width: 300px;
+        width: 235px;
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         display: flex;
         flex-direction: column;
@@ -214,6 +214,7 @@
 
 #username-input {
     margin-bottom: 10px;
+    width: 95px;
     
 }
 

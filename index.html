@@ -200,12 +200,8 @@
         cursor: pointer;
         font-weight: bold;
         font-size: larger;
-        text-shadow: 3px 3px 3px rgba(219, 112, 147, 0.5);
-        transition: background-color 0s, transform 0s, box-shadow 0s;
-        button, a, img {
     outline: none;
     -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
-}
 
         /* Sustituyendo el texto por una imagen */
     background-image: url('button3.png');
@@ -220,6 +216,9 @@
     #liked-songs-button:active {
     transform: scale(0.93); /* Contrae el botón un 3% */
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
+
 }
     
     #liked-songs-popup {

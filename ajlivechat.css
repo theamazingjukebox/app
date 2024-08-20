@@ -53,7 +53,7 @@
             position: absolute;
             align-items: center;
         justify-content: center;
-        bottom: -775px;
+        bottom: -780px;
         left: 50%;
         transform: translateX(-50%);
             background-color: black;
@@ -190,7 +190,7 @@
   
   #username-modal {
     position: absolute;
-        top: 180%;
+        top: 160%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: black;

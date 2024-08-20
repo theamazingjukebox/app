@@ -952,12 +952,12 @@ button, a, img {
     const toggleChatBtn = document.getElementById("toggle-chat-btn");
     const toggleIcon = document.getElementById("toggle-icon");
 
-    let isChatExpanded = chatContainer.style.height === "330px";
+    let isChatExpanded = chatContainer.style.height === "320px";
 
     // Función para actualizar el botón y el estado del chat
     function updateChatState() {
         isChatExpanded = !isChatExpanded;
-        const newHeight = isChatExpanded ? "220px" : "330px";
+        const newHeight = isChatExpanded ? "200px" : "320px";
         const newSymbol = isChatExpanded ? "down17.png" : "down17-2.png";
         chatContainer.style.height = newHeight;
     toggleIcon.src = newSymbol;

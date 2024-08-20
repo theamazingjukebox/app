@@ -65,7 +65,7 @@
 
     .custom-button.active {
     background-color: #0000000;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.4s ease, background-color 0.4s ease;
 }
 
@@ -190,7 +190,7 @@
 }
     #liked-songs-button {
         position: relative;
-        top: -204px;
+        top: -203px;
         margin-left: -3px;
         padding: 10px 20px;
         background-color: black;
@@ -210,6 +210,7 @@
     width: 90px; /* Ajusta el ancho del botón según la imagen */
     height: 10px; /* Ajusta la altura del botón según la imagen */
     text-indent: -9999px; /* Oculta el texto */
+    z-index: -1;
 }
     #liked-songs-button:active {
     transform: scale(0.93); /* Contrae el botón un 3% */
@@ -988,7 +989,7 @@ button, a, img {
 <div id="info-container">
     <div>
         <button class="custom-button" id="like-button" onclick="likeSong()" disabled><img src="file2.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 50px; width: auto; margin-top: -3px;"></button>
-        <button class="custom-button" id="next-song-button" onclick="playNextVideo()"><img src="file.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 45px; width: auto; margin-top: -3px;"></button>
+        <button class="custom-button" id="next-song-button" onclick="playNextVideo()"><img src="file.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 43px; width: auto; margin-top: -3px;"></button>
     </div>
     <div id="liked-songs-button" onclick="showLikedSongs()">Show Liked Songs</div>
 </div>

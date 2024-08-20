@@ -208,7 +208,7 @@
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen dentro del botón */
     width: 90px; /* Ajusta el ancho del botón según la imagen */
-    height: 15px; /* Ajusta la altura del botón según la imagen */
+    height: 5px; /* Ajusta la altura del botón según la imagen */
     text-indent: -9999px; /* Oculta el texto */
 }
     
@@ -952,12 +952,12 @@ button, a, img {
     const toggleChatBtn = document.getElementById("toggle-chat-btn");
     const toggleIcon = document.getElementById("toggle-icon");
 
-    let isChatExpanded = chatContainer.style.height === "320px";
+    let isChatExpanded = chatContainer.style.height === "330px";
 
     // Función para actualizar el botón y el estado del chat
     function updateChatState() {
         isChatExpanded = !isChatExpanded;
-        const newHeight = isChatExpanded ? "220px" : "340px";
+        const newHeight = isChatExpanded ? "220px" : "330px";
         const newSymbol = isChatExpanded ? "down17.png" : "down17-2.png";
         chatContainer.style.height = newHeight;
     toggleIcon.src = newSymbol;

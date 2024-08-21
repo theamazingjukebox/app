@@ -282,3 +282,7 @@ function toggleEmojiPicker() {
         emojiButton.classList.remove('active');
     }, 400); // Asegúrate de que este tiempo coincida con la duración de la transición en el CSS
 }
+
+document.getElementById("message-btn").addEventListener("touchend", function() {
+    this.blur(); // Remueve el foco del botón
+});

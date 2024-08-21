@@ -267,3 +267,18 @@ document.querySelectorAll('.custom-button').forEach(button => {
   });
 });
 
+function toggleEmojiPicker() {
+    const emojiButton = document.getElementById('emoji-button');
+    const emojiContainer = document.getElementById('emoji-container');
+
+    // Alternar la visibilidad del contenedor de emojis
+    emojiContainer.style.display = emojiContainer.style.display === "none" ? "flex" : "none";
+
+    // Agregar la clase 'active' para que se aplique el "salto"
+    emojiButton.classList.add('active');
+
+    // Después de 400ms (o el tiempo de la transición), quitar la clase 'active'
+    setTimeout(() => {
+        emojiButton.classList.remove('active');
+    }, 400); // Asegúrate de que este tiempo coincida con la duración de la transición en el CSS
+}

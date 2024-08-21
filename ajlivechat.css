@@ -267,6 +267,7 @@
 }
 
 #emoji-button {
+    margin-left: auto;
     cursor: pointer;
     color: white;
     font-size: 20px;

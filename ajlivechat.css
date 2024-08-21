@@ -122,6 +122,13 @@
             background-color: #2980b9;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
         }
+        
+        /* Clase para quitar el sombreado después de tocar en dispositivos móviles */
+        #message-btn:active {
+            box-shadow: none;
+            transform: scale(0.98); /* Simula un botón presionado */
+        }
+
         /* Agrega este estilo para el contenedor de emojis */
         #emoji-container {
     display: flex;

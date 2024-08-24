@@ -306,15 +306,23 @@ body {
     transform: rotate(0deg);
 }
     
-   #mobile-gif3 {
-        text-align: center; right: 0%; /* Centra horizontalmente el anuncio */
-        margin-top: -270%; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
-        position: absolute;
-    }
-
-    .rotated-gif3 {
-    transform: rotate(0deg);
+.gif-container {
+    display: inline-block;
+    text-align: center; 
+    right: 0%;
+    margin-top: -270%;
+    position: absolute;
+    border: 3px solid palegreen;
+    border-radius: 10px;
+    max-width: 20%; /* Se asegura de que el contenedor no exceda el ancho de la pantalla */
 }
+
+.rotated-gif3 {
+    border-radius: 10px;
+    height: auto;
+    display: block;
+}
+
 
 
     #mobile-gif4 {
@@ -1014,10 +1022,10 @@ button, a, img {
     <img class="rotated-gif2" 
     src="diamond5.png" alt="Descripción del GIF" style="width: 200%; height: auto;">
 </div>
-        <div id="mobile-gif3">
-    <img class="rotated-gif3"
-    src="tumblr_n0tclmLuvb1tsed0ao1_500.gif" alt="Descripción del GIF" style="width: 35%; height: auto;">
+        <div id="mobile-gif3" class="gif-container">
+    <img class="rotated-gif3" src="tumblr_n0tclmLuvb1tsed0ao1_500.gif" alt="Descripción del GIF" style="width: 100%; height: 100%;">
 </div>
+
         <div id="mobile-gif4">
     <img class="rotated-gif4"
     src="Sin título1.22.png" alt="Descripción del GIF" style="width: 35%; height: auto;">

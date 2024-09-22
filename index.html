@@ -95,7 +95,7 @@
 
      @media (max-width: 768px) {
     body {
-        background-image: url('Orion_3008_huge_(detail).jpg'); /* Cambia el nombre de la imagen */
+        background-image: url('unic.jpg'); /* Cambia el nombre de la imagen */
         background-size: cover;
         position: relative;
     }
@@ -140,6 +140,21 @@
         left: 43%; /* Cambia el valor de left según tus necesidades */
     }
 }
+         
+/* Estilos base para la imagen */
+.like-button-img {
+    vertical-align: middle;
+    height: 60px; /* Altura predeterminada */
+    width: auto;
+    margin-top: -3px;
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .like-button-img {
+        height: 70px; /* Ajusta la altura para pantallas más pequeñas */
+    }
+}
     
     #like-button:active {
     margin-top: 1px;
@@ -157,6 +172,21 @@
         z-index: 5;
         
     }
+
+    /* Estilos base para la imagen */
+.next-button-img {
+    vertical-align: middle;
+    height: 53px; /* Altura predeterminada */
+    width: auto;
+    margin-top: -3px;
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .next-button-img {
+        height: 63px; /* Ajusta la altura para pantallas más pequeñas */
+    }
+}
     
 #next-song-button:active {
     margin-top: 1px;
@@ -247,7 +277,7 @@ body {
 @media (max-width: 768px) {
     .ad-image {
         width: 100%; /* Aumenta el ancho de la imagen en móviles */
-        margin-left: -15%;
+        margin-left: -27%;
     }
 }
          
@@ -1080,11 +1110,11 @@ button, a, img {
         </div>
             <!-- Contenido del video aquí -->
             <div id="like-button" onclick="likeSong()" disabled>
-                <img src="file2.png" alt="Like" style="vertical-align: middle; height: 70px; width: auto; margin-top: -3px;">
+                <img src="file2.png" alt="Like" class="like-button-img">
             </div>
 
             <div id="next-song-button" onclick="playNextVideo()">
-                <img src="file.png" alt="Next" style="vertical-align: middle; height: 67px; width: auto; margin-top: -3px;">
+                <img src="file.png" alt="Next" class="next-button-img">
             </div>
            
         <!-- Botón con su funcionalidad onclick -->

@@ -93,107 +93,15 @@
     transform: scale(1.05); /* Pequeño crecimiento al pasar el cursor */
 }
 
-    /* Estilos de otros elementos (sin cambios) */
-    body {
-        margin: 0;
-        padding: 0;
-        background-image: url('webimg0824-1.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 235vh;
-        #ad-container {
-            display: none;
-        }
-    }
+   
     @media (max-width: 768px) {
     body {
         background-image: url('Sep2024-3.7.2.png'); /* Cambia el nombre de la imagen */
         background-size: cover;
-        #ad-container {
-            display: block;
-        }
-         #ad-container-web {
-            display: none;
-        }
-        #mobile-gif4 {
-            display: none;
-        }
-        #mobile-gif5 {
-            display: none;
-        }
-    }
-}
-    #video-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         position: relative;
-        top: 23px;
-        width: 375px; /* Establece el ancho deseado */
-        height: 500px; /* Establece la altura deseada */
     }
-    #video-container video {
-        max-width: 79%;
-        border: 2px solid rgba(152, 251, 152, 0.5);
-        border-radius: 10px; 
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
-        z-index: 9;
-        
-    }
-    #info-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: palevioletred;
-        margin-top: 20px;
-        height: 6%;
-    }
-    #info-container > div {
-        display: flex;
-        margin-bottom: 10px;
-    }
-    #like-button {
-        position: relative;
-        top: -39px;
-        color: #fff;
-    text-shadow:
-        0 0 5px #fff,
-        0 0 10px #fff,
-        0 0 20px #ff00ff,
-        0 0 30px #3498db,
-        0 0 40px #3498db,
-        0 0 50px #3498db,
-        0 0 60px #3498db;
-        margin-left: 0px;
-        border: px solid palegreen;
-        font-size: 23px;
-    }
-    
-    #like-button:active {
-    transform: scale(0.93); /* Contrae el botón un 3% */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
-}
-    #next-song-button {
-        position: relative;
-        top: -39px;
-        text-shadow: 3px 3px 3px rgba(152, 251, 152, 0.5);
-        border: 0px solid palegreen;
-        font-size: 23px;
-        padding: 10px 25px;
-        margin-left: 25px;
-    }
-    
-#next-song-button:active {
-    transform: scale(0.93); /* Contrae el botón un 3% */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
-}
-    #liked-songs-button {
-        position: relative;
+         #liked-songs-button {
+        position: absolute;
         top: -203px;
         margin-left: -3px;
         padding: 10px 20px;
@@ -220,6 +128,167 @@
 }
     #liked-songs-button:active {
     transform: scale(0.93); /* Contrae el botón un 3% */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
+
+}
+
+        #ad-container {
+            display: block;
+        }
+        #ad-container-web {
+            display: none;
+        }
+        #mobile-gif4 {
+            display: none;
+        }
+        #mobile-gif5 {
+            display: none;
+        }
+
+    }
+   
+    #info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: palevioletred;
+        margin-top: 20px;
+        height: 6%;
+    }
+    #info-container > div {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    #like-button {
+        position: absolute;
+        top: 60%;
+         left: 43%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+        color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff00ff,
+        0 0 30px #3498db,
+        0 0 40px #3498db,
+        0 0 50px #3498db,
+        0 0 60px #3498db;
+        margin-left: 0px;
+        border: px solid palegreen;
+        font-size: 23px;
+        z-index: 5;
+    }
+    
+    #like-button:active {
+    margin-top: 1px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
+}
+    #next-song-button {
+        position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
+    top: 60%; /* Centra verticalmente */
+    left: 54%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+        border: 0px solid palegreen;
+        font-size: 23px;
+        padding: 10px 25px;
+        margin-left: 25px;
+        z-index: 5;
+        
+    }
+    
+#next-song-button:active {
+    margin-top: 1px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
+}
+
+* {
+    box-sizing: border-box; /* Para un mejor manejo de los márgenes y padding */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.background-container {
+    position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
+    width: 100%;
+    height: 300vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+}
+
+.background-img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción de la imagen */
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Asegúrate de que esté detrás del botón */
+}
+
+#video-container {
+    position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
+    top: 48%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar */
+    width: 375px; /* Ancho deseado */
+    height: 500px; /* Altura deseada */
+    z-index: 2; /* Asegura que el video esté encima de la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    #video-container video {
+        max-width: 79%;
+        border: 2px solid rgba(152, 251, 152, 0.5);
+        border-radius: 10px; 
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+        z-index: 9;
+        
+    }
+
+    #ad-container {
+        position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
+    top: 86.5%; /* Centra verticalmente */
+    left: 60%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para centrar */
+    z-index: 2; /* Asegura que el video esté encima de la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    #liked-songs-button {
+        position: absolute; /* Posiciona el botón sobre la imagen */
+    top: 55.3%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centrado preciso */
+        padding: 10px 20px;
+        background-color: black;
+        border: 2px solid rgb(70, 26, 26);
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: larger;
+         text-shadow: 3px 3px 3px rgba(219, 112, 147, 0.5);
+        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    outline: none;
+    -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
+    z-index: 3;
+
+        /* Sustituyendo el texto por una imagen */
+    background-image: url('button3.png');
+    background-size: 100%; /* Ajusta la imagen al tamaño del botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen dentro del botón */
+    width: 90px; /* Ajusta el ancho del botón según la imagen */
+    height: 10px; /* Ajusta la altura del botón según la imagen */
+    text-indent: -9999px; /* Oculta el texto */
+        
+}
+    #liked-songs-button:active {
+    margin-top: 1px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
     outline: none;
     -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
@@ -286,11 +355,6 @@
 }
 
 
-    #video-container,
-#info-container {
-    position: relative;
-}
-
 body {
     overflow-x: hidden; /* Evitar la barra de desplazamiento horizontal */
 }
@@ -345,24 +409,14 @@ body {
     transform: rotate(85deg);
 }
     
-    #ad-container {
-        text-align: center; /* Centra horizontalmente el anuncio */
-        margin-top: 355%; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
-        position: absolute;
-    }
-
-    #ad-container-web {
-        text-align: center; /* Centra horizontalmente el anuncio */
-        margin-top: 100%; /* Ajusta la cantidad de espacio entre el botón y el anuncio */
-        position: absolute;
-
-    }
+   
     
     #donate-button-container {
-    text-align: center; /* Centra el botón horizontalmente */
-    position: absolute;
-    top: 230%;
-    z-index: 2;
+    position: absolute; /* Posiciona el botón sobre la imagen */
+    top: 92.7%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
     padding: 10px; /* Agrega espacio interno */
     /* Puedes ajustar el tamaño del contenedor y otros estilos aquí */
 }
@@ -1021,22 +1075,111 @@ button, a, img {
 </script>
 </head>
 <body>
-<div id="video-container">
-    <!-- Videos se cargarán aquí -->
-</div>
+
 <div id="info-container">
-    <div>
-        <button class="custom-button" id="like-button" onclick="likeSong()" disabled><img src="file2.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 50px; width: auto; margin-top: -3px;"></button>
-        <button class="custom-button" id="next-song-button" onclick="playNextVideo()"><img src="file.png" alt="Next" class="button-icon" style="vertical-align: middle; height: 43px; width: auto; margin-top: -3px;"></button>
+    
+    <div class="background-container">
+        <img src="Sep2024-3.7.2.png" class="background-img" alt="Background Image" />
+        <div id="video-container"></div>
+        <div id="ad-container">
+            <a href="https://www.instagram.com/flodz_/">
+            <img src="quarter-removebg-preview.png" alt="Go Follow" style="width: 44%; height: auto;">
+            </a>
+        </div>
+            <!-- Contenido del video aquí -->
+            <div id="like-button" onclick="likeSong()" disabled>
+                <img src="file2.png" alt="Like" style="vertical-align: middle; height: 50px; width: auto; margin-top: -3px;">
+            </div>
+
+            <div id="next-song-button" onclick="playNextVideo()">
+                <img src="file.png" alt="Next" style="vertical-align: middle; height: 47px; width: auto; margin-top: -3px;">
+            </div>
+           
+        <!-- Botón con su funcionalidad onclick -->
+        <div id="liked-songs-button" onclick="showLikedSongs()">Show Liked Songs</div>
+
+        <div id="liked-songs-popup">
+            <div id="liked-songs-content"></div>
+            <div style="text-align: center; margin-top: 10px;">
+                <button class="close-button" onclick="closeLikedSongs()">Close</button>
+            </div>
+        </div>
+
+        <div id="donate-button-container">
+            <div id="donate-button"></div>
+            <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+            <script>
+            PayPal.Donation.Button({
+            env:'production',
+            hosted_button_id:'Q52DFRN8D4BS8',
+            image: {
+            src:'https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif',
+            alt:'Donate with PayPal button',
+            title:'PayPal - The safer, easier way to pay online!',
+            }
+            }).render('#donate-button');
+            </script>
+            </div>
+
+            <div id="emoji-container" style="display: none;">
+                <!-- Aquí puedes agregar más emojis según sea necesario -->
+                    <div class="emoji" onclick="selectEmoji('😊')">😊</div>
+                    <div class="emoji" onclick="selectEmoji('❤️')">❤️</div>
+                    <div class="emoji" onclick="selectEmoji('👍')">👍</div>
+                    <div class="emoji" onclick="selectEmoji('😂')">😂</div>
+                    <div class="emoji" onclick="selectEmoji('🙌')">🙌</div>
+                <div class="emoji" onclick="selectEmoji('🎉')">🎉</div>
+                <div class="emoji" onclick="selectEmoji('🔥')">🔥</div>
+                <div class="emoji" onclick="selectEmoji('👏')">👏</div>
+                <div class="emoji" onclick="selectEmoji('🎶')">🎶</div>
+                <div class="emoji" onclick="selectEmoji('🤔')">🤔</div>
+                <div class="emoji" onclick="selectEmoji('😍')">😍</div>
+                <div class="emoji" onclick="selectEmoji('🌟')">🌟</div>
+                <div class="emoji" onclick="selectEmoji('😎')">😎</div>
+                <div class="emoji" onclick="selectEmoji('💖')">💖</div>
+                <div class="emoji" onclick="selectEmoji('🚀')">🚀</div>
+                <div class="emoji" onclick="selectEmoji('🌈')">🌈</div>
+                <div class="emoji" onclick="selectEmoji('💯')">💯</div>
+                <div class="emoji" onclick="selectEmoji('🤗')">🤗</div>
+                <div class="emoji" onclick="selectEmoji('👌')">👌</div>
+                <div class="emoji" onclick="selectEmoji('😜')">😜</div>
+                <div class="emoji" onclick="selectEmoji('🙏')">🙏</div>
+                <div class="emoji" onclick="selectEmoji('💪')">💪</div>
+                <div class="emoji" onclick="selectEmoji('😇')">😇</div>
+                <div class="emoji" onclick="selectEmoji('🌺')">🌺</div>
+                <!-- Agrega más emojis según tus preferencias -->
+                </div>
+                <div id="chat">
+                    <button id="toggle-chat-btn"><img src="down17.png" alt="Expandir/Colapsar" id="toggle-icon">
+                    </button>
+                    <!-- messages will display here -->
+                    <ul id="messages">
+                        <!-- Agrega el mensaje de bienvenida aquí -->
+                        <li class="system2">
+                            <span style="padding-left: 5px;"></span>
+                            <img src="Live-Chat-17-8-2024-4.png" alt="Live Chat" style="vertical-align: middle; width: 110px; height: 30px;">
+                            <span style="padding-right: 5px;"></span>
+                        </li>
+                    </ul>
+                    
+                
+                    <!-- form to send message -->
+                    <form id="message-form">
+                        <textarea id="message-input" placeholder="Type your message..."></textarea>
+                        <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
+                        <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
+                      <button id="message-btn" type="submit">Send</button>
+                    </form>
+                    <button class="custom-button" id="listen-button" onclick="shareCurrentSong()">🎶 NOW PLAYING</button>
+                  </div>
+                  <div id="username-modal" class="modal">
+                    <div class="modal-content">
+                      <input type="text" id="username-input" placeholder="Username" />
+                      <button onclick="setUsername()">✔️</button>
+                    </div>
+                  </div>
     </div>
-    <div id="liked-songs-button" onclick="showLikedSongs()">Show Liked Songs</div>
-</div>
-<div id="liked-songs-popup">
-    <div id="liked-songs-content"></div>
-    <div style="text-align: center; margin-top: 10px;">
-        <button class="close-button" onclick="closeLikedSongs()">Close</button>
-    </div>
-</div>
+    
     <div id="mobile-gif2" style="display: none;">
     <img class="rotated-gif2" 
     src="diamond5.png" alt="Descripción del GIF" style="width: 200%; height: auto;">
@@ -1053,88 +1196,7 @@ button, a, img {
     <img class="rotated-gif5"
     src="Sin título1.22.png" alt="Descripción del GIF" style="width: 90%; height: auto;">
 </div>
-    <div id="donate-button-container">
-<div id="donate-button"></div>
-<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-<script>
-PayPal.Donation.Button({
-env:'production',
-hosted_button_id:'Q52DFRN8D4BS8',
-image: {
-src:'https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif',
-alt:'Donate with PayPal button',
-title:'PayPal - The safer, easier way to pay online!',
-}
-}).render('#donate-button');
-</script>
-</div>
-<div id="ad-container">
-    <a href="https://www.instagram.com/flodz_/">
-    <img src="quarter-removebg-preview.png" alt="Go Follow" style="width: 44%; height: auto;">
-    </a>
-</div>
-<div id="ad-container-web" style="display: none;">
-    <a href="https://www.instagram.com/flodz_/">
-    <img src="quarter-removebg-preview.png" alt="Go Follow" style="width: 44%; height: auto;">
-    </a>
-</div>
-</div>
-<div id="emoji-container" style="display: none;">
-<!-- Aquí puedes agregar más emojis según sea necesario -->
-    <div class="emoji" onclick="selectEmoji('😊')">😊</div>
-    <div class="emoji" onclick="selectEmoji('❤️')">❤️</div>
-    <div class="emoji" onclick="selectEmoji('👍')">👍</div>
-    <div class="emoji" onclick="selectEmoji('😂')">😂</div>
-    <div class="emoji" onclick="selectEmoji('🙌')">🙌</div>
-<div class="emoji" onclick="selectEmoji('🎉')">🎉</div>
-<div class="emoji" onclick="selectEmoji('🔥')">🔥</div>
-<div class="emoji" onclick="selectEmoji('👏')">👏</div>
-<div class="emoji" onclick="selectEmoji('🎶')">🎶</div>
-<div class="emoji" onclick="selectEmoji('🤔')">🤔</div>
-<div class="emoji" onclick="selectEmoji('😍')">😍</div>
-<div class="emoji" onclick="selectEmoji('🌟')">🌟</div>
-<div class="emoji" onclick="selectEmoji('😎')">😎</div>
-<div class="emoji" onclick="selectEmoji('💖')">💖</div>
-<div class="emoji" onclick="selectEmoji('🚀')">🚀</div>
-<div class="emoji" onclick="selectEmoji('🌈')">🌈</div>
-<div class="emoji" onclick="selectEmoji('💯')">💯</div>
-<div class="emoji" onclick="selectEmoji('🤗')">🤗</div>
-<div class="emoji" onclick="selectEmoji('👌')">👌</div>
-<div class="emoji" onclick="selectEmoji('😜')">😜</div>
-<div class="emoji" onclick="selectEmoji('🙏')">🙏</div>
-<div class="emoji" onclick="selectEmoji('💪')">💪</div>
-<div class="emoji" onclick="selectEmoji('😇')">😇</div>
-<div class="emoji" onclick="selectEmoji('🌺')">🌺</div>
-<!-- Agrega más emojis según tus preferencias -->
-</div>
-<div id="chat">
-    <button id="toggle-chat-btn"><img src="down17.png" alt="Expandir/Colapsar" id="toggle-icon">
-    </button>
-    <!-- messages will display here -->
-    <ul id="messages">
-        <!-- Agrega el mensaje de bienvenida aquí -->
-        <li class="system2">
-            <span style="padding-left: 5px;"></span>
-            <img src="Live-Chat-17-8-2024-4.png" alt="Live Chat" style="vertical-align: middle; width: 110px; height: 30px;">
-            <span style="padding-right: 5px;"></span>
-        </li>
-    </ul>
-
-    <!-- form to send message -->
-    <form id="message-form">
-        <textarea id="message-input" placeholder="Type your message..."></textarea>
-        <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
-        <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
-      <button id="message-btn" type="submit">Send</button>
-    </form>
-    <button class="custom-button" id="listen-button" onclick="shareCurrentSong()">🎶 NOW PLAYING</button>
-  </div>
-  <div id="username-modal" class="modal">
-    <div class="modal-content">
-      <input type="text" id="username-input" placeholder="Username" />
-      <button onclick="setUsername()">✅</button>
-    </div>
-  </div>
+    
   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 <script src="ajlivechat2.js"></script>

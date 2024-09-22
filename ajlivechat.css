@@ -51,7 +51,7 @@
 }
 #chat {
             position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 72%; /* Ajusta este valor para colocar el botón verticalmente */
+    top: 74%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
             background-color: black;
@@ -191,7 +191,7 @@
   
   #username-modal {
     position: absolute;
-        top: 70%;
+        top: 72%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: black;

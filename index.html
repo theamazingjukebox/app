@@ -202,9 +202,9 @@ body {
 .background-container {
     position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
     width: 100%;
-    height: 400vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    height: 3500vh; /* Asegúrate de que ocupe toda la altura de la ventana */
     background-image: url('Sep2024-3.7.2.png');
-    background-size: 100%; /* Zoom a la imagen */
+    background-size: 150%; /* Zoom a la imagen */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;
     overflow: scroll; /* Permite desplazamiento si se requiere */
@@ -213,7 +213,7 @@ body {
 .background-img {
     width: 100%;
     height: 100%; /* Mantiene la proporción de la imagen */
-    background-size: 100%;  /* Hace que la imagen cubra todo el contenedor */
+    background-size: 150%;  /* Hace que la imagen cubra todo el contenedor */
     position: relative;
     top: 0;
     left: 0;
@@ -222,7 +222,8 @@ body {
 
 @media (max-width: 768px) {
     .background-container {
-        height: 225vh; /* Hace que el contenedor tenga una altura del 100% de la ventana */
+        width: 275%;
+        height: 100%; /* Hace que el contenedor tenga una altura del 100% de la ventana */
     }
 
     .background-img {

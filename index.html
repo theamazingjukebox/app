@@ -95,7 +95,7 @@
 
      @media (max-width: 768px) {
     body {
-        background-image: url('Sep2024-3.7.2.png'); /* Cambia el nombre de la imagen */
+        background-image: url('Sep2024-3.7.3.png'); /* Cambia el nombre de la imagen */
         background-size: cover;
         position: relative;
     }
@@ -236,6 +236,21 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+         /* Ancho de la imagen para pantallas grandes */
+.ad-image {
+    width: 44%; /* Ajusta el ancho de la imagen en pantallas grandes */
+    height: auto; /* Mantiene la proporción */
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .ad-image {
+        width: 80%; /* Aumenta el ancho de la imagen en móviles */
+        margin-left: -15%;
+    }
+}
+         
     #liked-songs-button {
         position: absolute; /* Posiciona el botón sobre la imagen */
     top: 55.3%; /* Ajusta este valor para colocar el botón verticalmente */
@@ -1060,7 +1075,7 @@ button, a, img {
         <div id="video-container"></div>
         <div id="ad-container">
             <a href="https://www.instagram.com/flodz_/">
-            <img src="quarter-removebg-preview.png" alt="Go Follow" style="width: 44%; height: auto;">
+            <img src="quarter-removebg-preview.png" alt="Go Follow" class="ad-image">
             </a>
         </div>
             <!-- Contenido del video aquí -->

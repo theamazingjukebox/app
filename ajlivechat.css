@@ -124,20 +124,20 @@
         }
 
         /* Agrega este estilo para el contenedor de emojis */
-        #emoji-container {
+       #emoji-container {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
     position: absolute; /* Utiliza posición absoluta */
-    top: calc(180% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
+    top: calc(65% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
     left: 50%; /* Centra el contenedor horizontalmente */
-    transform: translateX(-50%); /* Ajusta para centrar en pantalla */
+    transform: translate(-50%, -50%); /* Ajusta para centrar en pantalla */
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 5px;
     display: none; /* Oculta el contenedor inicialmente */
-    z-index: 1;
+    z-index: 9;
     width: 225px;
 }
 

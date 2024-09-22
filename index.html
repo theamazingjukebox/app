@@ -93,61 +93,8 @@
     transform: scale(1.05); /* Pequeño crecimiento al pasar el cursor */
 }
 
-   
-    @media (max-width: 768px) {
-    body {
-        background-image: url('Sep2024-3.7.2.png'); /* Cambia el nombre de la imagen */
-        background-size: cover;
-        position: relative;
-    }
-         #liked-songs-button {
-        position: absolute;
-        top: -203px;
-        margin-left: -3px;
-        padding: 10px 20px;
-        background-color: black;
-        border: 2px solid rgb(70, 26, 26);
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: larger;
-         text-shadow: 3px 3px 3px rgba(219, 112, 147, 0.5);
-        transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    outline: none;
-    -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
 
-        /* Sustituyendo el texto por una imagen */
-    background-image: url('button3.png');
-    background-size: 100%; /* Ajusta la imagen al tamaño del botón */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-position: center; /* Centra la imagen dentro del botón */
-    width: 90px; /* Ajusta el ancho del botón según la imagen */
-    height: 10px; /* Ajusta la altura del botón según la imagen */
-    text-indent: -9999px; /* Oculta el texto */
-        
-}
-    #liked-songs-button:active {
-    transform: scale(0.93); /* Contrae el botón un 3% */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
-    outline: none;
-    -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
-
-}
-
-        #ad-container {
-            display: block;
-        }
-        #ad-container-web {
-            display: none;
-        }
-        #mobile-gif4 {
-            display: none;
-        }
-        #mobile-gif5 {
-            display: none;
-        }
-
-    }
+    
    
     #info-container {
         display: flex;
@@ -180,6 +127,12 @@
         font-size: 23px;
         z-index: 5;
     }
+
+    @media (min-width: 768px) {
+    #like-button {
+        left: 43%; /* Cambia el valor de left según tus necesidades */
+    }
+}
     
     #like-button:active {
     margin-top: 1px;

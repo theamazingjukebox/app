@@ -142,6 +142,18 @@
         z-index: 5;
     }
 
+    @media (min-width: 768px) {
+    #like-button {
+        left: 45%; /* Cambia el valor de left según tus necesidades */
+    }
+}
+
+@media (max-width: 768px) {
+    #like-button {
+        left: 45%; /* Cambia el valor de left según tus necesidades */
+    }
+}
+
     
          
 /* Estilos base para la imagen */
@@ -155,12 +167,12 @@
 /* Media query para móviles */
 @media (max-width: 768px) {
     .like-button-img {
-        height: 90px; /* Ajusta la altura para pantallas más pequeñas */
+        height: 100px; /* Ajusta la altura para pantallas más pequeñas */
     }
 }
     
     #like-button:active {
-    margin-top: 1px;
+    margin-top: 2px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
 }
     #next-song-button {
@@ -175,6 +187,18 @@
         z-index: 5;
         
     }
+
+    @media (min-width: 768px) {
+    #next-song-button {
+        left: 53%; /* Cambia el valor de left según tus necesidades */
+    }
+}
+
+@media (max-width: 768px) {
+    #next-song-button {
+        left: 52.5%; /* Cambia el valor de left según tus necesidades */
+    }
+}
          
 
     /* Estilos base para la imagen */
@@ -188,7 +212,7 @@
 /* Media query para móviles */
 @media (max-width: 768px) {
     .next-button-img {
-        height: 83px; /* Ajusta la altura para pantallas más pequeñas */
+        height: 87px; /* Ajusta la altura para pantallas más pequeñas */
     }
 }
     
@@ -271,14 +295,20 @@ body {
     align-items: center;
     justify-content: center;
 }
+    /* Ancho de la imagen para pantallas grandes */
+.ad-image {
+    width: 44%; /* Ajusta el ancho de la imagen en pantallas grandes */
+    height: auto; /* Mantiene la proporción */
+    margin-left: -3%;
+}
 
          
 
 /* Media query para móviles */
 @media (max-width: 768px) {
     .ad-image {
-        width: 100%; /* Aumenta el ancho de la imagen en móviles */
-        margin-left: -27%;
+        width: 44%; /* Aumenta el ancho de la imagen en móviles */
+        margin-left: 1%;
     }
 }
          

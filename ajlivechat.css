@@ -51,7 +51,7 @@
 }
 #chat {
             position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 75%; /* Ajusta este valor para colocar el botón verticalmente */
+    top: 77%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
             background-color: black;
@@ -130,7 +130,7 @@
     flex-wrap: wrap;
     justify-content: center;
     position: absolute; /* Utiliza posición absoluta */
-    top: calc(71% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
+    top: calc(73% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
     left: 50%; /* Centra el contenedor horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar en pantalla */
     padding: 5px;
@@ -191,7 +191,7 @@
   
   #username-modal {
     position: absolute;
-        top: 73.5%;
+        top: 75.5%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: black;

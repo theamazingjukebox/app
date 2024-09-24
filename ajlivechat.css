@@ -264,7 +264,8 @@
 
 #message-input {
     flex: 1;
-    margin-bottom: 10px;
+    margin-top: -10px;
+    margin-bottom: 5px;
     margin-left: 5px;
 }
 
@@ -273,7 +274,7 @@
     cursor: pointer;
     color: white;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     outline: none;
     -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
 

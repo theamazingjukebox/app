@@ -266,13 +266,15 @@ body {
 }
 
 #video-container {
-    position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
-    top: 47.7%; /* Centra verticalmente */
-    left: 49.5%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta para centrar */
-    width: 375px; /* Ancho deseado */
-    height: 450px; /* Altura deseada */
-    z-index: 2; /* Asegura que el video esté encima de la imagen */
+    position: absolute;
+    top: auto; /* No fijamos la parte superior */
+    bottom: 46.9%; /* Establece el límite inferior */
+    left: 49.5%;
+    transform: translateX(-50%); /* Solo se centra horizontalmente */
+    width: 63%; /* Ancho deseado */
+    height: auto; /* Deja que la altura sea dinámica */
+    z-index: 2; /* Asegura que el video esté encima de otros elementos */
+    max-height: calc(100vh - 50px); /* El video nunca sobrepasará este alto total, dejando 100px de margen */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,20 +282,26 @@ body {
 
     @media (min-width: 768px) {
     #video-container {
-        width: 525px; /* Ancho mayor en dispositivos grandes */
-        height: 650px; /* Altura mayor en dispositivos grandes */
+        position: absolute;
+        top: auto;
+        left: 49.7%;
+        width: 27%; /* Ancho mayor en dispositivos grandes */
+        height: auto; /* Altura mayor en dispositivos grandes */
+        bottom: 46.9%;
+        max-height: calc(100vh - 100px);
+        
     }
 }
     
     #video-container video {
-        max-width: 79%;
-        max-height: 50%;
-        border: 2px solid rgba(152, 251, 152, 0.5);
-        border-radius: 10px; 
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
-        z-index: 9;
-        
-    }
+       max-width: 100%;
+    height: auto; /* Mantiene la altura proporcional del video */
+    max-height: 100%; /* Limita el crecimiento del video para que no sobrepase el contenedor */
+    border: 2px solid rgba(152, 251, 152, 0.5);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    z-index: 9;
+}
 
     #ad-container {
         position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */

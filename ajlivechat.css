@@ -265,6 +265,7 @@
 #message-input {
     flex: 1;
     margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 #emoji-button {
@@ -288,6 +289,7 @@
 #message-btn {
     margin-left: 10px; /* Ajusta el espacio entre los botones según sea necesario */
     margin-bottom: 10px;
+    margin-right: 5px;
         
 }
 

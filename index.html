@@ -298,27 +298,25 @@ body {
     #ad-container {
         position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
     top: 88%; /* Centra verticalmente */
-    left: 60%; /* Centra horizontalmente */
+    left: 49%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     z-index: 2; /* Asegura que el video esté encima de la imagen */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    
 }
-    /* Ancho de la imagen para pantallas grandes */
+
+/* Ancho de la imagen para pantallas grandes */
 .ad-image {
     width: 44%; /* Ajusta el ancho de la imagen en pantallas grandes */
     height: auto; /* Mantiene la proporción */
-    margin-left: -3%;
+    margin-left: 3%;
 }
-
-         
 
 /* Media query para móviles */
 @media (max-width: 768px) {
     .ad-image {
-        width: 100%; /* Aumenta el ancho de la imagen en móviles */
-        margin-left: -27%;
+        width: 78%; /* Aumenta el ancho de la imagen en móviles */
+        
     }
 }
          

@@ -294,3 +294,19 @@ document.querySelector('#like-button').addEventListener('touchstart', function()
 document.querySelector('#like-button').addEventListener('touchend', function() {
     this.style.transform = 'translate(-50%, -50%) scale(1)';
 });
+
+document.querySelector('#next-song-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.95)';
+});
+
+document.querySelector('#next-song-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});
+
+document.querySelector('#liked-songs-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.95)';
+});
+
+document.querySelector('#liked-songs-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});

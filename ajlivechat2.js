@@ -286,3 +286,11 @@ function toggleEmojiPicker() {
 document.getElementById("message-btn").addEventListener("touchend", function() {
     this.blur(); // Remueve el foco del botón
 });
+
+document.querySelector('#like-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.93)';
+});
+
+document.querySelector('#like-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});

@@ -310,3 +310,45 @@ document.querySelector('#liked-songs-button').addEventListener('touchstart', fun
 document.querySelector('#liked-songs-button').addEventListener('touchend', function() {
     this.style.transform = 'translate(-50%, -50%) scale(1)';
 });
+
+
+
+function toggleMenu(button) {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('show');
+    
+    // Cambiar entre hamburguesa (&#9776;) y X (&times;)
+    if (menu.classList.contains('show')) {
+        button.classList.add('active'); // Agregar clase active al mostrar el menú
+    } else {
+        button.classList.remove('active'); // Quitar clase active al ocultar el menú
+        // Cerrar los cuadros de información si el menú se cierra
+        closeAllInfoBoxes();
+    }
+}
+
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    toggleMenu(this);
+});
+
+document.getElementById('about-us-link').addEventListener('click', function() {
+    toggleInfoBox('about-us-content');
+});
+
+document.getElementById('contact-us-link').addEventListener('click', function() {
+    toggleInfoBox('contact-us-content');
+});
+
+function toggleInfoBox(boxId) {
+    var box = document.getElementById(boxId);
+    box.classList.toggle('show');
+    
+    // Ocultar el otro cuadro si está activo
+    var otherBox = boxId === 'about-us-content' ? 'contact-us-content' : 'about-us-content';
+    document.getElementById(otherBox).classList.remove('show');
+}
+
+function closeAllInfoBoxes() {
+    document.getElementById('about-us-content').classList.remove('show');
+    document.getElementById('contact-us-content').classList.remove('show');
+}

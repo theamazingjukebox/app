@@ -339,3 +339,244 @@ button, a, img {
     outline: none;
 }
 
+
+
+/* Banner superior */
+#top-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4%;
+    background-color: #162f3577;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* Mover el banner hacia arriba, por ejemplo 20px */
+    transform: translateY(-30px);
+    
+}
+
+@media (min-width: 768px) {
+    #top-banner {
+        height: 3%;
+        
+    }
+}
+
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+
+
+.banner-content h1 {
+    padding-left: 40px;
+font-size: 1.4em;
+    font-family: 'Orbitron'
+}
+
+@media (min-width: 768px) {
+    .banner-content h1 {
+        margin-left: 88%;
+        
+    }
+}
+
+.menu-toggle {
+    font-size: 30px; /* Tamaño del icono */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    z-index: 1001;
+    position: relative;
+    margin-top: -45px;
+    margin-right: 25px;
+    transition: color 0.3s ease;
+    font-family: 'Orbitron'
+}
+
+
+.menu-toggle span {
+    display: block;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Animación suave */
+    position: absolute;
+    font-family: 'Orbitron'
+}
+
+.menu-toggle span.x-symbol {
+    opacity: 0; /* X inicialmente oculta */
+    font-size: 20px;
+    transform: rotate(-90deg); /* Rotación inicial */
+}
+
+.menu-toggle.active span.x-symbol {
+    opacity: 1;
+    margin-top: 10px;
+    margin-left: 5px;
+    
+    transform: rotate(0); /* Rotación para mostrar X */
+}
+
+.menu-toggle span.burger-symbol {
+    opacity: 1; /* Mostrar hamburguesa al inicio */
+    margin-top: 0px;
+    font-size: 29px;
+}
+
+.menu-toggle.active span.burger-symbol {
+    opacity: 0; /* Ocultar hamburguesa */
+    transform: rotate(90deg); /* Rotación para ocultar hamburguesa */
+}
+
+.menu-toggle:hover {
+    color: #ccc; /* Color al pasar el mouse */
+}
+
+
+/* Ocultar el menú al inicio */
+#menu {
+    max-height: 0; /* Cambia a 0 para ocultar el menú */
+    overflow: hidden; /* Esconde contenido desbordado */
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    background-color: #45a04988;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: max-height 0.8s ease, opacity 0.8s ease; /* Transición suave */
+}
+
+#menu.show {
+    max-height: 500px; /* Altura máxima suficiente para el contenido */
+    font-size: larger;
+    font-family: 'Orbitron';
+    margin-top: 4%;
+    opacity: 1;
+    
+}
+
+@media (min-width: 768px) {
+    #menu.show {
+        margin-top: 0.9%;
+        
+    }
+}
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    transform: 0.9s ease-out;
+    font-family: 'Orbitron'
+}
+
+#menu ul li {
+    padding: 10px 20px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.6s ease-in-out, transform 0.9s ease-in-out; /* Incrementar el tiempo de transición */
+}
+
+#menu.show ul li:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+#menu.show ul li:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+#menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#menu ul li:hover {
+    background-color: #45a049;
+}
+
+/* Para pantallas móviles */
+@media (max-width: 768px) {
+    .banner-content {
+        margin-left: -70%;
+        justify-content: space-between;
+        align-items: center;
+    
+    }
+    .banner-content h1 {
+        margin-left: 75%;
+    }
+
+    
+
+    #menu {
+        top: 50px; /* Ajusta según el tamaño del banner */
+    }
+}
+
+
+
+
+.dropdown-menu {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #162f3577;
+    width: 100%;
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.dropdown-menu.show {
+    display: block; /* Mostrar menú cuando sea activo */
+}
+
+.menu-item {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.info-box {
+    display: none; /* Cuadros ocultos por defecto */
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 20px;
+    background-color: #45a049;
+    font-family: 'Orbitron';
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    max-width: 279px;
+    transition: all 0.3s ease; /* Suave */
+}
+
+@media (min-width: 768px) {
+    .info-box {
+        margin-top: 0.3%;
+        margin-left: 69.8%;
+        
+    }
+}
+
+.info-box.show {
+    display: block; /* Mostrar cuadro cuando esté activo */
+}
+

@@ -377,7 +377,7 @@ button, a, img {
 
 
 .banner-content h1 {
-    padding-left: 40px;
+    padding-left: 30px;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }
@@ -421,15 +421,16 @@ font-size: 1.4em;
 .menu-toggle.active span.x-symbol {
     opacity: 1;
     margin-top: 10px;
-    margin-left: 5px;
+    margin-left: -10px;
     
     transform: rotate(0); /* Rotación para mostrar X */
 }
 
 .menu-toggle span.burger-symbol {
     opacity: 1; /* Mostrar hamburguesa al inicio */
-    margin-top: 0px;
+    margin-top: 1px;
     font-size: 29px;
+    margin-left: -15px;
 }
 
 .menu-toggle.active span.burger-symbol {

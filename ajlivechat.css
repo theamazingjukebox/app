@@ -437,7 +437,9 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .menu-toggle.active span.x-symbol {
         /* Ajustes específicos para iOS */
+        opacity: 1;
         margin-left: 55%;
+        transform: rotate(0); /* Rotación para mostrar X */
     }
 }
 

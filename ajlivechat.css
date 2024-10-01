@@ -378,7 +378,7 @@ button, a, img {
 
 .banner-content h1 {
     color: #17d2dfad;
-    padding-left: 4%;
+    padding-left: 3.5%;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }
@@ -429,6 +429,12 @@ font-size: 1.4em;
     transform: rotate(0); /* Rotación para mostrar X */
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+    .menu-toggle.active span.x-symbol {
+        /* Ajustes específicos para iOS */
+        margin-left: -100%;
+    }
+}
 
 
 .menu-toggle span.burger-symbol {
@@ -576,6 +582,12 @@ font-size: 1.4em;
     transition: all 0.3s ease; /* Suave */
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+    .info-box {
+        /* Ajustes específicos para iOS */
+    left: 4%;
+    }
+}
 
 
 @media (min-width: 768px) {

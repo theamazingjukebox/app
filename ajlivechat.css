@@ -348,7 +348,7 @@ button, a, img {
     left: 0;
     width: 100%;
     height: 4%;
-    background-color: #162f3577;
+    background-color: #63e0b677;
     color: white;
     padding: 20px;
     text-align: center;
@@ -377,7 +377,7 @@ button, a, img {
 
 
 .banner-content h1 {
-    color: #888
+    color: #888;
     padding-left: 5px;
 font-size: 1.4em;
     font-family: 'Orbitron'
@@ -451,7 +451,7 @@ font-size: 1.4em;
     position: absolute;
     top: 60px;
     right: 0px;
-    background-color: #45a04988;
+    background-color: #a0458c88;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     opacity: 0;
@@ -556,8 +556,8 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 40px;
-    left: 10px;
+    top: 39px;
+    left: 7px;
     right: 20px;
     background-color: #45a049;
     font-family: 'Orbitron';

@@ -386,7 +386,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .banner-content h1 {
         /* Ajustes específicos para iOS */
-        padding-left: 35px;
+        padding-left: 30px;
     }
 }
 
@@ -434,11 +434,25 @@ font-size: 1.4em;
     transform: rotate(0); /* Rotación para mostrar X */
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+    .menu-toggle.active span.x-symbol {
+        /* Ajustes específicos para iOS */
+        margin-left: -5px;
+    }
+}
+
 .menu-toggle span.burger-symbol {
     opacity: 1; /* Mostrar hamburguesa al inicio */
     margin-top: 2px;
     font-size: 29px;
     margin-left: 0px;
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+    .menu-toggle span.burger-symbol {
+        /* Ajustes específicos para iOS */
+        margin-left: -10px;
+    }
 }
 
 .menu-toggle.active span.burger-symbol {
@@ -581,7 +595,7 @@ font-size: 1.4em;
     .info-box {
         /* Ajustes específicos para iOS */
         top: 39px;
-    left: 100px;
+    left: 60px;
     }
 }
 

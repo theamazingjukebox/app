@@ -349,6 +349,11 @@ button, a, img {
     width: 100%;
     height: 4%;
     background-color: #63e0b646;
+    background: linear-gradient(
+        to top, /* Dirección del degradado, puedes cambiarlo a 'to bottom', 'to top', etc. */
+        #63e0b609, /* Color inicial */
+        #3fbec0 /* Color final, puedes elegir uno que haga buen contraste */
+    );
     color: white;
     padding: 20px;
     text-align: center;

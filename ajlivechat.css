@@ -384,7 +384,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     .banner-content h1 {
-        margin-left: 88%;
+        margin-left: 89%;
         
     }
 }
@@ -430,7 +430,7 @@ font-size: 1.4em;
     opacity: 1; /* Mostrar hamburguesa al inicio */
     margin-top: 1px;
     font-size: 29px;
-    margin-left: -15px;
+    margin-left: 0px;
 }
 
 .menu-toggle.active span.burger-symbol {

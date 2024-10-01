@@ -577,8 +577,8 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 40px;
-    left: 7px;
+    top: 2.5%;
+    left: 21%;
     right: 20px;
     background-color: #45a049;
     font-family: 'Orbitron';
@@ -591,13 +591,7 @@ font-size: 1.4em;
     transition: all 0.3s ease; /* Suave */
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .info-box {
-        /* Ajustes específicos para iOS */
-        top: 43px;
-    left: 21%;
-    }
-}
+
 
 @media (min-width: 768px) {
     .info-box {

@@ -432,7 +432,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .menu-toggle.active span.x-symbol {
         /* Ajustes específicos para iOS */
-        margin-left: 0%;
+        margin-left: -50%;
     }
 }
 
@@ -444,7 +444,12 @@ font-size: 1.4em;
     margin-left: 0%;
 }
 
-
+@supports (-webkit-overflow-scrolling: touch) {
+    .menu-toggle span.burger-symbol {
+        /* Ajustes específicos para iOS */
+        margin-left: -50%;
+    }
+}
 
 .menu-toggle.active span.burger-symbol {
     opacity: 0; /* Ocultar hamburguesa */
@@ -585,7 +590,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .info-box {
         /* Ajustes específicos para iOS */
-    left: 0%;
+    left: -4%;
     }
 }
 

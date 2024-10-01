@@ -383,7 +383,7 @@ button, a, img {
 
 .banner-content h1 {
     color: #17d2dfad;
-    padding-left: 3.5%;
+    margin-left: 0%;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }
@@ -429,7 +429,7 @@ font-size: 1.4em;
 .menu-toggle.active span.x-symbol {
     opacity: 1;
     margin-top: 10px;
-    margin-left: 0%;
+    margin-left: 50%;
     
     transform: rotate(0); /* Rotación para mostrar X */
 }

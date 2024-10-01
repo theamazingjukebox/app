@@ -555,7 +555,7 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 45px;
+    top: 40px;
     left: 100px;
     right: 20px;
     background-color: #45a049;

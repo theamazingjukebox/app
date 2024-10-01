@@ -424,7 +424,7 @@ font-size: 1.4em;
 .menu-toggle.active span.x-symbol {
     opacity: 1;
     margin-top: 10px;
-    margin-left: -0%;
+    margin-left: 0%;
     
     transform: rotate(0); /* Rotación para mostrar X */
 }
@@ -432,7 +432,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .menu-toggle.active span.x-symbol {
         /* Ajustes específicos para iOS */
-        margin-left: -100%;
+        margin-left: 0%;
     }
 }
 
@@ -441,7 +441,7 @@ font-size: 1.4em;
     opacity: 1; /* Mostrar hamburguesa al inicio */
     margin-top: 2px;
     font-size: 29px;
-    margin-left: -50%;
+    margin-left: 0%;
 }
 
 
@@ -585,7 +585,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .info-box {
         /* Ajustes específicos para iOS */
-    left: 4%;
+    left: 0%;
     }
 }
 

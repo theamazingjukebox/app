@@ -356,7 +356,7 @@ button, a, img {
     z-index: 1000;
     /* Mover el banner hacia arriba, por ejemplo 20px */
     transform: translateY(-30px);
-    
+    box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -377,7 +377,7 @@ button, a, img {
 
 
 .banner-content h1 {
-    padding-left: 30px;
+    padding-left: 20px;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }

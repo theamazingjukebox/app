@@ -377,18 +377,13 @@ button, a, img {
 
 
 .banner-content h1 {
-    color: #c717dfa1;
-    padding-left: 5px;
+    color: #c817dfad;
+    padding-left: 30px;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .banner-content h1 {
-        /* Ajustes específicos para iOS */
-        padding-left: 30px;
-    }
-}
+
 
 @media (min-width: 768px) {
     .banner-content h1 {
@@ -429,31 +424,21 @@ font-size: 1.4em;
 .menu-toggle.active span.x-symbol {
     opacity: 1;
     margin-top: 10px;
-    margin-left: 5px;
+    margin-left: -130%;
     
     transform: rotate(0); /* Rotación para mostrar X */
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .menu-toggle.active span.x-symbol {
-        /* Ajustes específicos para iOS */
-        margin-left: -130%;
-    }
-}
+
 
 .menu-toggle span.burger-symbol {
     opacity: 1; /* Mostrar hamburguesa al inicio */
     margin-top: 2px;
     font-size: 29px;
-    margin-left: 0px;
+    margin-left: -150%;
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .menu-toggle span.burger-symbol {
-        /* Ajustes específicos para iOS */
-        margin-left: -150%;
-    }
-}
+
 
 .menu-toggle.active span.burger-symbol {
     opacity: 0; /* Ocultar hamburguesa */
@@ -578,7 +563,7 @@ font-size: 1.4em;
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
     top: 2.3%;
-    left: 5%;
+    left: 3%;
     right: 20px;
     background-color: #45a049;
     font-family: 'Orbitron';

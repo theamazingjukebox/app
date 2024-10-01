@@ -432,7 +432,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .menu-toggle.active span.x-symbol {
         /* Ajustes específicos para iOS */
-        margin-left: -50%;
+        margin-left: -40%;
     }
 }
 
@@ -447,7 +447,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .menu-toggle span.burger-symbol {
         /* Ajustes específicos para iOS */
-        margin-left: -50%;
+        margin-left: -40%;
     }
 }
 
@@ -590,7 +590,7 @@ font-size: 1.4em;
 @supports (-webkit-overflow-scrolling: touch) {
     .info-box {
         /* Ajustes específicos para iOS */
-    left: -4%;
+    left: 7%;
     }
 }
 

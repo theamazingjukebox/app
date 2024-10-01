@@ -384,7 +384,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     .banner-content h1 {
-        margin-left: 89%;
+        margin-left: 90%;
         
     }
 }
@@ -421,7 +421,7 @@ font-size: 1.4em;
 .menu-toggle.active span.x-symbol {
     opacity: 1;
     margin-top: 10px;
-    margin-left: -10px;
+    margin-left: 5px;
     
     transform: rotate(0); /* Rotación para mostrar X */
 }

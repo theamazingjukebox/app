@@ -383,6 +383,13 @@ font-size: 1.4em;
     font-family: 'Orbitron'
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+    .banner-content h1 {
+        /* Ajustes específicos para iOS */
+        padding-left: 45px;
+    }
+}
+
 @media (min-width: 768px) {
     .banner-content h1 {
         margin-left: 90%;

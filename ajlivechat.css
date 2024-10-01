@@ -469,7 +469,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     #menu.show {
-        margin-top: 0.9%;
+        margin-top: 0.6%;
         
     }
 }
@@ -556,7 +556,7 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 39px;
+    top: 40px;
     left: 7px;
     right: 20px;
     background-color: #45a049;
@@ -572,8 +572,8 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     .info-box {
-        margin-top: 0.3%;
-        margin-left: 69.8%;
+        margin-top: 0.25%;
+        margin-left: 75.7%;
         
     }
 }

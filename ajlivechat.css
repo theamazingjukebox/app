@@ -577,8 +577,8 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 2.5%;
-    left: 21%;
+    top: 2.3%;
+    left: 5%;
     right: 20px;
     background-color: #45a049;
     font-family: 'Orbitron';

@@ -377,7 +377,7 @@ button, a, img {
 
 
 .banner-content h1 {
-    padding-left: 0px;
+    padding-left: 5px;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }
@@ -428,7 +428,7 @@ font-size: 1.4em;
 
 .menu-toggle span.burger-symbol {
     opacity: 1; /* Mostrar hamburguesa al inicio */
-    margin-top: 1px;
+    margin-top: 2px;
     font-size: 29px;
     margin-left: 0px;
 }
@@ -461,7 +461,7 @@ font-size: 1.4em;
     max-height: 500px; /* Altura máxima suficiente para el contenido */
     font-size: larger;
     font-family: 'Orbitron';
-    margin-top: 4%;
+    margin-top: 5%;
     opacity: 1;
     
 }
@@ -555,8 +555,8 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 45px;
+    left: 100px;
     right: 20px;
     background-color: #45a049;
     font-family: 'Orbitron';
@@ -565,7 +565,7 @@ font-size: 1.4em;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 999;
-    max-width: 279px;
+    max-width: 219px;
     transition: all 0.3s ease; /* Suave */
 }
 

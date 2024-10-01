@@ -429,7 +429,7 @@ font-size: 1.4em;
 .menu-toggle.active span.x-symbol {
     opacity: 1;
     margin-top: 10px;
-    margin-left: 0%;
+    margin-left: 50%;
     
     transform: rotate(0); /* Rotación para mostrar X */
 }
@@ -474,6 +474,11 @@ font-size: 1.4em;
     top: 60px;
     right: 0px;
     background-color: #a0458c88;
+    background: linear-gradient(
+        to right, /* Dirección del degradado, puedes cambiarlo a 'to bottom', 'to top', etc. */
+        #a0458c0e, /* Color inicial */
+        #a0458c88 /* Color final, puedes elegir uno que haga buen contraste */
+    );
     width: 150px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -531,6 +536,12 @@ font-size: 1.4em;
 
 #menu ul li:hover {
     background-color: #45a049;
+    background: linear-gradient(
+        to right, /* Dirección del degradado, puedes cambiarlo a 'to bottom', 'to top', etc. */
+        #45a04907, /* Color inicial */
+        #45a049 /* Color final, puedes elegir uno que haga buen contraste */
+    );
+}
 }
 
 /* Para pantallas móviles */
@@ -582,9 +593,21 @@ font-size: 1.4em;
     margin-top: 63%;
     left: 41%;
     transform: translate(-50%, -50%);
-    background-color: #45a049;
+    background-color: #a0458227;
+    background: radial-gradient(
+        circle, 
+        #d83ca4, 
+        #a0458260, 
+        #a0458200
+    );
     font-family: 'Orbitron';
-    color: white;
+    color: #000000; /* Color verde neón */
+    text-shadow:
+        0 0 5px #39ff14, /* Capa de brillo más cercana */
+        0 0 10px #39ff14, 
+        0 0 20px #39ff14, 
+        0 0 30px #00ff00, /* Capa de brillo más intensa */
+        0 0 40px #00ff00;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);

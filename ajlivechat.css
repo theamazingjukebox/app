@@ -378,7 +378,7 @@ button, a, img {
 
 .banner-content h1 {
     color: #c817dfad;
-    padding-left: 30px;
+    padding-left: 3%;
 font-size: 1.4em;
     font-family: 'Orbitron'
 }
@@ -563,7 +563,7 @@ font-size: 1.4em;
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
     top: 2.3%;
-    left: 3%;
+    left: 2%;
     right: 20px;
     background-color: #45a049;
     font-family: 'Orbitron';

@@ -573,9 +573,9 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
-    top: 2.3%;
-    left: 2%;
-    right: 20px;
+    margin-top: 45%;
+    left: 44%;
+    transform: translate(-50%, -50%);
     background-color: #45a049;
     font-family: 'Orbitron';
     color: white;
@@ -587,12 +587,7 @@ font-size: 1.4em;
     transition: all 0.3s ease; /* Suave */
 }
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .info-box {
-        /* Ajustes específicos para iOS */
-    left: 6%;
-    }
-}
+
 
 
 @media (min-width: 768px) {

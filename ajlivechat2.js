@@ -352,3 +352,31 @@ function closeAllInfoBoxes() {
     document.getElementById('about-us-content').classList.remove('show');
     document.getElementById('contact-us-content').classList.remove('show');
 }
+
+
+
+function toggleDiscoMode() {
+    var discoGif = document.getElementById("disco-gif");
+    var discoLabel = document.getElementById("disco-mode-label");
+    var discoBackground = document.getElementById("disco-background");
+
+    // Alterna la visibilidad del GIF
+    if (discoGif.style.display === "none") {
+        discoGif.style.display = "block"; // Muestra el GIF
+        discoLabel.style.display = "block"; // Muestra la etiqueta
+        discoBackground.style.display = "block"; // Muestra el fondo oscuro
+    } else {
+        discoGif.style.display = "none"; // Oculta el GIF
+        discoLabel.style.display = "none"; // Oculta la etiqueta
+        discoBackground.style.display = "none"; // Oculta el fondo oscuro
+    }
+}
+
+
+document.querySelector('#disco-mode-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.95)';
+});
+
+document.querySelector('#disco-mode-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});

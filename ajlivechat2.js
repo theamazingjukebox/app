@@ -372,11 +372,3 @@ function toggleDiscoMode() {
     }
 }
 
-
-document.querySelector('#disco-mode-button').addEventListener('touchstart', function() {
-    this.style.transform = 'translate(-50%, -50%) scale(0.95)';
-});
-
-document.querySelector('#disco-mode-button').addEventListener('touchend', function() {
-    this.style.transform = 'translate(-50%, -50%) scale(1)';
-});

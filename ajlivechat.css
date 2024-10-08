@@ -634,3 +634,94 @@ font-size: 1.4em;
     display: block; /* Mostrar cuadro cuando esté activo */
 }
 
+
+
+  .disco-button-img {
+    position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
+    top: 55.05%; /* Centra verticalmente */
+    left: 310px; /* Centra horizontalmente */
+    border-radius: 50%; 
+    transform: translate(-50%, -50%);
+        border: 1px solid rgba(70, 26, 26, 0.432);
+        font-size: 21px;
+        padding: 0px 0px;
+        margin-left: 25px;
+        z-index: 5;
+        transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .disco-button-img {
+        top: 55.7%;
+        left: 62.3%; /* Cambia el valor de left según tus necesidades */
+        
+    }
+}
+
+@media (min-width: 768px) {
+    .disco-button-img {
+        top: 55.7%;
+        left: 56%; /* Cambia el valor de left según tus necesidades */
+        max-width: 2%;
+    }
+}
+
+.disco-button-img:active {
+    transform: translate(-50%, -50%) scale(0.95); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
+}
+
+
+/* Disco Mode GIF */
+#disco-gif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #00000000;
+    background-size: 300%;
+    width: 100%;
+    height: auto;
+    display: none; /* Oculto por defecto */
+    z-index: 999; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+@media (min-width: 768px) {
+    #disco-gif {
+        /* Cambia el valor de left según tus necesidades */
+        max-width: 20%;
+        margin-top: -15px;
+    }
+}
+
+
+#disco-mode-label {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0); /* Fondo semi-transparente */
+    color: rgba(255, 255, 255, 0.342);
+    font-size: large;
+    font-family: 'Orbitron';
+    padding: 10px;
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8), /* Brillo suave */
+        0 0 10px rgba(255, 0, 255, 1),   /* Brillo rosa */
+        0 0 20px rgba(255, 0, 255, 1),   /* Brillo rosa más intenso */
+        0 0 30px rgba(255, 0, 255, 1);   /* Brillo rosa aún más intenso */
+    border-radius: 5px;
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+}
+
+
+#disco-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.377); /* Fondo negro semi-transparente */
+    z-index: 1; /* Asegúrate de que esté detrás de otros elementos, pero encima del fondo */
+}
+
+

@@ -743,3 +743,28 @@ font-size: 1.4em;
 }
 
 
+
+@keyframes oscillate {
+    0% {
+        transform: translate(0, 0); /* Sin movimiento */
+    }
+    25% {
+        transform: translate(-23px, -23px); /* Movimiento diagonal hacia la izquierda arriba */
+    }
+    50% {
+        transform: translate(23px, 0); /* Movimiento hacia la derecha */
+    }
+    75% {
+        transform: translate(0, 23px); /* Movimiento hacia abajo */
+    }
+    100% {
+        transform: translate(0, 0); /* Regresa a la posición original */
+    }
+}
+
+
+.snowflake {
+    position: absolute; /* Asegura que las estrellas se posicionen en relación al discoBackground */
+    background-color: rgb(126, 211, 137); /* O el color que desees para las estrellas */
+    border-radius: 50%; /* Para que tengan forma de círculo */
+}

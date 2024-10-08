@@ -666,6 +666,14 @@ font-size: 1.4em;
     }
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+    .disco-button-img {
+        /* Ajustes específicos para iOS */
+        top: 55.6%;
+        left: 65.5%;
+    }
+}
+
 
 
 @media (min-width: 768px) {

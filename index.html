@@ -1224,6 +1224,23 @@ button, a, img {
             <div id="next-song-button" onclick="playNextVideo()">
                 <img src="file.png" alt="Next" class="next-button-img">
             </div>
+
+        
+            <div id="disco-mode-button" onclick="toggleDiscoMode()">
+                <img src="discomodebutton.png" style="width: 4.5%;" alt="Disco Mode" class="disco-button-img">
+            </div>
+            
+            <!-- Etiqueta de Disco Mode -->
+            <div id="disco-mode-label" style="display: none; position: fixed; top: -10px; left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0); padding: 10px; border-radius: 5px;">
+                Disco Mode
+            </div>
+
+            <!-- Fondo oscuro dinámico -->
+<div id="disco-background" style="display: none;"></div>
+            
+            <img id="disco-gif" src="disco.gif" alt="Disco Mode GIF" style="position: fixed; top: -35px; left: 50%; transform: translateX(-50%); width: 50%; display: none;">
+            
+
            
         <!-- Botón con su funcionalidad onclick -->
         <div id="liked-songs-button" onclick="showLikedSongs()">Show Liked Songs</div>

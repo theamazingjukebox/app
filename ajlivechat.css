@@ -744,28 +744,49 @@ font-size: 1.4em;
 }
 
 
+.star {
+    position: absolute;
+    opacity: 0; /* Empiezan invisibles */
+    animation: fadeInOut ease-in-out infinite, oscillate 4s ease-in-out infinite; /* Añade la animación de oscilación */
+}
 
-@keyframes oscillate {
+@keyframes fadeInOut {
     0% {
-        transform: translate(0, 0); /* Sin movimiento */
+        opacity: 0;
+        transform: scale(0.5); /* Pequeñas al principio */
     }
-    25% {
-        transform: translate(-23px, -23px); /* Movimiento diagonal hacia la izquierda arriba */
+    20% {
+        opacity: 1; /* Completamente visibles */
+        transform: scale(1); /* Tamaño completo */
     }
     50% {
-        transform: translate(23px, 0); /* Movimiento hacia la derecha */
+        opacity: 1; /* Mantén la visibilidad un tiempo */
+        transform: scale(1);
     }
-    75% {
-        transform: translate(0, 23px); /* Movimiento hacia abajo */
+    80% {
+        opacity: 0; /* Empieza a desaparecer gradualmente */
+        transform: scale(0.5); /* Se hacen pequeñas al desaparecer */
     }
     100% {
-        transform: translate(0, 0); /* Regresa a la posición original */
+        opacity: 0;
+        transform: scale(0.5); /* Completamente invisibles al final */
     }
 }
 
-
-.snowflake {
-    position: absolute; /* Asegura que las estrellas se posicionen en relación al discoBackground */
-    background-color: rgb(126, 211, 137); /* O el color que desees para las estrellas */
-    border-radius: 50%; /* Para que tengan forma de círculo */
+@keyframes oscillate {
+    0% {
+        transform: translate(0, 0); /* Posición original */
+    }
+    25% {
+        transform: translate(-55px, -55px); /* Movimiento a la izquierda y arriba */
+    }
+    50% {
+        transform: translate(0, 55px); /* Movimiento a la posición original y abajo */
+    }
+    75% {
+        transform: translate(55px, -55px); /* Movimiento a la derecha y arriba */
+    }
+    100% {
+        transform: translate(0, 0); /* Regresar a la posición original */
+    }
 }

@@ -373,30 +373,48 @@ function toggleDiscoMode() {
 }
 
 
-function generateFloatingStars() {
+
+function generateTwinklingStars() {
     const discoBackground = document.getElementById('disco-background');
     
-    for (let i = 0; i < 50; i++) { // Genera 50 partículas
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        
+    for (let i = 0; i < 385; i++) { // Generar 485 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight2.png'; // Reemplaza con la ruta de tu PNG
+        star.classList.add('star');
+
         // Posición inicial aleatoria
-        snowflake.style.left = Math.random() * 100 + 'vw';
-        snowflake.style.top = Math.random() * 100 + 'vh';
+        setRandomPosition(star); // Función para establecer posición aleatoria al inicio
         
         // Tamaño aleatorio para más variación
-        const size = Math.random() * 1 + 2; // Tamaño entre 2 y 6px
-        snowflake.style.width = `${size}px`;
-        snowflake.style.height = `${size}px`;
-        
-        // Agregar duración aleatoria a la animación de oscilación
-        const floatDuration = Math.random() * 22 + 20; // Duración entre 2 y 6 segundos
-        snowflake.style.animation = `oscillate ${floatDuration}s ease-in-out infinite alternate`;
-        
-        // Agregar a discoBackground
-        discoBackground.appendChild(snowflake);
+        const size = Math.random() * 11 + 5; // Tamaño entre 5px y 30px
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Duración aleatoria para el efecto fade in/out
+        const fadeDuration = Math.random() * -15 + 37; // Duración fija de 37 segundos
+        star.style.animationDuration = `${fadeDuration}s`;
+
+        // Retraso aleatorio para que no todas aparezcan al mismo tiempo
+        const delay = Math.random() * 10; // Hasta 10 segundos de retraso
+        star.style.animationDelay = `${delay}s`;
+
+        // Selección aleatoria de una animación de oscilación
+        const oscillateClass = `oscillate${Math.floor(Math.random() * 3) + 1}`; // Elige entre oscillate1, oscillate2 y oscillate3
+        star.style.animation += `, ${oscillateClass} 4s ease-in-out infinite`; // Añadir la animación de oscilación aleatoria
+
+        // Evento para cambiar posición al final de la animación
+        star.addEventListener('animationiteration', () => {
+            setRandomPosition(star); // Cambiar la posición en cada iteración
+        });
+
+        discoBackground.appendChild(star);
     }
 }
 
-document.addEventListener('DOMContentLoaded', generateFloatingStars);
+// Función para establecer una posición aleatoria
+function setRandomPosition(star) {
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
+}
 
+document.addEventListener('DOMContentLoaded', generateTwinklingStars);

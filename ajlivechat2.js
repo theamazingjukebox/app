@@ -372,3 +372,31 @@ function toggleDiscoMode() {
     }
 }
 
+
+function generateFloatingStars() {
+    const discoBackground = document.getElementById('disco-background');
+    
+    for (let i = 0; i < 50; i++) { // Genera 50 partículas
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        
+        // Posición inicial aleatoria
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.top = Math.random() * 100 + 'vh';
+        
+        // Tamaño aleatorio para más variación
+        const size = Math.random() * 1 + 2; // Tamaño entre 2 y 6px
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        
+        // Agregar duración aleatoria a la animación de oscilación
+        const floatDuration = Math.random() * 22 + 20; // Duración entre 2 y 6 segundos
+        snowflake.style.animation = `oscillate ${floatDuration}s ease-in-out infinite alternate`;
+        
+        // Agregar a discoBackground
+        discoBackground.appendChild(snowflake);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', generateFloatingStars);
+

@@ -475,16 +475,23 @@ document.addEventListener('DOMContentLoaded', generateHorizontalStars);
 function generateTwinklingStars() {
     const discoBackground = document.getElementById('disco-background');
     
-    for (let i = 0; i < 345; i++) { // Generar 485 estrellas
-        const star = document.createElement('img');
-        star.src = 'starlight2.png'; // Reemplaza con la ruta de tu PNG
-        star.classList.add('star');
+    // Función para detectar si es una pantalla grande
+    const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
-        // Posición inicial aleatoria
-        setRandomPosition(star); // Función para establecer posición aleatoria al inicio
+    for (let i = 0; i < 345; i++) { // Generar 345 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight2.png';
+        star.classList.add('star');
         
-        // Tamaño aleatorio para más variación
-        const size = Math.random() * 11 + 5; // Tamaño entre 5px y 30px
+        setRandomPosition(star);
+
+        // Verificar si es pantalla grande y ajustar el tamaño
+        let size;
+        if (isLargeScreen) {
+            size = Math.random() * 17 + 10; // Tamaño entre 10px y 30px en pantallas grandes
+        } else {
+            size = Math.random() * 11 + 5; // Tamaño entre 5px y 16px en pantallas pequeñas
+        }
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
 

@@ -744,6 +744,105 @@ font-size: 1.4em;
 }
 
 
+
+
+.vertical-star {
+    position: absolute;
+    opacity: 0; /* Comienza invisible */
+    animation: fadeInOut ease-in-out infinite, moveInSvert 5s ease-in-out infinite; /* Agrega la animación de fade y movimiento en S */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: scale(0.5); /* Pequeñas al inicio */
+    }
+    20% {
+        opacity: 1; /* Completamente visibles */
+        transform: scale(1); /* Tamaño completo */
+    }
+    50% {
+        opacity: 1; /* Mantén la visibilidad un tiempo */
+        transform: scale(1);
+    }
+    80% {
+        opacity: 0; /* Comienza a desaparecer */
+        transform: scale(0.5); /* Pequeñas al desaparecer */
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5); /* Completamente invisibles al final */
+    }
+}
+
+@keyframes moveInSvert {
+    0% {
+        transform: translate(0, 0); /* Punto de inicio */
+    }
+    25% {
+        transform: translate(0px, -100px); /* Movimiento leve a la derecha y hacia arriba */
+    }
+    50% {
+        transform: translate(-0px, 100px); /* Movimiento leve a la izquierda y hacia abajo */
+    }
+    75% {
+        transform: translate(0px, -100px); /* Movimiento leve a la derecha y hacia arriba */
+    }
+    100% {
+        transform: translate(0, 0); /* Regresar al punto inicial */
+    }
+}
+
+
+.horizontal-star {
+    position: absolute;
+    opacity: 0; /* Comienza invisible */
+    animation: fadeInOut ease-in-out infinite, moveInShor 5s ease-in-out infinite; /* Agrega la animación de fade y movimiento en S */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: scale(0.5); /* Pequeñas al inicio */
+    }
+    20% {
+        opacity: 1; /* Completamente visibles */
+        transform: scale(1); /* Tamaño completo */
+    }
+    50% {
+        opacity: 1; /* Mantén la visibilidad un tiempo */
+        transform: scale(1);
+    }
+    80% {
+        opacity: 0; /* Comienza a desaparecer */
+        transform: scale(0.5); /* Pequeñas al desaparecer */
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5); /* Completamente invisibles al final */
+    }
+}
+
+@keyframes moveInShor {
+    0% {
+        transform: translate(0, 0); /* Punto de inicio */
+    }
+    25% {
+        transform: translate(100px, 0px); /* Movimiento a la derecha */
+    }
+    50% {
+        transform: translate(-100px, 0px); /* Movimiento a la izquierda */
+    }
+    75% {
+        transform: translate(100px, 0px); /* Movimiento a la derecha */
+    }
+    100% {
+        transform: translate(0, 0); /* Regresar al punto inicial */
+    }
+}
+
+
+
 .star {
     position: absolute;
     opacity: 0; /* Empiezan invisibles */

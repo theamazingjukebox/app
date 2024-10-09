@@ -374,10 +374,108 @@ function toggleDiscoMode() {
 
 
 
+
+
+function generateVerticalStars() {
+    const discoBackground = document.getElementById('disco-background');
+    
+    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
+        star.classList.add('vertical-star');
+
+        // Posición inicial aleatoria
+        setRandomPosition(star); 
+        
+        // Tamaño aleatorio para más variación
+        const size = Math.random() * 11 + 5; // Tamaño entre 5px y 30px
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Duración aleatoria para el efecto fade in/out
+        const fadeDuration = Math.random() * -15 + 37; // Duración entre 22s y 37s
+        star.style.animationDuration = `${fadeDuration}s`;
+
+        // Retraso aleatorio para que no todas aparezcan al mismo tiempo
+        const delay = Math.random() * 10; // Hasta 10 segundos de retraso
+        star.style.animationDelay = `${delay}s`;
+
+        // Añadir el movimiento en S
+        star.style.animation += `, moveInSvert 5s ease-in-out infinite`; // Agrega el movimiento en S con duración de 5s
+
+        // Cambiar posición en cada iteración de la animación
+        star.addEventListener('animationiteration', () => {
+            setRandomPosition(star); // Cambiar la posición en cada iteración
+        });
+
+        // Añadir la estrella al fondo
+        discoBackground.appendChild(star);
+    }
+}
+
+// Función para establecer una posición aleatoria
+function setRandomPosition(star) {
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
+}
+
+// Ejecutar la función una vez cargado el DOM
+document.addEventListener('DOMContentLoaded', generateVerticalStars);
+
+
+
+function generateHorizontalStars() {
+    const discoBackground = document.getElementById('disco-background');
+
+    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
+        star.classList.add('horizontal-star');
+
+        // Posición inicial aleatoria
+        setRandomPosition(star); 
+        
+        // Tamaño aleatorio para más variación
+        const size = Math.random() * 11 + 5; // Tamaño entre 15px y 25px
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Duración aleatoria para el efecto fade in/out
+        const fadeDuration = Math.random() * -15 + 37; // Duración entre 22s y 37s
+        star.style.animationDuration = `${fadeDuration}s`;
+
+        // Retraso aleatorio para que no todas aparezcan al mismo tiempo
+        const delay = Math.random() * 10; // Hasta 10 segundos de retraso
+        star.style.animationDelay = `${delay}s`;
+
+        // Añadir el movimiento en S
+        star.style.animation += `, moveInShor 5s ease-in-out infinite`; // Agrega el movimiento en S con duración de 5s
+
+        // Cambiar posición en cada iteración de la animación
+        star.addEventListener('animationiteration', () => {
+            setRandomPosition(star); // Cambiar la posición en cada iteración
+        });
+
+        // Añadir la estrella al fondo
+        discoBackground.appendChild(star);
+    }
+}
+
+// Función para establecer una posición aleatoria
+function setRandomPosition(star) {
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
+}
+
+// Ejecutar la función una vez cargado el DOM
+document.addEventListener('DOMContentLoaded', generateHorizontalStars);
+
+
+
 function generateTwinklingStars() {
     const discoBackground = document.getElementById('disco-background');
     
-    for (let i = 0; i < 385; i++) { // Generar 485 estrellas
+    for (let i = 0; i < 345; i++) { // Generar 485 estrellas
         const star = document.createElement('img');
         star.src = 'starlight2.png'; // Reemplaza con la ruta de tu PNG
         star.classList.add('star');

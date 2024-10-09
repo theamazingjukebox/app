@@ -379,7 +379,7 @@ function toggleDiscoMode() {
 function generateVerticalStars() {
     const discoBackground = document.getElementById('disco-background');
     
-    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
+    for (let i = 0; i < 15; i++) { // Generar 135 estrellas
         const star = document.createElement('img');
         star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
         star.classList.add('vertical-star');
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', generateVerticalStars);
 function generateHorizontalStars() {
     const discoBackground = document.getElementById('disco-background');
 
-    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
+    for (let i = 0; i < 15; i++) { // Generar 135 estrellas
         const star = document.createElement('img');
         star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
         star.classList.add('horizontal-star');
@@ -478,7 +478,7 @@ function generateTwinklingStars() {
     // Función para detectar si es una pantalla grande
     const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
-    for (let i = 0; i < 345; i++) { // Generar 345 estrellas
+    for (let i = 0; i < 200; i++) { // Generar 345 estrellas
         const star = document.createElement('img');
         star.src = 'starlight2.png';
         star.classList.add('star');

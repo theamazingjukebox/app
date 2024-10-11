@@ -616,6 +616,7 @@ font-size: 1.4em;
     z-index: 999;
     max-width: 219px;
     min-height: 450px;
+    max-height: 200px;    
     transition: all 0.3s ease; /* Suave */
 }
 

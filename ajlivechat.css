@@ -890,3 +890,42 @@ font-size: 1.4em;
         transform: translate(0, 0); /* Regresar a la posición original */
     }
 }
+
+
+
+.halloween-glow {
+    text-shadow: 
+        0 0 5px #FF4500,  /* Sombra naranja */
+        0 0 10px #FF4500, /* Sombra más intensa */
+        0 0 15px #FF4500, 
+        0 0 20px #FF6347, /* Toques de rojo */
+        0 0 25px #FF6347,
+        0 0 30px #FFA500, /* Más brillo */
+        0 0 35px #FFA500;
+    color: #FFF; /* Blanco para resaltar el brillo */
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow:
+            0 0 5px #FF4500, 
+            0 0 10px #FF4500, 
+            0 0 15px #FF4500, 
+            0 0 20px #FF6347, 
+            0 0 20px #FF6347, 
+            0 0 25px #ff2600, 
+            0 0 25px #ff1e00;
+    }
+    to {
+        text-shadow:
+            0 0 10px #FF6347, 
+            0 0 15px #FFA500, 
+            0 0 20px #2a0046, 
+            0 0 25px #22003d, 
+            0 0 30px #1b0441, 
+            0 0 35px #ff0800, 
+            0 0 40px #FF6347;
+    }
+}
+

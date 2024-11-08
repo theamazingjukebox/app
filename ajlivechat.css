@@ -929,3 +929,6 @@ font-size: 1.4em;
     }
 }
 
+meta[name="theme-color"] {
+    content: "#000000";
+}

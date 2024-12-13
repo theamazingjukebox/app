@@ -662,15 +662,15 @@ font-size: 1.4em;
 @supports (-webkit-tap-highlight-color: transparent) {
     .disco-button-img {
         /* Ajustes específicos para Android o navegadores que soporten esta característica */
-        top: 55.9%;
-        left: 66%;
+        top: 56%;
+        left: 66.1%;
     }
 }
 
 @supports (-webkit-overflow-scrolling: touch) {
     .disco-button-img {
         /* Ajustes específicos para iOS */
-        top: 55.9%;
+        top: 56%;
         left: 65.5%;
     }
 }
@@ -679,8 +679,8 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     .disco-button-img {
-        top: 56%;
-        left: 56.1%; /* Cambia el valor de left según tus necesidades */
+        top: 56.1%;
+        left: 56.2%; /* Cambia el valor de left según tus necesidades */
         max-width: 2%;
     }
 }

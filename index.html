@@ -1199,6 +1199,13 @@ button, a, img {
         }
     }
 
+     if ('mediaSession' in navigator) {
+    // Configura el manejador para el evento 'nexttrack'
+    navigator.mediaSession.setActionHandler('nexttrack', () => {
+        playNextVideo();
+    });
+
+}
     function playNextVideo() {
         currentVideoIndex++;
         if (currentVideoIndex >= videos.length) {

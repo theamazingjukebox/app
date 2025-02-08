@@ -54,9 +54,11 @@
     top: 78%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
-            background-color: black;
-            border: 2px solid palegreen;
-            border-radius: 10px;
+            border: 8px solid transparent;
+    border-radius: 15px;
+    background-image: url('Futuristic\ Space.gif');
+    background-position: center;
+
             overflow: hidden;
             width: 300px;
             height: 320px;
@@ -244,7 +246,7 @@
  
 
   .system2 {
-    background-color: #34db9b; /* Cambia el color de fondo aquí */
+    background-color: #34db9b9d; /* Cambia el color de fondo aquí */
     color: white; /* Cambia el color del texto aquí */
     padding: 0px; /* Ajusta el espacio interno si es necesario */
     border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */

@@ -742,7 +742,7 @@ font-size: 1.4em;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.479); /* Fondo negro semi-transparente */
+    background-color: rgba(223, 86, 241, 0.089); /* Fondo negro semi-transparente */
     z-index: 1; /* Asegúrate de que esté detrás de otros elementos, pero encima del fondo */
     overflow: hidden; /* Para evitar que las partículas se salgan */
 }

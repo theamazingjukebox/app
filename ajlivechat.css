@@ -742,11 +742,223 @@ font-size: 1.4em;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(223, 86, 241, 0.089); /* Fondo negro semi-transparente */
-    z-index: 1; /* Asegúrate de que esté detrás de otros elementos, pero encima del fondo */
-    overflow: hidden; /* Para evitar que las partículas se salgan */
+    z-index: 1;
+    overflow: hidden;
+    animation: movingGlow 4.5s infinite alternate cubic-bezier(0.42, 0, 0.58, 1) /* Animación más suave */
+    ; /* Animación más suave */
+    
+   
+        background-size: 120%;
+        background-position: center;
 }
 
+@keyframes movingGlow {
+    0% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 10%, rgba(223, 86, 241, 0.3) 20%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    2.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 11%, rgba(223, 86, 241, 0.3) 21%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 12%, rgba(223, 86, 241, 0.3) 22%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    7% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 13%, rgba(223, 86, 241, 0.3) 23%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    7.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 14%, rgba(223, 86, 241, 0.3) 24%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    10% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 15%, rgba(223, 86, 241, 0.3) 25%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    12.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 16%, rgba(223, 86, 241, 0.3) 26%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    15% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 17%, rgba(223, 86, 241, 0.3) 27%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    17.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 18%, rgba(223, 86, 241, 0.3) 28%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    20% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 19%, rgba(223, 86, 241, 0.3) 29%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    22.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 20%, rgba(223, 86, 241, 0.3) 30%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    25% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 21%, rgba(223, 86, 241, 0.3) 31%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    27.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 22%, rgba(223, 86, 241, 0.3) 32%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    30% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 23%, rgba(223, 86, 241, 0.3) 33%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    32.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 24%, rgba(223, 86, 241, 0.3) 34%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    35% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 25%, rgba(223, 86, 241, 0.3) 35%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    37% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 26%, rgba(223, 86, 241, 0.3) 36%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    40% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 27%, rgba(223, 86, 241, 0.3) 37%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    42% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 28%, rgba(223, 86, 241, 0.3) 38%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    44% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 29%, rgba(223, 86, 241, 0.3) 39%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    46% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 30%, rgba(223, 86, 241, 0.3) 40%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    49% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 31%, rgba(223, 86, 241, 0.3) 41%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    51% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 32%, rgba(223, 86, 241, 0.3) 42%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    53% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 33%, rgba(223, 86, 241, 0.3) 43%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    55% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 34%, rgba(223, 86, 241, 0.3) 44%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    57% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 35%, rgba(223, 86, 241, 0.3) 45%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    59% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 36%, rgba(223, 86, 241, 0.3) 46%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    61% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 37%, rgba(223, 86, 241, 0.3) 47%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    65% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 38%, rgba(223, 86, 241, 0.3) 48%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    69% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 39%, rgba(223, 86, 241, 0.3) 49%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    75% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 40%, rgba(223, 86, 241, 0.3) 50%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    77.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 41%, rgba(223, 86, 241, 0.3) 51%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    80% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 42%, rgba(223, 86, 241, 0.3) 52%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    82.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 43%, rgba(223, 86, 241, 0.3) 53%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    85% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 44%, rgba(223, 86, 241, 0.3) 54%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    87.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 45%, rgba(223, 86, 241, 0.3) 55%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    90% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 46%, rgba(223, 86, 241, 0.3) 56%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    92.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 47%, rgba(223, 86, 241, 0.3) 57%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    95% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 48%, rgba(223, 86, 241, 0.3) 58%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    97.5% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 49%, rgba(223, 86, 241, 0.3) 59%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+    100% { 
+        background: radial-gradient(circle, rgba(241, 86, 86, 0.6) 50%, rgba(223, 86, 241, 0.3) 60%, transparent 80%);
+        background-size: 120%;
+        background-position: center;
+    }
+}
 
 
 

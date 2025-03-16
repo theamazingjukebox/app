@@ -490,7 +490,7 @@ function generateTwinklingStars() {
         if (isLargeScreen) {
             size = Math.random() * 17 + 10; // Tamaño entre 10px y 30px en pantallas grandes
         } else {
-            size = Math.random() * 13 + 5; // Tamaño entre 5px y 16px en pantallas pequeñas
+            size = Math.random() * 15 + 5; // Tamaño entre 5px y 16px en pantallas pequeñas
         }
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;

@@ -3,7 +3,7 @@
         top: 205%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: black;
+        background-color: transparent;
         border: 2px solid palegreen;
         border-radius: 10px;
         overflow: hidden;

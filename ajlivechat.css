@@ -198,7 +198,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: transparent;
-        border: 2px solid palegreen;
+        border: 0px solid palegreen;
         border-radius: 10px;
         overflow: hidden;
         width: 165px;

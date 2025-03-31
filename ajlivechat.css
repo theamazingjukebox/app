@@ -218,10 +218,22 @@
 }
 
 #username-input {
+    background-color: transparent;
+    color: rgb(216, 112, 181);
+    font-family: Orbitron;
+    font-size: 12px;
     margin-bottom: 10px;
     width: 95px;
     
 }
+
+#username-input::placeholder {
+    color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
+    opacity: 1; /* Asegura que el placeholder sea visible */
+    
+    
+  }
+
 
 #set-username-button {
     background-color: palegreen;

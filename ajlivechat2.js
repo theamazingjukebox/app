@@ -527,9 +527,8 @@ document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
 document.querySelectorAll('input, textarea').forEach((element) => {
-    element.addEventListener('focus', (event) => {
-        setTimeout(() => {
-            event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
+    element.addEventListener('blur', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
+

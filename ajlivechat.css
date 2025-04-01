@@ -221,7 +221,7 @@
 #username-input {
     background-color: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(10px);
-    color: rgb(216, 112, 181);
+    color: palegreen;
     font-family: Orbitron;
     font-size: 12px;
     margin-bottom: 10px;

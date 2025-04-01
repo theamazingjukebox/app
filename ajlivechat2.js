@@ -535,7 +535,7 @@ window.addEventListener("resize", () => {
         document.getElementById("messages").style.height = `${newHeight - 50}px`; 
     } else {
         // El teclado se ha cerrado, restaurar altura normal
-        document.getElementById("messages").style.height = "";
+        document.getElementById("messages").style.height = `${initialHeight}px`;
     }
 });
 

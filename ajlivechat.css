@@ -288,7 +288,7 @@ backdrop-filter: blur(10px);
     margin-left: 5px;
 background-color: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(10px);
-color: rgb(103, 255, 230);
+color: rgb(216, 112, 181);
 font-family: Orbitron;
 }
 
@@ -345,10 +345,10 @@ font-family: Orbitron;
 #messages li.sent span,
 #messages li.receive span {
     /* Estilos específicos para el nombre de usuario */
-    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-family: Orbitron; /* Puedes cambiar la fuente según tus preferencias */
     font-weight: bold;
-    color: white;
-    font-size: larger;
+    color: rgb(103, 255, 230);
+    font-size: medium;
     margin-right: -1px;
     /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
 }

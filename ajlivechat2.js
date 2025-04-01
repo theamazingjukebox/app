@@ -523,3 +523,10 @@ function setRandomPosition(star) {
 }
 
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
+
+
+window.addEventListener("resize", () => {
+    if (window.innerHeight < 500) { // Se activa cuando aparece el teclado
+        document.getElementById("messages").scrollIntoView(false);
+    }
+});

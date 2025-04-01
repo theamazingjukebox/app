@@ -348,7 +348,7 @@ font-family: Orbitron;
     font-family: Orbitron; /* Puedes cambiar la fuente según tus preferencias */
     font-weight: bold;
     color: rgb(103, 255, 230);
-    font-size: small;
+    font-size: 14px;
     margin-right: -1px;
     /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
 }

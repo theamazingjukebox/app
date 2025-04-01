@@ -525,16 +525,3 @@ function setRandomPosition(star) {
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
-
-let lastScrollY = window.scrollY;
-
-document.querySelectorAll('input, textarea').forEach((element) => {
-    element.addEventListener('focus', () => {
-        lastScrollY = window.scrollY; // Guarda la posición antes de que aparezca el teclado
-    });
-
-    element.addEventListener('blur', () => {
-        window.scrollTo({ top: lastScrollY, behavior: 'smooth' }); // Restaura la posición original
-    });
-});
-

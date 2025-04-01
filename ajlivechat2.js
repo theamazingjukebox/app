@@ -525,18 +525,11 @@ function setRandomPosition(star) {
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
-let initialHeight = window.innerHeight;
 
-window.addEventListener("resize", () => {
-    let newHeight = window.innerHeight;
-    
-    if (newHeight < initialHeight) {
-        // El teclado se ha abierto, evita el salto
-        document.getElementById("messages").style.height = `${newHeight - 50}px`; 
-    } else {
-        // El teclado se ha cerrado, restaurar altura normal
-        document.getElementById("messages").style.height = `${initialHeight  + 50}px`;
-    }
+document.querySelectorAll('input, textarea').forEach((element) => {
+    element.addEventListener('focus', (event) => {
+        setTimeout(() => {
+            event.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+    });
 });
-
-

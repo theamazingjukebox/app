@@ -525,8 +525,18 @@ function setRandomPosition(star) {
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
+let initialHeight = window.innerHeight;
+
 window.addEventListener("resize", () => {
-    if (window.innerHeight < 500) { // Se activa cuando aparece el teclado
-        document.getElementById("messages").scrollIntoView(false);
+    let newHeight = window.innerHeight;
+    
+    if (newHeight < initialHeight) {
+        // El teclado se ha abierto, evita el salto
+        document.getElementById("messages").style.height = `${newHeight - 50}px`; 
+    } else {
+        // El teclado se ha cerrado, restaurar altura normal
+        document.getElementById("messages").style.height = "";
     }
 });
+
+

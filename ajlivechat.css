@@ -1172,12 +1172,3 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
-
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
-#chat-container { 
-    height: 100vh; /* Mantiene el tamaño fijo incluso cuando aparece/desaparece el teclado */
-    overflow-y: auto;
-}

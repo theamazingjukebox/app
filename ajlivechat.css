@@ -241,9 +241,11 @@ backdrop-filter: blur(10px);
     background-color: palegreen;
     color: black;
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 1px 1px;
+    border-radius: 2px;
     cursor: pointer;
+    font-size: 15px;
+   
 }
 
 .system {

@@ -528,3 +528,17 @@ function setRandomPosition(star) {
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
+
+let originalHeight = window.innerHeight; // Guardamos la altura original
+
+function fixBackground() {
+    document.querySelector(".background-container").style.height = originalHeight * 2.25 + "px"; // 225vh Fijo
+}
+
+window.addEventListener("resize", () => {
+    setTimeout(() => {
+        fixBackground();
+    }, 100); // Pequeño delay para esperar el ajuste del teclado
+});
+
+window.addEventListener("load", fixBackground);

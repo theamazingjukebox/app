@@ -288,12 +288,12 @@
 background-color: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(10px);
 color: rgb(207, 61, 158);
-font-family: Orbitron;
+
 }
 
 #message-input::placeholder {
     color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
-    font-family: Orbitron;
+    
     opacity: 1; /* Asegura que el placeholder sea visible */
     
     

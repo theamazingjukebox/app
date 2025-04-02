@@ -207,9 +207,7 @@ fetchChat.limitToLast(MESSAGES_TO_LOAD).on("child_added", function (snapshot) {
     messageInput.value = "";
   
     // Desplazarse automáticamente hacia abajo
-    document
-      .getElementById("messages")
-      .scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+    
   
     // Crear la colección en la base de datos y enviar los datos
     db.ref("messages/" + timestamp).set({

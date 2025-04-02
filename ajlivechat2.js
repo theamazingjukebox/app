@@ -539,6 +539,6 @@ window.addEventListener("resize", () => {
         document.querySelector(".background-container").style.height = `${initialHeight}px`;
     } else {
         // Restaurar altura normal
-        document.querySelector(".background-container").style.height = "100vh";
+        document.querySelector(".background-container").style.height = "225vh";
     }
 });

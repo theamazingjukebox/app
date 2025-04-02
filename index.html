@@ -1297,7 +1297,16 @@ button, a, img {
     ;
 
 
-   
+   const fixViewport = () => {
+  const initialHeight = window.innerHeight;
+  
+  window.addEventListener('resize', () => {
+    document.body.style.height = `${initialHeight}px`;
+  });
+};
+
+fixViewport();
+
 
 
 </script>

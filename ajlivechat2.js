@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
 function fixViewport() {
-    const bgContainer = document.querySelector(".background-container");
+    const bgContainer = document.querySelector(".background-img");
     bgContainer.style.height = window.innerHeight * 2.25 + "px"; // 225vh
 }
 

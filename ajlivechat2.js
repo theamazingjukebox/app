@@ -529,11 +529,16 @@ document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
 
-function fixViewport() {
-    const bgContainer = document.querySelector(".background-img");
-    bgContainer.style.height = window.innerHeight * 2.25 + "px"; // 225vh
+let originalHeight = window.innerHeight; // Guardamos la altura original
+
+function fixBackground() {
+    document.querySelector(".background-img").style.height = originalHeight * 2.25 + "px"; // 225vh Fijo
 }
 
-window.addEventListener("resize", fixViewport);
-window.addEventListener("load", fixViewport);
+window.addEventListener("resize", () => {
+    setTimeout(() => {
+        fixBackground();
+    }, 100); // Pequeño delay para esperar el ajuste del teclado
+});
 
+window.addEventListener("load", fixBackground);

@@ -1,934 +1,530 @@
-#chat-username {
-        position: absolute;
-        top: 205%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: black;
-        border: 2px solid palegreen;
-        border-radius: 10px;
-        overflow: hidden;
-        width: 300px;
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        color: white;
-        display: none; /* Inicialmente oculto */
-        z-index: 2;
+var firebaseConfig = {
+    apiKey: "AIzaSyD69EJwLEA2zQpGeUXK2XHRg69Ca-fTpzc",
+    authDomain: "the-amazing-jukebox.firebaseapp.com",
+    databaseURL: "https://the-amazing-jukebox-default-rtdb.firebaseio.com",
+    projectId: "the-amazing-jukebox",
+    storageBucket: "the-amazing-jukebox.appspot.com",
+    messagingSenderId: "778454163688",
+    appId: "1:778454163688:web:f7198448fb38dee2cb695d",
+    measurementId: "G-G2E58RL3ZG"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  
+  const db = firebase.database();
+  
+  let username = "";
+  
+  function showUsernameModal() {
+    const usernameModal = document.getElementById("username-modal");
+    usernameModal.style.display = "block";
+  }
+  
+  function closeUsernameModal() {
+    const usernameModal = document.getElementById("username-modal");
+    usernameModal.style.display = "none";
+  }
+  
+  function setUsername() {
+    const usernameInput = document.getElementById("username-input");
+    username = usernameInput.value.trim();
+
+    if (username === "") {
+        alert("Please enter a valid username.");
+        return;
     }
 
-    #username-input {
-        margin-bottom: 10px;
-    }
-    #chat #messages .chat-username {
-    /* Estilos específicos para el nombre de usuario */
-    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
-    font-weight: bold;
-    color: white;
-    background-color: transparent;
-    border-radius: 0%;
-    border: 0cap;
-    box-shadow: none;
-    /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
-}
-    #chat #messages .username {
-    /* Estilos específicos para el nombre de usuario */
-    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
-    font-weight: bold;
-    color: #ffcc00; /* Cambia el color según tus preferencias */
-}
-    #chat #messages strong {
-    background-color: #34db9b; /* Cambia el color de fondo aquí */
-    color: white; /* Cambia el color del texto aquí */
-    padding: 0px; /* Ajusta el espacio interno si es necesario */
-    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
-    border-top-right-radius: 0px;
-    border: 2px solid rgba(83, 1, 69, 0.637);
-    border-radius: 5px; 
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
-    font-family: monospace;
-    font-size: larger;
-}
-#chat {
-            position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 78%; /* Ajusta este valor para colocar el botón verticalmente */
-    left: 50%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%);
-            border: 4px solid rgba(83, 1, 69, 0.637);
-    border-radius: 15px;
-    background-image: url('Futuristic\ Space.gif');
-    background-position: center;
-        will-change: transform;
+    const usernameModal = document.getElementById("username-modal");
+    usernameModal.style.display = "none"; // Oculta la ventana emergente
 
-            overflow: hidden;
-            width: 300px;
-            height: 320px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-            transition: height 1.3s ease;
-            z-index: 5;
+    const welcomeMessage = "Bienvenido, " + username + "!";
+    
+    // Crear la colección en la base de datos y enviar los datos para el mensaje de bienvenida
+    const timestamp = Date.now();
+    const welcomeMessageData = {
+        username: "",
+        message: welcomeMessage,
+    };
+
+    // Verificar si el mensaje ya existe en la base de datos antes de agregarlo
+    const messagesRef = db.ref("messages/");
+    messagesRef.orderByChild("message").equalTo(welcomeMessage).once("value", snapshot => {
+        const existingMessages = snapshot.val();
+        if (!existingMessages) {
+            messagesRef.child(timestamp).set(welcomeMessageData);
         }
+    });
 
-        
-#chat.chat-contracted {
-    height: 50px; /* Cambia la altura según tus preferencias */
-    bottom: 0; /* Ajusta la posición inferior para que se vea correctamente */
+    // Mostrar el mensaje de bienvenida en el chat localmente
+    
+
+    // Puedes realizar otras acciones después de establecer el nombre de usuario, si es necesario
+    // Además, puedes descomentar la siguiente línea si deseas redirigir al usuario después de establecer el nombre de usuario
+    // window.location.href = "tu_pagina.html";
 }
 
-/* Agrega esta clase para ocultar el chat */
-.chat-hidden {
-    display: none !important;
+
+  
+  // Agrega esta función para seleccionar un emoji
+  function selectEmoji(emoji) {
+      const messageInput = document.getElementById("message-input");
+      messageInput.value += emoji;
+  
+      // También puedes cerrar el contenedor de emojis si es necesario
+      const emojiContainer = document.getElementById("emoji-container");
+      emojiContainer.style.display = "none"; // Oculta el contenedor de emojis después de seleccionar uno
+  }
+  
+  // Actualiza la función toggleEmojiPicker para mostrar/ocultar el contenedor de emojis
+  function toggleEmojiPicker() {
+      const emojiContainer = document.getElementById("emoji-container");
+      emojiContainer.style.display = emojiContainer.style.display === "none" ? "flex" : "none";
+  }
+  
+  
+  
+  // Función para mostrar un mensaje en el chat
+  // Función para mostrar un mensaje en el chat
+  function displayMessage(sender, message) {
+    console.log("displayMessage called with sender:", sender, "and message:", message);
+
+    const timestamp = Date.now();
+    let displaySender = sender ? sender + ":" : ""; // Mostrar el sender solo si está presente
+    const systemMessage = `<li class="system">${message} ${sender}</li>`;
+  
+    // Anexar el mensaje en la página
+    document.getElementById("messages").innerHTML += systemMessage;
+  
+    // Desplazarse automáticamente hacia abajo
+    // Desplazarse automáticamente hacia el último mensaje
+  const messagesContainer = document.getElementById("messages");
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-        #messages {
-            flex-grow: 1;
-            max-height: 200px;
-            padding: 10px;
-            top: 100px;
-            margin-top: 0;
-            overflow-y: auto;
-            overflow-wrap: normal;
-            color: white;
-            font-size: 16px;
+// Manejo del evento submit del formulario
+document.getElementById("message-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  sendMessage();
+});
+
+
+function shareCurrentSong() {
+    if (currentVideoIndex >= 0 && currentVideoIndex < videos.length) {
+        const currentSong = songInfo[videos[currentVideoIndex].src];
+        if (currentSong) {
+            const timestamp = Date.now();
+            const message = `🎶 Listen to this one: <a href="#" onclick="playSongById(${currentSong.id}); return false;">${currentSong.name} by ${currentSong.artist}</a>`;
             
+            // Guardar el mensaje en la base de datos
+            db.ref("messages/" + timestamp).set({
+                username,
+                message,
+            });
+        }}}
+
+        function playSongById(id) {
+            // Encuentra el índice de la canción con el id proporcionado
+            const index = videos.findIndex(video => songInfo[video.src].id === id);
+        
+            // Si se encontró la canción, cámbiala y reprodúcela
+            if (index !== -1) {
+                currentVideoIndex = index;
+                videoPlayer.src = videos[currentVideoIndex].src;
+                videoPlayer.load();
+                videoPlayer.play();
+                const likeButton = document.getElementById("like-button");
+                likeButton.disabled = false; // Habilitar botón para cada nueva canción
+            }
+        }
     
-        }
-
-        #chat-input {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background-color: black;
-        }
-
-        #emoji-button {
-            margin-left: auto;
-            cursor: pointer;
-            color: white;
-            font-size: 20px;
-        }
-
-        #message-btn {
-            margin-left: 10px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        function generateSongLink(songSrc) {
+            const encodedInfo = btoa(JSON.stringify({ songSrc: songSrc }));
+            return window.location.origin + window.location.pathname + `?song=${encodedInfo}`;
         }
         
-        /* Clase para quitar el sombreado después de tocar en dispositivos móviles */
-        #message-btn:active {
-            box-shadow: none;
-            transform: scale(0.95); /* Simula un botón presionado */
-        }
+        const queryParams = new URLSearchParams(window.location.search);
+            const encodedInfo = queryParams.get("song");
+        
+            if (encodedInfo) {
+                try {
+                    const decodedInfo = JSON.parse(atob(encodedInfo));
+                    const songIndex = videos.findIndex(video => video.src === decodedInfo.songSrc);
+        
+                    if (songIndex !== -1) {
+                        currentVideoIndex = songIndex;
+                        playNextVideo();
+                    }
+                } catch (error) {
+                    console.error("Error decoding song info from URL:", error);
+                }
+            }
+        ;
 
-        /* Agrega este estilo para el contenedor de emojis */
-       #emoji-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: absolute; /* Utiliza posición absoluta */
-    top: calc(74% + 10px); /* Coloca el contenedor debajo del cuadro de chat */
-    left: 50%; /* Centra el contenedor horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta para centrar en pantalla */
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    display: none; /* Oculta el contenedor inicialmente */
-    z-index: 9;
-    width: 225px;
+
+
+function saveMessageToDatabase(sender, message) {
+    const messagesRef = db.ref("messages"); // Referencia a la colección de mensajes
+    const newMessageRef = messagesRef.push(); // Generar una nueva clave única
+    newMessageRef.set({
+        username: sender,
+        message: message,
+    });
 }
 
 
-/* Agrega estilo para los emojis individuales */
-.emoji {
-    cursor: pointer;
-    font-size: 20px;
-    margin-right: 10px;
-}
-/* Agrega estilos para la ventana emergente */
-.modal {
-    display: none;
-    position: absolute;
-    z-index: 2;
-    left: 50%;
-    top: 205%;
-    width: 350%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    flex-direction: column;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
-    padding-top: 10px;
-  }
   
-  .modal-content {
-    top: 205%;
-        left: 50%;
-    flex-direction: column;
-    background-color: #fefefe00;
-    margin: 0% auto;
-    padding: 10px;
-    border: 0px solid #888;
-    width: 300%;
-  }
   
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+  const MESSAGES_TO_LOAD = 1;
+  // Referencia para el chat
+  const fetchChat = db.ref("messages/");
   
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  // Manejo del evento child_added
   
-  #username-modal {
-    position: absolute;
-        top: 76.5%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: black;
-        border: 2px solid palegreen;
-        border-radius: 10px;
-        overflow: hidden;
-        width: 165px;
-        height: 49px;
-        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        color: white;
-        display: none; /* Inicialmente oculto */
-        z-index: 5;
-}
+// Cambia el manejo del evento child_added para que funcione con la nueva lógica
+fetchChat.limitToLast(MESSAGES_TO_LOAD).on("child_added", function (snapshot) {
+    const messages = snapshot.val();
+    const message = `<li class=${username === messages.username ? "sent" : "receive"}><span>${messages.username}: </span>${messages.message}</li>`;
 
-#username-modal label {
-    margin-bottom: 5px;
-    background-color: aqua;
-}
+    // Añade el mensaje al contenedor de mensajes
+    const messagesContainer = document.getElementById("messages");
+    messagesContainer.innerHTML += message;
 
-#username-input {
-    margin-bottom: 10px;
-    width: 95px;
-    
-}
-
-#set-username-button {
-    background-color: palegreen;
-    color: black;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.system {
-    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
-    font-weight: bold;
-    color: #ff0080;
-    background-color: #34db9b8f;
-    border: 2px solid rgba(152, 251, 152, 0);
-    border-radius: 5px; 
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
- 
-
-  .system2 {
-    background-color: #34db9b9d; /* Cambia el color de fondo aquí */
-    color: white; /* Cambia el color del texto aquí */
-    padding: 0px; /* Ajusta el espacio interno si es necesario */
-    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
-    border-top-right-radius: 0px;
-    border: 2px solid rgba(152, 251, 152, 0.5);
-    border-radius: 5px; 
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
-    font-family: monospace;
-    font-weight: bold;
-    font-size: 16px;
+    // Desplázate automáticamente hacia abajo
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+});
+  
+  // Llama a la función para mostrar la ventana emergente
+  showUsernameModal();
+  
+  // Función para enviar un mensaje
+  function sendMessage() {
+    // obtener valores a enviar
+    const timestamp = Date.now();
+    const messageInput = document.getElementById("message-input");
+    const message = messageInput.value;
+  
+    // Limpiar el cuadro de entrada
+    messageInput.value = "";
+  
+    // Desplazarse automáticamente hacia abajo
+   
+  
+    // Crear la colección en la base de datos y enviar los datos
+    db.ref("messages/" + timestamp).set({
+      username,
+      message,
+    });
   }
 
-  #message-form {
-    display: flex;
-    align-items: center;
-}
+  const toggleChatBtn = document.getElementById("toggle-chat-btn");
+const toggleIcon = document.getElementById("toggle-icon");
 
-#message-input {
-    flex: 1;
-    margin-top: -10px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
-
-#emoji-button {
-    margin-left: auto;
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    margin-bottom: 15px;
-    outline: none;
-    -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
-
-}
-
-#emoji-button.active {
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
-    transition: box-shadow 0.4s ease, transform 0.2s ease;
-}
-
-        
-#message-btn {
-    margin-left: 10px; /* Ajusta el espacio entre los botones según sea necesario */
-    margin-bottom: 10px;
-    margin-right: 5px;
-        
-}
-
-#messages .message {
-    list-style: none;
-    margin: 5px 0;
+// Agrega un evento para 'touchend' y 'click'
+toggleChatBtn.addEventListener("touchend", function() {
+    toggleIcon.classList.add('active');
     
-}
+    // Elimina la clase después de 900ms
+    setTimeout(function() {
+        toggleIcon.classList.remove('active');
+    }, 600);
+});
 
-#messages .username {
-    font-weight: bold;
-    margin-right: 0px; /* Agrega un pequeño espacio entre el nombre de usuario y el mensaje */
-}
-
-#messages .system {
-    list-style: none;
-    margin: 5px 0;
-    font-weight: bold;
-}
-
-#messages li.sent span,
-#messages li.receive span {
-    /* Estilos específicos para el nombre de usuario */
-    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
-    font-weight: bold;
-    color: white;
-    font-size: larger;
-    margin-right: -1px;
-    /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
-}
-
-.share-current-song {
-    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
-    font-weight: bold;
-    color: #ff0080;
-    background-color: #34db9b8f;
-    border: 2px solid rgba(152, 251, 152, 0);
-    border-radius: 5px; 
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-button, a, img {
-    outline: none;
-}
-
-
-
-/* Banner superior */
-#top-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4%;
-    background-color: #63e0b646;
-    background: linear-gradient(
-        to top, /* Dirección del degradado, puedes cambiarlo a 'to bottom', 'to top', etc. */
-        #63e0b609, /* Color inicial */
-        #3fbec0 /* Color final, puedes elegir uno que haga buen contraste */
-    );
-    color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    /* Mover el banner hacia arriba, por ejemplo 20px */
-    transform: translateY(-30px);
-    box-sizing: border-box;
-}
-
-@media (min-width: 768px) {
-    #top-banner {
-        height: 3%;
-        
-    }
-}
-
-
-.banner-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+toggleChatBtn.addEventListener("click", function() {
+    toggleIcon.classList.add('active');
     
+    // Elimina la clase después de 900ms
+    setTimeout(function() {
+        toggleIcon.classList.remove('active');
+    }, 600);
+});
+
+
+document.querySelectorAll('.custom-button').forEach(button => {
+  button.addEventListener('touchstart', function() {
+      // Agrega la clase para el efecto
+      this.classList.add('active');
+      
+      // Elimina la clase después de 400ms para simular el "toque"
+      setTimeout(() => {
+          this.classList.remove('active');
+      }, 600); // Ajusta el tiempo según la duración que quieras para el efecto
+  });
+  
+  button.addEventListener('mousedown', function() {
+      this.classList.add('active');
+  });
+
+  button.addEventListener('mouseup', function() {
+      setTimeout(() => {
+          this.classList.remove('active');
+      }, 600);
+  });
+  
+  button.addEventListener('mouseleave', function() {
+      this.classList.remove('active');
+  });
+});
+
+
+function toggleEmojiPicker() {
+    const emojiButton = document.getElementById('emoji-button');
+    const emojiContainer = document.getElementById('emoji-container');
+
+    // Alternar la visibilidad del contenedor de emojis
+    emojiContainer.style.display = emojiContainer.style.display === "none" ? "flex" : "none";
+
+    // Agregar la clase 'active' para que se aplique el "salto"
+    emojiButton.classList.add('active');
+
+    // Después de 400ms (o el tiempo de la transición), quitar la clase 'active'
+    setTimeout(() => {
+        emojiButton.classList.remove('active');
+    }, 400); // Asegúrate de que este tiempo coincida con la duración de la transición en el CSS
 }
 
-
-
-.banner-content h1 {
-    color: #17d2dfad;
-    margin-left: 0%;
-font-size: 1.4em;
-    font-family: 'Orbitron'
-}
+document.getElementById("message-btn").addEventListener("touchend", function() {
+    this.blur(); // Remueve el foco del botón
+});
 
 
 
-@media (min-width: 768px) {
-    .banner-content h1 {
-        margin-left: 90%;
-        
-    }
-}
+document.querySelector('#like-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.93)';
+});
 
-.menu-toggle {
-    font-size: 30px; /* Tamaño del icono */
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    outline: none;
-    z-index: 1001;
-    position: relative;
-    margin-top: -45px;
-    margin-right: 25px;
-    transition: color 0.3s ease;
-    font-family: 'Orbitron'
-}
+document.querySelector('#like-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});
 
 
-.menu-toggle span {
-    display: block;
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Animación suave */
-    position: absolute;
-    font-family: 'Orbitron'
-}
+document.querySelector('#next-song-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.95)';
+});
 
-.menu-toggle span.x-symbol {
-    opacity: 0; /* X inicialmente oculta */
-    font-size: 20px;
-    transform: rotate(-90deg); /* Rotación inicial */
-}
+document.querySelector('#next-song-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});
 
-.menu-toggle.active span.x-symbol {
-    opacity: 1;
-    margin-top: 10px;
-    margin-left: 50%;
+document.querySelector('#liked-songs-button').addEventListener('touchstart', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(0.95)';
+});
+
+document.querySelector('#liked-songs-button').addEventListener('touchend', function() {
+    this.style.transform = 'translate(-50%, -50%) scale(1)';
+});
+
+
+
+
+
+function toggleMenu(button) {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('show');
     
-    transform: rotate(0); /* Rotación para mostrar X */
-}
-
-@supports (-webkit-overflow-scrolling: touch) {
-    .menu-toggle.active span.x-symbol {
-        /* Ajustes específicos para iOS */
-        opacity: 1;
-        margin-left: 55%;
-        transform: rotate(0); /* Rotación para mostrar X */
+    // Cambiar entre hamburguesa (&#9776;) y X (&times;)
+    if (menu.classList.contains('show')) {
+        button.classList.add('active'); // Agregar clase active al mostrar el menú
+    } else {
+        button.classList.remove('active'); // Quitar clase active al ocultar el menú
+        // Cerrar los cuadros de información si el menú se cierra
+        closeAllInfoBoxes();
     }
 }
 
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    toggleMenu(this);
+});
 
-.menu-toggle span.burger-symbol {
-    opacity: 1; /* Mostrar hamburguesa al inicio */
-    margin-top: 2px;
-    font-size: 29px;
-    margin-left: 0%;
-}
+document.getElementById('about-us-link').addEventListener('click', function() {
+    toggleInfoBox('about-us-content');
+});
 
-@supports (-webkit-overflow-scrolling: touch) {
-    .menu-toggle span.burger-symbol {
-        /* Ajustes específicos para iOS */
-        margin-left: 50%;
-    }
-}
+document.getElementById('contact-us-link').addEventListener('click', function() {
+    toggleInfoBox('contact-us-content');
+});
 
-.menu-toggle.active span.burger-symbol {
-    opacity: 0; /* Ocultar hamburguesa */
-    transform: rotate(90deg); /* Rotación para ocultar hamburguesa */
-}
-
-.menu-toggle:hover {
-    color: #ccc; /* Color al pasar el mouse */
-}
-
-
-/* Ocultar el menú al inicio */
-#menu {
-    max-height: 0; /* Cambia a 0 para ocultar el menú */
-    overflow: hidden; /* Esconde contenido desbordado */
-    position: absolute;
-    top: 60px;
-    right: 0px;
-    background-color: #a0458c88;
-    background: linear-gradient(
-        to right, /* Dirección del degradado, puedes cambiarlo a 'to bottom', 'to top', etc. */
-        #a0458c0e, /* Color inicial */
-        #a0458c88 /* Color final, puedes elegir uno que haga buen contraste */
-    );
-    width: 150px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: max-height 0.8s ease, opacity 0.8s ease; /* Transición suave */
-}
-
-#menu.show {
-    max-height: 500px; /* Altura máxima suficiente para el contenido */
-    font-size: larger;
-    font-family: 'Orbitron';
-    margin-top: 4%;
-    opacity: 1;
+function toggleInfoBox(boxId) {
+    var box = document.getElementById(boxId);
+    box.classList.toggle('show');
     
+    // Ocultar el otro cuadro si está activo
+    var otherBox = boxId === 'about-us-content' ? 'contact-us-content' : 'about-us-content';
+    document.getElementById(otherBox).classList.remove('show');
 }
 
-@media (min-width: 768px) {
-    #menu.show {
-        margin-top: 0.9%;
-        
+function closeAllInfoBoxes() {
+    document.getElementById('about-us-content').classList.remove('show');
+    document.getElementById('contact-us-content').classList.remove('show');
+}
+
+
+function toggleDiscoMode() {
+    var discoGif = document.getElementById("disco-gif");
+    var discoLabel = document.getElementById("disco-mode-label");
+    var discoBackground = document.getElementById("disco-background");
+
+    // Alterna la visibilidad del GIF
+    if (discoGif.style.display === "none") {
+        discoGif.style.display = "block"; // Muestra el GIF
+        discoLabel.style.display = "block"; // Muestra la etiqueta
+        discoBackground.style.display = "block"; // Muestra el fondo oscuro
+    } else {
+        discoGif.style.display = "none"; // Oculta el GIF
+        discoLabel.style.display = "none"; // Oculta la etiqueta
+        discoBackground.style.display = "none"; // Oculta el fondo oscuro
     }
 }
 
-#menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    transform: 0.9s ease-out;
-    font-family: 'Orbitron'
-}
 
-#menu ul li {
-    padding: 10px 20px;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.6s ease-in-out, transform 0.9s ease-in-out; /* Incrementar el tiempo de transición */
-}
 
-#menu.show ul li:nth-child(1) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.2s;
-}
 
-#menu.show ul li:nth-child(2) {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.4s;
-}
 
-#menu ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-#menu ul li:hover {
-    background-color: #45a049;
-    background: linear-gradient(
-        to right, /* Dirección del degradado, puedes cambiarlo a 'to bottom', 'to top', etc. */
-        #45a04907, /* Color inicial */
-        #45a049 /* Color final, puedes elegir uno que haga buen contraste */
-    );
-}
-}
-
-/* Para pantallas móviles */
-@media (max-width: 768px) {
-    .banner-content {
-        margin-left: -70%;
-        justify-content: space-between;
-        align-items: center;
+function generateVerticalStars() {
+    const discoBackground = document.getElementById('disco-background');
     
-    }
-    .banner-content h1 {
-        margin-left: 75%;
-    }
+    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
+        star.classList.add('vertical-star');
 
+        // Posición inicial aleatoria
+        setRandomPosition(star); 
+        
+        // Tamaño aleatorio para más variación
+        const size = Math.random() * 11 + 5; // Tamaño entre 5px y 30px
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Duración aleatoria para el efecto fade in/out
+        const fadeDuration = Math.random() * -15 + 37; // Duración entre 22s y 37s
+        star.style.animationDuration = `${fadeDuration}s`;
+
+        // Retraso aleatorio para que no todas aparezcan al mismo tiempo
+        const delay = Math.random() * 10; // Hasta 10 segundos de retraso
+        star.style.animationDelay = `${delay}s`;
+
+        // Añadir el movimiento en S
+        star.style.animation += `, moveInSvert 5s ease-in-out infinite`; // Agrega el movimiento en S con duración de 5s
+
+        // Cambiar posición en cada iteración de la animación
+        star.addEventListener('animationiteration', () => {
+            setRandomPosition(star); // Cambiar la posición en cada iteración
+        });
+
+        // Añadir la estrella al fondo
+        discoBackground.appendChild(star);
+    }
+}
+
+// Función para establecer una posición aleatoria
+function setRandomPosition(star) {
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
+}
+
+// Ejecutar la función una vez cargado el DOM
+document.addEventListener('DOMContentLoaded', generateVerticalStars);
+
+
+
+function generateHorizontalStars() {
+    const discoBackground = document.getElementById('disco-background');
+
+    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
+        star.classList.add('horizontal-star');
+
+        // Posición inicial aleatoria
+        setRandomPosition(star); 
+        
+        // Tamaño aleatorio para más variación
+        const size = Math.random() * 11 + 5; // Tamaño entre 15px y 25px
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Duración aleatoria para el efecto fade in/out
+        const fadeDuration = Math.random() * -15 + 37; // Duración entre 22s y 37s
+        star.style.animationDuration = `${fadeDuration}s`;
+
+        // Retraso aleatorio para que no todas aparezcan al mismo tiempo
+        const delay = Math.random() * 10; // Hasta 10 segundos de retraso
+        star.style.animationDelay = `${delay}s`;
+
+        // Añadir el movimiento en S
+        star.style.animation += `, moveInShor 5s ease-in-out infinite`; // Agrega el movimiento en S con duración de 5s
+
+        // Cambiar posición en cada iteración de la animación
+        star.addEventListener('animationiteration', () => {
+            setRandomPosition(star); // Cambiar la posición en cada iteración
+        });
+
+        // Añadir la estrella al fondo
+        discoBackground.appendChild(star);
+    }
+}
+
+// Función para establecer una posición aleatoria
+function setRandomPosition(star) {
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
+}
+
+// Ejecutar la función una vez cargado el DOM
+document.addEventListener('DOMContentLoaded', generateHorizontalStars);
+
+
+
+function generateTwinklingStars() {
+    const discoBackground = document.getElementById('disco-background');
     
+    // Función para detectar si es una pantalla grande
+    const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
-    #menu {
-        top: 50px; /* Ajusta según el tamaño del banner */
-    }
-}
-
-
-
-
-.dropdown-menu {
-    display: none; /* Oculto por defecto */
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #162f3577;
-    width: 100%;
-    transition: all 0.3s ease; /* Transición suave */
-}
-
-.dropdown-menu.show {
-    display: block; /* Mostrar menú cuando sea activo */
-}
-
-.menu-item {
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-.info-box {
-    display: none; /* Cuadros ocultos por defecto */
-    position: absolute;
-    margin-top: 63%;
-    left: 37%;
-    transform: translate(-50%, -50%);
-    background-color: #a0458227;
-    background: radial-gradient(
-        circle, 
-        #d83ca4, 
-        #a0458260, 
-        #a0458200
-    );
-    font-family: 'Orbitron';
-    color: #000000; /* Color verde neón */
-    text-shadow:
-        0 0 5px #39ff14, /* Capa de brillo más cercana */
-        0 0 10px #39ff14, 
-        0 0 20px #39ff14, 
-        0 0 30px #00ff00, /* Capa de brillo más intensa */
-        0 0 40px #00ff00;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    max-width: 219px;
-    min-height: 450px;
-    max-height: 200px;    
-    transition: all 0.3s ease; /* Suave */
-}
-
-
-
-
-@media (min-width: 768px) {
-    .info-box {
-        margin-top: 15%;
-        margin-left: 47%;
+    for (let i = 0; i < 345; i++) { // Generar 345 estrellas
+        const star = document.createElement('img');
+        star.src = 'starlight2.png';
+        star.classList.add('star');
         
+        setRandomPosition(star);
+
+        // Verificar si es pantalla grande y ajustar el tamaño
+        let size;
+        if (isLargeScreen) {
+            size = Math.random() * 17 + 10; // Tamaño entre 10px y 30px en pantallas grandes
+        } else {
+            size = Math.random() * 17 + 5; // Tamaño entre 5px y 16px en pantallas pequeñas
+        }
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Duración aleatoria para el efecto fade in/out
+        const fadeDuration = Math.random() * -15 + 37; // Duración fija de 37 segundos
+        star.style.animationDuration = `${fadeDuration}s`;
+
+        // Retraso aleatorio para que no todas aparezcan al mismo tiempo
+        const delay = Math.random() * 10; // Hasta 10 segundos de retraso
+        star.style.animationDelay = `${delay}s`;
+
+        // Selección aleatoria de una animación de oscilación
+        const oscillateClass = `oscillate${Math.floor(Math.random() * 3) + 1}`; // Elige entre oscillate1, oscillate2 y oscillate3
+        star.style.animation += `, ${oscillateClass} 4s ease-in-out infinite`; // Añadir la animación de oscilación aleatoria
+
+        // Evento para cambiar posición al final de la animación
+        star.addEventListener('animationiteration', () => {
+            setRandomPosition(star); // Cambiar la posición en cada iteración
+        });
+
+        discoBackground.appendChild(star);
     }
 }
 
-.info-box.show {
-    display: block; /* Mostrar cuadro cuando esté activo */
+// Función para establecer una posición aleatoria
+function setRandomPosition(star) {
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
 }
 
+document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
-
-  .disco-button-img {
-    position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
-    top: 55.05%; /* Centra verticalmente */
-    left: 305px; /* Centra horizontalmente */
-    border-radius: 50%; 
-    transform: translate(-50%, -50%);
-        border: 1px solid rgb(70, 26, 26, 0);
-        font-size: 21px;
-        padding: 0px 0px;
-        margin-left: -5px;
-        z-index: 5;
-        transition: all 0.2s ease;
-}
-
-@media (max-width: 768px) {
-    .disco-button-img {
-        top: 57.1%;
-        left: 69%; /* Cambia el valor de left según tus necesidades */
-        
-    }
-}
-
-@supports (-webkit-tap-highlight-color: transparent) {
-    .disco-button-img {
-        /* Ajustes específicos para Android o navegadores que soporten esta característica */
-        top: 57.1%;
-        left: 66%;
-    }
-}
-
-@supports (-webkit-overflow-scrolling: touch) {
-    .disco-button-img {
-        /* Ajustes específicos para iOS */
-        top: 57.1%;
-        left: 65%;
-    }
-}
-
-
-
-@media (min-width: 768px) {
-    .disco-button-img {
-        top: 57.1%;
-        left: 55.5%; /* Cambia el valor de left según tus necesidades */
-        max-width: 2%;
-    }
-}
-
-.disco-button-img:active {
-    transform: translate(-50%, -50%) scale(0.95); 
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para mantener el realismo */
-}
-
-
-/* Disco Mode GIF */
-#disco-gif {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #00000000;
-    background-size: 300%;
-    width: 100%;
-    height: auto;
-    display: none; /* Oculto por defecto */
-    z-index: 999; /* Asegúrate de que esté por encima de otros elementos */
-}
-
-@media (min-width: 768px) {
-    #disco-gif {
-        /* Cambia el valor de left según tus necesidades */
-        max-width: 20%;
-        margin-top: -25px;
-    }
-}
-
-
-#disco-mode-label {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0); /* Fondo semi-transparente */
-    color: rgba(255, 255, 255, 0.342);
-    font-size: large;
-    font-family: 'Orbitron';
-    padding: 10px;
-    text-shadow: 
-        0 0 5px rgba(255, 255, 255, 0.8), /* Brillo suave */
-        0 0 10px rgba(255, 0, 255, 1),   /* Brillo rosa */
-        0 0 20px rgba(255, 0, 255, 1),   /* Brillo rosa más intenso */
-        0 0 30px rgba(255, 0, 255, 1);   /* Brillo rosa aún más intenso */
-    border-radius: 5px;
-    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
-}
-
-
-#disco-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.479); /* Fondo negro semi-transparente */
-    z-index: 1; /* Asegúrate de que esté detrás de otros elementos, pero encima del fondo */
-    overflow: hidden; /* Para evitar que las partículas se salgan */
-}
-
-
-
-
-.vertical-star {
-    position: absolute;
-    opacity: 0; /* Comienza invisible */
-    animation: fadeInOut ease-in-out infinite, moveInSvert 5s ease-in-out infinite; /* Agrega la animación de fade y movimiento en S */
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: scale(0.5); /* Pequeñas al inicio */
-    }
-    20% {
-        opacity: 1; /* Completamente visibles */
-        transform: scale(1); /* Tamaño completo */
-    }
-    50% {
-        opacity: 1; /* Mantén la visibilidad un tiempo */
-        transform: scale(1);
-    }
-    80% {
-        opacity: 0; /* Comienza a desaparecer */
-        transform: scale(0.5); /* Pequeñas al desaparecer */
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5); /* Completamente invisibles al final */
-    }
-}
-
-@keyframes moveInSvert {
-    0% {
-        transform: translate(0, 0); /* Punto de inicio */
-    }
-    25% {
-        transform: translate(0px, -100px); /* Movimiento leve a la derecha y hacia arriba */
-    }
-    50% {
-        transform: translate(-0px, 100px); /* Movimiento leve a la izquierda y hacia abajo */
-    }
-    75% {
-        transform: translate(0px, -100px); /* Movimiento leve a la derecha y hacia arriba */
-    }
-    100% {
-        transform: translate(0, 0); /* Regresar al punto inicial */
-    }
-}
-
-
-.horizontal-star {
-    position: absolute;
-    opacity: 0; /* Comienza invisible */
-    animation: fadeInOut ease-in-out infinite, moveInShor 5s ease-in-out infinite; /* Agrega la animación de fade y movimiento en S */
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: scale(0.5); /* Pequeñas al inicio */
-    }
-    20% {
-        opacity: 1; /* Completamente visibles */
-        transform: scale(1); /* Tamaño completo */
-    }
-    50% {
-        opacity: 1; /* Mantén la visibilidad un tiempo */
-        transform: scale(1);
-    }
-    80% {
-        opacity: 0; /* Comienza a desaparecer */
-        transform: scale(0.5); /* Pequeñas al desaparecer */
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5); /* Completamente invisibles al final */
-    }
-}
-
-@keyframes moveInShor {
-    0% {
-        transform: translate(0, 0); /* Punto de inicio */
-    }
-    25% {
-        transform: translate(100px, 0px); /* Movimiento a la derecha */
-    }
-    50% {
-        transform: translate(-100px, 0px); /* Movimiento a la izquierda */
-    }
-    75% {
-        transform: translate(100px, 0px); /* Movimiento a la derecha */
-    }
-    100% {
-        transform: translate(0, 0); /* Regresar al punto inicial */
-    }
-}
-
-
-
-.star {
-    position: absolute;
-    opacity: 0; /* Empiezan invisibles */
-    animation: fadeInOut ease-in-out infinite, oscillate 4s ease-in-out infinite; /* Añade la animación de oscilación */
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: scale(0.5); /* Pequeñas al principio */
-    }
-    20% {
-        opacity: 1; /* Completamente visibles */
-        transform: scale(1); /* Tamaño completo */
-    }
-    50% {
-        opacity: 1; /* Mantén la visibilidad un tiempo */
-        transform: scale(1);
-    }
-    80% {
-        opacity: 0; /* Empieza a desaparecer gradualmente */
-        transform: scale(0.5); /* Se hacen pequeñas al desaparecer */
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5); /* Completamente invisibles al final */
-    }
-}
-
-@keyframes oscillate {
-    0% {
-        transform: translate(0, 0); /* Posición original */
-    }
-    25% {
-        transform: translate(-55px, -55px); /* Movimiento a la izquierda y arriba */
-    }
-    50% {
-        transform: translate(0, 55px); /* Movimiento a la posición original y abajo */
-    }
-    75% {
-        transform: translate(55px, -55px); /* Movimiento a la derecha y arriba */
-    }
-    100% {
-        transform: translate(0, 0); /* Regresar a la posición original */
-    }
-}
-
-
-
-.halloween-glow {
-    text-shadow: 
-        0 0 5px #FF4500,  /* Sombra naranja */
-        0 0 10px #FF4500, /* Sombra más intensa */
-        0 0 15px #FF4500, 
-        0 0 20px #FF6347, /* Toques de rojo */
-        0 0 25px #FF6347,
-        0 0 30px #FFA500, /* Más brillo */
-        0 0 35px #FFA500;
-    color: #FFF; /* Blanco para resaltar el brillo */
-    animation: glow 3s infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        text-shadow:
-            0 0 5px #FF4500, 
-            0 0 10px #FF4500, 
-            0 0 15px #FF4500, 
-            0 0 20px #FF6347, 
-            0 0 20px #FF6347, 
-            0 0 25px #ff2600, 
-            0 0 25px #ff1e00;
-    }
-    to {
-        text-shadow:
-            0 0 10px #FF6347, 
-            0 0 15px #FFA500, 
-            0 0 20px #2a0046, 
-            0 0 25px #22003d, 
-            0 0 30px #1b0441, 
-            0 0 35px #ff0800, 
-            0 0 40px #FF6347;
-    }
-}
 

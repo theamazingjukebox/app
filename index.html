@@ -262,8 +262,10 @@ body {
 
 @media (max-width: 768px) {
     .background-container {
-        height: 225vh; /* Hace que el contenedor tenga una altura del 100% de la ventana */
+        min-height: 225vh; /* Mantiene el tamaño sin importar el teclado */
+        height: auto; /* Permite crecer sin restricciones */
     }
+}
 
     .background-img {
         width: 100%;

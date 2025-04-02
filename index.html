@@ -240,9 +240,9 @@ body {
 
 
 .background-container {
-    position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
+    position: absolute; /* Necesario para que los hijos se posicionen en relación a este contenedor */
     width: 100%;
-    min-height: 100vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    min-height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
     height: auto;
     background-size: cover; /* Zoom a la imagen */
     background-position: center; /* Centra la imagen */
@@ -256,7 +256,7 @@ body {
     min-height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
     height: auto;
     background-size: cover;  /* Hace que la imagen cubra todo el contenedor */
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 1; /* Asegúrate de que esté detrás del botón */
@@ -264,6 +264,7 @@ body {
 
 @media (max-width: 768px) {
     .background-img {
+        position: absolute;
         min-height: 225dvh; /* Mantiene el tamaño sin importar el teclado */
         height: auto; /* Permite crecer sin restricciones */
     }

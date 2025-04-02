@@ -222,7 +222,7 @@
     background-color: transparent;
     color: palegreen;
     
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 10px;
     width: 95px;
     
@@ -285,6 +285,9 @@ color: rgb(207, 61, 158);
 
 }
 
+input, textarea {
+  font-size: 16px;
+}
 
 
 #emoji-button {

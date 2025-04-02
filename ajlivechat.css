@@ -1169,6 +1169,6 @@ font-size: 1.4em;
 }
 
 html, body {
-    overscroll-behavior: none; /* Evita redimensionamiento por el teclado */
-    touch-action: manipulation; /* Evita comportamientos extraños al tocar */
+    overflow-y: scroll; /* Asegura que el usuario pueda desplazarse */
+    -webkit-overflow-scrolling: touch; /* Mejora en iOS */
 }

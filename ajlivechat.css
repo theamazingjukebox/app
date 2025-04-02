@@ -114,7 +114,7 @@
             margin-left: 10px;
             background-color: #3498db;
             color: white;
-               
+            font-family: Orbitron;   
             border: none;
             padding: 8px 15px;
             border-radius: 5px;
@@ -222,13 +222,19 @@
 #username-input {
     background-color: transparent;
     color: palegreen;
-    
-    font-size: 16px;
+    font-family: Orbitron;
+    font-size: 12px;
     margin-bottom: 10px;
     width: 95px;
     
 }
 
+#username-input::placeholder {
+    color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
+    opacity: 1; /* Asegura que el placeholder sea visible */
+    
+    
+  }
 
 
 
@@ -281,14 +287,20 @@
     margin-top: -10px;
     margin-bottom: 5px;
     margin-left: 5px;
-background-color: transparent;
+background-color: rgba(0, 0, 0, 0.3);
+backdrop-filter: blur(10px);
 color: rgb(207, 61, 158);
-
+font-family: Orbitron;
 }
 
-input, textarea {
-  font-size: 16px;
-}
+#message-input::placeholder {
+    color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
+    font-family: Orbitron;
+    opacity: 1; /* Asegura que el placeholder sea visible */
+    
+    
+  }
+
 
 
 #emoji-button {
@@ -336,10 +348,10 @@ input, textarea {
 #messages li.sent span,
 #messages li.receive span {
     /* Estilos específicos para el nombre de usuario */
-     /* Puedes cambiar la fuente según tus preferencias */
+    font-family: Orbitron; /* Puedes cambiar la fuente según tus preferencias */
     font-weight: bold;
     color: rgb(103, 255, 230);
-    font-size: 16px;
+    font-size: 14px;
     margin-right: -1px;
     /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
 }

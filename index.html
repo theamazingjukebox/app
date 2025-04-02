@@ -253,12 +253,13 @@ body {
 }
 
 .background-img {
-    width: 100%;
-    min-height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
-    background-size: cover;  /* Hace que la imagen cubra todo el contenedor */
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 225vh !important; /* Bloquea cambios */
+    background-size: cover;
+    background-position: center;
     z-index: 1; /* Asegúrate de que esté detrás del botón */
 }
 

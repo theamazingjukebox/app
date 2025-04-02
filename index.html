@@ -243,21 +243,19 @@ body {
 .background-container {
     position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
     width: 100%;
-    min-height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
-    height: auto;
+    height: 100%; /* Asegúrate de que ocupe toda la altura de la ventana */
     background-size: cover; /* Zoom a la imagen */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;
-    overflow-y: auto;/* Permite desplazamiento si se requiere */
+    overflow: hidden; /* Permite desplazamiento si se requiere */
     
 }
 
 .background-img {
     width: 100%;
-    min-height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
-    height: auto;
-    background-size: cover; /* Hace que la imagen cubra todo el contenedor */
-    position: absolute;
+    height: 100%; /* Mantiene la proporción de la imagen */
+    background-size: cover;  /* Hace que la imagen cubra todo el contenedor */
+    position: relative;
     top: 0;
     left: 0;
     z-index: 1; /* Asegúrate de que esté detrás del botón */

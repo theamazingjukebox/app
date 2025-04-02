@@ -1164,6 +1164,10 @@ font-size: 1.4em;
     }
 }
 
+.keyboard-spacer {
+    height: 50vh; /* Espacio extra para evitar que el teclado comprima la imagen */
+}
+
 html, body {
     overscroll-behavior: none; /* Evita redimensionamiento por el teclado */
     touch-action: manipulation; /* Evita comportamientos extraños al tocar */

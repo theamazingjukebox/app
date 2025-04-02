@@ -527,3 +527,13 @@ function setRandomPosition(star) {
 
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
+
+
+function fixViewport() {
+    const bgContainer = document.querySelector(".background-container");
+    bgContainer.style.height = window.innerHeight * 2.25 + "px"; // 225vh
+}
+
+window.addEventListener("resize", fixViewport);
+window.addEventListener("load", fixViewport);
+

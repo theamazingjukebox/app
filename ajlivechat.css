@@ -221,19 +221,14 @@
 #username-input {
     background-color: transparent;
     color: palegreen;
-    font-family: Orbitron;
+    
     font-size: 12px;
     margin-bottom: 10px;
     width: 95px;
     
 }
 
-#username-input::placeholder {
-    color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
-    opacity: 1; /* Asegura que el placeholder sea visible */
-    
-    
-  }
+
 
 
 #set-username-button {
@@ -291,13 +286,7 @@ color: rgb(207, 61, 158);
 
 }
 
-#message-input::placeholder {
-    color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
-    
-    opacity: 1; /* Asegura que el placeholder sea visible */
-    
-    
-  }
+
 
 #emoji-button {
     margin-left: auto;

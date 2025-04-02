@@ -96,6 +96,7 @@
         }
 
         #chat-input {
+            position: fixed;   
             display: flex;
             align-items: center;
             padding: 10px;
@@ -335,10 +336,10 @@ input, textarea {
 #messages li.sent span,
 #messages li.receive span {
     /* Estilos específicos para el nombre de usuario */
-    font-family: Orbitron; /* Puedes cambiar la fuente según tus preferencias */
+     /* Puedes cambiar la fuente según tus preferencias */
     font-weight: bold;
     color: rgb(103, 255, 230);
-    font-size: 14px;
+    font-size: 16px;
     margin-right: -1px;
     /* Agrega cualquier otro estilo específico para el nombre de usuario aquí */
 }

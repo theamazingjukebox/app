@@ -523,3 +523,8 @@ function setRandomPosition(star) {
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
 
+
+window.visualViewport.addEventListener("resize", function() {
+  document.body.style.height = window.visualViewport.height + "px";
+});
+

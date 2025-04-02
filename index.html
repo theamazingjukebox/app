@@ -262,7 +262,7 @@ body {
 
 @media (max-width: 768px) {
     .background-container {
-        height: 225dvh !important;  /* Mantiene el tamaño sin importar el teclado */
+        min-height: 225vh !important;  /* Mantiene el tamaño sin importar el teclado */
         
     }
 
@@ -509,10 +509,13 @@ body {
     /* Puedes ajustar el tamaño del contenedor y otros estilos aquí */
 }
     #messages {
-    font-family: Arial; /* Puedes cambiar la fuente según tus preferencias */
+    font-family: Orbitron; /* Puedes cambiar la fuente según tus preferencias */
+    font-size: 14px;
     font-weight: bold;
-    color: rgb(103, 255, 230);
-    text-shadow: 3px 3px 3px rgba(219, 112, 147, 0.5);
+    color: #ffffff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff;
     background-color: #c4297e8f;
     border: 2px solid rgba(152, 251, 152, 0);
     border-radius: 5px; 

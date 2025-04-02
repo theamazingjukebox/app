@@ -527,18 +527,3 @@ function setRandomPosition(star) {
 
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);
 
-
-
-let initialHeight = window.innerHeight;
-
-window.addEventListener("resize", () => {
-    let newHeight = window.innerHeight;
-    
-    if (newHeight < initialHeight * 0.8) {  
-        // Probablemente el teclado está abierto
-        document.querySelector(".background-container").style.height = `${initialHeight}px`;
-    } else {
-        // Restaurar altura normal
-        document.querySelector(".background-container").style.height = "225vh";
-    }
-});

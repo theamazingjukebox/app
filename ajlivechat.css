@@ -1164,11 +1164,4 @@ font-size: 1.4em;
     }
 }
 
-.keyboard-spacer {
-    height: 50vh; /* Espacio extra para evitar que el teclado comprima la imagen */
-}
 
-html, body {
-    overflow-y: scroll; /* Asegura que el usuario pueda desplazarse */
-    -webkit-overflow-scrolling: touch; /* Mejora en iOS */
-}

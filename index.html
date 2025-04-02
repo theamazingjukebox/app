@@ -241,7 +241,7 @@ body {
 
 
 .background-container {
-    position: absolute; /* Necesario para que los hijos se posicionen en relación a este contenedor */
+    position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
     width: 100%;
     min-height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
     height: auto;
@@ -264,9 +264,9 @@ body {
 }
 
 @media (max-width: 768px) {
-    .background-img {
-        min-height: 225dvh !important;  /* Mantiene el tamaño sin importar el teclado */
-        height: auto; /* Permite crecer sin restricciones */
+    .background-container {
+        height: 225vh !important;  /* Mantiene el tamaño sin importar el teclado */
+        
     }
 
 

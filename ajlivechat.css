@@ -280,8 +280,7 @@
     margin-top: -10px;
     margin-bottom: 5px;
     margin-left: 5px;
-background-color: rgba(0, 0, 0, 0.3);
-backdrop-filter: blur(10px);
+background-color: transparent;
 color: rgb(207, 61, 158);
 
 }

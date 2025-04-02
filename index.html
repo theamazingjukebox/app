@@ -242,7 +242,8 @@ body {
 .background-container {
     position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
     width: 100%;
-    height: 100%; /* Asegúrate de que ocupe toda la altura de la ventana */
+    min-height: 100vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    height: auto;
     background-size: cover; /* Zoom a la imagen */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;
@@ -252,7 +253,8 @@ body {
 
 .background-img {
     width: 100%;
-    height: 100%; /* Mantiene la proporción de la imagen */
+    min-height: 100vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    height: auto;
     background-size: cover;  /* Hace que la imagen cubra todo el contenedor */
     position: relative;
     top: 0;

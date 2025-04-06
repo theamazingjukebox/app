@@ -305,6 +305,7 @@ font-family: Orbitron;
 
 #message-input::placeholder {
     color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
+    text-shadow: none;    
     font-family: Orbitron;
     opacity: 1; /* Asegura que el placeholder sea visible */
     

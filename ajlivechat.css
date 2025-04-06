@@ -112,8 +112,15 @@
 
         #message-btn {
             margin-left: 10px;
-            background-color: #3498dbc5;
-            color: white;
+             background-color: rgba(64, 224, 208, 0);
+            border: 3px solid rgba(115, 25, 138, 0.5);
+    box-shadow: 0px 0px 10px rgba(50, 255, 135, 0.5), 0px 0px 20px rgba(35, 247, 106, 0.5);
+    color: rgba(255, 255, 255, 0.685);
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8), /* Brillo suave */
+        0 0 10px rgb(162, 0, 255),   /* Brillo rosa */
+        0 0 20px rgba(162, 0, 255),   /* Brillo rosa más intenso */
+        0 0 30px rgba(162, 0, 255);   /* Brillo rosa aún más intenso */
             font-family: Orbitron;   
             border: none;
             padding: 8px 15px;
@@ -222,6 +229,7 @@
 #username-input {
     background-color: transparent;
     color: palegreen;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
     font-family: Orbitron;
     font-size: 12px;
     margin-bottom: 10px;
@@ -231,6 +239,7 @@
 
 #username-input::placeholder {
     color: rgb(132, 179, 172); /* Cambia esto al color que prefieras */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
     opacity: 1; /* Asegura que el placeholder sea visible */
     
     
@@ -290,6 +299,7 @@
 background-color: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(10px);
 color: rgb(207, 61, 158);
+text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 font-family: Orbitron;
 }
 

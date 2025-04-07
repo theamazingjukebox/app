@@ -138,7 +138,7 @@
         /* Clase para quitar el sombreado después de tocar en dispositivos móviles */
         #message-btn:active {
             box-shadow: none;
-            transform: scale(0.95); /* Simula un botón presionado */
+            transform: scale(0.78); /* Simula un botón presionado */
         }
 
 

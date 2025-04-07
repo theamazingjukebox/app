@@ -135,6 +135,11 @@
             transform: scale(0.95); /* Simula un botón presionado */
         }
 
+       #message-btn:hover {
+            background-color: #e91ece4d;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
         /* Agrega este estilo para el contenedor de emojis */
        #emoji-container {
     display: flex;

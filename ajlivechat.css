@@ -727,7 +727,7 @@ font-size: 1.4em;
 @media (min-width: 768px) {
     .disco-button-img {
         top: 57.1%;
-        left: 55.5%; /* Cambia el valor de left según tus necesidades */
+        left: 54%; /* Cambia el valor de left según tus necesidades */
         max-width: 2%;
     }
 }

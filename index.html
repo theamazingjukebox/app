@@ -263,6 +263,7 @@ body {
     height: 100%; /* Mantiene la proporción de la imagen */
     background-size: cover;  /* Hace que la imagen cubra todo el contenedor */
     position: relative;
+    object-fit: contain;
     top: 0;
     left: 0;
     z-index: 1; /* Asegúrate de que esté detrás del botón */
@@ -297,8 +298,8 @@ body {
 
     @media (min-width: 768px) {
     #video-container {
-        width: 415px; /* Ancho mayor en dispositivos grandes */
-        height: 320px; /* Altura mayor en dispositivos grandes */
+        width: 300px; /* Ancho mayor en dispositivos grandes */
+        height: 220px; /* Altura mayor en dispositivos grandes */
     }
 }
     
@@ -324,7 +325,7 @@ body {
 
 /* Ancho de la imagen para pantallas grandes */
 .ad-image {
-    width: 44%; /* Ajusta el ancho de la imagen en pantallas grandes */
+    width: 27%; /* Ajusta el ancho de la imagen en pantallas grandes */
     height: auto; /* Mantiene la proporción */
     margin-left: 3%;
 }

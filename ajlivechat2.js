@@ -382,7 +382,7 @@ function toggleDiscoMode() {
 function generateVerticalStars() {
     const discoBackground = document.getElementById('disco-background');
     
-    for (let i = 0; i < 30; i++) { // Generar 135 estrellas
+    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
         const star = document.createElement('img');
         star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
         star.classList.add('vertical-star');
@@ -418,8 +418,8 @@ function generateVerticalStars() {
 
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
-    star.style.left = Math.random() * 50 + 'vw'; // Posición horizontal aleatoria
-    star.style.top = Math.random() * 225 + 'vh'; // Posición vertical aleatoria
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
 }
 
 // Ejecutar la función una vez cargado el DOM
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', generateVerticalStars);
 function generateHorizontalStars() {
     const discoBackground = document.getElementById('disco-background');
 
-    for (let i = 0; i < 30; i++) { // Generar 135 estrellas
+    for (let i = 0; i < 20; i++) { // Generar 135 estrellas
         const star = document.createElement('img');
         star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
         star.classList.add('horizontal-star');
@@ -466,8 +466,8 @@ function generateHorizontalStars() {
 
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
-    star.style.left = Math.random() * 50 + 'vw'; // Posición horizontal aleatoria
-    star.style.top = Math.random() * 225 + 'vh'; // Posición vertical aleatoria
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+    star.style.top = Math.random() * 100 + 'vh'; // Posición vertical aleatoria
 }
 
 // Ejecutar la función una vez cargado el DOM
@@ -481,7 +481,7 @@ function generateTwinklingStars() {
     // Función para detectar si es una pantalla grande
     const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
-    for (let i = 0; i < 445; i++) { // Generar 345 estrellas
+    for (let i = 0; i < 345; i++) { // Generar 345 estrellas
         const star = document.createElement('img');
         star.src = 'starlight2.png';
         star.classList.add('star');
@@ -522,7 +522,9 @@ function generateTwinklingStars() {
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
     star.style.left = Math.random() * 30 + 'vw'; // Posición horizontal aleatoria
-    star.style.top = Math.random() * 225 + 'vh'; // Posición vertical aleatoria
+    const minVH = 50;
+const maxVH = 150;
+star.style.top = (Math.random() * (maxVH - minVH) + minVH) + 'vh';
 }
 
 document.addEventListener('DOMContentLoaded', generateTwinklingStars);

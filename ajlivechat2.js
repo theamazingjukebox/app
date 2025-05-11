@@ -521,7 +521,7 @@ function generateTwinklingStars() {
 
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
-    star.style.left = Math.random() * 30 + 'vw'; // Posición horizontal aleatoria
+    star.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
     const minVH = 50;
 const maxVH = 150;
 star.style.top = (Math.random() * (maxVH - minVH) + minVH) + 'vh';

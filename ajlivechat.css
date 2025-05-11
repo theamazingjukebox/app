@@ -1083,7 +1083,9 @@ font-size: 1.4em;
 
 
 .star {
-    position: absolute;
+    position: relative;
+    width: 100%;
+    height: 100%;
     opacity: 0; /* Empiezan invisibles */
     animation: fadeInOut ease-in-out infinite, oscillate 4s ease-in-out infinite; /* Añade la animación de oscilación */
 }

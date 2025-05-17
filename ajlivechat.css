@@ -789,7 +789,7 @@ font-size: 1.4em;
     z-index: 1;
     overflow: hidden;
     background-color: #00000069; /* Fondo oscuro general */
-    animation: movingGlow 90s infinite alternate cubic-bezier(0.42, 0, 0.58, 1) /* Animación más suave */
+    animation: movingGlow 90s infinite alternate cubic-bezier(0.4, 0, 0.2, 1) /* Animación más suave */
     ; /* Animación más suave */
     
         background-size: 120%;

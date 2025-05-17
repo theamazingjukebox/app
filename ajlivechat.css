@@ -789,7 +789,7 @@ font-size: 1.4em;
     z-index: 1;
     overflow: hidden;
     background-color: #00000069; /* Fondo oscuro general */
-    animation: movingGlow 90s infinite alternate cubic-bezier(0.4, 0, 0.2, 1) /* Animación más suave */
+    animation: movingGlow 90s infinite alternate cubic-bezier(0.42, 0, 0.58, 1) /* Animación más suave */
     ; /* Animación más suave */
     
         background-size: 120%;
@@ -956,22 +956,22 @@ font-size: 1.4em;
         background-size: 120%;
         background-position: center;
     }
-    49% { 
+    59% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 6.25%, rgba(0, 0, 0, 0) 21.5%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }
-    51% { 
+    71% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 6.5%, rgba(0, 0, 0, 0) 22%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }
-    53% { 
+    83% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 6.75%, rgba(0, 0, 0, 0) 22.1%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }
-    55% { 
+    95% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 7.5%, rgba(0, 0, 0, 0) 22.3%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;

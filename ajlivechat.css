@@ -956,23 +956,23 @@ font-size: 1.4em;
         background-size: 120%;
         background-position: center;
     }
-    59% { 
+    49% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 6.25%, rgba(0, 0, 0, 0) 21.5%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }
-    71% { 
+    51% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 6.5%, rgba(0, 0, 0, 0) 22%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }
-    83% { 
+    53% { 
         background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 6.75%, rgba(0, 0, 0, 0) 22.1%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }
-    95% { 
-        background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 7.5%, rgba(0, 0, 0, 0) 22.3%, transparent 80%), #00000059;
+    55% { 
+        background: radial-gradient(circle at 50% 48%, rgba(86, 241, 223, 0.5) 7.25%, rgba(0, 0, 0, 0) 22.3%, transparent 80%), #00000059;
         background-size: 120%;
         background-position: center;
     }

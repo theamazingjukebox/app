@@ -346,39 +346,38 @@ body {
 }
          
     #liked-songs-button {
-        position: absolute; /* Posiciona el botón sobre la imagen */
+    position: absolute; /* Posiciona el botón sobre la imagen */
     top: 55.1%; /* Ajusta este valor para colocar el botón verticalmente */
-    left: 49.5%; /* Centra horizontalmente */
+    left: 79%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Centrado preciso */
-        padding: 10px 20px;
-        background-color: black;
-        border: 1px solid rgb(70, 26, 26);
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: larger;
+    padding: 10px 20px;
+    
+    
+    cursor: pointer;
+    font-weight: bold;
+    font-size: larger;
          text-shadow: 3px 3px 3px rgba(219, 112, 147, 0.5);
         transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     outline: none;
     -webkit-tap-highlight-color: transparent; /* Evita el borde azul en dispositivos móviles */
     z-index: 3;
 
-        /* Sustituyendo el texto por una imagen */
-    background-image: url('button9.31.png');
-    background-size: 100%; /* Ajusta la imagen al tamaño del botón */
+
+/* Sustituyendo el texto por una imagen */
+background-image: url('botonliked.svg');
+    background-size: 70%; /* Ajusta la imagen al tamaño del botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen dentro del botón */
-    width: 110px; /* Ajusta el ancho del botón según la imagen */
-    height: 30px; /* Ajusta la altura del botón según la imagen */
+    
     text-indent: -9999px; /* Oculta el texto */
         
 }
 
-    /* Media query para pantallas grandes */
+/* Media query para pantallas grandes */
 @media (min-width: 768px) {
     #liked-songs-button {
-        width: 135px; /* Aumenta el ancho en pantallas grandes */
-        height: 35px; /* Aumenta la altura en pantallas grandes */
+        background-size: 85%;
+        left: 59.3%;
         
     }
 }

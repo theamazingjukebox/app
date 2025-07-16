@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=0.31, maximum-scale=5, user-scalable=yes">
 <title>The Amazing Jukebox</title>
 <link rel="icon" type="image/png" href="ajfavicon.svg">
 <link rel="stylesheet" type="text/css" href="./ajlivechat.css">
@@ -154,7 +154,7 @@
 
     @media (min-width: 768px) {
     #like-button {
-        left: 46%; /* Cambia el valor de left según tus necesidades */
+        left: 45.5%; /* Cambia el valor de left según tus necesidades */
     }
 }
 
@@ -170,7 +170,7 @@
 /* Estilos base para la imagen */
 .like-button-img {
     vertical-align: middle;
-    height: 125px; /* Altura predeterminada */
+    height: 105px; /* Altura predeterminada */
     width: auto;
     margin-top: -3px;
 }
@@ -178,7 +178,7 @@
 /* Media query para móviles */
 @media (max-width: 768px) {
     .like-button-img {
-        height: 103px; /* Ajusta la altura para pantallas más pequeñas */
+        height: 78px; /* Ajusta la altura para pantallas más pequeñas */
     }
 }
     
@@ -210,7 +210,7 @@
 @media (max-width: 768px) {
     #next-song-button {
         top: 61%;
-        left: 57.2%; /* Cambia el valor de left según tus necesidades */
+        left: 52.5%; /* Cambia el valor de left según tus necesidades */
     }
 }
          
@@ -218,7 +218,7 @@
     /* Estilos base para la imagen */
 .next-button-img {
     vertical-align: middle;
-    height: 104px; /* Altura predeterminada */
+    height: 84px; /* Altura predeterminada */
     width: auto;
     margin-top: -3px;
 }
@@ -226,7 +226,7 @@
 /* Media query para móviles */
 @media (max-width: 768px) {
     .next-button-img {
-        height: 83px; /* Ajusta la altura para pantallas más pequeñas */
+        height: 63px; /* Ajusta la altura para pantallas más pequeñas */
     }
 }
     
@@ -245,48 +245,58 @@ body {
     
 }
 
-
-
 .background-container {
-    position: relative; /* Necesario para que los hijos se posicionen en relación a este contenedor */
+    position: relative;
     width: 100%;
-    height: 225vh; /* Asegúrate de que ocupe toda la altura de la ventana */
-    background-size: cover; /* Zoom a la imagen */
-    background-position: center; /* Centra la imagen */
+    height: 75vh;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    overflow: hidden; /* Permite desplazamiento si se requiere */
-    
+    overflow: hidden;
 }
 
 .background-img {
     width: 100%;
-    height: 100%; /* Mantiene la proporción de la imagen */
-    background-size: cover;  /* Hace que la imagen cubra todo el contenedor */
+    height: 100%;
+    background-size: cover;
     position: relative;
     object-fit: contain;
+    border-radius: 15px;
     top: 0;
     left: 0;
-    z-index: 1; /* Asegúrate de que esté detrás del botón */
+    z-index: 1;
 }
 
 @media (max-width: 768px) {
     .background-container {
-        min-height: 225vh !important;  /* Mantiene el tamaño sin importar el teclado */
-        
+        width: 100%;
+        height: 120vh;
     }
-
 
     .background-img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+         /* Ajusta la imagen para cubrir el contenedor */
+    }
+         /* Ajusta la imagen para cubrir el contenedor */
+    
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    .background-container {
+        width: 100%;
+        height: 225vh;
     }
 }
+
+
+
+
 
 #video-container {
     position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
     top: 47.5%; /* Centra verticalmente */
-    left: 49.5%; /* Centra horizontalmente */
+    left: 49.9%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     width: 267px; /* Ancho deseado */
     height: 191px; /* Altura deseada */
@@ -302,6 +312,14 @@ body {
         height: 220px; /* Altura mayor en dispositivos grandes */
     }
 }
+    
+    @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #video-container {
+        height: 230px;
+    }
+}
+    
+    
     
     #video-container video {
         max-width: 100%;
@@ -348,7 +366,7 @@ body {
     #liked-songs-button {
     position: absolute; /* Posiciona el botón sobre la imagen */
     top: 55.1%; /* Ajusta este valor para colocar el botón verticalmente */
-    left: 86.5%; /* Centra horizontalmente */
+    left: 57.2%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Centrado preciso */
     padding: 10px 20px;
     
@@ -377,10 +395,19 @@ background-image: url('boton1.png');
 @media (min-width: 768px) {
     #liked-songs-button {
         background-size: 80%;
-        left: 58.5%;
+        left: 63%;
         
     }
 }
+
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #liked-songs-button {
+        left: 61%;
+    }
+}
+
+
   
          
     #liked-songs-button:active {
@@ -456,9 +483,7 @@ background-image: url('boton1.png');
 }
 
 
-body {
-    overflow-x: hidden; /* Evitar la barra de desplazamiento horizontal */
-}
+
     
     #mobile-gif2 {
         display: none;
@@ -560,6 +585,15 @@ li.system2 {
 button, a, img {
     outline: none;
 }
+
+    
+#wrapper {
+    position: relative;
+    transform-origin: top center;
+    transition: transform 0.3s ease;
+}
+
+
     
 </style>
 <script>
@@ -1351,7 +1385,8 @@ button, a, img {
 </script>
 </head>
 <body>
-
+<div id="wrapper">
+    
 <div id="info-container">
     
     <div class="background-container">
@@ -1526,6 +1561,7 @@ button, a, img {
     <img class="rotated-gif5"
     src="Sin título1.22.png" alt="Descripción del GIF" style="width: 90%; height: auto;">
 </div>
+    </div>
     
     
   <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>

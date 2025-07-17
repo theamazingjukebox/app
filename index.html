@@ -1353,7 +1353,54 @@ button, a, img {
         shuffleArray(videos);
         playNextVideo();
     
-        const chatContainer = document.getElementById("chat");
+        
+const chatContainer = document.getElementById("chat");
+const toggleChatBtn = document.getElementById("toggle-chat-btn");
+const toggleIcon = document.getElementById("toggle-icon");
+
+let isChatExpanded = false; // estado inicial colapsado
+
+function updateChatState() {
+    isChatExpanded = !isChatExpanded;
+    setChatState(isChatExpanded);
+}
+
+function setChatState(expanded) {
+    chatContainer.style.height = expanded ? "300px" : "40px";
+    toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
+}
+
+// Evento del botón
+toggleChatBtn.addEventListener("click", updateChatState);
+
+// Estado inicial al cargar (expandido en este caso)
+setChatState(false);
+messages.scrollTop = 0;
+
+
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    // 1. Forzar abrir el chat
+    setChatState(true);
+
+    // 2. Hacer scroll arriba
+    chatContainer.scrollTop = 0;
+
+    // 3. Volver a contraer tras un breve retraso para asegurar el render
+    setTimeout(() => {
+        setChatState(false);
+    }, 50); // con 50ms suele bastar, puedes ajustar
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const videoContainer = document.getElementById("video-container");
+    videoContainer.appendChild(videoPlayer);
+    shuffleArray(videos);
+    playNextVideo();
+
+    const chatContainer = document.getElementById("chat");
     const toggleChatBtn = document.getElementById("toggle-chat-btn");
     const toggleIcon = document.getElementById("toggle-icon");
 
@@ -1403,6 +1450,8 @@ window.addEventListener('load', () => {
 
 
     })
+
+
 
 
 

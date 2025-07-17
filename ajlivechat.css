@@ -51,8 +51,8 @@
 }
 #chat {
             position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 78%; /* Ajusta este valor para colocar el botón verticalmente */
-    left: 50%; /* Centra horizontalmente */
+    top: 88%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 20%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
     border: 4px solid rgba(79, 176, 255, 0.637) ;
     border-radius: 15px;
@@ -69,6 +69,12 @@
             transition: height 1.3s ease;
             z-index: 5;
         }
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #chat {
+        left: 25%;
+    }
+}
 
         
 #chat.chat-contracted {

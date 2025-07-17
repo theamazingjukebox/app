@@ -72,7 +72,7 @@
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #chat {
-        left: 25%;
+        left: 27%;
     }
 }
 
@@ -211,8 +211,8 @@
   
   #username-modal {
     position: absolute;
-        top: 79.5%;
-        left: 50%;
+        top: 89.5%;
+        left: 20%;
         transform: translate(-50%, -50%);
         background-color: transparent;
         border: 0px solid palegreen;
@@ -227,6 +227,12 @@
         color: white;
         display: none; /* Inicialmente oculto */
         z-index: 5;
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #username-modal {
+        left: 27%;
+    }
 }
 
 #username-modal label {

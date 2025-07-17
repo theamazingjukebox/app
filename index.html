@@ -1357,28 +1357,52 @@ button, a, img {
     const toggleChatBtn = document.getElementById("toggle-chat-btn");
     const toggleIcon = document.getElementById("toggle-icon");
 
-    let isChatExpanded = chatContainer.style.height === "320px";
+    let isChatExpanded = false;
 
-    // Función para actualizar el botón y el estado del chat
     function updateChatState() {
         isChatExpanded = !isChatExpanded;
-        const newHeight = isChatExpanded ? "200px" : "300px";
-        const newSymbol = isChatExpanded ? "down17.png" : "down17-2.png";
-        chatContainer.style.height = newHeight;
-    toggleIcon.src = newSymbol;
-        
-}
+        setChatState(isChatExpanded);
+    }
 
-    // Agregar el evento de clic al botón
+    function setChatState(expanded) {
+        isChatExpanded = expanded;
+        chatContainer.style.height = expanded ? "300px" : "40px";
+        toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
+    }
+
     toggleChatBtn.addEventListener("click", updateChatState);
 
-    // Asegurarse de que el botón y el chat reflejen el estado correcto al cargar la página
-    updateChatState();
-    
-            });
-        
-    ;
+    window.addEventListener('load', () => {
+        setChatState(true); // Expandimos primero
 
+        // Esperamos al siguiente ciclo de renderizado
+        requestAnimationFrame(() => {
+            chatContainer.scrollTop = 0; // Llevar arriba
+
+            // Después de otro frame, contraemos
+            requestAnimationFrame(() => {
+                setChatState(false);
+            });
+        });
+    });
+});
+
+window.addEventListener('load', () => {
+    // Expandir primero
+    setChatState(true);
+
+    // Esperar 500ms para que el navegador pinte la expansión
+    setTimeout(() => {
+        chatContainer.scrollTop = 0;
+
+        // Ahora contraer con animación visible
+        setChatState(false);
+    }, 500); // este delay da tiempo a que el navegador "vea" la expansión antes de contraer
+});
+
+
+
+    })
 
 
 

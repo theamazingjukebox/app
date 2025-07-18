@@ -211,8 +211,8 @@
   
   #username-modal {
     position: absolute;
-        top: 89.5%;
-        left: 20%;
+        top: 88.5%;
+        left: 50%;
         transform: translate(-50%, -50%);
         background-color: transparent;
         border: 0px solid palegreen;
@@ -231,7 +231,7 @@
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #username-modal {
-        left: 27%;
+        left: 50%;
     }
 }
 

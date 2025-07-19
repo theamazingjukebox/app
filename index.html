@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.31, maximum-scale=5, user-scalable=yes">
 <title>The Amazing Jukebox</title>
-<link rel="icon" type="image/png" href="1.6.png">
+<link rel="icon" type="image/png" href="ajfavicon.svg">
 <link rel="stylesheet" type="text/css" href="./ajlivechat.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,7 +117,7 @@
         position: relative;
     }
 }
-    
+   
    
     #info-container {
         display: flex;
@@ -248,7 +248,7 @@ body {
 .background-container {
     position: relative;
     width: 100%;
-    height: 75vh;
+    height: 110%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -270,12 +270,12 @@ body {
 @media (max-width: 768px) {
     .background-container {
         width: 100%;
-        height: 120vh;
+        height: 150vh;
     }
 
     .background-img {
         width: 100%;
-        height: 100%;
+        height: 120%;
          /* Ajusta la imagen para cubrir el contenedor */
     }
          /* Ajusta la imagen para cubrir el contenedor */
@@ -289,6 +289,11 @@ body {
     }
 }
 
+@media (min-width: 768px)  {
+    .background-container {
+        height: 150%;
+    }
+}
 
 
 
@@ -334,11 +339,13 @@ body {
     #ad-container {
         display: none;
         position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
-    top: 88%; /* Centra verticalmente */
+    bottom: 0%; /* Centra verticalmente */
     left: 48%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     z-index: 2; /* Asegura que el video esté encima de la imagen */
     text-align: center;
+    margin: 0%;
+    overflow: hidden;
     
 }
 
@@ -408,6 +415,9 @@ background-image: url('boton1.png');
     }
 }
 
+.fullscreen-mode #liked-songs-button {
+    left: 50%;
+}
 
   
          
@@ -536,17 +546,135 @@ background-image: url('boton1.png');
     transform: rotate(85deg);
 }
     
-   
+
+    body {
+    overflow-y: hidden;
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    body {
+        overflow-y: auto;
+    }
+}
     
     #donate-button-container {
     position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 93.5%; /* Ajusta este valor para colocar el botón verticalmente */
+    bottom: -28.5%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
     z-index: 5;
     padding: 10px; /* Agrega espacio interno */
     /* Puedes ajustar el tamaño del contenedor y otros estilos aquí */
 }
+
+.logos {
+    position: absolute;
+    bottom: -40%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 28%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+.logos2 {
+    position: absolute;
+    bottom: -27%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 13%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+.logos3 {
+    position: absolute;
+    bottom: -23%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+.logos4 {
+    position: absolute;
+    bottom: -39%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 69%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+    
+.logos5 {
+    position: absolute;
+    bottom: -22%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 86%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+    
+.logos6 {
+    position: absolute;
+    bottom: -21%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 67%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+
+.logos7 {
+    position: absolute;
+    bottom: -18%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 88%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    padding: 10px; 
+    margin: 0%;
+overflow: hidden;
+        
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .logos7 {
+        bottom: -21%;
+    }
+}
+
+
+.logos8 {
+    position: absolute;
+    bottom: -83%; /* Ajusta este valor para colocar el botón verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    z-index: -9999;
+    padding: 10px; 
+    margin: 0%;
+    width: 100%
+overflow: hidden;
+        
+}
+
+    
     #messages {
     font-family: Orbitron; /* Puedes cambiar la fuente según tus preferencias */
     font-size: 14px;
@@ -1354,7 +1482,6 @@ button, a, img {
         shuffleArray(videos);
         playNextVideo();
     
-        
 const chatContainer = document.getElementById("chat");
 const toggleChatBtn = document.getElementById("toggle-chat-btn");
 const toggleIcon = document.getElementById("toggle-icon");
@@ -1454,8 +1581,6 @@ window.addEventListener('load', () => {
 
 
 
-
-
 </script>
 </head>
 <body>
@@ -1501,11 +1626,7 @@ window.addEventListener('load', () => {
 
         
         <div id="video-container"></div>
-        <div id="ad-container">
-            <a href="https://www.instagram.com/flodz_/">
-            <img src="quarter-removebg-preview.png" alt="Go Follow" class="ad-image">
-            </a>
-        </div>
+       
             <!-- Contenido del video aquí -->
             <div id="like-button" onclick="likeSong()" disabled>
                 <img src="file2.png" alt="Like" class="like-button-img">
@@ -1542,21 +1663,7 @@ window.addEventListener('load', () => {
             </div>
         </div>
 
-        <div id="donate-button-container">
-            <div id="donate-button"></div>
-            <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-            <script>
-            PayPal.Donation.Button({
-            env:'production',
-            hosted_button_id:'Q52DFRN8D4BS8',
-            image: {
-            src:'https://www.paypalobjects.com/en_US/MX/i/btn/btn_donateCC_LG.gif',
-            alt:'Donate with PayPal button',
-            title:'PayPal - The safer, easier way to pay online!',
-            }
-            }).render('#donate-button');
-            </script>
-            </div>
+        
 
             <div id="emoji-container" style="display: none;">
                 <!-- Aquí puedes agregar más emojis según sea necesario -->
@@ -1636,9 +1743,31 @@ window.addEventListener('load', () => {
     src="Sin título1.22.png" alt="Descripción del GIF" style="width: 90%; height: auto;">
 </div>
     </div>
+
+   
+    <div id="donate-button-container">
+    <a href="https://www.paypal.com/donate/?hosted_button_id=Q52DFRN8D4BS8" target="_blank">
+        <img src="paypallogo.png" alt="Donar con PayPal" title="Dona con PayPal" width="200">
+    </a>
+</div>
+
+    <img src="Univlogo.png" alt="Logo" class="logos" width="550" title="Tu Imagen">
+    <img src="warnerlogo.png" alt="Logo" class="logos2" width="400" title="Tu Imagen">
+    <img src="gibslogo.png" alt="Logo" class="logos3" width="250" title="Tu Imagen">
+    <img src="ytlogo.png" alt="Logo" class="logos4" width="500" title="Tu Imagen">
+    <img src="fuellogo.png" alt="Logo" class="logos5" width="310" title="Tu Imagen">
+    <img src="sony.png" alt="Logo" class="logos6" width="270" title="Tu Imagen">
+    <img src="gitlogo.png" alt="Logo" class="logos7" width="120" title="Tu Imagen">
+     <img src="subfondo.png" alt="Logo" class="logos8" width="100%" title="Tu Imagen">
+
+ <div id="ad-container">
+            <a href="https://www.instagram.com/flodz_/">
+            <img src="quarter-removebg-preview.png" alt="Go Follow" class="ad-image">
+            </a>
+        </div>
+
     
-    
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 <script src="ajlivechat2.js"></script>
 </body>

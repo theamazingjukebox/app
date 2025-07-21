@@ -275,14 +275,14 @@
  
 
   .system2 {
-    background-color: #34db9b9d; /* Cambia el color de fondo aquí */
+    background-color: #34db9b00; /* Cambia el color de fondo aquí */
     color: white; /* Cambia el color del texto aquí */
     padding: 0px; /* Ajusta el espacio interno si es necesario */
     border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
     border-top-right-radius: 0px;
-    border: 2px solid rgba(152, 251, 152, 0.5);
+    border: 0px solid rgba(152, 251, 152, 0);
     border-radius: 5px; 
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0), 0px 0px 20px rgba(255, 255, 255, 0);
     font-family: monospace;
     font-weight: bold;
     font-size: 16px;

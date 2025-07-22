@@ -760,7 +760,7 @@ font-size: 1.4em;
 @media (min-width: 768px) {
     #disco-gif {
         /* Cambia el valor de left según tus necesidades */
-        max-width: 40%;
+        max-width: 35%;
         margin-top: -20px;
     }
 }

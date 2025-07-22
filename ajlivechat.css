@@ -54,7 +54,7 @@
     top: 92%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 49%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
-    border: 3px solid rgba(37, 99, 114, 0.596);
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
     background-image: url('Futuristic\ Space.gif');
     background-position: center;

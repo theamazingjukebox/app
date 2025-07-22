@@ -70,6 +70,12 @@
             z-index: 9999;
         }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #chat {
+        top: 90.5%;
+    }
+}
+
         
 #chat.chat-contracted {
     height: 50px; /* Cambia la altura según tus preferencias */
@@ -221,6 +227,12 @@
         color: white;
         display: none; /* Inicialmente oculto */
         z-index: 5;
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #username-modal {
+        top: 92%;
+    }
 }
 
 #username-modal label {

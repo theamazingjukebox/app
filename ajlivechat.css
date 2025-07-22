@@ -751,7 +751,7 @@ font-size: 1.4em;
     left: 0;
     background-color: #00000000;
     background-size: 300%;
-    width: 100%;
+    width: 150%;
     height: auto;
     display: none; /* Oculto por defecto */
     z-index: 999; /* Asegúrate de que esté por encima de otros elementos */

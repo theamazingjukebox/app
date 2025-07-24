@@ -362,7 +362,7 @@ body {
     #ad-container {
         
         position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
-    bottom: -38%; /* Centra verticalmente */
+    bottom: -40%; /* Centra verticalmente */
     left: 48.5%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     z-index: 2; /* Asegura que el video esté encima de la imagen */
@@ -374,7 +374,7 @@ body {
 
 /* Ancho de la imagen para pantallas grandes */
 .ad-image {
-    width: 27%; /* Ajusta el ancho de la imagen en pantallas grandes */
+    width: 97%; /* Ajusta el ancho de la imagen en pantallas grandes */
     height: auto; /* Mantiene la proporción */
     margin-left: 3%;
 }
@@ -391,6 +391,13 @@ body {
     .ad-image {
         margin-left: 9%;
         
+    }
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .ad-image {
+        bottom: -43%;
+        width: 78%;
     }
 }
          
@@ -1845,7 +1852,7 @@ window.addEventListener('load', () => {
 
  <div id="ad-container">
             <a href="https://www.instagram.com/flodz_/">
-            <img src="quarter-removebg-preview.png" alt="Go Follow" class="ad-image">
+            <img src="Diseño sin título (34).png" alt="Go Follow" class="ad-image">
             </a>
         </div>
 

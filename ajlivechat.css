@@ -469,7 +469,10 @@ font-size: 1.4em;
     margin-top: -45px;
     margin-right: 25px;
     transition: color 0.3s ease;
-    font-family: 'Orbitron'
+    font-family: 'Orbitron';
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.8), 
+                 0 0 15px rgba(0, 255, 255, 0.6), 
+                 0 0 25px rgba(0, 255, 255, 0.4);
 }
 
 
@@ -653,7 +656,7 @@ font-size: 1.4em;
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
     margin-top: 63%;
-    left: 37%;
+    left: 32.3%;
     transform: translate(-50%, -50%);
     background-color: #a0458227;
     background: radial-gradient(
@@ -675,8 +678,7 @@ font-size: 1.4em;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 999;
     max-width: 219px;
-    min-height: 450px;
-    max-height: 200px;    
+    min-height: 100px;
     transition: all 0.3s ease; /* Suave */
 }
 
@@ -692,6 +694,64 @@ font-size: 1.4em;
 }
 
 .info-box.show {
+    display: block; /* Mostrar cuadro cuando esté activo */
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .info-box {
+        left: 37%;   
+            
+    }
+}
+
+
+.info-box2 {
+    display: none; /* Cuadros ocultos por defecto */
+    position: absolute;
+    margin-top: 63%;
+    left: 32.3%;
+    transform: translate(-50%, -50%);
+    background-color: #a0458227;
+    background: radial-gradient(
+        circle, 
+        #d83ca4, 
+        #a0458260, 
+        #a0458200
+    );
+    font-family: 'Orbitron';
+    color: #000000; /* Color verde neón */
+    text-shadow:
+        0 0 5px #39ff14, /* Capa de brillo más cercana */
+        0 0 10px #39ff14, 
+        0 0 20px #39ff14, 
+        0 0 30px #00ff00, /* Capa de brillo más intensa */
+        0 0 40px #00ff00;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    max-width: 219px;
+    height: 730px;    
+    transition: all 0.3s ease; /* Suave */
+}
+
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .info-box2 {
+        left: 37%;   
+            
+    }
+}
+
+@media (min-width: 768px) {
+    .info-box2 {
+        margin-top: 15%;
+        margin-left: 47%;
+        
+    }
+}
+
+.info-box2.show {
     display: block; /* Mostrar cuadro cuando esté activo */
 }
 
@@ -1193,4 +1253,5 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 

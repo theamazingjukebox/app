@@ -906,7 +906,7 @@ button, a, img {
         { src: "Roxette - It Must Have Been Love (Official Music Video).mp4", liked: false },
         { src: "Toto - Hold The Line (Official Video).mp4", liked: false },
         { src: "ABBA - The Winner Takes It All.mp4", liked: false },
-        { src: "A Flock Of Seagulls - I Ran (So Far Away) (Video).mp4", liked: false },
+        { src: "The Royal Concept - Smile.mp4", liked: false },
         { src: "Paula Abdul - Straight Up.mp4", liked: false },
         { src: "Martika - Toy Soldiers.mp4", liked: false },
         { src: "Kix - Dont Close Your Eyes (Official Music Video).mp4", liked: false },
@@ -1177,7 +1177,8 @@ button, a, img {
         { src: "Alison Wonderland - Already Gone (Official Audio) ft. Brave Lido.mp4", liked: false },
         { src: "RÜFÜS - Innerbloom (What So Not Remix).mp4", liked: false },
         { src: "True Lies - If U Wanna - Official.mp4", liked: false },
-        { src: "Sofia Reyes Piso 21 - Cuando Estás Tú (Official Music Video).mp4", liked: false }
+        { src: "Sofia Reyes Piso 21 - Cuando Estás Tú (Official Music Video).mp4", liked: false },
+        { src: "Paramore - Part II (Official Audio).mp4", liked: false }
     ];
 
     const songInfo = {
@@ -1265,7 +1266,7 @@ button, a, img {
         "Debbie Gibson - Foolish Beat (Official Music Video).mp4": { id: 81, name: "Foolish Beat (Official Music Video)", artist: "Debbie Gibson", links: "https://youtu.be/qf8BoWKeHow?si=7flfbv_FFqLAkMyD" },
         "Toto - Hold The Line (Official Video).mp4": { id: 82, name: "Hold The Line", artist: "Toto", links: "https://youtu.be/htgr3pvBr-I?si=aliUj5bQYIvEmai5" },
         "ABBA - The Winner Takes It All.mp4": { id: 83, name: "The Winner Takes It All", artist: "ABBA", links: "https://youtu.be/92cwKCU8Z5c?si=de1HMTzqfgMrKRxD" },
-        "A Flock Of Seagulls - I Ran (So Far Away) (Video).mp4": { id: 84, name: "I Ran (So Far Away)", artist: "A Flock Of Seagulls", links: "https://youtu.be/iIpfWORQWhU?si=hs00bjY1xB0ITE39" },
+        "The Royal Concept - Smile.mp4": { id: 84, name: "Smile", artist: "The Royal Concept", links: "https://youtu.be/BscZ5LD-N90?si=vBXi3B_Xi51LOX_y" },
         "Paula Abdul - Straight Up.mp4": { id: 85, name: "Straight Up", artist: "Paula Abdul", links: "https://youtu.be/El1kgCqD7Xk?si=m5bkUQojUlym7JAH" },
         "Martika - Toy Soldiers.mp4": { id: 86, name: "Toy Soldiers", artist: "Martika", links: "https://youtu.be/LvdLovAaYzM?si=GxT1f8Y5FZkixg69" },
         "Kix - Dont Close Your Eyes (Official Music Video).mp4": { id: 87, name: "Dont Close Your Eyes", artist: "Kix", links: "https://youtu.be/DeM3CmMA9K0?si=WDwNs2EasdhA-d4j" },
@@ -1527,7 +1528,8 @@ button, a, img {
         "Alison Wonderland - Already Gone (Official Audio) ft. Brave Lido.mp4": { id: 343, name: "Already Gone (Official Audio) ft. Brave Lido", artist: "Alison Wonderland", links: "https://youtu.be/6Q0_ixCbdeo?si=OB93c0AxNsxyMPyJ" },
         "RÜFÜS - Innerbloom (What So Not Remix).mp4": { id: 344, name: "Innerbloom (What So Not Remix)", artist: "RÜFÜS", links: "https://www.youtube.com/watch?v=8dNIPca1LD8" },
         "True Lies - If U Wanna - Official.mp4": { id: 345, name: "If U Wanna", artist: "True Lies", links: "https://youtu.be/knoKngdT9lU?si=oEvqvLVMSxD3lj7M" },
-        "Sofia Reyes Piso 21 - Cuando Estás Tú (Official Music Video).mp4": { id: 346, name: "Cuando Estás Tú (Official Music Video)", artist: "Sofia Reyes, Piso 21", links: "https://youtu.be/N45QsMsr6xU?si=CJod4pPIRdFuyY7B" }
+        "Sofia Reyes Piso 21 - Cuando Estás Tú (Official Music Video).mp4": { id: 346, name: "Cuando Estás Tú (Official Music Video)", artist: "Sofia Reyes, Piso 21", links: "https://youtu.be/N45QsMsr6xU?si=CJod4pPIRdFuyY7B" },
+        "Paramore - Part II (Official Audio).mp4": { id: 347, name: "Part II (Official Audio)", artist: "Paramore", links: "https://youtu.be/45Xzgma4LMk?si=iGB7WdyIjyjk0Kax" }
     };
 
     let currentVideoIndex = -1;
@@ -1795,6 +1797,8 @@ window.addEventListener('load', () => {
 
             <!-- Fondo oscuro dinámico -->
 <div id="disco-background" style="display: none;"></div>
+
+<div id="permanent-background"></div>
             
             <img id="disco-gif" src="disco.gif" alt="Disco Mode GIF" style="position: fixed; top: -25px; left: 50%; transform: translateX(-50%); width: 80%; display: none;">
             

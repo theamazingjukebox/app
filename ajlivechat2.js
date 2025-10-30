@@ -491,7 +491,7 @@ function generateTwinklingStars() {
         // Verificar si es pantalla grande y ajustar el tamaño
         let size;
         if (isLargeScreen) {
-            size = Math.random() * 17 + 10; // Tamaño entre 10px y 30px en pantallas grandes
+            size = Math.random() * 27 + 10; // Tamaño entre 10px y 30px en pantallas grandes
         } else {
             size = Math.random() * 17 + 5; // Tamaño entre 5px y 16px en pantallas pequeñas
         }
@@ -548,3 +548,4 @@ window.addEventListener("resize", () => {
 });
 
 window.addEventListener("load", fixBackground);
+

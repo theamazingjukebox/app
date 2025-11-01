@@ -723,7 +723,7 @@ font-size: 1.4em;
     text-shadow:
         0 0 5px #2fb9be, /* Capa de brillo más cercana */
         0 0 10px #2fb9be, 
-        0 0 20px ##2fb9be, 
+        0 0 20px #2fb9be, 
         0 0 30px #00b5bb, /* Capa de brillo más intensa */
         0 0 40px #00b5bb;
     border-radius: 10px;
@@ -1270,6 +1270,7 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 
 
 

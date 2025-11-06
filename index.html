@@ -305,7 +305,7 @@ body {
     .background-img {
         width: 100%;
         height: 120%;
-        pointer-events: none;
+        
          /* Ajusta la imagen para cubrir el contenedor */
     }
          /* Ajusta la imagen para cubrir el contenedor */
@@ -340,11 +340,11 @@ body {
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     width: 267px; /* Ancho deseado */
     height: 191px; /* Altura deseada */
-    z-index: 3; /* Asegura que el video esté encima de la imagen */
+    z-index: 0; /* Asegura que el video esté encima de la imagen */
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: auto;
+    
 }
 
     @media (min-width: 768px) {
@@ -368,9 +368,74 @@ body {
         border: 2px solid rgba(216, 106, 2, 0.5);
         border-radius: 15px; 
         box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5), 0px 0px 40px rgba(255, 255, 255, 0.5);
-        z-index: 9;
+        z-index: 0;
 }
-    
+
+#video-container video::-webkit-media-controls {
+  display: none !important;
+}
+
+#video-container video::-moz-media-controls {
+  display: none !important;
+}
+
+
+
+#video-activation-zone {
+  position: absolute;
+  top: 46%; /* ajusta según la posición del video */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 220px;
+  z-index: 2; /* por encima del video pero debajo de los controles */
+  background-color: transparent;
+}
+
+
+#video-controls-overlay {
+  position: fixed;
+  bottom: 1500px; /* ajusta aquí para escritorio */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  gap: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* oculto por defecto */
+}
+
+/* Botones */
+#video-controls-overlay button {
+  font-size: 52px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Responsivo para pcs */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  #video-controls-overlay {
+    bottom: 520px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  #video-controls-overlay button {
+    font-size: 40px;
+    padding: 6px 10px;
+  }
+}
 
     #ad-container {
         
@@ -1735,9 +1800,17 @@ window.addEventListener('load', () => {
     <div class="background-container">
         <img src="fondonov8.1.png" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;" />
 
-        <video autoplay muted loop playsinline class="background-video">
-    <source src="videonov.mp4" type="video/mp4">
-  </video>
+        <video
+  id="bg-video"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  class="background-video"
+>
+  <source src="videonov.mp4" type="video/mp4">
+</video>
 
         <header id="top-banner">
         
@@ -1789,6 +1862,7 @@ window.addEventListener('load', () => {
 
         
         <div id="video-container"></div>
+        <div id="video-activation-zone"></div>
        
             <!-- Contenido del video aquí -->
             <div id="like-button" onclick="likeSong()" disabled>

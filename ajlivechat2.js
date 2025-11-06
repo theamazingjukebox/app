@@ -549,3 +549,57 @@ window.addEventListener("resize", () => {
 
 window.addEventListener("load", fixBackground);
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  const videoContainer = document.getElementById("video-container");
+
+  setTimeout(() => {
+    const videoPlayer = videoContainer.querySelector("video");
+    if (!videoPlayer) return;
+
+    const controlsOverlay = document.createElement("div");
+    controlsOverlay.id = "video-controls-overlay";
+    
+
+    const playPauseBtn = document.createElement("button");
+    playPauseBtn.textContent = "⏯️";
+    playPauseBtn.onclick = () => {
+      if (videoPlayer.paused) {
+        videoPlayer.play();
+      } else {
+        videoPlayer.pause();
+      }
+    };
+
+    const muteBtn = document.createElement("button");
+    muteBtn.textContent = videoPlayer.muted ? "🔇" : "🔊";
+    muteBtn.onclick = () => {
+      videoPlayer.muted = !videoPlayer.muted;
+      muteBtn.textContent = videoPlayer.muted ? "🔇" : "🔊";
+    };
+
+    [playPauseBtn, muteBtn].forEach((btn) => {
+    
+    });
+
+
+    controlsOverlay.appendChild(playPauseBtn);
+    controlsOverlay.appendChild(muteBtn);
+    document.body.appendChild(controlsOverlay);
+
+    let hideTimeout;
+    function showControls() {
+      controlsOverlay.style.opacity = "1";
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        controlsOverlay.style.opacity = "0";
+      }, 5000);
+    }
+
+    // Solo mostrar controles si se toca el área de activación
+    const activationZone = document.getElementById("video-activation-zone");
+    activationZone.addEventListener("click", showControls);
+    activationZone.addEventListener("touchstart", showControls);
+  }, 300);
+});
+

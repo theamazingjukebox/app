@@ -887,10 +887,10 @@ font-size: 1.4em;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
     overflow: hidden;
     
-    animation: movingGlow2 25s infinite alternate cubic-bezier(0.42, 0, 0.58, 1) /* Animación más suave */
+    animation: movingGlow2 90s infinite alternate cubic-bezier(0.42, 0, 0.58, 1) /* Animación más suave */
     ; /* Animación más suave */
     
         background-size: 120%;
@@ -1270,6 +1270,7 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 
 
 

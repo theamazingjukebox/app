@@ -320,6 +320,15 @@ body {
 }
 
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  
+}
+
+
 .background-video {
   position: absolute;
   top: 0;
@@ -340,7 +349,7 @@ body {
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     width: 267px; /* Ancho deseado */
     height: 191px; /* Altura deseada */
-    z-index: 0; /* Asegura que el video esté encima de la imagen */
+    z-index: 2; /* Asegura que el video esté encima de la imagen */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -380,7 +389,7 @@ body {
   transform: translate(-50%, -50%);
   width: 300px;
   height: 220px;
-  z-index: 2; /* por encima del video pero debajo de los controles */
+  z-index: 4; /* por encima del video pero debajo de los controles */
   background-color: transparent;
 }
 
@@ -1790,7 +1799,8 @@ window.addEventListener('load', () => {
 <div id="info-container">
     
     <div class="background-container">
-        <img src="fondonov8.6.png" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;" />
+        <img src="nov3.png" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;" />
+        <img src="nov2.1.png" class="background-img overlay" alt="Overlay Image" />
 
         <video
   id="bg-video"

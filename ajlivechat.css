@@ -905,6 +905,32 @@ font-size: 1.4em;
         background-position: center;
     }
 
+
+     0.2% { 
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 0.5%, transparent 80%), #00000000;
+        background-size: 120%;
+        background-position: center;
+    }   
+
+        0.4% { 
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 1%, transparent 80%), #00000000;
+        background-size: 120%;
+        background-position: center;
+    }
+
+        0.6% { 
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 2%, transparent 80%), #00000000;
+        background-size: 120%;
+        background-position: center;
+    }
+
+        0.8% { 
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 2.5%, transparent 80%), #00000000;
+        background-size: 120%;
+        background-position: center;
+    }
+
+        
     1% { 
         background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 3%, transparent 80%), #00000000;
         background-size: 120%;
@@ -1270,6 +1296,7 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 
 
 

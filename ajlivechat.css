@@ -906,180 +906,180 @@ font-size: 1.4em;
     }
 
     1% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 1%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 3%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
 
     1.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 2%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 6%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
 
     2% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 8%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
 
     } 2.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 7.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 8.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
 
     } 3% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 8%, transparent 80%), #00000000;
-        background-size: 120%;
-        background-position: center;
-    } 3.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 8.5%, transparent 80%), #00000000;
-        background-size: 120%;
-        background-position: center;
-    } 4% { 
         background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 9%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
-    } 4.5% { 
+    } 3.5% { 
         background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 9.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
-    } 5% { 
+    } 4% { 
         background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 10%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
-    } 5.5% { 
+    } 4.5% { 
         background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 10.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
-    } 6% { 
+    } 5% { 
         background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 11%, transparent 80%), #00000000;
+        background-size: 120%;
+        background-position: center;
+    } 5.5% { 
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 11.5%, transparent 80%), #00000000;
+        background-size: 120%;
+        background-position: center;
+    } 6% { 
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 0%, rgba(0, 0, 0, 0) 12%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
 
     6.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 1%, rgba(0, 0, 0, 0) 11.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 1%, rgba(0, 0, 0, 0) 12.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     7% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 1.5%, rgba(0, 0, 0, 0) 12%,  transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 1.5%, rgba(0, 0, 0, 0) 13%,  transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     7.2% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 1.75%,  rgba(0, 0, 0, 0) 12.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 1.75%,  rgba(0, 0, 0, 0) 13.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     7.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2%, rgba(0, 0, 0, 0) 13%,  transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2%, rgba(0, 0, 0, 0) 14%,  transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     10% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2.25%, rgba(0, 0, 0, 0) 13.5%,  transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2.25%, rgba(0, 0, 0, 0) 14.5%,  transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     12.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2.5%, rgba(0, 0, 0, 0) 14%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2.5%, rgba(0, 0, 0, 0) 15%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     15% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2.75%, rgba(0, 0, 0, 0) 14.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 2.75%, rgba(0, 0, 0, 0) 15.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     17.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3%, rgba(0, 0, 0, 0) 15%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3%, rgba(0, 0, 0, 0) 16%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     20% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3.25%, rgba(0, 0, 0, 0) 15.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3.25%, rgba(0, 0, 0, 0) 16.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     22.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3.5%, rgba(0, 0, 0, 0) 16%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3.5%, rgba(0, 0, 0, 0) 17%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     25% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3.75%, rgba(0, 0, 0, 0) 16.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 3.75%, rgba(0, 0, 0, 0) 17.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     27.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4%, rgba(0, 0, 0, 0) 17%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4%, rgba(0, 0, 0, 0) 18%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     30% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4.25%, rgba(0, 0, 0, 0) 17.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4.25%, rgba(0, 0, 0, 0) 18.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     32.5% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4.5%, rgba(0, 0, 0, 0) 18%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4.5%, rgba(0, 0, 0, 0) 19%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     35% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4.75%, rgba(0, 0, 0, 0) 18.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 4.75%, rgba(0, 0, 0, 0) 19.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     37% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5%, rgba(0, 0, 0, 0) 19%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5%, rgba(0, 0, 0, 0) 20%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     40% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5.25%, rgba(0, 0, 0, 0) 19.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5.25%, rgba(0, 0, 0, 0) 20.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     42% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5.5%, rgba(0, 0, 0, 0) 20%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5.5%, rgba(0, 0, 0, 0) 21%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     44% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5.75%, rgba(0, 0, 0, 0) 20.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 5.75%, rgba(0, 0, 0, 0) 21.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     46% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6%, rgba(0, 0, 0, 0) 21%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6%, rgba(0, 0, 0, 0) 22%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     49% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6.25%, rgba(0, 0, 0, 0) 21.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6.25%, rgba(0, 0, 0, 0) 22.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     51% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6.5%, rgba(0, 0, 0, 0) 22%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6.5%, rgba(0, 0, 0, 0) 23%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     53% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6.75%, rgba(0, 0, 0, 0) 22.1%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 6.75%, rgba(0, 0, 0, 0) 23.1%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     55% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 7.25%, rgba(0, 0, 0, 0) 22.3%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 7.25%, rgba(0, 0, 0, 0) 23.3%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
     
     100% { 
-        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 7.5%, rgba(0, 0, 0, 0) 22.5%, transparent 80%), #00000000;
+        background: radial-gradient(circle at 50% 48%, rgba(241, 86, 164) 7.5%, rgba(0, 0, 0, 0) 23.5%, transparent 80%), #00000000;
         background-size: 120%;
         background-position: center;
     }
@@ -1270,6 +1270,7 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 
 
 

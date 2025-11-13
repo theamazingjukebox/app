@@ -808,6 +808,7 @@ font-size: 1.4em;
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .disco-button-img {
         left: 54%;
+        max-width: 1.5%;
     }
 }
 
@@ -1296,6 +1297,7 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 
 
 

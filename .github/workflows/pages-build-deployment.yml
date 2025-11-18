@@ -6,8 +6,32 @@ on:
       - main
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Pre-clean runner
+        run: |
+          echo "Liberando espacio antes del build..."
+          rm -rf node_modules || true
+          rm -rf dist || true
+          rm -rf .cache || true
+          rm -rf ~/.npm/_cacache || true
+          rm -rf ~/.cache || true
+          find /tmp -type f -delete || true
+          find /tmp -type d -empty -delete || true
+          df -h || true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -18,27 +42,6 @@ jobs:
       id-token: write
 
     steps:
-      - name: Pre-clean runner
-        run: |
-          echo "Liberando espacio antes del deploy..."
-          rm -rf node_modules || true
-          rm -rf build || true
-          rm -rf dist || true
-          rm -rf .cache || true
-          rm -rf ~/.npm/_cacache || true
-          rm -rf ~/.cache || true
-          find /tmp -type f -delete || true
-          find /tmp -type d -empty -delete || true
-          df -h || true
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

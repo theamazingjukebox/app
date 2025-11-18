@@ -13,11 +13,20 @@ jobs:
       - name: Deep Cleanup
         run: |
           echo "Liberando espacio en el runner..."
-          rm -rf node_modules
-          rm -rf build
-          rm -rf dist
-          rm -rf .cache
-          rm -rf /tmp/*
-          rm -rf ~/.npm/_cacache
-          rm -rf ~/.cache
-          df -h
+
+          # Borrar carpetas del proyecto
+          rm -rf node_modules || true
+          rm -rf build || true
+          rm -rf dist || true
+          rm -rf .cache || true
+
+          # Borrar caches del sistema
+          rm -rf ~/.npm/_cacache || true
+          rm -rf ~/.cache || true
+
+          # Borrar archivos temporales sin tocar carpetas protegidas
+          find /tmp -type f -delete || true
+          find /tmp -type d -empty -delete || true
+
+          # Mostrar espacio libre
+          df -h || true

@@ -1,0 +1,20 @@
+# Ignorar todos los videos
+*.mp4
+
+# Ignorar imágenes pesadas
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+
+# Ignorar audios
+*.mp3
+*.wav
+
+# Ignorar archivos temporales y de build
+node_modules/
+.cache/
+dist/
+tmp/
+*.log

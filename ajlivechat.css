@@ -873,7 +873,7 @@ font-size: 1.4em;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: -1;
     overflow: hidden;
     background-color: #00000059; /* Fondo oscuro general */
     
@@ -1297,6 +1297,7 @@ font-size: 1.4em;
             0 0 40px #FF6347;
     }
 }
+
 
 
 

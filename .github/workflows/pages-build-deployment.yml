@@ -31,9 +31,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload artifact manually
+        uses: actions/upload-artifact@v4
         with:
+          name: github-pages
           path: .
 
       - name: Deploy to GitHub Pages

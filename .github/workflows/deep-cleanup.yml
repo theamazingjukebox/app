@@ -1,0 +1,23 @@
+name: Deep Cleanup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deep Cleanup
+        run: |
+          echo "Liberando espacio en el runner..."
+          rm -rf node_modules
+          rm -rf build
+          rm -rf dist
+          rm -rf .cache
+          rm -rf /tmp/*
+          rm -rf ~/.npm/_cacache
+          rm -rf ~/.cache
+          df -h

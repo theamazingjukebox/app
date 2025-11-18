@@ -1,0 +1,40 @@
+name: Pages Build and Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pre-clean runner
+        run: |
+          echo "Liberando espacio antes del build..."
+          rm -rf node_modules || true
+          rm -rf build || true
+          rm -rf dist || true
+          rm -rf .cache || true
+          rm -rf ~/.npm/_cacache || true
+          rm -rf ~/.cache || true
+          find /tmp -type f -delete || true
+          find /tmp -type d -empty -delete || true
+          df -h || true
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --no-optional
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2

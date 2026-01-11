@@ -418,7 +418,7 @@ function generateVerticalStars() {
 
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
-    star.style.left = Math.random() * 50 + 'vw'; // Posición horizontal aleatoria
+    star.style.left = Math.random() * 30 + 'vw'; // Posición horizontal aleatoria
 
     let minVH = 10;
     let maxVH = 70;
@@ -477,7 +477,7 @@ function generateHorizontalStars() {
 
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
-    star.style.left = Math.random() * 50 + 'vw'; // Posición horizontal aleatoria
+    star.style.left = Math.random() * 30 + 'vw'; // Posición horizontal aleatoria
 
     let minVH = 10;
     let maxVH = 70;
@@ -543,7 +543,7 @@ function generateTwinklingStars() {
 
 // Función para establecer una posición aleatoria
 function setRandomPosition(star) {
-    star.style.left = Math.random() * 50 + 'vw'; // Posición horizontal aleatoria
+    star.style.left = Math.random() * 30 + 'vw'; // Posición horizontal aleatoria
 
     let minVH = 10;
     let maxVH = 70;
@@ -633,6 +633,7 @@ document.addEventListener("DOMContentLoaded", function () {
     activationZone.addEventListener("touchstart", showControls);
   }, 300);
 });
+
 
 
 

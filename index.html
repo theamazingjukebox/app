@@ -470,6 +470,81 @@ body {
   }
 }
 
+    
+ #loading-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none; /* permite ver/interactuar con el fondo */
+}
+
+.loading-box {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px 45px;
+  border-radius: 14px;
+  color: #00eaff;
+  font-family: monospace;
+  text-align: center;
+  box-shadow:
+    0 0 10px #00eaff,
+    0 0 30px rgba(0,234,255,0.4);
+}
+
+.loading-box {
+  animation: glowPulse 1.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { box-shadow: 0 0 10px #00eaff; }
+  to { box-shadow: 0 0 30px #00eaff; }
+}
+
+#loading-screen {
+  transition: opacity 0.4s ease;
+}
+
+.loading-title{
+  font-size:18px;
+  margin-bottom:10px;
+  letter-spacing:2px;
+}
+
+.loading-message{
+  font-size:22px;
+  margin-bottom:15px;
+}
+
+.loading-hint{
+  margin-top:10px;
+  font-size:14px;
+  opacity:0.8;
+}
+
+.loading-dots span{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin:0 3px;
+  border-radius:50%;
+  background:#00eaff;
+  animation:dotPulse 1.4s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(2){animation-delay:0.2s;}
+.loading-dots span:nth-child(3){animation-delay:0.4s;}
+.loading-dots span:nth-child(4){animation-delay:0.6s;}
+.loading-dots span:nth-child(5){animation-delay:0.8s;}
+
+@keyframes dotPulse{
+  0%{opacity:0.2; transform:scale(0.8);}
+  50%{opacity:1; transform:scale(1.2);}
+  100%{opacity:0.2; transform:scale(0.8);}
+}
+
+    
     #ad-container {
         
         position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
@@ -1825,6 +1900,17 @@ window.addEventListener('load', () => {
 
     })
 
+    
+window.addEventListener("load", () => {
+  document.getElementById("loading-screen").style.display = "none";
+});
+
+const loader = document.getElementById("loading-screen");
+loader.style.opacity = "0";
+
+setTimeout(() => {
+  loader.style.display = "none";
+}, 400);
 
 
 </script>
@@ -1915,6 +2001,30 @@ window.addEventListener('load', () => {
             <div id="next-song-button" onclick="playNextVideo()">
                 <img src="file.webp" alt="Next" class="next-button-img">
             </div>
+        
+
+        <div id="loading-screen">
+  <div class="loading-box">
+    <div class="loading-title">🕹️</div>
+
+    <div class="loading-message">
+      Preparing the jukebox... 
+    </div>
+
+    <div class="loading-dots">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="loading-hint">
+      Tap the video to turn the sound on 🔊
+    </div>
+  </div>
+</div>
+
 
         
             <div id="disco-mode-button" onclick="toggleDiscoMode()">

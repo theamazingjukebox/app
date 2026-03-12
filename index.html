@@ -507,26 +507,49 @@ body {
 }
 
 .loading-title{
-  font-size:35px;
+  font-size:55px;
   margin-bottom:10px;
   letter-spacing:2px;
 }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .loading-title {
+        font-size:35px;
+        
+    }
+}
+
 .loading-message{
-  font-size:22px;
+  font-size:42px;
   margin-bottom:15px;
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .loading-message {
+        font-size:22px;
+        
+    }
 }
 
 .loading-hint{
   margin-top:10px;
-  font-size:14px;
+  font-size:34px;
   opacity:0.8;
 }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .loading-hint {
+        font-size:14px;
+        
+    }
+}
+
+
+
 .loading-dots span{
   display:inline-block;
-  width:10px;
-  height:10px;
+  width:30px;
+  height:30px;
   margin:0 3px;
   border-radius:50%;
   background:#00eaff;
@@ -542,6 +565,14 @@ body {
   0%{opacity:0.2; transform:scale(0.8);}
   50%{opacity:1; transform:scale(1.2);}
   100%{opacity:0.2; transform:scale(0.8);}
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .loading-dots span {
+        width:10px;
+       height:10px;
+        
+    }
 }
 
     

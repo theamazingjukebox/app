@@ -581,27 +581,6 @@ window.addEventListener("resize", () => {
 window.addEventListener("load", fixBackground);
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  const video = document.getElementById("bg-video");
-
-  if (!video) return;
-
-  // Intenta reproducir tras cargar
-  const tryPlay = () => {
-    if (video.paused) {
-      video.play().catch(() => {});
-    }
-  };
-
-  // Reintenta poco después de carga
-  setTimeout(tryPlay, 800);
-
-  // Fuerza reproducción al primer toque o scroll (iOS workaround)
-  document.addEventListener("touchstart", tryPlay, { once: true });
-  document.addEventListener("scroll", tryPlay, { once: true });
-});
-
-
 
 
 document.addEventListener("DOMContentLoaded", function () {

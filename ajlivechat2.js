@@ -123,19 +123,28 @@ function shareCurrentSong() {
         }}}
 
         function playSongById(id) {
-            // Encuentra el índice de la canción con el id proporcionado
-            const index = videos.findIndex(video => songInfo[video.src].id === id);
+       // Encuentra el índice de la canción con el id proporcionado
+    const index = videos.findIndex(video => songInfo[video.key].id === id);
         
-            // Si se encontró la canción, cámbiala y reprodúcela
-            if (index !== -1) {
-                currentVideoIndex = index;
-                videoPlayer.src = videos[currentVideoIndex].src;
-                videoPlayer.load();
-                videoPlayer.play();
-                const likeButton = document.getElementById("like-button");
-                likeButton.disabled = false; // Habilitar botón para cada nueva canción
-            }
+       // Si se encontró la canción, cámbiala y reprodúcela
+    if (index !== -1) {
+        currentVideoIndex = index;
+        const current = videos[currentVideoIndex];
+
+        if (current.src.startsWith("yt:")) {
+            const videoId = current.src.replace("yt:", "");
+            ytPlayer.loadVideoById(videoId);
+            if (soundEnabled) ytPlayer.unMute();
+        } else {
+            videoPlayer.src = current.src;
+            videoPlayer.load();
+            videoPlayer.play();
         }
+
+        const likeButton = document.getElementById("like-button");
+        likeButton.disabled = false;
+    }
+}
     
         function generateSongLink(songSrc) {
             const encodedInfo = btoa(JSON.stringify({ songSrc: songSrc }));
@@ -600,62 +609,5 @@ document.addEventListener("DOMContentLoaded", function() {
   document.addEventListener("touchstart", tryPlay, { once: true });
   document.addEventListener("scroll", tryPlay, { once: true });
 });
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const videoContainer = document.getElementById("video-container");
-
-  setTimeout(() => {
-    const videoPlayer = videoContainer.querySelector("video");
-    if (!videoPlayer) return;
-
-    const controlsOverlay = document.createElement("div");
-    controlsOverlay.id = "video-controls-overlay";
-    
-
-    const playPauseBtn = document.createElement("button");
-    playPauseBtn.textContent = "⏯️";
-    playPauseBtn.onclick = () => {
-      if (videoPlayer.paused) {
-        videoPlayer.play();
-      } else {
-        videoPlayer.pause();
-      }
-    };
-
-    const muteBtn = document.createElement("button");
-    muteBtn.textContent = videoPlayer.muted ? "🔇" : "🔊";
-    muteBtn.onclick = () => {
-      videoPlayer.muted = !videoPlayer.muted;
-      muteBtn.textContent = videoPlayer.muted ? "🔇" : "🔊";
-    };
-
-    [playPauseBtn, muteBtn].forEach((btn) => {
-    
-    });
-
-
-    controlsOverlay.appendChild(playPauseBtn);
-    controlsOverlay.appendChild(muteBtn);
-    document.body.appendChild(controlsOverlay);
-
-    let hideTimeout;
-    function showControls() {
-      controlsOverlay.style.opacity = "1";
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(() => {
-        controlsOverlay.style.opacity = "0";
-      }, 5000);
-    }
-
-    // Solo mostrar controles si se toca el área de activación
-    const activationZone = document.getElementById("video-activation-zone");
-    activationZone.addEventListener("click", showControls);
-    activationZone.addEventListener("touchstart", showControls);
-  }, 300);
-});
-
-
 
 

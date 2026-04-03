@@ -110,7 +110,7 @@ document.getElementById("message-form").addEventListener("submit", function (e) 
 
 function shareCurrentSong() {
     if (currentVideoIndex >= 0 && currentVideoIndex < videos.length) {
-        const currentSong = songInfo[videos[currentVideoIndex].src];
+        const currentSong = songInfo[videos[currentVideoIndex].key];
         if (currentSong) {
             const timestamp = Date.now();
             const message = `🎶 Listen to this one: <a href="#" onclick="playSongById(${currentSong.id}); return false;">${currentSong.name} by ${currentSong.artist}</a>`;
@@ -157,7 +157,7 @@ function shareCurrentSong() {
             if (encodedInfo) {
                 try {
                     const decodedInfo = JSON.parse(atob(encodedInfo));
-                    const songIndex = videos.findIndex(video => video.src === decodedInfo.songSrc);
+                    const songIndex = videos.findIndex(video => video.key === decodedInfo.songSrc);
         
                     if (songIndex !== -1) {
                         currentVideoIndex = songIndex;

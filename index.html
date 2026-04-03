@@ -1970,120 +1970,80 @@ function initYouTubePlayer(videoId) {
         likedSongsPopup.style.display = "none";
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const videoContainer = document.getElementById("video-container");
-        videoContainer.appendChild(videoPlayer);
-        shuffleArray(videos);
-        playNextVideo();
-    
-const chatContainer = document.getElementById("chat");
-const toggleChatBtn = document.getElementById("toggle-chat-btn");
-const toggleIcon = document.getElementById("toggle-icon");
-
-let isChatExpanded = false; // estado inicial colapsado
-
-function updateChatState() {
-    isChatExpanded = !isChatExpanded;
-    setChatState(isChatExpanded);
-}
+// ======================
+// 🌐 ESTADO GLOBAL CHAT (ÚNICO)
+// ======================
+let isChatExpanded = false;
 
 function setChatState(expanded) {
+    const chatContainer = document.getElementById("chat");
+    const toggleIcon = document.getElementById("toggle-icon");
+
+    if (!chatContainer || !toggleIcon) return; // 🔒 seguridad
+
+    isChatExpanded = expanded;
     chatContainer.style.height = expanded ? "300px" : "40px";
     toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
 }
 
-// Evento del botón
-toggleChatBtn.addEventListener("click", updateChatState);
-
-// Estado inicial al cargar (expandido en este caso)
-setChatState(false);
-messages.scrollTop = 0;
+function updateChatState() {
+    setChatState(!isChatExpanded);
+}
 
 
-
-
-window.addEventListener('DOMContentLoaded', () => {
-    // 1. Forzar abrir el chat
-    setChatState(true);
-
-    // 2. Hacer scroll arriba
-    chatContainer.scrollTop = 0;
-
-    // 3. Volver a contraer tras un breve retraso para asegurar el render
-    setTimeout(() => {
-        setChatState(false);
-    }, 50); // con 50ms suele bastar, puedes ajustar
-});
-
-
+// ======================
+// 🚀 DOM READY
+// ======================
 document.addEventListener("DOMContentLoaded", function () {
+
     const videoContainer = document.getElementById("video-container");
     videoContainer.appendChild(videoPlayer);
+
     shuffleArray(videos);
-    playNextVideo();
+    waitForYTAndPlay();
 
     const chatContainer = document.getElementById("chat");
     const toggleChatBtn = document.getElementById("toggle-chat-btn");
-    const toggleIcon = document.getElementById("toggle-icon");
-
-    let isChatExpanded = false;
-
-    function updateChatState() {
-        isChatExpanded = !isChatExpanded;
-        setChatState(isChatExpanded);
-    }
-
-    function setChatState(expanded) {
-        isChatExpanded = expanded;
-        chatContainer.style.height = expanded ? "300px" : "40px";
-        toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
-    }
 
     toggleChatBtn.addEventListener("click", updateChatState);
 
-    window.addEventListener('load', () => {
-        setChatState(true); // Expandimos primero
+    // 🔥 estado inicial limpio
+    setChatState(false);
+    chatContainer.scrollTop = 0;
 
-        // Esperamos al siguiente ciclo de renderizado
-        requestAnimationFrame(() => {
-            chatContainer.scrollTop = 0; // Llevar arriba
+});
 
-            // Después de otro frame, contraemos
-            requestAnimationFrame(() => {
-                setChatState(false);
-            });
-        });
+
+// ======================
+// 🎬 WINDOW LOAD (visual + loader + chat animación)
+// ======================
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loading-screen");
+    const chatContainer = document.getElementById("chat");
+
+    requestAnimationFrame(() => {
+
+        // 🔥 1. tu comportamiento original (abrir → cerrar)
+        setChatState(true);
+
+        setTimeout(() => {
+            chatContainer.scrollTop = 0;
+            setChatState(false);
+        }, 500);
+
+        // 🔥 2. ocultar loader DESPUÉS
+        setTimeout(() => {
+            loader.style.opacity = "0";
+
+            setTimeout(() => {
+                loader.style.display = "none";
+            }, 300);
+
+        }, 550);
     });
 });
 
-window.addEventListener('load', () => {
-    // Expandir primero
-    setChatState(true);
-
-    // Esperar 500ms para que el navegador pinte la expansión
-    setTimeout(() => {
-        chatContainer.scrollTop = 0;
-
-        // Ahora contraer con animación visible
-        setChatState(false);
-    }, 500); // este delay da tiempo a que el navegador "vea" la expansión antes de contraer
-});
-
-
-
-    })
-
-    
-window.addEventListener("load", () => {
-  document.getElementById("loading-screen").style.display = "none";
-});
-
-const loader = document.getElementById("loading-screen");
-loader.style.opacity = "0";
-
-setTimeout(() => {
-  loader.style.display = "none";
-}, 400);
 
 
 </script>

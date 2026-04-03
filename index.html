@@ -2044,6 +2044,29 @@ window.addEventListener("load", () => {
     });
 });
 
+function waitForYTAndPlay() {
+    let attempts = 0;
+
+    const interval = setInterval(() => {
+        attempts++;
+
+        // 🔥 condiciones reales de seguridad
+        if (window.YT && YT.Player && ytPlayer && isPlayerReady) {
+            clearInterval(interval);
+            console.log("✅ YT listo, iniciando video");
+            playNextVideo();
+        }
+
+        // 🔒 fallback (evita loop infinito)
+        if (attempts > 20) {
+            clearInterval(interval);
+            console.warn("⚠️ YT tardó demasiado, fallback");
+            playNextVideo();
+        }
+
+    }, 100);
+}
+
 
 
 </script>

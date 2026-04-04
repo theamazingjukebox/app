@@ -347,6 +347,7 @@ body {
   object-fit: contain;
   z-index: -3;
   transform: translateZ(0);
+  will-change: transform;
 }
 
 
@@ -389,6 +390,7 @@ body {
         border-radius: 15px; 
         box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5), 0px 0px 40px rgba(255, 255, 255, 0.5);
         z-index: 0;
+        display: none;
 }
 
 
@@ -414,6 +416,20 @@ body {
         height: 190px;
     }
 }
+
+#video-poster {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  background-image: url("Stay Tuned.webp");
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 15px;
+  transition: opacity 0.3s ease;
+}
+
 
 
 
@@ -1780,6 +1796,25 @@ const songInfo = {
 // ======================
 let ytPlayer = null;
 let isPlayerReady = false;
+let qualityInterval = null;
+let endCheckInterval = null;
+
+function startEndWatcher() {
+    if (endCheckInterval) clearInterval(endCheckInterval);
+
+    endCheckInterval = setInterval(() => {
+        if (!ytPlayer || !isPlayerReady) return;
+
+        const duration = ytPlayer.getDuration();
+        const current = ytPlayer.getCurrentTime();
+
+        if (duration && (duration - current < 0.3)) {
+            clearInterval(endCheckInterval);
+            playNextVideo();
+        }
+
+    }, 200);
+}
 
     
 function initYouTubePlayer(videoId) {
@@ -1800,6 +1835,9 @@ function initYouTubePlayer(videoId) {
             onReady: (event) => {
                 isPlayerReady = true;
 
+                // 🔥 calidad baja inicial (clave)
+    event.target.setPlaybackQuality('small');
+
                 
     if (soundEnabled) {
                     event.target.unMute();
@@ -1809,16 +1847,53 @@ function initYouTubePlayer(videoId) {
                 }
 
                 event.target.playVideo();
+           
             },
+            
 
             onStateChange: (event) => {
-                if (event.data === YT.PlayerState.ENDED) {
-                    setTimeout(() => {
-                        playNextVideo();
-                    }, 200);
-                }
-            },
 
+    if (event.data === YT.PlayerState.PLAYING) {
+
+        const poster = document.getElementById("video-poster");
+
+    if (poster) {
+        poster.style.opacity = "0";
+
+        setTimeout(() => {
+            poster.style.display = "none";
+        }, 300);
+    }
+
+        // 🔥 limpiar previo
+        if (qualityInterval) clearInterval(qualityInterval);
+
+        // 🔥 insistir durante los primeros segundos
+        qualityInterval = setInterval(() => {
+            if (ytPlayer && isPlayerReady) {
+                ytPlayer.setPlaybackQuality('small');
+            }
+        }, 500);
+
+        if (event.data === YT.PlayerState.PLAYING) {
+    startEndWatcher();
+}
+        
+
+        // 🔥 detener después de estabilizar
+        setTimeout(() => {
+            clearInterval(qualityInterval);
+        }, 4000);
+    }
+
+    if (event.data === YT.PlayerState.ENDED) {
+        setTimeout(() => {
+            playNextVideo();
+        }, 200);
+    }
+},
+            
+            
             onError: () => {
                 console.log("YT error → siguiente video");
                 playNextVideo();
@@ -1883,6 +1958,7 @@ function initYouTubePlayer(videoId) {
         // ocultar MP4 (NO destruir YT)
         videoPlayer.pause();
         videoPlayer.style.display = "none";
+        
 
        if (!ytPlayer) {
             initYouTubePlayer(videoId);
@@ -2091,7 +2167,7 @@ function waitForYTAndPlay() {
   poster="background-preview.webp"
   class="background-video"
 >
-  <source src="Copia de 0212 (17Belvnuevo).mp4" type="video/mp4">
+  <source src="Copia de 0212 (17Belvnuevo).webm" type="video/mp4">
 </video>
 
         <header id="top-banner">
@@ -2146,7 +2222,8 @@ function waitForYTAndPlay() {
 
 
         
-        <div id="video-container">
+       <div id="video-container">
+    <div id="video-poster"></div>            
     <div id="youtube-player"></div>
 </div>
         
@@ -2315,7 +2392,7 @@ function waitForYTAndPlay() {
 
  <div id="ad-container">
             <a href="https://www.instagram.com/flodz_/">
-            <img src="giff3.gif" alt="Go Follow" class="ad-image">
+            <img src="giff3 (1).gif" alt="Go Follow" class="ad-image">
             </a>
         </div>
 

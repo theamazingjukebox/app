@@ -51,7 +51,7 @@
 }
 #chat {
             position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 89%; /* Ajusta este valor para colocar el botón verticalmente */
+    top: 85%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 49%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
     border: 3px solid rgba(37, 99, 114, 0.596);
@@ -73,7 +73,7 @@
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #chat {
-        top: 90.5%;
+        top: 84.5%;
     }
 }
 
@@ -212,7 +212,7 @@
   
   #username-modal {
     position: absolute;
-        top: 90.5%;
+        top: 86.5%;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: transparent;
@@ -232,7 +232,7 @@
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #username-modal {
-        top: 92%;
+        top: 86%;
     }
 }
 

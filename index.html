@@ -351,6 +351,44 @@ body {
 }
 
 
+#bg-toggle-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 172.86px; /* ajusta al ancho real del botón */
+  
+
+  padding: 12px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Orbitron, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+
+  color: #00eaff;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 234, 255, 0.5);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 10px rgba(0, 234, 255, 0.5),
+    0 0 20px rgba(0, 234, 255, 0.3);
+
+  transition: all 0.2s ease;
+
+  z-index: 9999;
+}
+    
+
+#bg-toggle-btn:active {
+            box-shadow: none;
+            transform: scale(0.93); /* Simula un botón presionado */
+        }
+
+
 
 #video-container {
     position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
@@ -2157,19 +2195,17 @@ function waitForYTAndPlay() {
         <img src="nov2.3.webp" class="background-img overlay" alt="Overlay Image" />
         
 
-        <video
-  id="bg-video"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="metadata"
-  poster="background-preview.webp"
-  class="background-video"
->
-  <source src="Copia de 0212 (17Belvnuevo).webm" type="video/mp4">
+<video id="bg-video-1" class="background-video" autoplay muted loop playsinline preload="metadata" poster="background-preview.webp">
+  <source src="Copia de 0212 (17Belvnuevo).webm" type="video/webm">
 </video>
 
+<video id="bg-video-2" class="background-video" muted loop playsinline preload="none" style="display:none;">
+  <source src="Copia de Copia de Copia3 de 21Nov (3).mp4" type="video/webm">
+</video>
+        
+<button id="bg-toggle-btn">- switch -</button>
+
+        
         <header id="top-banner">
         
         <div class="banner-content">

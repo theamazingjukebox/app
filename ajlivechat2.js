@@ -611,3 +611,32 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+const bgVideos = [
+    document.getElementById("bg-video-1"),
+    document.getElementById("bg-video-2")
+    
+];
+
+let currentBgIndex = 0;
+
+function switchBackground() {
+
+    // 🔴 apagar actual
+    bgVideos[currentBgIndex].pause();
+    bgVideos[currentBgIndex].style.display = "none";
+
+    // 👉 siguiente index
+    currentBgIndex = (currentBgIndex + 1) % bgVideos.length;
+
+    const nextVideo = bgVideos[currentBgIndex];
+
+    // 🟢 encender siguiente
+    nextVideo.style.display = "block";
+    nextVideo.currentTime = 0; // opcional: reiniciar
+    nextVideo.play();
+}
+
+document.getElementById("bg-toggle-btn")
+    .addEventListener("click", switchBackground);
+     
+

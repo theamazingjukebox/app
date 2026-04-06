@@ -620,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             el: document.getElementById("bg-video-2"),
-            src: "Copia de Copia de Copia3 de 21Nov (3).mp4"
+            src: "Copia de Copia de Copia3 de 21Nov (3).webm"
         }
     ];
 

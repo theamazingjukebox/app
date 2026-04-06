@@ -610,6 +610,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.addEventListener("scroll", tryPlay, { once: true });
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const bgVideos = [

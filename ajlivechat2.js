@@ -37,7 +37,7 @@ var firebaseConfig = {
     const usernameModal = document.getElementById("username-modal");
     usernameModal.style.display = "none"; // Oculta la ventana emergente
 
-    const welcomeMessage = "Bienvenido, " + username + "!";
+    const welcomeMessage = "Welcome, " + username + "!";
     
     // Crear la colección en la base de datos y enviar los datos para el mensaje de bienvenida
     const timestamp = Date.now();
@@ -183,7 +183,7 @@ function saveMessageToDatabase(sender, message) {
 
   
   
-  const MESSAGES_TO_LOAD = 1;
+  const MESSAGES_TO_LOAD = 4;
   // Referencia para el chat
   const fetchChat = db.ref("messages/");
   

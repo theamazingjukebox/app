@@ -680,6 +680,12 @@ font-size: 1.4em;
     max-width: 219px;
     min-height: 100px;
     transition: all 0.3s ease; /* Suave */
+    border: 2px solid #2fb9be; 
+    box-shadow: 
+        0 0 5px #2fb9be,
+        0 0 10px #2fb9be,
+        0 0 15px #2fb9be,
+        0 0 20px #2fb9be;
 }
 
 
@@ -687,7 +693,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     .info-box {
-        margin-top: 15%;
+        margin-top: 16%;
         margin-left: 47%;
         
     }
@@ -699,7 +705,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box {
-        margin-top: 180px;    
+        margin-top: 13%;    
         left: 37%;   
             
     }
@@ -734,6 +740,12 @@ font-size: 1.4em;
     max-width: 219px;
     height: 730px;    
     transition: all 0.3s ease; /* Suave */
+    border: 2px solid #2fb9be; 
+    box-shadow: 
+        0 0 5px #2fb9be,
+        0 0 10px #2fb9be,
+        0 0 15px #2fb9be,
+        0 0 20px #2fb9be;
 }
 
 

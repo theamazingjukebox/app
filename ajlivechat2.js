@@ -512,7 +512,7 @@ function generateTwinklingStars() {
     // Función para detectar si es una pantalla grande
     const isLargeScreen = window.matchMedia('(min-width: 768px)').matches;
 
-    for (let i = 0; i < 345; i++) { // Generar 345 estrellas
+    for (let i = 0; i < 175; i++) { // Generar 345 estrellas
         const star = document.createElement('img');
         star.src = 'starlight2.png';
         star.classList.add('star');
@@ -620,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             el: document.getElementById("bg-video-2"),
-            src: "Copia de Copia de Copia3 de 21Nov (3).mp4"
+            src: "Copia de Copia de Copia3 de 21Nov (3).webm"
         }
     ];
 

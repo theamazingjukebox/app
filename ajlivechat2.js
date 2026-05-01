@@ -590,82 +590,98 @@ window.addEventListener("resize", () => {
 window.addEventListener("load", fixBackground);
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  const video = document.getElementById("bg-video");
-
-  if (!video) return;
-
-  // Intenta reproducir tras cargar
-  const tryPlay = () => {
-    if (video.paused) {
-      video.play().catch(() => {});
-    }
-  };
-
-  // Reintenta poco después de carga
-  setTimeout(tryPlay, 800);
-
-  // Fuerza reproducción al primer toque o scroll (iOS workaround)
-  document.addEventListener("touchstart", tryPlay, { once: true });
-  document.addEventListener("scroll", tryPlay, { once: true });
-});
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    const bgVideos = [
-        {
-            el: document.getElementById("bg-video-1"),
-            src: "Copia de 0212 (17Belvnuevo).webm"
-        },
-        {
-            el: document.getElementById("bg-video-2"),
-            src: "Copia de Copia de Copia3 de 21Nov (3).webm"
-        }
-    ];
+  // =========================
+  // 🔥 iOS AUTOPLAY FIX
+  // =========================
 
-    let currentBgIndex = 0;
+  const bgVideoElements = document.querySelectorAll(".background-video");
 
-    function loadVideo(videoObj) {
-        if (!videoObj.el.src) {
-            videoObj.el.src = videoObj.src;
-            videoObj.el.load();
-        }
+  function tryPlayAll() {
+    bgVideoElements.forEach(video => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    });
+  }
+
+  setTimeout(tryPlayAll, 800);
+
+  let unlocked = false;
+
+  function unlock() {
+    if (unlocked) return;
+
+    tryPlayAll();
+    unlocked = true;
+
+    window.removeEventListener("touchstart", unlock);
+    window.removeEventListener("click", unlock);
+    window.removeEventListener("scroll", unlock);
+  }
+
+  window.addEventListener("touchstart", unlock, { passive: true });
+  window.addEventListener("click", unlock);
+  window.addEventListener("scroll", unlock, { passive: true });
+
+
+
+  // =========================
+  // 🎬 BACKGROUND SWITCH
+  // =========================
+
+  const bgVideos = [
+    {
+      el: document.getElementById("bg-video-1"),
+      src: "Copia de 0212 (17Belvnuevo).webm"
+    },
+    {
+      el: document.getElementById("bg-video-2"),
+      src: "Copia de Copia de Copia3 de 21Nov (3).webm"
     }
+  ];
 
-    function switchBackground() {
+  let currentBgIndex = 0;
 
-        const current = bgVideos[currentBgIndex];
-
-        // 🔴 apagar actual
-        current.el.pause();
-        current.el.removeAttribute("src"); // 🔥 clave
-        current.el.load(); // 🔥 libera memoria
-        current.el.style.display = "none";
-
-        // 👉 siguiente
-        currentBgIndex = (currentBgIndex + 1) % bgVideos.length;
-
-        const next = bgVideos[currentBgIndex];
-
-        // 🟢 cargar SOLO ahora
-        loadVideo(next);
-
-        next.el.style.display = "block";
-        next.el.currentTime = 0;
-        next.el.playsInline = true;
-        next.el.muted = true;
-        next.el.play().catch(() => {});
+  function loadVideo(videoObj) {
+    if (!videoObj.el.getAttribute("src")) { // 🔥 FIX real
+      videoObj.el.src = videoObj.src;
+      videoObj.el.load();
     }
+  }
 
-    // 🔥 cargar SOLO el primero al inicio
-    loadVideo(bgVideos[0]);
-    bgVideos[0].el.style.display = "block";
-    bgVideos[0].el.play().catch(() => {});
+  function switchBackground() {
 
-    const btn = document.getElementById("bg-toggle-btn");
-    if (btn) {
-        btn.addEventListener("click", switchBackground);
-    }
+    const current = bgVideos[currentBgIndex];
+
+    current.el.pause();
+    current.el.removeAttribute("src");
+    current.el.load();
+    current.el.style.display = "none";
+
+    currentBgIndex = (currentBgIndex + 1) % bgVideos.length;
+
+    const next = bgVideos[currentBgIndex];
+
+    loadVideo(next);
+
+    next.el.style.display = "block";
+    next.el.currentTime = 0;
+    next.el.muted = true;
+    next.el.playsInline = true;
+
+    next.el.play().catch(() => {});
+  }
+
+  // 🔥 inicial
+  loadVideo(bgVideos[0]);
+  bgVideos[0].el.style.display = "block";
+  bgVideos[0].el.play().catch(() => {});
+
+  const btn = document.getElementById("bg-toggle-btn");
+  if (btn) {
+    btn.addEventListener("click", switchBackground);
+  }
 
 });

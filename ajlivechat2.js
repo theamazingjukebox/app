@@ -183,7 +183,7 @@ function saveMessageToDatabase(sender, message) {
 
   
   
-  const MESSAGES_TO_LOAD = 4;
+  const MESSAGES_TO_LOAD = 1;
   // Referencia para el chat
   const fetchChat = db.ref("messages/");
   

@@ -1133,6 +1133,26 @@ button, a, img {
 #youtube-player iframe {
     transition: opacity 0.3s ease;
 }
+
+@media (display-mode: standalone) {
+  body {
+    padding-top: 145px;
+    background:
+      linear-gradient(to bottom,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0) 80px),
+        rgba(0, 0, 0, 0) 125px);
+      
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (display-mode: standalone) {
+    body {
+      padding-top: 145px;
+    }
+  }
+}
     
 </style>
 <script>
@@ -2301,7 +2321,7 @@ function waitForYTAndPlay() {
   Click the button below or add this website to your home screen using your browser.
   Enjoy!
 </p>
-    <button id="install-app-btn" class="custom-button" style="display: block; margin: 0 auto;">
+    <button id="install-app-btn" class="custom-button">
   Get the App
 </button>
 </div>

@@ -772,6 +772,67 @@ font-size: 1.4em;
 }
 
 
+
+.info-box3 {
+    display: none; /* Cuadros ocultos por defecto */
+    position: absolute;
+    margin-top: 63%;
+    left: 32.3%;
+    transform: translate(-50%, -50%);
+    background-color: #a0458227;
+    background: radial-gradient(
+        circle, 
+        #d83ca4, 
+        #a0458260, 
+        #a0458200
+    );
+    font-family: 'Orbitron';
+    color: #000000; /* Color verde neón */
+    text-shadow:
+        0 0 5px #2fb9be, /* Capa de brillo más cercana */
+        0 0 10px #2fb9be, 
+        0 0 20px #2fb9be, 
+        0 0 30px #00b5bb, /* Capa de brillo más intensa */
+        0 0 40px #00b5bb;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    max-width: 219px;
+    height: 430px;    
+    transition: all 0.3s ease; /* Suave */
+    border: 2px solid #2fb9be; 
+    box-shadow: 
+        0 0 5px #2fb9be,
+        0 0 10px #2fb9be,
+        0 0 15px #2fb9be,
+        0 0 20px #2fb9be;
+}
+
+
+@media (min-width: 768px) {
+    .info-box3 {
+        margin-top: 15%;
+        margin-left: 47%;
+        
+    }
+}
+
+
+.info-box3.show {
+    display: block; /* Mostrar cuadro cuando esté activo */
+}
+
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .info-box3 {
+        margin-top: 180px;    
+        left: 37%;   
+            
+    }
+}
+
+
   .disco-button-img {
     position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
     top: 55.05%; /* Centra verticalmente */

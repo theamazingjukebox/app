@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+<link rel="manifest" href="./manifest.json">
 <style>
 
     button, a, img {
@@ -390,6 +391,42 @@ body {
         }
 
 
+
+#install-app-btn {
+   display: block;
+  margin: 0 auto;
+
+  left: 0;
+  right: 0;  
+    
+  font-size: 10px;
+  font-weight: bold;
+  font-family: Orbitron, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+
+  color: #00eaff;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 234, 255, 0.5);
+  border-radius: 3px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 10px rgba(0, 234, 255, 0.5),
+    0 0 20px rgba(0, 234, 255, 0.3);
+
+  transition: all 0.2s ease;
+
+
+}
+    
+
+#install-app-btn:active {
+            box-shadow: none;
+            transform: scale(0.93); /* Simula un botón presionado */
+        }
+
+    
 
 #video-container {
     position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
@@ -2219,6 +2256,7 @@ function waitForYTAndPlay() {
                 <ul>
                     <li><a href="#" class="menu-item" id="about-us-link">About Us</a></li>
                     <li><a href="#" class="menu-item" id="contact-us-link">Contact</a></li>
+                    <li><a href="#" class="menu-item" id="get-the-app-link">Get the App</a></li>
                 </ul>
             </nav>
         </div>
@@ -2251,6 +2289,21 @@ function waitForYTAndPlay() {
     <h2>Contact</h2>
     <p>Feel free to share your experience, thoughts or even song submissions with us, we want to hear from you! <br>✉ <span style="color: blue; font-weight: bold; font-size: 7px;">theamazingjukebox.contact@gmail.com</span> <br> <span style= "color: rgb(0, 0, 0);  font-family: 'Orbitron', Times, serif; font-size: 10px; font-weight: bold; justify-content: center;"> <br> Powered by YouTube   &nbsp;<img src="youtube-icon.svg" alt="YouTube" style="width: 10%; vertical-align: middle;"> <br>— content belongs to respective creators. YouTube may collect data per its policies. The logos displayed are property of their respective owners and are used for illustrative purposes only. No affiliation or sponsorship with The Amazing Jukebox is implied. </span> <br><br> <span style="color: rgb(199, 28, 142); font-size: 11px; font-weight: bolder;"> THE AMAZING JUKEBOX © </span> <span style="color: rgba(86, 253, 203, 0.822); font-size: 8px;"> {{{A Different Listening Experience}}} </span> <span style="color: rgb(255, 255, 255); font-size: 11px; font-style: italic;"> Discover//remember Amazing music to fuel your playlists </span> 
  </p>
+</div>
+
+<div id="get-the-app-content" class="info-box3">
+    <br>
+    <br>
+    
+    <h2>Get the App</h2>
+    <p>
+  You can install The Amazing Jukebox © as an app for quick access and a full-screen experience.
+  Click the button below or add this website to your home screen using your browser.
+  Enjoy!
+</p>
+    <button id="install-app-btn" class="custom-button" style="display: block; margin: 0 auto;">
+  Get the App
+</button>
 </div>
 
 <script src="script.js"></script>
@@ -2436,5 +2489,11 @@ function waitForYTAndPlay() {
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 <script src="ajlivechat2.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
+    
 </body>
 </html>

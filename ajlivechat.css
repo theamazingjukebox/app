@@ -594,6 +594,12 @@ font-size: 1.4em;
     transition-delay: 0.4s;
 }
 
+#menu.show ul li:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
 #menu ul li a {
     color: white;
     text-decoration: none;

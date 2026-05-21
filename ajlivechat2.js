@@ -323,19 +323,16 @@ document.querySelector('#liked-songs-button').addEventListener('touchend', funct
 });
 
 
-
-
-
 function toggleMenu(button) {
     var menu = document.getElementById('menu');
     menu.classList.toggle('show');
     
-    // Cambiar entre hamburguesa (&#9776;) y X (&times;)
+    // Cambiar entre hamburguesa y X
     if (menu.classList.contains('show')) {
-        button.classList.add('active'); // Agregar clase active al mostrar el menú
+        button.classList.add('active');
     } else {
-        button.classList.remove('active'); // Quitar clase active al ocultar el menú
-        // Cerrar los cuadros de información si el menú se cierra
+        button.classList.remove('active');
+        // Cerrar todos los cuadros de información al cerrar el menú
         closeAllInfoBoxes();
     }
 }
@@ -352,19 +349,36 @@ document.getElementById('contact-us-link').addEventListener('click', function() 
     toggleInfoBox('contact-us-content');
 });
 
+// NUEVO BLOQUE: Get the App
+document.getElementById('get-the-app-link').addEventListener('click', function() {
+    toggleInfoBox('get-the-app-content');
+});
+
 function toggleInfoBox(boxId) {
     var box = document.getElementById(boxId);
     box.classList.toggle('show');
-    
-    // Ocultar el otro cuadro si está activo
-    var otherBox = boxId === 'about-us-content' ? 'contact-us-content' : 'about-us-content';
-    document.getElementById(otherBox).classList.remove('show');
+
+    // Lista de todos los cuadros disponibles
+    var allBoxes = [
+        'about-us-content',
+        'contact-us-content',
+        'get-the-app-content'
+    ];
+
+    // Ocultar todos los demás cuadros
+    allBoxes.forEach(function(id) {
+        if (id !== boxId) {
+            document.getElementById(id).classList.remove('show');
+        }
+    });
 }
 
 function closeAllInfoBoxes() {
     document.getElementById('about-us-content').classList.remove('show');
     document.getElementById('contact-us-content').classList.remove('show');
+    document.getElementById('get-the-app-content').classList.remove('show');
 }
+
 
 
 function toggleDiscoMode() {

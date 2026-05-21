@@ -685,3 +685,70 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+// Guardará el evento de instalación de la PWA
+let deferredPrompt = null;
+
+// Escuchar el evento que indica que la app puede instalarse
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Evita que el navegador muestre automáticamente el diálogo
+    event.preventDefault();
+
+    // Guardar el evento para usarlo cuando el usuario haga clic en el botón
+    deferredPrompt = event;
+
+    // Mostrar el botón "Get the App"
+    document.getElementById('install-app-btn').style.display = 'inline-block';
+});
+
+// Al hacer clic en el botón, mostrar el diálogo de instalación
+document.getElementById('install-app-btn').addEventListener('click', async function () {
+    // Si el navegador no permite instalación, no hacer nada
+    if (!deferredPrompt) {
+        alert('Installation is not available on this device or browser.');
+        return;
+    }
+
+    // Mostrar el diálogo nativo de instalación
+    deferredPrompt.prompt();
+
+    // Esperar la respuesta del usuario
+    const { outcome } = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+        console.log('User accepted the installation.');
+    } else {
+        console.log('User dismissed the installation.');
+    }
+
+    // El evento solo puede usarse una vez
+    deferredPrompt = null;
+
+    // Ocultar el botón después de usarlo
+    document.getElementById('install-app-btn').style.display = 'none';
+});
+
+// Detectar cuando la app ya fue instalada
+window.addEventListener('appinstalled', () => {
+    console.log('The Amazing Jukebox was installed successfully.');
+
+    // Ocultar el botón permanentemente
+    document.getElementById('install-app-btn').style.display = 'none';
+
+    deferredPrompt = null;
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const isStandalone =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true; // soporte para iPhone
+
+    if (isStandalone) {
+        const installMenu = document.getElementById("get-the-app-link");
+        if (installMenu) {
+            installMenu.style.display = "none";
+        }
+    }
+});

@@ -777,6 +777,14 @@ font-size: 1.4em;
     }
 }
 
+@media all and (display-mode: standalone), 
+       all and (-webkit-display-mode: standalone) {
+
+    .info-box2 {
+        height: 500px;
+    }
+}
+
 
 
 .info-box3 {
@@ -835,14 +843,6 @@ font-size: 1.4em;
         margin-top: 180px;    
         left: 37%;   
             
-    }
-}
-
-@media all and (display-mode: standalone), 
-       all and (-webkit-display-mode: standalone) {
-
-    .info-box3 {
-        height: 530px !important;
     }
 }
 

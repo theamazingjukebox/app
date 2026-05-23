@@ -838,11 +838,11 @@ font-size: 1.4em;
     }
 }
 
-@media (display-mode: standalone) {
+@media all and (display-mode: standalone), 
+       all and (-webkit-display-mode: standalone) {
 
-  .info-box3 {
-        height: 530px;      
-            
+    .info-box3 {
+        height: 530px !important;
     }
 }
 

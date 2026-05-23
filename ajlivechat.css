@@ -838,7 +838,7 @@ font-size: 1.4em;
     }
 }
 
-@media (display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
+@media (display-mode: standalone) {
 
   .info-box3 {
         height: 530px;      

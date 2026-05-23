@@ -781,8 +781,8 @@ font-size: 1.4em;
        all and (-webkit-display-mode: standalone) {
 
     .info-box2 {
-        height: 500px;
-        top: 100px;
+        height: 610px;
+        margin-top: 129px;
     }
 }
 

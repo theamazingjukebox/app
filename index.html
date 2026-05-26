@@ -1241,6 +1241,63 @@ button, a, img {
         display: block;
     }
 }
+
+.panel-header-ui {
+
+    width: 85%;
+    height: 4px;
+
+    margin: 8px auto 16px auto;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(0,255,255,0.18),
+            rgba(255,0,255,0.18)
+        );
+
+    border: 0px solid rgba(0,255,255,0.35);
+
+    backdrop-filter: blur(6px);
+
+    box-shadow:
+        0 0 10px rgba(0,255,255,0.25),
+        0 0 20px rgba(255,0,255,0.15);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.panel-header-ui::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.18),
+            transparent
+        );
+
+    animation: scanline 4s linear infinite;
+}
+
+@keyframes scanline {
+    100% {
+        left: 100%;
+    }
+}
     
 </style>
 <script>
@@ -2381,7 +2438,7 @@ function waitForYTAndPlay() {
     <br>
     <br>
     <br>
-    <h2>About Us</h2>
+    <div class="panel-header-ui"></div>
     <p class="browser-about"><b>The Amazing Jukebox ©</b> works as a browser-based listening experience where music videos are displayed non-stop — from a carefully curated catalogue —— allowing users to step into great music — on an immersive setup — designed to play it by chance 🔮<br>The site is available across any web browser, for desktop or mobile devices on any operating system.
     </p>
     <!-- TEXTO PARA APP -->
@@ -2399,7 +2456,7 @@ function waitForYTAndPlay() {
     <br>
     <br>
     <br>
-    <h2>Contact</h2>
+    <h2></h2>
     <p>Feel free to share your experience, thoughts or even song submissions with us, we want to hear from you! <br>✉ <span style="color: blue; font-weight: bold; font-size: 7px;">theamazingjukebox.contact@gmail.com</span> <br> <span style= "color: rgb(0, 0, 0);  font-family: 'Orbitron', Times, serif; font-size: 10px; font-weight: bold; justify-content: center;"> <br> Powered by YouTube   &nbsp;<img src="youtube-icon.svg" alt="YouTube" style="width: 10%; vertical-align: middle;"> <br>— content belongs to respective creators. YouTube may collect data per its policies. The logos displayed are property of their respective owners and are used for illustrative purposes only. No affiliation or sponsorship with The Amazing Jukebox is implied. </span> <br><br> <span style="color: rgb(199, 28, 142); font-size: 11px; font-weight: bolder;"> THE AMAZING JUKEBOX © </span> <span style="color: rgba(86, 253, 203, 0.822); font-size: 8px;"> {{{A Different Listening Experience}}} </span> <span style="color: rgb(255, 255, 255); font-size: 11px; font-style: italic;"> Discover//remember Amazing music to fuel your playlists </span> 
  </p>
 </div>

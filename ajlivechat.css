@@ -661,6 +661,7 @@ font-size: 1.4em;
 .info-box {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
+    overflow: hidden;    
     margin-top: 63%;
     left: 32.3%;
     transform: translate(-50%, -50%);
@@ -692,8 +693,85 @@ font-size: 1.4em;
         0 0 10px #2fb9be,
         0 0 15px #2fb9be,
         0 0 20px #2fb9be;
+        animation:
+    panelPulse 4s ease-in-out infinite;
 }
 
+@keyframes panelPulse {
+
+    0% {
+        box-shadow:
+            0 0 5px #2fb9be,
+            0 0 10px #2fb9be,
+            0 0 15px #2fb9be,
+            0 0 20px #2fb9be;
+
+        border-color: #2fb9be;
+    }
+
+    50% {
+        box-shadow:
+            0 0 8px #5fffff,
+            0 0 16px #5fffff,
+            0 0 24px #2fb9be,
+            0 0 34px #00eaff;
+
+        border-color: #72ffff;
+    }
+
+    100% {
+        box-shadow:
+            0 0 5px #2fb9be,
+            0 0 10px #2fb9be,
+            0 0 15px #2fb9be,
+            0 0 20px #2fb9be;
+
+        border-color: #2fb9be;
+    }
+}
+
+
+.info-box::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -50%;
+
+    width: 200%;
+    height: 250%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,0.08) 50%,
+            transparent 70%
+        );
+
+    transform: rotate(8deg);
+
+    animation: hologramSweep 8s linear infinite;
+
+    pointer-events: none;
+}
+
+@keyframes hologramSweep {
+
+    0% {
+        transform:
+            translateY(-40%)
+            rotate(8deg);
+    }
+
+    100% {
+        transform:
+            translateY(40%)
+            rotate(8deg);
+    }
+}
 
 
 
@@ -721,6 +799,7 @@ font-size: 1.4em;
 .info-box2 {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
+    overflow: hidden;    
     margin-top: 63%;
     left: 32.3%;
     transform: translate(-50%, -50%);
@@ -752,13 +831,94 @@ font-size: 1.4em;
         0 0 10px #2fb9be,
         0 0 15px #2fb9be,
         0 0 20px #2fb9be;
+        animation:
+    panelPulse 4s ease-in-out infinite;
 }
+
+@keyframes panelPulse {
+
+    0% {
+        box-shadow:
+            0 0 5px #2fb9be,
+            0 0 10px #2fb9be,
+            0 0 15px #2fb9be,
+            0 0 20px #2fb9be;
+
+        border-color: #2fb9be;
+    }
+
+    50% {
+        box-shadow:
+            0 0 8px #5fffff,
+            0 0 16px #5fffff,
+            0 0 24px #2fb9be,
+            0 0 34px #00eaff;
+
+        border-color: #72ffff;
+    }
+
+    100% {
+        box-shadow:
+            0 0 5px #2fb9be,
+            0 0 10px #2fb9be,
+            0 0 15px #2fb9be,
+            0 0 20px #2fb9be;
+
+        border-color: #2fb9be;
+    }
+}
+
+
+.info-box2::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -50%;
+
+    width: 200%;
+    height: 250%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,0.08) 50%,
+            transparent 70%
+        );
+
+    transform: rotate(8deg);
+
+    animation: hologramSweep 8s linear infinite;
+
+    pointer-events: none;
+}
+
+@keyframes hologramSweep {
+
+    0% {
+        transform:
+            translateY(-40%)
+            rotate(8deg);
+    }
+
+    100% {
+        transform:
+            translateY(40%)
+            rotate(8deg);
+    }
+}
+
 
 
 @media (min-width: 768px) {
     .info-box2 {
-        margin-top: 15%;
+        height: 690px;    
+        margin-top: 170px;
         margin-left: 47%;
+        
         
     }
 }
@@ -771,6 +931,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box2 {
+        height: 690px;      
         margin-top: 180px;    
         left: 37%;   
             
@@ -781,8 +942,8 @@ font-size: 1.4em;
        all and (-webkit-display-mode: standalone) {
 
     .info-box2 {
-        height: 610px;
-        margin-top: 129px;
+        height: 570px;
+        margin-top: 119px;
     }
 }
 
@@ -791,6 +952,7 @@ font-size: 1.4em;
 .info-box3 {
     display: none; /* Cuadros ocultos por defecto */
     position: absolute;
+    overflow: hidden;    
     margin-top: 63%;
     left: 32.3%;
     transform: translate(-50%, -50%);
@@ -822,6 +984,84 @@ font-size: 1.4em;
         0 0 10px #2fb9be,
         0 0 15px #2fb9be,
         0 0 20px #2fb9be;
+        animation:
+    panelPulse 4s ease-in-out infinite;
+}
+
+@keyframes panelPulse {
+
+    0% {
+        box-shadow:
+            0 0 5px #2fb9be,
+            0 0 10px #2fb9be,
+            0 0 15px #2fb9be,
+            0 0 20px #2fb9be;
+
+        border-color: #2fb9be;
+    }
+
+    50% {
+        box-shadow:
+            0 0 8px #5fffff,
+            0 0 16px #5fffff,
+            0 0 24px #2fb9be,
+            0 0 34px #00eaff;
+
+        border-color: #72ffff;
+    }
+
+    100% {
+        box-shadow:
+            0 0 5px #2fb9be,
+            0 0 10px #2fb9be,
+            0 0 15px #2fb9be,
+            0 0 20px #2fb9be;
+
+        border-color: #2fb9be;
+    }
+}
+
+
+.info-box3::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -50%;
+
+    width: 200%;
+    height: 250%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(255,255,255,0.08) 50%,
+            transparent 70%
+        );
+
+    transform: rotate(8deg);
+
+    animation: hologramSweep 8s linear infinite;
+
+    pointer-events: none;
+}
+
+@keyframes hologramSweep {
+
+    0% {
+        transform:
+            translateY(-40%)
+            rotate(8deg);
+    }
+
+    100% {
+        transform:
+            translateY(40%)
+            rotate(8deg);
+    }
 }
 
 

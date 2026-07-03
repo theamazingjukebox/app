@@ -915,8 +915,8 @@ font-size: 1.4em;
 
 @media (min-width: 768px) {
     .info-box2 {
-        height: 570px;    
-        margin-top: 119px;
+        height: 500px;    
+        margin-top: 89px;
         margin-left: 47%;
         
         
@@ -932,7 +932,7 @@ font-size: 1.4em;
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box2 {
         height: 500px;      
-        margin-top: 99px;    
+        margin-top: 89px;    
         left: 37%;   
             
     }

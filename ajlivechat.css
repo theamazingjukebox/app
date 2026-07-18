@@ -940,11 +940,18 @@ font-size: 1.4em;
        all and (-webkit-display-mode: standalone) {
 
     .info-box2 {
-        margin-top: 12%; 
+        margin-top: 14%; 
     }
 }
 
+@media all and (display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine),
+       all and (-webkit-display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  
+  .info-box2 {
+    margin-top: 12%; /* Valor específico para computadoras */
+  }
 
+}
 
 .info-box3 {
     display: none; /* Cuadros ocultos por defecto */

@@ -930,7 +930,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box2 {
-        margin-top: 11.8%;   
+        margin-top: 11.7%;   
         left: 37%;   
             
     }
@@ -973,7 +973,7 @@ font-size: 1.4em;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     z-index: 999;
     max-width: 219px;
-    height: 430px;    
+    height: 440px;    
     transition: all 0.3s ease; /* Suave */
     border: 2px solid #2fb9be; 
     box-shadow: 
@@ -1078,7 +1078,7 @@ font-size: 1.4em;
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box3 {
-        margin-top: 180px;    
+        margin-top: 11%;    
         left: 37%;   
             
     }

@@ -615,11 +615,21 @@ body {
     
 @media (min-width: 768px) {
     #loading-screen {
-        inset: 0 0 100px 0;
+        inset: 0 0 350px 0;
         
         
     }
 }
+    
+
+@media all and (display-mode: standalone), 
+       all and (-webkit-display-mode: standalone) {
+
+    #loading-screen {
+        inset: 0 0 200px 0;
+    }
+}
+    
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #loading-screen {

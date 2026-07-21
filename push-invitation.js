@@ -17,14 +17,21 @@ const PushInvitation = {
 
         if (!this.overlay) return;
 
-        this.enableBtn.addEventListener("click", () => {
+        this.enableBtn.addEventListener("click", async () => {
 
-            this.hide();
+    try {
 
-            // ← Aquí conectaremos OneSignal
-            console.log("Enable Push");
+        await OneSignal.Notifications.requestPermission();
 
-        });
+    } catch (err) {
+
+        console.error(err);
+
+    }
+
+    this.hide();
+
+});
 
         this.laterBtn.addEventListener("click", () => {
 
@@ -77,15 +84,22 @@ const PushInvitation = {
 
     wasAnswered() {
 
-        if (Notification.permission === "granted")
-            return true;
+    if (Notification.permission === "granted")
+        return true;
 
-        if (Notification.permission === "denied")
-            return true;
+    if (Notification.permission === "denied")
+        return true;
 
+    const later = localStorage.getItem("taj_push_later");
+
+    if (!later)
         return false;
 
-    },
+    const days = 7;
+
+    return (Date.now() - Number(later)) < days * 24 * 60 * 60 * 1000;
+
+},
 
     isStandalone() {
 

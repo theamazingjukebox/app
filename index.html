@@ -2152,6 +2152,8 @@ function initYouTubePlayer(videoId) {
         setTimeout(() => {
             clearInterval(qualityInterval);
         }, 4000);
+        
+        PushInvitation.schedule();
     }
 
     if (event.data === YT.PlayerState.ENDED) {
@@ -2170,7 +2172,6 @@ function initYouTubePlayer(videoId) {
     });
 }
 
-PushInvitation.schedule();
     
       let currentVideoIndex = -1;
     const videoPlayer = document.createElement("video");

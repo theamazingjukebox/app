@@ -1,17 +1,15 @@
-/* ======================================================
-   THE AMAZING JUKEBOX
+/* ==========================
    PUSH INVITATION
-   Final UI posible
-====================================================== */
+========================== */
 
 #push-overlay{
 
-position:fixed;
-inset:0;
+    position:fixed;
+    inset:0;
 
-display:none;
+    display:none;
 
-justify-content:center;
+    justify-content:center;
     align-items:flex-end;
 
     padding-bottom:45px;
@@ -22,33 +20,27 @@ justify-content:center;
 
 }
 
-
-/* ======================================================
-CARD
-====================================================== */
-
 .push-card{
 
-width:650px;
-max-width:90vw;
+    width:320px;
 
-padding:30px 45px;
+    padding:22px;
 
-border-radius:22px;
+    border-radius:18px;
 
-background:rgba(22,22,22,.58);
+    background:rgba(22,22,22,.58);
 
-border:1px solid rgba(47,185,190,.55);
+    backdrop-filter:blur(14px);
 
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(47,185,190,.55);
 
-box-shadow:
+    box-shadow:
 
         0 0 14px rgba(47,185,190,.30),
 
         0 0 30px rgba(216,60,164,.18);
-   color:white;
+
+    color:white;
 
     font-family:'Orbitron';
 
@@ -60,63 +52,45 @@ box-shadow:
 
 }
 
-
-/* ======================================================
-ICON
-====================================================== */
-
 .push-icon{
 
-font-size:55px;
+    font-size:28px;
 
-margin-bottom:18px;
-
+    margin-bottom:12px;
 
 }
 
-/* ======================================================
-TITLE
-====================================================== */
-
 .push-title{
 
-color:#7efcf8;
+    color:#7efcf8;
 
-font-size:55px;
+    font-size:17px;
 
-margin-bottom:18px;
+    margin-bottom:12px;
 
-
-text-shadow:
+    text-shadow:
 
         0 0 6px #2fb9be;
 
 }
 
-/* ======================================================
-TEXT
-====================================================== */
-
 .push-text{
 
-    font-size:42px;
+    font-size:11px;
 
     line-height:1.55;
 
     color:#dddddd;
 
-    margin-bottom:28px;
-}
+    margin-bottom:18px;
 
-/* ======================================================
-BUTTON
-====================================================== */
+}
 
 .push-enable{
 
-width:100%;
+    width:100%;
 
-padding:11px;
+    padding:11px;
 
     border:none;
 
@@ -150,27 +124,22 @@ padding:11px;
 
 }
 
-/* ======================================================
-LATER
-====================================================== */
-
 .push-later{
 
-margin-top:20px;
+    margin-top:14px;
 
-border:none;
+    background:none;
 
-background:none;
+    border:none;
 
-cursor:pointer;
+    color:#8fd8da;
 
-font-family:Orbitron,sans-serif;
+    cursor:pointer;
 
-font-size:30px;
-
-color:#8fd8da;
+    font-family:'Orbitron';
 
 }
+
 @keyframes pushFade{
 
     from{
@@ -188,78 +157,5 @@ color:#8fd8da;
         transform:translateY(0);
 
     }
-
-}
-
-
-/* ======================================================
-TABLET / DESKTOP
-====================================================== */
-
-@media (min-width:768px) and (hover:hover) and (pointer:fine){
-
-.push-card{
-
-width:480px;
-
-padding:28px 34px;
-
-}
-
-.push-icon{
-
-font-size:28px;
-
-margin-bottom:12px;
-
-}
-
-.push-title{
-
-font-size:35px;
-
-margin-bottom:12px;
-
-}
-
-.push-description{
-
-font-size:22px;
-
-margin-bottom:22px;
-
-}
-
-.push-enable{
-
-height:54px;
-
-font-size:18px;
-
-}
-
-.push-later{
-
-font-size:16px;
-
-margin-top:14px;
-
-}
-
-}
-
-/* ======================================================
-SMALL PHONES
-====================================================== */
-
-@media (max-width:420px){
-
-.push-card{
-
-width:88vw;
-
-padding:28px;
-
-}
 
 }

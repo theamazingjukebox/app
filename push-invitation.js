@@ -1,6 +1,6 @@
 /* ==========================================
    THE AMAZING JUKEBOX
-   Push Invitation Component v2.0
+   Push Invitation Component v1.0
 ========================================== */
 
 const PushInvitation = {
@@ -15,42 +15,14 @@ const PushInvitation = {
         this.enableBtn = document.querySelector(".push-enable");
         this.laterBtn = document.querySelector(".push-later");
 
-        this.icon = document.querySelector(".push-icon");
-        this.title = document.querySelector(".push-title");
-        this.text = document.querySelector(".push-text");
-
         if (!this.overlay) return;
 
-        this.enableBtn.addEventListener("click", async () => {
+        this.enableBtn.addEventListener("click", () => {
 
-            console.log("Antes:", Notification.permission);
+            this.hide();
 
-            try {
-
-                // Si ya existe permiso simplemente mostramos la confirmación.
-                if (Notification.permission === "granted") {
-
-                    this.showSuccess();
-
-                    return;
-
-                }
-
-                await OneSignal.Notifications.requestPermission();
-
-                console.log("Después:", Notification.permission);
-
-                if (Notification.permission === "granted") {
-
-                    this.showSuccess();
-
-                }
-
-            } catch (err) {
-
-                console.error(err);
-
-            }
+            // ← Aquí conectaremos OneSignal
+            console.log("Enable Push");
 
         });
 
@@ -89,58 +61,29 @@ const PushInvitation = {
 
     show() {
 
+        if (!this.overlay) return;
+
         this.overlay.style.display = "flex";
 
     },
 
     hide() {
 
+        if (!this.overlay) return;
+
         this.overlay.style.display = "none";
-
-    },
-
-    showSuccess() {
-
-        this.icon.innerHTML = "💎";
-
-        this.title.innerHTML = "You're all set!";
-
-        this.text.innerHTML =
-            "You'll now receive occasional notifications whenever a new musical gem joins The Amazing Jukebox.";
-
-        this.enableBtn.style.display = "none";
-        this.laterBtn.style.display = "none";
-
-        setTimeout(() => {
-
-            this.hide();
-
-        }, 2500);
 
     },
 
     wasAnswered() {
 
-        /*
-           Solo respetamos "Maybe Later".
+        if (Notification.permission === "granted")
+            return true;
 
-           NO usamos Notification.permission para decidir
-           si mostrar nuestra tarjeta.
+        if (Notification.permission === "denied")
+            return true;
 
-           La tarjeta pertenece al Jukebox.
-
-           El permiso pertenece al navegador.
-        */
-
-        const later = localStorage.getItem("taj_push_later");
-
-        if (!later)
-            return false;
-
-        const days = 7;
-
-        return (Date.now() - Number(later))
-            < days * 24 * 60 * 60 * 1000;
+        return false;
 
     },
 

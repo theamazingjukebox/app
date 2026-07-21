@@ -768,15 +768,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-
-OneSignalDeferred.push(async function (OneSignal) {
-
-    await OneSignal.init({
-
-        appId: "8270f167-4522-4b84-b429-f3672ec8849e"
-
-    });
-
-});

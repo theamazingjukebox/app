@@ -5,6 +5,8 @@
 
 const PushInvitation = {
 
+    debug: true,
+
     scheduled: false,
 
     delay: 15000,
@@ -18,6 +20,7 @@ const PushInvitation = {
         if (!this.overlay) return;
 
         this.enableBtn.addEventListener("click", async () => {
+           console.log("Antes:", Notification.permission);
 
     try {
 
@@ -28,7 +31,7 @@ const PushInvitation = {
         console.error(err);
 
     }
-
+console.log("Después:", Notification.permission);
     this.hide();
 
 });
@@ -83,6 +86,8 @@ const PushInvitation = {
     },
 
     wasAnswered() {
+       if (this.debug)
+        return false;
 
     if (Notification.permission === "granted")
         return true;

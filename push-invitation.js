@@ -1,11 +1,9 @@
 /* ==========================================
    THE AMAZING JUKEBOX
-   Push Invitation Component v1.0
+   Push Invitation Component v2.0
 ========================================== */
 
 const PushInvitation = {
-
-    debug: true,
 
     scheduled: false,
 
@@ -17,24 +15,44 @@ const PushInvitation = {
         this.enableBtn = document.querySelector(".push-enable");
         this.laterBtn = document.querySelector(".push-later");
 
+        this.icon = document.querySelector(".push-icon");
+        this.title = document.querySelector(".push-title");
+        this.text = document.querySelector(".push-text");
+
         if (!this.overlay) return;
 
         this.enableBtn.addEventListener("click", async () => {
-           console.log("Antes:", Notification.permission);
 
-    try {
+            console.log("Antes:", Notification.permission);
 
-        await OneSignal.Notifications.requestPermission();
+            try {
 
-    } catch (err) {
+                // Si ya existe permiso simplemente mostramos la confirmación.
+                if (Notification.permission === "granted") {
 
-        console.error(err);
+                    this.showSuccess();
 
-    }
-console.log("Después:", Notification.permission);
-    this.hide();
+                    return;
 
-});
+                }
+
+                await OneSignal.Notifications.requestPermission();
+
+                console.log("Después:", Notification.permission);
+
+                if (Notification.permission === "granted") {
+
+                    this.showSuccess();
+
+                }
+
+            } catch (err) {
+
+                console.error(err);
+
+            }
+
+        });
 
         this.laterBtn.addEventListener("click", () => {
 
@@ -71,40 +89,60 @@ console.log("Después:", Notification.permission);
 
     show() {
 
-        if (!this.overlay) return;
-
         this.overlay.style.display = "flex";
 
     },
 
     hide() {
 
-        if (!this.overlay) return;
-
         this.overlay.style.display = "none";
 
     },
 
+    showSuccess() {
+
+        this.icon.innerHTML = "💎";
+
+        this.title.innerHTML = "You're all set!";
+
+        this.text.innerHTML =
+            "You'll now receive occasional notifications whenever a new musical gem joins The Amazing Jukebox.";
+
+        this.enableBtn.style.display = "none";
+        this.laterBtn.style.display = "none";
+
+        setTimeout(() => {
+
+            this.hide();
+
+        }, 2500);
+
+    },
+
     wasAnswered() {
-       if (this.debug)
-        return false;
 
-    if (Notification.permission === "granted")
-        return true;
+        /*
+           Solo respetamos "Maybe Later".
 
-    if (Notification.permission === "denied")
-        return true;
+           NO usamos Notification.permission para decidir
+           si mostrar nuestra tarjeta.
 
-    const later = localStorage.getItem("taj_push_later");
+           La tarjeta pertenece al Jukebox.
 
-    if (!later)
-        return false;
+           El permiso pertenece al navegador.
+        */
 
-    const days = 7;
+        const later = localStorage.getItem("taj_push_later");
 
-    return (Date.now() - Number(later)) < days * 24 * 60 * 60 * 1000;
+        if (!later)
+            return false;
 
-},
+        const days = 7;
+
+        return (Date.now() - Number(later))
+            < days * 24 * 60 * 60 * 1000;
+
+    },
 
     isStandalone() {
 

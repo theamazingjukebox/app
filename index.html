@@ -2413,6 +2413,25 @@ function waitForYTAndPlay() {
 
 </script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(async function (OneSignal) {
+
+    await OneSignal.init({
+
+        appId: "8270f167-4522-4b84-b429-f3672ec8849e",
+
+        safari_web_id: "web.onesignal.auto.01b20842-ed7c-48c4-bd42-e78491d78625",
+
+        notifyButton: {
+            enable: false
+        }
+
+    });
+
+});
+</script>
 </head>
 <body>
 <div id="wrapper">

@@ -1,0 +1,161 @@
+/* ==========================
+   PUSH INVITATION
+========================== */
+
+#push-overlay{
+
+    position:fixed;
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:flex-end;
+
+    padding-bottom:45px;
+
+    z-index:999999;
+
+    pointer-events:none;
+
+}
+
+.push-card{
+
+    width:320px;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    background:rgba(22,22,22,.58);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(47,185,190,.55);
+
+    box-shadow:
+
+        0 0 14px rgba(47,185,190,.30),
+
+        0 0 30px rgba(216,60,164,.18);
+
+    color:white;
+
+    font-family:'Orbitron';
+
+    text-align:center;
+
+    pointer-events:auto;
+
+    animation:pushFade .45s ease;
+
+}
+
+.push-icon{
+
+    font-size:28px;
+
+    margin-bottom:12px;
+
+}
+
+.push-title{
+
+    color:#7efcf8;
+
+    font-size:17px;
+
+    margin-bottom:12px;
+
+    text-shadow:
+
+        0 0 6px #2fb9be;
+
+}
+
+.push-text{
+
+    font-size:11px;
+
+    line-height:1.55;
+
+    color:#dddddd;
+
+    margin-bottom:18px;
+
+}
+
+.push-enable{
+
+    width:100%;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-family:'Orbitron';
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #1ed9d7,
+
+            #d83ca4
+
+        );
+
+    color:white;
+
+    transition:.25s;
+
+}
+
+.push-enable:hover{
+
+    transform:scale(1.03);
+
+}
+
+.push-later{
+
+    margin-top:14px;
+
+    background:none;
+
+    border:none;
+
+    color:#8fd8da;
+
+    cursor:pointer;
+
+    font-family:'Orbitron';
+
+}
+
+@keyframes pushFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

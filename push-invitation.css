@@ -54,17 +54,24 @@
 
 .push-icon{
 
-    font-size:28px;
+    font-size:48px;
 
     margin-bottom:12px;
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-icon {
+        font-size:28px;
+        
+    }
 }
 
 .push-title{
 
     color:#7efcf8;
 
-    font-size:17px;
+    font-size:37px;
 
     margin-bottom:12px;
 
@@ -74,9 +81,19 @@
 
 }
 
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-title {
+        font-size:17px;
+        
+    }
+}
+
+
+
 .push-text{
 
-    font-size:11px;
+    font-size:31px;
 
     line-height:1.55;
 
@@ -84,6 +101,13 @@
 
     margin-bottom:18px;
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-text {
+        font-size:11px;
+        
+    }
 }
 
 .push-enable{

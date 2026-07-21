@@ -610,128 +610,269 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  pointer-events: none; /* permite ver/interactuar con el fondo */
+  pointer-events: none;
 }
 
-    
-@media (min-width: 768px) {
-    #loading-screen {
-        inset: 0 0 390px 0;
-        
-        
-    }
-}
-    
-
-@media all and (display-mode: standalone), 
-       all and (-webkit-display-mode: standalone) {
-
-    #loading-screen {
-        inset: 0 0 290px 0;
-    }
-}
-    
-
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    #loading-screen {
-        inset: 0;
-        
-        
+@media (min-width:768px){
+    #loading-screen{
+        inset:0 0 390px 0;
     }
 }
 
-.loading-box {
-  background: rgba(0, 0, 0, 0.85);
-  padding: 30px 45px;
-  border-radius: 14px;
-  color: #00eaff;
-  font-family: monospace;
-  text-align: center;
-  box-shadow:
-    0 0 10px #00eaff,
-    0 0 30px rgba(0,234,255,0.4);
+@media all and (display-mode:standalone),
+all and (-webkit-display-mode:standalone){
+
+    #loading-screen{
+        inset:0 0 290px 0;
+    }
+
 }
 
-.loading-box {
-  animation: glowPulse 1.5s infinite alternate;
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+    #loading-screen{
+        inset:0;
+    }
+
 }
 
-@keyframes glowPulse {
-  from { box-shadow: 0 0 10px #00eaff; }
-  to { box-shadow: 0 0 30px #00eaff; }
+#loading-screen{
+
+    transition:opacity .45s ease;
+
 }
 
-#loading-screen {
-  transition: opacity 0.4s ease;
+/* ===========================
+   NEW GLASS STYLE
+=========================== */
+
+.loading-box{
+
+    background:rgba(18,22,30,.78);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-radius:24px;
+
+    border:1px solid rgba(0,255,255,.18);
+
+    padding:30px 45px;
+
+    color:#87ffff;
+
+    font-family:Orbitron,monospace;
+
+    text-align:center;
+
+    box-shadow:
+        0 12px 45px rgba(0,0,0,.45),
+        0 0 35px rgba(0,255,255,.18);
+
+    animation:glassPulse 2.8s ease-in-out infinite;
+
 }
+
+/* ===========================
+   Glow Animation
+=========================== */
+
+@keyframes glassPulse{
+
+0%{
+
+box-shadow:
+0 12px 45px rgba(0,0,0,.45),
+0 0 18px rgba(0,255,255,.12);
+
+}
+
+50%{
+
+box-shadow:
+0 14px 50px rgba(0,0,0,.48),
+0 0 30px rgba(0,255,255,.24);
+
+}
+
+100%{
+
+box-shadow:
+0 12px 45px rgba(0,0,0,.45),
+0 0 18px rgba(0,255,255,.12);
+
+}
+
+}
+
+/* ===========================
+   TEXT
+=========================== */
 
 .loading-title{
-  font-size:55px;
-  margin-bottom:10px;
-  letter-spacing:2px;
+
+font-size:55px;
+
+margin-bottom:10px;
+
+letter-spacing:2px;
+
+color:#7ffcff;
+
+text-shadow:
+
+0 0 10px rgba(0,255,255,.30);
+
 }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    .loading-title {
-        font-size:35px;
-        
-    }
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.loading-title{
+
+font-size:35px;
+
+}
+
 }
 
 .loading-message{
-  font-size:42px;
-  margin-bottom:15px;
+
+font-size:42px;
+
+margin-bottom:15px;
+
+color:#7ffcff;
+
+text-shadow:
+
+0 0 8px rgba(0,255,255,.22);
+
 }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    .loading-message {
-        font-size:22px;
-        
-    }
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.loading-message{
+
+font-size:22px;
+
+}
+
 }
 
 .loading-hint{
-  margin-top:10px;
-  font-size:34px;
-  opacity:0.8;
+
+margin-top:10px;
+
+font-size:34px;
+
+opacity:.72;
+
+color:#c5ffff;
+
 }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    .loading-hint {
-        font-size:14px;
-        
-    }
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.loading-hint{
+
+font-size:14px;
+
 }
 
+}
 
+/* ===========================
+   DOTS
+=========================== */
 
 .loading-dots span{
-  display:inline-block;
-  width:25px;
-  height:25px;
-  margin:0 3px;
-  border-radius:50%;
-  background:#00eaff;
-  animation:dotPulse 1.4s infinite ease-in-out;
+
+display:inline-block;
+
+width:25px;
+
+height:25px;
+
+margin:0 3px;
+
+border-radius:50%;
+
+background:linear-gradient(
+180deg,
+#49ffff,
+#00b7ff
+);
+
+box-shadow:
+
+0 0 10px rgba(0,255,255,.35);
+
+animation:dotPulse 1.4s infinite ease-in-out;
+
 }
 
-.loading-dots span:nth-child(2){animation-delay:0.2s;}
-.loading-dots span:nth-child(3){animation-delay:0.4s;}
-.loading-dots span:nth-child(4){animation-delay:0.6s;}
-.loading-dots span:nth-child(5){animation-delay:0.8s;}
+.loading-dots span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.loading-dots span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+.loading-dots span:nth-child(4){
+
+animation-delay:.6s;
+
+}
+
+.loading-dots span:nth-child(5){
+
+animation-delay:.8s;
+
+}
 
 @keyframes dotPulse{
-  0%{opacity:0.2; transform:scale(0.8);}
-  50%{opacity:1; transform:scale(1.2);}
-  100%{opacity:0.2; transform:scale(0.8);}
+
+0%{
+
+opacity:0.2;
+
+transform:scale(0.8);
+
 }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    .loading-dots span {
-        width:10px;
-       height:10px;
-        
-    }
+50%{
+
+opacity:1;
+
+transform:scale(1.2);
+
+}
+
+100%{
+
+opacity:0.2;
+
+transform:scale(0.8);
+
+}
+
+}
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.loading-dots span{
+
+width:10px;
+
+height:10px;
+
+}
+
 }
 
     

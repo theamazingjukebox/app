@@ -11,17 +11,31 @@ inset:0;
 
 display:none;
 
+align-items:center;
 justify-content:center;
-    align-items:flex-end;
 
-    padding-bottom:45px;
+z-index:99999;
 
-    z-index:999999;
+background:rgba(0,0,0,.08);
 
-    pointer-events:none;
+backdrop-filter:blur(4px);
+-webkit-backdrop-filter:blur(4px);
+
+animation:fadeOverlay .35s ease;
 
 }
 
+@keyframes fadeOverlay{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
 
 /* ======================================================
 CARD
@@ -36,30 +50,49 @@ padding:30px 45px;
 
 border-radius:22px;
 
-background:rgba(22,22,22,.58);
+background:
+linear-gradient(
+180deg,
+rgba(18,22,30,.84),
+rgba(10,14,22,.82)
+);
 
-border:1px solid rgba(47,185,190,.55);
+border:1px solid rgba(70,255,255,.15);
 
 backdrop-filter:blur(18px);
 -webkit-backdrop-filter:blur(18px);
 
 box-shadow:
 
-        0 0 14px rgba(47,185,190,.30),
+0 14px 45px rgba(0,0,0,.45),
 
-        0 0 30px rgba(216,60,164,.18);
-   color:white;
+0 0 28px rgba(0,255,255,.12),
 
-    font-family:'Orbitron';
+inset 0 1px rgba(255,255,255,.05);
 
-    text-align:center;
+text-align:center;
 
-    pointer-events:auto;
-
-    animation:pushFade .45s ease;
+animation:cardIn .45s ease;
 
 }
 
+@keyframes cardIn{
+
+from{
+
+opacity:0;
+transform:translateY(18px) scale(.97);
+
+}
+
+to{
+
+opacity:1;
+transform:none;
+
+}
+
+}
 
 /* ======================================================
 ICON
@@ -71,6 +104,9 @@ font-size:55px;
 
 margin-bottom:18px;
 
+filter:
+
+drop-shadow(0 0 12px rgba(0,255,255,.25));
 
 }
 
@@ -80,16 +116,34 @@ TITLE
 
 .push-title{
 
-color:#7efcf8;
+font-family:Orbitron,sans-serif;
 
 font-size:55px;
 
+font-weight:700;
+
+line-height:1.08;
+
+letter-spacing:1px;
+
 margin-bottom:18px;
 
+background:
+
+linear-gradient(
+90deg,
+#55fff4,
+#39c8ff,
+#847bff,
+#ff5bc8
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 
 text-shadow:
 
-        0 0 6px #2fb9be;
+0 0 15px rgba(0,255,255,.18);
 
 }
 
@@ -97,17 +151,22 @@ text-shadow:
 TEXT
 ====================================================== */
 
-.push-text{
+.push-description{
 
-    font-size:42px;
+font-family:Orbitron,sans-serif;
 
-    line-height:1.55;
+font-size:42px;
 
-    color:#dddddd;
+line-height:1.35;
 
-    margin-bottom:28px;
+color:#dffcff;
+
+opacity:.88;
+
+margin-bottom:28px;
 
 }
+
 /* ======================================================
 BUTTON
 ====================================================== */
@@ -116,37 +175,51 @@ BUTTON
 
 width:100%;
 
-padding:11px;
+height:72px;
 
-    border:none;
+border:none;
 
-    border-radius:25px;
+border-radius:999px;
 
-    cursor:pointer;
+cursor:pointer;
 
-    font-family:'Orbitron';
+font-family:Orbitron,sans-serif;
 
-    background:
+font-size:34px;
 
-        linear-gradient(
+font-weight:700;
 
-            90deg,
+color:white;
 
-            #1ed9d7,
+background:
 
-            #d83ca4
+linear-gradient(
+90deg,
+#16d4e6,
+#19b7ff,
+#8f74ff,
+#ff4eb8
+);
 
-        );
+box-shadow:
 
-    color:white;
+0 10px 25px rgba(0,0,0,.25),
 
-    transition:.25s;
+0 0 18px rgba(0,255,255,.22);
+
+transition:.28s;
 
 }
 
 .push-enable:hover{
 
-    transform:scale(1.03);
+transform:translateY(-2px);
+
+box-shadow:
+
+0 14px 30px rgba(0,0,0,.35),
+
+0 0 30px rgba(0,255,255,.28);
 
 }
 
@@ -168,29 +241,21 @@ font-family:Orbitron,sans-serif;
 
 font-size:30px;
 
-color:#8fd8da;
+color:#c5ffff;
 
-}
-@keyframes pushFade{
+opacity:.72;
 
-    from{
-
-        opacity:0;
-
-        transform:translateY(25px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
+transition:.25s;
 
 }
 
+.push-later:hover{
+
+opacity:1;
+
+color:white;
+
+}
 
 /* ======================================================
 TABLET / DESKTOP

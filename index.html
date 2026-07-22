@@ -646,17 +646,18 @@ all and (-webkit-display-mode:standalone){
 
 .loading-box{
 
-    background:rgba(22,22,22,.58);
+    background:rgba(18,22,30,.78);
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-    border-radius:18px;
+     border-radius:24px;
 
-    border:1px solid rgba(47,185,190,.55);
+    border:1px solid rgba(0,255,255,.18);
 
-    padding:22px;
+    padding:30px 45px;
 
-    color:white;
+    color:#87ffff;
 
     font-family:Orbitron,monospace;
 
@@ -664,14 +665,44 @@ all and (-webkit-display-mode:standalone){
 
     box-shadow:
 
-        0 0 14px rgba(47,185,190,.30),
+        0 12px 45px rgba(0,0,0,.45),
+        0 0 35px rgba(0,255,255,.18);
 
-        0 0 30px rgba(216,60,164,.18);
-
-    animation:pushFade .45s ease;
+    animation:glassPulse 2.8s ease-in-out infinite;
 
 }
 
+/* ===========================
+   Glow Animation
+=========================== */
+
+@keyframes glassPulse{
+
+0%{
+
+box-shadow:
+0 12px 45px rgba(0,0,0,.45),
+0 0 18px rgba(0,255,255,.12);
+
+}
+
+50%{
+
+box-shadow:
+0 14px 50px rgba(0,0,0,.48),
+0 0 30px rgba(0,255,255,.24);
+
+}
+
+100%{
+
+box-shadow:
+0 12px 45px rgba(0,0,0,.45),
+0 0 18px rgba(0,255,255,.12);
+
+}
+
+}
 
 /* ===========================
    TEXT
@@ -681,9 +712,15 @@ all and (-webkit-display-mode:standalone){
 
 font-size:55px;
 
-margin-bottom:12px;
+margin-bottom:10px;
 
 letter-spacing:2px;
+
+ color:#7ffcff;
+
+text-shadow:
+
+0 0 10px rgba(0,255,255,.30);   
 
 }
 
@@ -701,13 +738,13 @@ font-size:35px;
 
 font-size:42px;
 
-margin-bottom:18px;
+margin-bottom:15px;
 
-color:#7efcf8;
+color:#7ffcff;
 
 text-shadow:
 
-0 0 6px #2fb9be;
+0 0 8px rgba(0,255,255,.22);
 
 
 
@@ -729,8 +766,9 @@ margin-top:10px;
 
 font-size:34px;
 
+opacity:.72;
 
-color:#dddddd;
+color:#c5ffff;
 
 }
 

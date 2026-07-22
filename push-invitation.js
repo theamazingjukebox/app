@@ -72,7 +72,7 @@ const PushInvitation = {
 
     return false;
 
-}
+},
 
     isStandalone() {
 

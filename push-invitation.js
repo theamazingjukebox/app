@@ -39,19 +39,18 @@ const PushInvitation = {
 
     },
 
-    schedule() {
-
-    console.log("schedule()");
-
-    console.log("Standalone:", this.isStandalone());
-
-    console.log("Permission:", Notification.permission);
-
-    console.log("Answered:", this.wasAnswered());
-
-    this.show();
-
-}
+    schedule() { 
+       
+       
+     if (this.scheduled) return; 
+     
+     if (!this.isStandalone()) return; 
+       
+       if (this.wasAnswered()) return; this.scheduled = true; setTimeout(() => { 
+          
+          if (document.visibilityState !== "visible") return; this.show(); }, this.delay); 
+    
+    },
 
     show() {
 

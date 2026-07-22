@@ -22,7 +22,7 @@
 
 .push-card{
 
-    width:640px;
+    width:800px;
 
     padding:22px;
 
@@ -54,7 +54,7 @@
 
 .push-icon{
 
-    font-size:56px;
+    font-size:70px;
 
     margin-bottom:12px;
 
@@ -64,7 +64,7 @@
 
     color:#7efcf8;
 
-    font-size:34px;
+    font-size:43px;
 
     margin-bottom:12px;
 
@@ -76,7 +76,7 @@
 
 .push-text{
 
-    font-size:22px;
+    font-size:33px;
 
     line-height:1.55;
 
@@ -90,7 +90,7 @@
 
     width:100%;
 
-    padding:22px;
+    padding:11px;
 
     border:none;
 
@@ -114,6 +114,8 @@
 
     color:white;
 
+   font-size:33px;
+
     transition:.25s;
 
 }
@@ -133,6 +135,8 @@
     border:none;
 
     color:#8fd8da;
+
+   font-size:33px;
 
     cursor:pointer;
 

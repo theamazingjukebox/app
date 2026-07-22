@@ -41,23 +41,17 @@ const PushInvitation = {
 
     schedule() {
 
-        if (this.scheduled) return;
+    console.log("schedule()");
 
-        if (!this.isStandalone()) return;
+    console.log("Standalone:", this.isStandalone());
 
-        if (this.wasAnswered()) return;
+    console.log("Permission:", Notification.permission);
 
-        this.scheduled = true;
+    console.log("Answered:", this.wasAnswered());
 
-        setTimeout(() => {
+    this.show();
 
-            if (document.visibilityState !== "visible") return;
-
-            this.show();
-
-        }, this.delay);
-
-    },
+}
 
     show() {
 
@@ -77,15 +71,9 @@ const PushInvitation = {
 
     wasAnswered() {
 
-        if (Notification.permission === "granted")
-            return true;
+    return false;
 
-        if (Notification.permission === "denied")
-            return true;
-
-        return false;
-
-    },
+}
 
     isStandalone() {
 

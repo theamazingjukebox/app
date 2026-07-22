@@ -5,7 +5,7 @@
 #push-overlay{
 
     position:fixed;
-    inset:0;
+    inset:0 0 50px 0;
 
     display:none;
 
@@ -22,7 +22,7 @@
 
 .push-card{
 
-    width:800px;
+    width:640px;
 
     padding:22px;
 
@@ -54,7 +54,7 @@
 
 .push-icon{
 
-    font-size:70px;
+    font-size:56px;
 
     margin-bottom:12px;
 
@@ -64,7 +64,7 @@
 
     color:#7efcf8;
 
-    font-size:43px;
+    font-size:34px;
 
     margin-bottom:12px;
 
@@ -76,7 +76,7 @@
 
 .push-text{
 
-    font-size:33px;
+    font-size:22px;
 
     line-height:1.55;
 
@@ -114,7 +114,7 @@
 
     color:white;
 
-   font-size:33px;
+   font-size:22px;
 
     transition:.25s;
 
@@ -136,7 +136,7 @@
 
     color:#8fd8da;
 
-   font-size:33px;
+   font-size:22px;
 
     cursor:pointer;
 

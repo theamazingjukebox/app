@@ -120,8 +120,12 @@
         #message-btn {
             margin-left: 10px;
              background-color: rgba(64, 224, 208, 0);
-            border: 3px solid rgba(115, 25, 138, 0.5);
-    box-shadow: 0px 0px 10px rgba(50, 255, 135, 0.5), 0px 0px 20px rgba(35, 247, 106, 0.5);
+            border:2px solid rgba(47,185,190,.55);
+    box-shadow:
+
+        0 0 14px rgba(47,185,190,.30),
+
+        0 0 30px rgba(216,60,164,.18);
     color: rgba(255, 255, 255, 0.685);
     text-shadow: 
         0 0 5px rgba(255, 255, 255, 0.8), /* Brillo suave */

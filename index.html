@@ -601,7 +601,7 @@ body {
 }
 
     
- #loading-screen {
+#loading-screen {
   position: fixed;
   inset: 0;
   display: flex;
@@ -646,62 +646,32 @@ all and (-webkit-display-mode:standalone){
 
 .loading-box{
 
-    background:rgba(18,22,30,.78);
+    background:rgba(22,22,22,.58);
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+    backdrop-filter:blur(14px);
 
-    border-radius:24px;
+    border-radius:18px;
 
-    border:1px solid rgba(0,255,255,.18);
+    border:1px solid rgba(47,185,190,.55);
 
-    padding:30px 45px;
+    padding:22px;
 
-    color:#87ffff;
+    color:white;
 
     font-family:Orbitron,monospace;
 
     text-align:center;
 
     box-shadow:
-        0 12px 45px rgba(0,0,0,.45),
-        0 0 35px rgba(0,255,255,.18);
 
-    animation:glassPulse 2.8s ease-in-out infinite;
+        0 0 14px rgba(47,185,190,.30),
 
-}
+        0 0 30px rgba(216,60,164,.18);
 
-/* ===========================
-   Glow Animation
-=========================== */
-
-@keyframes glassPulse{
-
-0%{
-
-box-shadow:
-0 12px 45px rgba(0,0,0,.45),
-0 0 18px rgba(0,255,255,.12);
+    animation:pushFade .45s ease;
 
 }
 
-50%{
-
-box-shadow:
-0 14px 50px rgba(0,0,0,.48),
-0 0 30px rgba(0,255,255,.24);
-
-}
-
-100%{
-
-box-shadow:
-0 12px 45px rgba(0,0,0,.45),
-0 0 18px rgba(0,255,255,.12);
-
-}
-
-}
 
 /* ===========================
    TEXT
@@ -711,15 +681,9 @@ box-shadow:
 
 font-size:55px;
 
-margin-bottom:10px;
+margin-bottom:12px;
 
 letter-spacing:2px;
-
-color:#7ffcff;
-
-text-shadow:
-
-0 0 10px rgba(0,255,255,.30);
 
 }
 
@@ -737,13 +701,15 @@ font-size:35px;
 
 font-size:42px;
 
-margin-bottom:15px;
+margin-bottom:18px;
 
-color:#7ffcff;
+color:#7efcf8;
 
 text-shadow:
 
-0 0 8px rgba(0,255,255,.22);
+0 0 6px #2fb9be;
+
+
 
 }
 
@@ -763,9 +729,8 @@ margin-top:10px;
 
 font-size:34px;
 
-opacity:.72;
 
-color:#c5ffff;
+color:#dddddd;
 
 }
 
@@ -783,6 +748,7 @@ font-size:14px;
    DOTS
 =========================== */
 
+
 .loading-dots span{
 
 display:inline-block;
@@ -795,43 +761,24 @@ margin:0 3px;
 
 border-radius:50%;
 
-background:linear-gradient(
-180deg,
-#49ffff,
-#00b7ff
-);
+ /* Cambiamos a 90deg para que vaya de izquierda a derecha */
+  background: linear-gradient(90deg, #1ed9d7, #d83ca4);
 
-box-shadow:
+     background-size: 500% 100%;
 
-0 0 10px rgba(0,255,255,.35);
+
 
 animation:dotPulse 1.4s infinite ease-in-out;
 
 }
 
-.loading-dots span:nth-child(2){
+/* 3. Desplazamos el fondo de cada punto para que continúe el degradado del anterior */
+.loading-dots span:nth-child(1) { background-position: 0% 0%; }
+.loading-dots span:nth-child(2) { background-position: 25% 0%; animation-delay: .2s; }
+.loading-dots span:nth-child(3) { background-position: 50% 0%; animation-delay: .4s; }
+.loading-dots span:nth-child(4) { background-position: 75% 0%; animation-delay: .6s; }
+.loading-dots span:nth-child(5) { background-position: 100% 0%; animation-delay: .8s; }
 
-animation-delay:.2s;
-
-}
-
-.loading-dots span:nth-child(3){
-
-animation-delay:.4s;
-
-}
-
-.loading-dots span:nth-child(4){
-
-animation-delay:.6s;
-
-}
-
-.loading-dots span:nth-child(5){
-
-animation-delay:.8s;
-
-}
 
 @keyframes dotPulse{
 
@@ -872,7 +819,6 @@ height:10px;
 }
 
 }
-
     
     #ad-container {
         

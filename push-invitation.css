@@ -5,7 +5,7 @@
 #push-overlay{
 
     position:fixed;
-    inset:0 0 50px 0;
+    inset:0 0 300px 0;
 
     display:none;
 
@@ -18,6 +18,13 @@
 
     pointer-events:none;
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #push-overlay{
+        inset:0;  
+            
+    }
 }
 
 .push-card{
@@ -52,12 +59,26 @@
 
 }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-card{
+        width:320px;  
+            
+    }
+}
+
 .push-icon{
 
     font-size:56px;
 
     margin-bottom:12px;
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-icon{
+        font-size:28px; 
+            
+    }
 }
 
 .push-title{
@@ -74,6 +95,13 @@
 
 }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-title{
+        font-size:17px; 
+            
+    }
+}
+
 .push-text{
 
     font-size:22px;
@@ -84,6 +112,13 @@
 
     margin-bottom:18px;
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-text{
+        font-size:11px; 
+            
+    }
 }
 
 .push-enable{
@@ -120,10 +155,19 @@
 
 }
 
+
+
 .push-enable:hover{
 
     transform:scale(1.03);
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-enable{
+        font-size:11px; 
+            
+    }
 }
 
 .push-later{
@@ -162,4 +206,11 @@
 
     }
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-later{
+        font-size:11px; 
+            
+    }
 }

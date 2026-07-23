@@ -74,19 +74,7 @@ const PushInvitation = {
 
 },
 
-    isStandalone() {
-
-        return (
-
-            window.matchMedia("(display-mode: standalone)").matches ||
-
-            window.navigator.standalone === true
-
-        );
-
-    }
-
-};
+    
 
 document.addEventListener("DOMContentLoaded", () => {
 

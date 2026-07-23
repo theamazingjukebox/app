@@ -75,13 +75,21 @@
 }
 
 .push-icon img {
-  width: 56px;
+  width: 224px;
   height: auto;
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .push-icon{
         font-size:28px; 
+            
+    }
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .push-icon img {
+        width: 112px;
+  height: auto;
             
     }
 }

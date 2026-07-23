@@ -39,18 +39,23 @@ const PushInvitation = {
 
     },
 
-    schedule() { 
-       
-       
-     if (this.scheduled) return; 
-     
-     if (!this.isStandalone()) return; 
-       
-       if (this.wasAnswered()) return; this.scheduled = true; setTimeout(() => { 
-          
-          if (document.visibilityState !== "visible") return; this.show(); }, this.delay); 
-    
-    },
+    schedule() {
+
+    if (this.scheduled) return;
+
+    if (this.wasAnswered()) return;
+
+    this.scheduled = true;
+
+    setTimeout(() => {
+
+        if (document.visibilityState !== "visible") return;
+
+        this.show();
+
+    }, this.delay);
+
+},
 
     show() {
 
@@ -73,6 +78,20 @@ const PushInvitation = {
     return false;
 
 },
+
+isStandalone() {
+
+        return (
+
+            window.matchMedia("(display-mode: standalone)").matches ||
+
+            window.navigator.standalone === true
+
+        );
+
+    }
+
+};
 
     
 

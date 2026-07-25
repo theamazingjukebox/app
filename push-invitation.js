@@ -14,6 +14,7 @@ const PushInvitation = {
         this.overlay = document.getElementById("push-overlay");
         this.enableBtn = document.querySelector(".push-enable");
         this.laterBtn = document.querySelector(".push-later");
+        this.noBtn = document.querySelector(".push-no");
 
         if (!this.overlay) return;
 
@@ -36,6 +37,17 @@ const PushInvitation = {
             );
 
         });
+
+       this.noBtn.addEventListener("click", () => {
+
+           this.hide();
+
+           localStorage.setItem(
+             "taj_push_declined",
+                Date.now()
+          );
+
+});
 
     },
 

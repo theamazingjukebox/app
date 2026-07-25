@@ -227,3 +227,39 @@
             
     }
 }
+
+.push-no{
+
+    margin-top:8px;
+
+    background:none;
+
+    border:none;
+
+    color:#8f8f8f;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    font-family:'Orbitron';
+
+    transition:.25s;
+
+}
+
+.push-no:hover{
+
+    color:#cfcfcf;
+
+}
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.push-no{
+
+font-size:11px;
+
+}
+
+}

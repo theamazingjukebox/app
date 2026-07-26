@@ -21,6 +21,42 @@ const PushInvitation = {
 
         if (!this.overlay) return;
 
+
+       this.enableBtn.addEventListener("click", () => {
+
+
+            this.hide();
+
+            // ← Aquí conectaremos OneSignal
+            console.log("Enable Push");
+
+        });
+
+        this.laterBtn.addEventListener("click", () => {
+
+            this.hide();
+
+            localStorage.setItem(
+                "taj_push_later",
+                Date.now()
+            );
+
+
+
+
+
+
+        });
+
+       this.noBtn.addEventListener("click", () => {
+
+           this.hide();
+
+           localStorage.setItem(
+             "taj_push_declined",
+                Date.now()
+          );
+
         
        this.enableBtn.addEventListener(()=>{
 

@@ -158,7 +158,7 @@ const PushInvitation = {
                 this.resetCard();
             }, 300);
 
-        }, 7000);
+        }, 9000);
     },
 
    

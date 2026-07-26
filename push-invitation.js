@@ -73,9 +73,15 @@ const PushInvitation = {
         }, this.delay);
     },
 
-    show() {
+     show() {
         if (!this.overlay) return;
+        this.overlay.classList.add("fade");
         this.overlay.style.display = "flex";
+        
+        
+        setTimeout(() => {
+            this.overlay.classList.remove("fade");
+        }, 10);
     },
 
     hide() {
@@ -106,8 +112,7 @@ const PushInvitation = {
     },
 
      resetCard(){
-        // Quitamos la clase de transparencia para que sea visible
-        this.overlay.classList.remove("fade");
+        
 
         // Volvemos a colocar el contenido original
         this.icon.innerHTML = '<img src="push-logo.webp" alt="">';
@@ -118,35 +123,40 @@ const PushInvitation = {
         this.enableBtn.style.display = "";
         this.laterBtn.style.display = "";
         this.noBtn.style.display = "";
+
+        this.overlay.classList.remove("fade");
     },
 
       showResponse(icon, title, message){
-         // 1. Añadimos la clase para desvanecer el contenido de la tarjeta
+        // 1. Desvanecemos la tarjeta de pregunta hacia afuera
         this.overlay.classList.add("fade");
-         // 2. Esperamos a que termine de ocultarse (300ms) para cambiar el texto de forma invisible
+
+        // 2. Cambiamos el contenido a los 300ms (cuando ya no se ve)
         setTimeout(() => {
-        this.icon.innerHTML = icon;
-        this.title.textContent = title;
-        this.text.textContent = message;
+            this.icon.innerHTML = icon;
+            this.title.textContent = title;
+            this.text.textContent = message;
 
-        // Ocultamos los tres botones para que solo se vea el mensaje de feedback
-        this.enableBtn.style.display = "none";
-        this.laterBtn.style.display = "none";
-        this.noBtn.style.display = "none";
+            this.enableBtn.style.display = "none";
+            this.laterBtn.style.display = "none";
+            this.noBtn.style.display = "none";
 
-           // 3. Volvemos a mostrar la tarjeta de forma suave con el nuevo texto
+            // Volvemos a desvanecer hacia adentro para revelar la respuesta
             this.overlay.classList.remove("fade");
         }, 300);
 
-        // Espera los 7 segundos acordados antes de cerrar todo por completo
+        // 3. Esperamos los 7 segundos para que el usuario lea el agradecimiento/aviso
         setTimeout(() => {
-            // Desvanecemos antes de cerrar
+            // Desvanecemos la respuesta hacia afuera
             this.overlay.classList.add("fade");
-            
+
             setTimeout(() => {
-                this.hide();
+                // Ocultamos el contenedor por completo del flujo de la página
+                this.overlay.style.display = "none";
+                // Reseteamos los elementos mientras es invisible
                 this.resetCard();
             }, 300);
+
         }, 7000);
     },
 

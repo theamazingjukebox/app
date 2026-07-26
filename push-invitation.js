@@ -75,18 +75,21 @@ const PushInvitation = {
 
      show() {
         if (!this.overlay) return;
+        
+        // Primero forzamos que inicie en fade (transparente)
         this.overlay.classList.add("fade");
-        this.overlay.style.display = "flex";
+        // Activamos la visibilidad usando la clase CSS blindada
+        this.overlay.classList.add("is-visible");
         
-        
+        // Pequeño respiro controlado para activar la transición de opacidad
         setTimeout(() => {
             this.overlay.classList.remove("fade");
-        }, 10);
+        }, 30);
     },
 
     hide() {
         if (!this.overlay) return;
-        this.overlay.style.display = "none";
+        this.overlay.classList.remove("is-visible");
     },
 
     // Corregido: Ahora revisa activamente el LocalStorage
@@ -151,9 +154,9 @@ const PushInvitation = {
             this.overlay.classList.add("fade");
 
             setTimeout(() => {
-                // Ocultamos el contenedor por completo del flujo de la página
-                this.overlay.style.display = "none";
-                // Reseteamos los elementos mientras es invisible
+                // Removemos la clase de visibilidad por completo
+                this.hide();
+                // Reseteamos los elementos de forma segura
                 this.resetCard();
             }, 300);
 

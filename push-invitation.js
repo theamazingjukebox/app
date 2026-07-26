@@ -25,7 +25,7 @@ const PushInvitation = {
         if (!this.overlay) return;
 
         // Esperamos a que YouTube mande llamar al método schedule() en el evento Play
-       if (this.wasAnswered()) return;
+       
 
                // --- EVENTO: ACEPTAR (CONEXIÓN ONESIGNAL CORREGIDA) ---
         this.enableBtn.addEventListener("click", () => {

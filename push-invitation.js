@@ -26,9 +26,8 @@ const PushInvitation = {
 
         // Esperamos a que YouTube mande llamar al método schedule() en el evento Play
 
-        // --- EVENTO: ACEPTAR (CONEXIÓN ONESIGNAL) ---
+               // --- EVENTO: ACEPTAR (CONEXIÓN ONESIGNAL CORREGIDA) ---
         this.enableBtn.addEventListener("click", () => {
-            
             // Si estamos en modo de prueba local, simulamos una aceptación inmediata
             if (this.modoPruebaOneSignal) {
                 console.log("[Prueba] Simulando aceptación de OneSignal...");
@@ -42,17 +41,22 @@ const PushInvitation = {
             }
 
             // --- FLUJO REAL DE ONESIGNAL ---
-            // Verificamos que el objeto global de OneSignal exista en la ventana
             if (typeof window.OneSignal !== "undefined") {
                 
-                // Solicitamos el permiso nativo del navegador de forma asíncrona
-                window.OneSignal.Notifications.requestPermission().then((permission) => {
+                // Levantamos la solicitud del navegador
+                window.OneSignal.Notifications.requestPermission().then(() => {
                     
-                    if (permission === "granted") {
-                        // El usuario aceptó exitosamente las notificaciones push
+                    // CORRECCIÓN: Le preguntamos al SDK el estado real e inmediato del permiso actual
+                    const tienePermiso = window.OneSignal.Notifications.permission;
+                    
+                    // El navegador devuelve true si el usuario aceptó en esta ocasión o si ya estaba aceptado
+                    if (tienePermiso === true || tienePermiso === "granted") {
+                        
+                        // Ahora SÍ guardamos de forma segura el registro en tu LocalStorage
                         localStorage.setItem("taj_push_accepted", Date.now());
-                        console.log("Notificaciones activadas con éxito en OneSignal.");
+                        console.log("Notificaciones activadas con éxito en OneSignal y registrado en LocalStorage.");
 
+                        // Mostramos la tarjeta de éxito con el diamante
                         this.showResponse(
                             "💎", 
                             "You're all set!", 
@@ -60,9 +64,7 @@ const PushInvitation = {
                         );
                     } else {
                         // El usuario le dio a "Bloquear" o cerró la ventana emergente gris
-                        console.log("El usuario rechazó el permiso nativo del navegador.");
-                        
-                        // Ocultamos la tarjeta de forma limpia sin mostrar el mensaje de éxito
+                        console.log("El usuario no concedió el permiso.");
                         this.hide();
                         this.resetCard();
                     }
@@ -78,6 +80,7 @@ const PushInvitation = {
                 this.resetCard();
             }
         });
+
 
         // --- EVENTO: MÁS TARDE ---
         this.laterBtn.addEventListener("click", () => {

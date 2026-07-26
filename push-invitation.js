@@ -21,9 +21,7 @@ const PushInvitation = {
 
         // Si ya fue respondido o pospuesto recientemente, no hacemos nada
         if (this.wasAnswered()) return;
-
-        // Iniciar el temporizador para mostrar la invitación
-        this.schedule();
+       
 
         // --- EVENTO: ACEPTAR ---
         this.enableBtn.addEventListener("click", () => {

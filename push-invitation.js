@@ -1,12 +1,17 @@
 /* ==========================================
    THE AMAZING JUKEBOX
    Push Invitation Component v1.0
+   Integrated with OneSignal SDK v16
 ========================================== */
 
 const PushInvitation = {
 
+    // --- CONFIGURACIÓN DE PRUEBAS ---
+    // Cambia a 'false' cuando ya tengas el script de OneSignal cargado en tu HTML
+    modoPruebaOneSignal: false, 
+
     scheduled: false,
-    delay: 15000,
+    delay: 15000, // 15 segundos exactos desde el PLAY del video
 
     init() {
         this.overlay = document.getElementById("push-overlay");
@@ -19,23 +24,59 @@ const PushInvitation = {
 
         if (!this.overlay) return;
 
-        // Si ya fue respondido o pospuesto recientemente, no hacemos nada
-        if (this.wasAnswered()) return;
-       
+        // Esperamos a que YouTube mande llamar al método schedule() en el evento Play
 
-        // --- EVENTO: ACEPTAR ---
+        // --- EVENTO: ACEPTAR (CONEXIÓN ONESIGNAL) ---
         this.enableBtn.addEventListener("click", () => {
-            // Guardamos que ya aceptó para que no vuelva a saltar
-            localStorage.setItem("taj_push_accepted", Date.now());
+            
+            // Si estamos en modo de prueba local, simulamos una aceptación inmediata
+            if (this.modoPruebaOneSignal) {
+                console.log("[Prueba] Simulando aceptación de OneSignal...");
+                localStorage.setItem("taj_push_accepted", Date.now());
+                this.showResponse(
+                    "💎", 
+                    "You're all set!", 
+                    "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
+                );
+                return;
+            }
 
-            // ← Aquí conectarás OneSignal en el futuro
-            console.log("Enable Push con OneSignal");
+            // --- FLUJO REAL DE ONESIGNAL ---
+            // Verificamos que el objeto global de OneSignal exista en la ventana
+            if (typeof window.OneSignal !== "undefined") {
+                
+                // Solicitamos el permiso nativo del navegador de forma asíncrona
+                window.OneSignal.Notifications.requestPermission().then((permission) => {
+                    
+                    if (permission === "granted") {
+                        // El usuario aceptó exitosamente las notificaciones push
+                        localStorage.setItem("taj_push_accepted", Date.now());
+                        console.log("Notificaciones activadas con éxito en OneSignal.");
 
-            this.showResponse(
-                "💎",
-                "You're all set!",
-                "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
-            );
+                        this.showResponse(
+                            "💎", 
+                            "You're all set!", 
+                            "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
+                        );
+                    } else {
+                        // El usuario le dio a "Bloquear" o cerró la ventana emergente gris
+                        console.log("El usuario rechazó el permiso nativo del navegador.");
+                        
+                        // Ocultamos la tarjeta de forma limpia sin mostrar el mensaje de éxito
+                        this.hide();
+                        this.resetCard();
+                    }
+                }).catch((error) => {
+                    console.error("Error al solicitar permisos con OneSignal:", error);
+                    this.hide();
+                    this.resetCard();
+                });
+
+            } else {
+                console.warn("El SDK de OneSignal no se ha cargado en el documento.");
+                this.hide();
+                this.resetCard();
+            }
         });
 
         // --- EVENTO: MÁS TARDE ---
@@ -92,7 +133,7 @@ const PushInvitation = {
 
     // Corregido: Ahora revisa activamente el LocalStorage
     wasAnswered() {
-       return false; 
+       
         const accepted = localStorage.getItem("taj_push_accepted");
         const declined = localStorage.getItem("taj_push_declined");
         const later = localStorage.getItem("taj_push_later");

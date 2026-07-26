@@ -18,6 +18,13 @@
 
     pointer-events:none;
 
+opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Esta clase se activará desde JavaScript para suavizar los cambios */
+#push-overlay.fade {
+    opacity: 0;
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {

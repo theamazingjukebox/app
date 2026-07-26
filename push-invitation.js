@@ -35,8 +35,8 @@ const PushInvitation = {
 
             this.showResponse(
                 "💎",
-                "Thanks!",
-                "You'll now receive occasional notifications whenever a carefully curated song joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
+                "You're all set!",
+                "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
             );
         });
 
@@ -105,8 +105,11 @@ const PushInvitation = {
         return false;
     },
 
-    resetCard(){
-        // Volvemos a colocar la imagen original usando la etiqueta HTML
+     resetCard(){
+        // Quitamos la clase de transparencia para que sea visible
+        this.overlay.classList.remove("fade");
+
+        // Volvemos a colocar el contenido original
         this.icon.innerHTML = '<img src="push-logo.webp" alt="">';
         this.title.textContent = "Never miss a new gem";
         this.text.textContent = "Receive an occasional notification whenever a carefully curated song joins The Amazing Jukebox.";
@@ -118,22 +121,37 @@ const PushInvitation = {
     },
 
     showResponse(icon, title, message){
-        this.icon.innerHTML = icon;
-        this.title.textContent = title;
-        this.text.textContent = message;
+        // 1. Añadimos la clase para desvanecer el contenido de la tarjeta
+        this.overlay.classList.add("fade");
 
-        // Ocultamos los tres botones para que solo se vea el mensaje de feedback
-        this.enableBtn.style.display = "none";
-        this.laterBtn.style.display = "none";
-        this.noBtn.style.display = "none";
-
-        // Espera 7 segundos, cierra la ventana y la resetea para el futuro
+        // 2. Esperamos a que termine de ocultarse (300ms) para cambiar el texto de forma invisible
         setTimeout(() => {
-            this.hide();
-            this.resetCard();
+            this.icon.innerHTML = icon;
+            this.title.textContent = title;
+            this.text.textContent = message;
+
+            // Ocultamos los botones
+            this.enableBtn.style.display = "none";
+            this.laterBtn.style.display = "none";
+            this.noBtn.style.display = "none";
+
+            // 3. Volvemos a mostrar la tarjeta de forma suave con el nuevo texto
+            this.overlay.classList.remove("fade");
+        }, 300);
+
+        // Espera los 7 segundos acordados antes de cerrar todo por completo
+        setTimeout(() => {
+            // Desvanecemos antes de cerrar
+            this.overlay.classList.add("fade");
+            
+            setTimeout(() => {
+                this.hide();
+                this.resetCard();
+            }, 300);
         }, 7000);
     },
 
+   
     isStandalone() {
         return (
             window.matchMedia("(display-mode: standalone)").matches ||

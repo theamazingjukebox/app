@@ -120,22 +120,21 @@ const PushInvitation = {
         this.noBtn.style.display = "";
     },
 
-    showResponse(icon, title, message){
-        // 1. Añadimos la clase para desvanecer el contenido de la tarjeta
+      showResponse(icon, title, message){
+         // 1. Añadimos la clase para desvanecer el contenido de la tarjeta
         this.overlay.classList.add("fade");
-
-        // 2. Esperamos a que termine de ocultarse (300ms) para cambiar el texto de forma invisible
+         // 2. Esperamos a que termine de ocultarse (300ms) para cambiar el texto de forma invisible
         setTimeout(() => {
-            this.icon.innerHTML = icon;
-            this.title.textContent = title;
-            this.text.textContent = message;
+        this.icon.innerHTML = icon;
+        this.title.textContent = title;
+        this.text.textContent = message;
 
-            // Ocultamos los botones
-            this.enableBtn.style.display = "none";
-            this.laterBtn.style.display = "none";
-            this.noBtn.style.display = "none";
+        // Ocultamos los tres botones para que solo se vea el mensaje de feedback
+        this.enableBtn.style.display = "none";
+        this.laterBtn.style.display = "none";
+        this.noBtn.style.display = "none";
 
-            // 3. Volvemos a mostrar la tarjeta de forma suave con el nuevo texto
+           // 3. Volvemos a mostrar la tarjeta de forma suave con el nuevo texto
             this.overlay.classList.remove("fade");
         }, 300);
 

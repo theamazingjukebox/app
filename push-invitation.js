@@ -44,8 +44,6 @@ const PushInvitation = {
 
 
 
-
-
         });
 
        this.noBtn.addEventListener("click", () => {
@@ -55,7 +53,10 @@ const PushInvitation = {
            localStorage.setItem(
              "taj_push_declined",
                 Date.now()
-          );
+         ); 
+       
+       
+       });
 
         
        this.enableBtn.addEventListener(()=>{

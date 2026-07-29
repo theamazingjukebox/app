@@ -1323,9 +1323,15 @@ transparent 65%
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background-color: #00000079; /* Fondo oscuro general */
+    background-color: #00000069; /* Fondo oscuro general */
     
 
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .disco-background {
+        background-color: #00000099;
+    }
 }
 
 

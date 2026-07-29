@@ -1329,7 +1329,7 @@ transparent 65%
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    .disco-background {
+    #disco-background {
         background-color: #00000099;
     }
 }

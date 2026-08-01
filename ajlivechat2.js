@@ -407,7 +407,7 @@ function generateVerticalStars() {
     
     for (let i = 0; i < 20; i++) { // Generar 135 estrellas
         const star = document.createElement('img');
-        star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
+        star.src = 'starlight3.webp'; // Reemplaza con la ruta de tu nuevo PNG
         star.classList.add('vertical-star');
 
         // Posición inicial aleatoria
@@ -466,7 +466,7 @@ function generateHorizontalStars() {
 
     for (let i = 0; i < 20; i++) { // Generar 135 estrellas
         const star = document.createElement('img');
-        star.src = 'starlight3.png'; // Reemplaza con la ruta de tu nuevo PNG
+        star.src = 'starlight3.webp'; // Reemplaza con la ruta de tu nuevo PNG
         star.classList.add('horizontal-star');
 
         // Posición inicial aleatoria
@@ -528,7 +528,7 @@ function generateTwinklingStars() {
 
     for (let i = 0; i < 175; i++) { // Generar 345 estrellas
         const star = document.createElement('img');
-        star.src = 'starlight2.png';
+        star.src = 'starlight2.webp';
         star.classList.add('star');
         
         setRandomPosition(star);

@@ -871,7 +871,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text-transform: uppercase;
         }
         .widget-controls {
-          display: flex; justify-content: center; align-items: center; gap: 35px;
+          display: flex; justify-content: center; align-items: center; gap: 15px;
           width: 100%; margin-top: 2px;
         }
         .w-btn {
@@ -884,7 +884,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text-shadow: 0 0 12px #87ffff; 
         }
         .btn-main { 
-          font-size: 24px; 
+          font-size: 18px; 
           color: #87ffff; /* Destaca el Play/Pause en cian */
           width: 30px; 
         }

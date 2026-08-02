@@ -871,20 +871,22 @@ document.addEventListener("DOMContentLoaded", () => {
           text-transform: uppercase;
         }
         .widget-controls {
-          display: flex; justify-content: center; align-items: center; gap: 15px;
-          width: 100%; margin-top: 2px;
+          display: flex; justify-content: center; align-items: center; gap: 10px;
+          width: 100%; margin-top: -95px; margin-left: 120px;
         }
-        .w-btn {
+        
+       
+       .w-btn {
           background: none; border: none; 
           color: #dffcff; /* Texto claro */
-          font-size: 18px; cursor: pointer; transition: all 0.2s;
+          font-size: 20px; cursor: pointer; transition: all 0.2s;
         }
         .w-btn:hover { 
           color: #87ffff; 
           text-shadow: 0 0 12px #87ffff; 
         }
         .btn-main { 
-          font-size: 18px; 
+          font-size: 20px; 
           color: #87ffff; /* Destaca el Play/Pause en cian */
           width: 30px; 
         }

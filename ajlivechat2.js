@@ -768,3 +768,305 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
+// ========================================================
+// MINI-WIDGET CON ESTÉTICA "LIKED SONGS" (ORBITRON + NEÓN)
+// ========================================================
+(function() {
+  if (!('documentPictureInPicture' in window)) return;
+
+  let pipWindow = null;
+  let trackCheckInterval = null;
+
+  async function openMiniPlayer() {
+    try {
+      if (window.documentPictureInPicture.window) return;
+
+      // 1. Abrir la ventana flotante en formato compacto
+      pipWindow = await window.documentPictureInPicture.requestWindow({
+        width: 240,
+        height: 210,
+      });
+
+      // 2. Inyectar la fuente Orbitron directamente en el head del widget flotante
+      const fontLink = pipWindow.document.createElement('link');
+      fontLink.rel = 'stylesheet';
+      fontLink.href = 'https://googleapis.com';
+      pipWindow.document.head.appendChild(fontLink);
+
+      // 3. Inyectar la interfaz optimizada con tu imagen animada local
+      // REEMPLAZA 'mi-rockola-animada.webp' POR TU RUTA REAL
+      pipWindow.document.body.innerHTML = `
+        <div class="mini-widget">
+          <div class="widget-content">
+            <!-- Animación exclusiva de la rocola -->
+            <div class="album-art-container">
+              <img id="mini-jukebox-animation" src="Diseosinttulo6-ezgif.com-video-to-webp-converter.webp" alt="Jukebox">
+            </div>
+            
+            <div class="track-info">
+              <p id="mini-track-title">🎶 LOADING...</p>
+              <p id="mini-track-artist" class="artist-name">THE AMAZING JUKEBOX</p>
+            </div>
+          </div>
+          
+          <!-- CONTROLES INTERACTIVOS CON ESTILO CIAN -->
+          <div class="widget-controls">
+            <button id="mini-btn-play" class="w-btn btn-main">⏸</button>
+            <button id="mini-btn-next" class="w-btn">⏭</button>
+          </div>
+
+          <div class="mini-footer">
+            <p class="tagline">THE AMAZING JUKEBOX ©</p>
+          </div>
+        </div>
+      `;
+
+      // 4. Inyectar los estilos clonados EXACTAMENTE de tu #liked-songs-popup
+      const style = pipWindow.document.createElement('style');
+      style.textContent = `
+        body {
+          margin: 0; padding: 0; 
+          background-color: #0b0d14; /* Tono oscuro a juego con tu paleta */
+          font-family: 'Orbitron', monospace; 
+          display: flex; justify-content: center; align-items: center; 
+          height: 100vh; overflow: hidden;
+        }
+        .mini-widget {
+          width: 100%; height: 100%; padding: 14px; box-sizing: border-box;
+          display: flex; flex-direction: column; justify-content: space-between;
+          align-items: center; 
+          
+          /* Estilos exactos de tu pop-up */
+          background-color: rgba(0, 32, 33); 
+          border: 2px solid #d83ca4; /* Rosa Neón */
+          border-radius: 24px; /* Bordes redondeados idénticos */
+          box-shadow: 0 12px 45px rgba(0,0,0,.45), 0 0 35px rgba(0,255,255,.18);
+        }
+        .widget-content {
+          display: flex; width: 100%; align-items: center; gap: 14px; margin-top: 5px;
+        }
+        .album-art-container img {
+          width: 125px; height: 125px; border-radius: 29px;
+          border: 0px solid #87ffff; /* Borde Cian Orbitron */
+          box-shadow: 0 0 0px rgba(73, 255, 246, 0.2);
+          object-fit: cover; background-color: #12161e;
+        }
+        .track-info {
+          display: flex; flex-direction: column; flex: 1; overflow: hidden;
+        }
+        #mini-track-title {
+          color: #87ffff; /* Color de tu texto principal */
+          font-size: 13px; font-weight: bold; margin: 0 0 4px 0;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+          text-shadow: 0 0 8px rgba(73, 255, 246, 0.4);
+          text-transform: uppercase; /* Vibe arcade retro */
+        }
+        .artist-name {
+          color: #dffcff; /* Color secundario de tu pop-up */
+          font-size: 10px; margin: 0;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+          text-shadow: 0 0 6px rgba(73, 255, 246, 0.18);
+          text-transform: uppercase;
+        }
+        .widget-controls {
+          display: flex; justify-content: center; align-items: center; gap: 35px;
+          width: 100%; margin-top: 2px;
+        }
+        .w-btn {
+          background: none; border: none; 
+          color: #dffcff; /* Texto claro */
+          font-size: 18px; cursor: pointer; transition: all 0.2s;
+        }
+        .w-btn:hover { 
+          color: #87ffff; 
+          text-shadow: 0 0 12px #87ffff; 
+        }
+        .btn-main { 
+          font-size: 24px; 
+          color: #87ffff; /* Destaca el Play/Pause en cian */
+          width: 30px; 
+        }
+        .mini-footer { width: 100%; text-align: center; margin-top: 2px; }
+        .mini-footer .tagline {
+          color: rgba(135, 255, 255, 0.3); /* Cian con opacidad */
+          font-size: 8px; letter-spacing: 1.5px;
+          margin: 0;
+        }
+      `;
+      pipWindow.document.head.appendChild(style);
+
+      // 5. FUNCIÓN PARA SINCRONIZAR TEXTOS Y ESTADO DE PLAY
+      function syncWidgetData() {
+        const activePlayer = window.ytPlayer || ytPlayer;
+        
+        if (typeof videos !== 'undefined' && typeof currentVideoIndex !== 'undefined' && currentVideoIndex >= 0) {
+          const currentSongObj = videos[currentVideoIndex];
+          const currentSongKey = currentSongObj.key || currentSongObj.src;
+          
+          if (typeof songInfo !== 'undefined' && songInfo[currentSongKey]) {
+            const track = songInfo[currentSongKey];
+            
+            const titleEl = pipWindow.document.getElementById('mini-track-title');
+            const artistEl = pipWindow.document.getElementById('mini-track-artist');
+            
+            // Forzamos mayúsculas para encajar con el estilo Orbitron clásico
+            if (titleEl && titleEl.innerText !== track.name.toUpperCase()) {
+              titleEl.innerText = track.name.toUpperCase();
+            }
+            if (artistEl && artistEl.innerText !== track.artist.toUpperCase()) {
+              artistEl.innerText = (track.artist || "UNKNOWN ARTIST").toUpperCase();
+            }
+          }
+        }
+
+        // Sincronizar el estado visual del botón Play/Pause
+        const playBtn = pipWindow.document.getElementById('mini-btn-play');
+        if (playBtn && activePlayer && typeof activePlayer.getPlayerState === 'function') {
+          const state = activePlayer.getPlayerState();
+          if (state === 1 || state === 3) {
+            playBtn.innerHTML = "&#9208;"; // ⏸
+          } else {
+            playBtn.innerHTML = "&#9654;"; // ▶
+          }
+        }
+      }
+
+      // Ejecutamos la sincronización inicial y el bucle cada medio segundo
+      syncWidgetData();
+      trackCheckInterval = setInterval(syncWidgetData, 500);
+
+      // 6. CONEXIÓN DE BOTONES INTERACTIVOS
+      pipWindow.document.getElementById('mini-btn-next').addEventListener('click', () => {
+        if (typeof playNextVideo === 'function') {
+          playNextVideo();
+          setTimeout(syncWidgetData, 300);
+        }
+      });
+
+      pipWindow.document.getElementById('mini-btn-play').addEventListener('click', () => {
+        const activePlayer = window.ytPlayer || ytPlayer;
+        const playBtn = pipWindow.document.getElementById('mini-btn-play');
+        
+        if (activePlayer && typeof activePlayer.getPlayerState === 'function') {
+          const state = activePlayer.getPlayerState();
+          if (state === 1) {
+            activePlayer.pauseVideo();
+            if (playBtn) playBtn.innerHTML = "&#9654;";
+          } else {
+            activePlayer.playVideo();
+            if (playBtn) playBtn.innerHTML = "&#9208;";
+          }
+        }
+      });
+
+      // 7. Limpieza al cerrar
+      pipWindow.addEventListener('pagehide', () => {
+        if (trackCheckInterval) clearInterval(trackCheckInterval);
+        pipWindow = null;
+      });
+
+    } catch (error) {
+      console.error("Error al abrir el mini-widget:", error);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const myPipBtn = document.getElementById('pip-button');
+    if (myPipBtn) {
+      myPipBtn.addEventListener('click', openMiniPlayer);
+    }
+  });
+
+        // ========================================================
+  // NOTIFICACIÓN INTELIGENTE DE MINI-PLAYER (ESTILO WEB)
+  // ========================================================
+  document.addEventListener('visibilitychange', () => {
+    // Si el usuario cambia de pestaña y luego REGRESA a la rocola
+    if (document.visibilityState === 'visible') {
+      
+      // Validamos si la música está sonando y el mini-player no está abierto
+      if (!pipWindow || pipWindow.closed) {
+        const activePlayer = window.ytPlayer || ytPlayer;
+        if (activePlayer && typeof activePlayer.getPlayerState === 'function') {
+          const state = activePlayer.getPlayerState();
+          
+          if (state === 1 || state === 3) {
+            showMiniPlayerBanner();
+          }
+        }
+      }
+    }
+  });
+
+  function showMiniPlayerBanner() {
+    // Si el banner ya existe en la pantalla, no hacemos nada
+    if (document.getElementById('pip-smart-banner')) return;
+
+    // Crear el contenedor del banner flotante
+    const banner = document.createElement('div');
+    banner.id = 'pip-smart-banner';
+    
+    // Inyectar el diseño con la misma estética Orbitron/Neón de tu web
+    banner.innerHTML = `
+      <div class="banner-body">
+        <span class="banner-icon">🔮</span>
+        <div class="banner-text">
+          <p class="banner-title">MINI-PLAYER AVAILABLE</p>
+          <p class="banner-desc">Keep using the reproduction controls while browsing other tabs.</p>
+        </div>
+        <button id="banner-btn-accept" class="b-btn b-accept">LAUNCH</button>
+        <button id="banner-btn-close" class="b-btn b-close">✕</button>
+      </div>
+    `;
+
+    // Estilos de neón incrustados para que luzca espectacular en tu esquina inferior derecha
+    const style = document.createElement('style');
+    style.id = 'pip-banner-styles';
+    style.textContent = `
+      #pip-smart-banner {
+        position: fixed; bottom: 25px; right: 25px; z-index: 10000;
+        background-color: rgba(18, 22, 30, 0.9); backdrop-filter: blur(10px);
+        border: 2px solid #d83ca4; border-radius: 16px; padding: 12px 18px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(135,255,255,0.15);
+        font-family: 'Orbitron', monospace; width: 320px;
+        animation: slideInBanner 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+      @keyframes slideInBanner {
+        from { transform: translateY(100px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .banner-body { display: flex; align-items: center; gap: 12px; position: relative; }
+      .banner-icon { font-size: 22px; }
+      .banner-text { flex: 1; display: flex; flex-direction: column; }
+      .banner-title { color: #87ffff; font-size: 11px; font-weight: bold; margin: 0 0 2px 0; letter-spacing: 0.5px; }
+      .banner-desc { color: #dffcff; font-size: 9px; margin: 0; line-height: 1.2; font-family: sans-serif; }
+      .b-btn { border: none; background: none; cursor: pointer; font-family: 'Orbitron', monospace; }
+      .b-accept { background-color: #d83ca4; color: #fff; font-size: 10px; font-weight: bold; padding: 6px 12px; border-radius: 8px; box-shadow: 0 0 8px rgba(216,60,164,0.4); transition: all 0.2s; }
+      .b-accept:hover { background-color: #ff52c5; box-shadow: 0 0 12px #ff52c5; }
+      .b-close { color: #4a4370; font-size: 14px; padding: 0 4px; }
+      .b-close:hover { color: #d83ca4; }
+    `;
+
+    document.head.appendChild(style);
+    document.body.appendChild(banner);
+
+    // Evento para lanzar el reproductor al dar clic (Aceptado por el navegador por ser un clic real)
+    document.getElementById('banner-btn-accept').addEventListener('click', () => {
+      openMiniPlayer();
+      dismissBanner();
+    });
+
+    // Evento para cerrar el banner
+    document.getElementById('banner-btn-close').addEventListener('click', dismissBanner);
+  }
+
+  function dismissBanner() {
+    const banner = document.getElementById('pip-smart-banner');
+    const styles = document.getElementById('pip-banner-styles');
+    if (banner) banner.remove();
+    if (styles) styles.remove();
+  }
+})();
+

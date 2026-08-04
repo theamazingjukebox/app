@@ -785,8 +785,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 1. Abrir la ventana flotante en formato compacto
       pipWindow = await window.documentPictureInPicture.requestWindow({
-        width: 240,
-        height: 210,
+        width: 270,
+        height: 155,
       });
 
       // 2. Inyectar la fuente Orbitron directamente en el head del widget flotante
@@ -801,9 +801,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="mini-widget">
           <div class="widget-content">
             <!-- Animación exclusiva de la rocola -->
-            <div class="album-art-container">
-              <img id="mini-jukebox-animation" src="Diseosinttulo6-ezgif.com-video-to-webp-converter.webp" alt="Jukebox">
-            </div>
+            <div class="album-art-container"> 
+        <img id="mini-jukebox-animation" src="CopiadeSinttulo31-ezgif.com-optiwebp.webp" alt="Jukebox"> 
+        </div>
             
             <div class="track-info">
               <p id="mini-track-title">🎶 LOADING...</p>
@@ -817,8 +817,62 @@ document.addEventListener("DOMContentLoaded", () => {
             <button id="mini-btn-next" class="w-btn">⏭</button>
           </div>
 
+          <!-- BARRA DE ESPECTRO SONORO HORIZONTAL (NUEVO ELEMENTO) -->
+          <!-- Puedes mover este div entero más arriba o más abajo según tu diseño -->
+          <div id="mini-spectrum" class="mini-audio-spectrum">
+          <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            
+          </div>
+
           <div class="mini-footer">
-            <p class="tagline">THE AMAZING JUKEBOX ©</p>
+            <p class="tagline"></p>
           </div>
         </div>
       `;
@@ -831,30 +885,54 @@ document.addEventListener("DOMContentLoaded", () => {
           background-color: #0b0d14; /* Tono oscuro a juego con tu paleta */
           font-family: 'Orbitron', monospace; 
           display: flex; justify-content: center; align-items: center; 
+          cursor: url('neoncursor2.png'), auto;
           height: 100vh; overflow: hidden;
         }
-        .mini-widget {
-          width: 100%; height: 100%; padding: 14px; box-sizing: border-box;
-          display: flex; flex-direction: column; justify-content: space-between;
+                .mini-widget {
+          width: 100%; 
+          height: 100%; 
+          padding: 14px; 
+          box-sizing: border-box; 
+          display: flex; 
+          flex-direction: column; 
+          justify-content: space-between; 
           align-items: center; 
           
-          /* Estilos exactos de tu pop-up */
-          background-color: rgba(0, 32, 33); 
-          border: 2px solid #d83ca4; /* Rosa Neón */
-          border-radius: 24px; /* Bordes redondeados idénticos */
+          /* 1. Definimos un borde transparente del grosor que quieras (ej. 2px o 3px) */
+          border: 2px solid transparent;
+          border-radius: 24px; /* ¡Ahora el navegador SÍ respetará las esquinas! */
+
+          /* 2. EL TRUCO MAESTRO: Doble fondo separado por comas */
+          /* El primer fondo es tu color oscuro (recortado al contenido). El segundo es el degradado que actuará como borde */
+          background-image: url("mini-footer9.svg"), 
+                            linear-gradient(rgba(18, 22, 30, 0.85), rgba(18, 22, 30, 0.85)), 
+                            linear-gradient(135deg, #d83ca4, #87ffff);
+          
+          /* Indicamos cómo se debe recortar cada capa de fondo */
+          background-clip: padding-box, padding-box, border-box;
+          background-origin: padding-box, padding-box, border-box;
+
+          /* Configuración específica para tu SVG */
+          background-repeat: no-repeat, no-repeat, no-repeat; 
+          background-position: center, center, center; 
+          background-size: contain, cover, cover; 
+
+          /* Tus sombras de neón del pop-up Liked Songs */
           box-shadow: 0 12px 45px rgba(0,0,0,.45), 0 0 35px rgba(0,255,255,.18);
         }
+
         .widget-content {
-          display: flex; width: 100%; align-items: center; gap: 14px; margin-top: 5px;
+          display: flex; width: 100%; align-items: center; gap: 16px; margin-top: -20px; margin-left: -10px;
         }
         .album-art-container img {
-          width: 125px; height: 125px; border-radius: 29px;
+          width: 145px; height: 145px; border-radius: 39px;
           border: 0px solid #87ffff; /* Borde Cian Orbitron */
           box-shadow: 0 0 0px rgba(73, 255, 246, 0.2);
-          object-fit: cover; background-color: #12161e;
+          object-fit: cover; background-color: transparent;
+          
         }
         .track-info {
-          display: flex; flex-direction: column; flex: 1; overflow: hidden;
+          display: flex; flex-direction: column; flex: 1; overflow: hidden; margin-left: 60px; margin-top: 65px;
         }
         #mini-track-title {
           color: #87ffff; /* Color de tu texto principal */
@@ -872,10 +950,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         .widget-controls {
           display: flex; justify-content: center; align-items: center; gap: 10px;
-          width: 100%; margin-top: -95px; margin-left: 120px;
+          width: 100%; margin-top: 0px; margin-left: 125px; margin-bottom: 40px;
         }
         
-       
+        /* ESTILO BURBUJA PARA TODOS LOS BOTONES */
        .w-btn {
           background: none; border: none; 
           color: #dffcff; /* Texto claro */
@@ -890,11 +968,170 @@ document.addEventListener("DOMContentLoaded", () => {
           color: #87ffff; /* Destaca el Play/Pause en cian */
           width: 30px; 
         }
-        .mini-footer { width: 100%; text-align: center; margin-top: 2px; }
+        .mini-footer { 
+          width: 100%; 
+          text-align: center; 
+          margin-top: -29px; 
+          z-index: 4;          
+          padding-top: 5px;
+        }
+        
         .mini-footer .tagline {
           color: rgba(135, 255, 255, 0.3); /* Cian con opacidad */
-          font-size: 8px; letter-spacing: 1.5px;
-          margin: 0;
+          font-size: 9px; letter-spacing: 1.5px;
+          margin: 0px 0 0 0;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+                 /* Ajuste en el contenedor de la rocola animada */
+        .album-art-container {
+          width: 75px; 
+  height: 75px; 
+          position: relative; 
+          
+          
+          /* TRUCO DEL CURSOR PERSONALIZADO */
+          
+          cursor: url('neoncursor4.png'), pointer; 
+        }
+
+        /* ESTILO PARA LA NOTA FLOTANTE */
+        .floating-note {
+          position: absolute;
+          font-size: 30px;
+          pointer-events: none; /* Evita que la nota interfiera con futuros clics */
+          color: #87ffff;
+          text-shadow: 0 0 8px rgba(73, 255, 246, 0.6);
+          user-select: none;
+          animation: floatUpAndFade 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* ANIMACIÓN DE FLOTADO Y DESVANECIMIENTO */
+        @keyframes floatUpAndFade {
+          0% {
+            transform: translate(-50%, -50%) scale(0.5) translateY(0) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            /* Flota hacia arriba 40 píxeles, se agranda un poco y gira a su ángulo aleatorio */
+            transform: translate(-50%, -50%) scale(1.2) translateY(-40px) rotate(var(--rotation, 20deg));
+            opacity: 0;
+          }
+        }
+
+                /* CONTENEDOR DEL ESPECTRO SONORO */
+        .mini-audio-spectrum {
+          display: none;
+          align-items: flex-end;
+          justify-content: center;
+          gap: 3px;
+          
+          margin: 0px 0 15px 0px;
+          width: 100%;
+          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                      opacity 0.8s ease, 
+                      height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          transform-origin: bottom;
+          
+          
+        }
+
+        /* DISEÑO DE LAS BARRITAS INDIVIDUALES */
+        .mini-audio-spectrum span {
+          display: none;
+          width: 3px;
+          height: 3px; /* Altura en estado quieto (mínima) */
+          background-color: #ff87e5;
+          box-shadow: 0 0 6px #ff00c8;
+          border-radius: 1px;
+          margin-top: 10px;
+          animation: bounceSpectrum 1.2s ease infinite alternate;
+          animation-play-state: paused; /* Inicia pausada por defecto */
+          
+        }
+
+        /* CUANDO LA MÚSICA ESTÁ SONANDO (PLAY) */
+        .mini-audio-spectrum.animation-active {
+          transform: scaleY(1);
+          opacity: 1;
+          height: 18px;
+        }
+        .mini-audio-spectrum.animation-active span {
+          animation-play-state: running; /* Encendemos el motor de la animación */
+        }
+
+        /* ESTADO DE PAUSA SUAVE (Cuando NO tiene la clase .animation-active) */
+        /* Al quitar la clase, el contenedor se encoge suavemente aplastando las barras hacia el suelo */
+        .mini-audio-spectrum:not(.animation-active) {
+          transform: scaleY(0.15); /* Encoge las barras verticalmente hasta el mínimo */
+          opacity: 0.5; /* Atenuamos el neón un poco más (50%) para dar sensación de 'apagado' */
+        }
+
+                /* DISPOSICIÓN ASIMÉTRICA EN PIRÁMIDE (48 BARRITAS) */
+        /* Extremo izquierdo (Bajo) */
+        .mini-audio-spectrum span:nth-child(1) { animation-delay: 0.2s; animation-duration: 1.8s; --max-h: 6px; }
+        .mini-audio-spectrum span:nth-child(2) { animation-delay: 0.5s; animation-duration: 2.2s; --max-h: 6px; }
+        .mini-audio-spectrum span:nth-child(3) { animation-delay: 0.1s; animation-duration: 1.6s; --max-h: 7px; }
+        .mini-audio-spectrum span:nth-child(4) { animation-delay: 0.6s; animation-duration: 2.5s; --max-h: 7px; }
+        .mini-audio-spectrum span:nth-child(5) { animation-delay: 0.3s; animation-duration: 2.0s; --max-h: 8px; }
+        .mini-audio-spectrum span:nth-child(6) { animation-delay: 0.7s; animation-duration: 1.9s; --max-h: 8px; }
+        
+        /* Subida lado izquierdo */
+        .mini-audio-spectrum span:nth-child(7) { animation-delay: 0.4s; animation-duration: 2.3s; --max-h: 9px; }
+        .mini-audio-spectrum span:nth-child(8) { animation-delay: 0.2s; animation-duration: 1.7s; --max-h: 9px; }
+        .mini-audio-spectrum span:nth-child(9) { animation-delay: 0.5s; animation-duration: 2.6s; --max-h: 10px; }
+        .mini-audio-spectrum span:nth-child(10) { animation-delay: 0.1s; animation-duration: 2.1s; --max-h: 10px; }
+        .mini-audio-spectrum span:nth-child(11) { animation-delay: 0.6s; animation-duration: 1.8s; --max-h: 11px; }
+        .mini-audio-spectrum span:nth-child(12) { animation-delay: 0.3s; animation-duration: 2.4s; --max-h: 11px; }
+        .mini-audio-spectrum span:nth-child(13) { animation-delay: 0.7s; animation-duration: 2.0s; --max-h: 12px; }
+        .mini-audio-spectrum span:nth-child(14) { animation-delay: 0.2s; animation-duration: 1.9s; --max-h: 12px; }
+        .mini-audio-spectrum span:nth-child(15) { animation-delay: 0.4s; animation-duration: 2.7s; --max-h: 13px; }
+        .mini-audio-spectrum span:nth-child(16) { animation-delay: 0.1s; animation-duration: 1.6s; --max-h: 13px; }
+        .mini-audio-spectrum span:nth-child(17) { animation-delay: 0.5s; animation-duration: 2.2s; --max-h: 14px; }
+        .mini-audio-spectrum span:nth-child(18) { animation-delay: 0.3s; animation-duration: 2.5s; --max-h: 14px; }
+        .mini-audio-spectrum span:nth-child(19) { animation-delay: 0.6s; animation-duration: 1.8s; --max-h: 15px; }
+        .mini-audio-spectrum span:nth-child(20) { animation-delay: 0.2s; animation-duration: 2.1s; --max-h: 15px; }
+        .mini-audio-spectrum span:nth-child(21) { animation-delay: 0.4s; animation-duration: 2.6s; --max-h: 16px; }
+        .mini-audio-spectrum span:nth-child(22) { animation-delay: 0.7s; animation-duration: 2.0s; --max-h: 16px; }
+        
+        /* Centro (Picos más altos) */
+        .mini-audio-spectrum span:nth-child(23) { animation-delay: 0.1s; animation-duration: 1.7s; --max-h: 18px; }
+        .mini-audio-spectrum span:nth-child(24) { animation-delay: 0.5s; animation-duration: 2.4s; --max-h: 18px; }
+        .mini-audio-spectrum span:nth-child(25) { animation-delay: 0.3s; animation-duration: 1.9s; --max-h: 18px; }
+        .mini-audio-spectrum span:nth-child(26) { animation-delay: 0.6s; animation-duration: 2.3s; --max-h: 18px; }
+        
+        /* Bajada lado derecho */
+        .mini-audio-spectrum span:nth-child(27) { animation-delay: 0.2s; animation-duration: 2.1s; --max-h: 16px; }
+        .mini-audio-spectrum span:nth-child(28) { animation-delay: 0.4s; animation-duration: 1.8s; --max-h: 16px; }
+        .mini-audio-spectrum span:nth-child(29) { animation-delay: 0.7s; animation-duration: 2.5s; --max-h: 15px; }
+        .mini-audio-spectrum span:nth-child(30) { animation-delay: 0.1s; animation-duration: 2.0s; --max-h: 15px; }
+        .mini-audio-spectrum span:nth-child(31) { animation-delay: 0.5s; animation-duration: 1.6s; --max-h: 14px; }
+        .mini-audio-spectrum span:nth-child(32) { animation-delay: 0.3s; animation-duration: 2.2s; --max-h: 14px; }
+        .mini-audio-spectrum span:nth-child(33) { animation-delay: 0.6s; animation-duration: 2.7s; --max-h: 13px; }
+        .mini-audio-spectrum span:nth-child(34) { animation-delay: 0.2s; animation-duration: 1.9s; --max-h: 13px; }
+        .mini-audio-spectrum span:nth-child(35) { animation-delay: 0.4s; animation-duration: 2.4s; --max-h: 12px; }
+        .mini-audio-spectrum span:nth-child(36) { animation-delay: 0.1s; animation-duration: 1.7s; --max-h: 12px; }
+        .mini-audio-spectrum span:nth-child(37) { animation-delay: 0.5s; animation-duration: 2.1s; --max-h: 11px; }
+        .mini-audio-spectrum span:nth-child(38) { animation-delay: 0.3s; animation-duration: 1.8s; --max-h: 11px; }
+        .mini-audio-spectrum span:nth-child(39) { animation-delay: 0.6s; animation-duration: 2.6s; --max-h: 10px; }
+        .mini-audio-spectrum span:nth-child(40) { animation-delay: 0.2s; animation-duration: 2.0s; --max-h: 10px; }
+        .mini-audio-spectrum span:nth-child(41) { animation-delay: 0.4s; animation-duration: 1.6s; --max-h: 9px; }
+        .mini-audio-spectrum span:nth-child(42) { animation-delay: 0.7s; animation-duration: 2.3s; --max-h: 9px; }
+        
+        /* Extremo derecho (Bajo) */
+        .mini-audio-spectrum span:nth-child(43) { animation-delay: 0.1s; animation-duration: 1.9s; --max-h: 8px; }
+        .mini-audio-spectrum span:nth-child(44) { animation-delay: 0.5s; animation-duration: 2.5s; --max-h: 8px; }
+        .mini-audio-spectrum span:nth-child(45) { animation-delay: 0.3s; animation-duration: 1.7s; --max-h: 7px; }
+        .mini-audio-spectrum span:nth-child(46) { animation-delay: 0.6s; animation-duration: 2.1s; --max-h: 7px; }
+        .mini-audio-spectrum span:nth-child(47) { animation-delay: 0.2s; animation-duration: 1.8s; --max-h: 6px; }
+        .mini-audio-spectrum span:nth-child(48) { animation-delay: 0.4s; animation-duration: 2.4s; --max-h: 6px; }
+
+
+        /* ANIMACIÓN DE SUBIDA Y BAJADA */
+        @keyframes bounceSpectrum {
+          0% { height: 3px; }
+          100% { height: var(--max-h, 18px); } /* Lee el valor '--max-h' de arriba */
         }
       `;
       pipWindow.document.head.appendChild(style);
@@ -925,12 +1162,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Sincronizar el estado visual del botón Play/Pause
         const playBtn = pipWindow.document.getElementById('mini-btn-play');
+        const spectrumEl = pipWindow.document.getElementById('mini-spectrum');
         if (playBtn && activePlayer && typeof activePlayer.getPlayerState === 'function') {
           const state = activePlayer.getPlayerState();
           if (state === 1 || state === 3) {
             playBtn.innerHTML = "&#9208;"; // ⏸
+              if (spectrumEl) spectrumEl.classList.add('animation-active');
           } else {
             playBtn.innerHTML = "&#9654;"; // ▶
+              if (spectrumEl) spectrumEl.classList.remove('animation-active');
           }
         }
       }
@@ -938,6 +1178,52 @@ document.addEventListener("DOMContentLoaded", () => {
       // Ejecutamos la sincronización inicial y el bucle cada medio segundo
       syncWidgetData();
       trackCheckInterval = setInterval(syncWidgetData, 500);
+
+        
+
+      // ========================================================
+      // EFECTO VISUAL: NOTAS MUSICALES AL DAR CLIC EN LA ROCOLA
+      // ========================================================
+      const jukeboxImg = pipWindow.document.getElementById('mini-jukebox-animation');
+      
+      if (jukeboxImg) {
+        jukeboxImg.addEventListener('click', (e) => {
+          // Arreglo con los emojis que pueden salir al hacer clic
+          const particles = ["🎵", "🎶", "✨", "🎸", "🎹", "✨", "🎷", "🔥", "✨"];
+          const randomParticle = particles[Math.floor(Math.random() * particles.length)];
+          
+          // Crear el elemento flotante
+          const note = pipWindow.document.createElement('span');
+          note.className = 'floating-note';
+          note.innerText = randomParticle;
+          
+          // Calcular la posición relativa del clic dentro de la imagen
+          const rect = jukeboxImg.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          // Posicionar la nota
+          note.style.left = `${x}px`;
+          note.style.top = `${y}px`;
+          
+          // Un ángulo de rotación aleatorio para que se vea más orgánico
+          const randomRotation = Math.floor(Math.random() * 60) - 30; // Entre -30 y 30 grados
+          note.style.setProperty('--rotation', `${randomRotation}deg`);
+          
+          // Meter la nota dentro del contenedor de la imagen
+          const container = pipWindow.document.querySelector('.album-art-container');
+          if (container) {
+            container.appendChild(note);
+            
+            // Eliminar la nota del DOM después de 1 segundo (cuando termina la animación CSS)
+            setTimeout(() => {
+              note.remove();
+            }, 1000);
+          }
+        });
+      }
+
+        
 
       // 6. CONEXIÓN DE BOTONES INTERACTIVOS
       pipWindow.document.getElementById('mini-btn-next').addEventListener('click', () => {
@@ -950,15 +1236,18 @@ document.addEventListener("DOMContentLoaded", () => {
       pipWindow.document.getElementById('mini-btn-play').addEventListener('click', () => {
         const activePlayer = window.ytPlayer || ytPlayer;
         const playBtn = pipWindow.document.getElementById('mini-btn-play');
+        const spectrumEl = pipWindow.document.getElementById('mini-spectrum');
         
         if (activePlayer && typeof activePlayer.getPlayerState === 'function') {
           const state = activePlayer.getPlayerState();
           if (state === 1) {
             activePlayer.pauseVideo();
             if (playBtn) playBtn.innerHTML = "&#9654;";
+              if (spectrumEl) spectrumEl.classList.remove('animation-active');
           } else {
             activePlayer.playVideo();
             if (playBtn) playBtn.innerHTML = "&#9208;";
+              if (spectrumEl) spectrumEl.classList.add('animation-active');
           }
         }
       });
@@ -1070,5 +1359,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (banner) banner.remove();
     if (styles) styles.remove();
   }
-})();
 
+
+    const preloadJukeboxAnim = new Image(); 
+    preloadJukeboxAnim.src = 'CopiadeSinttulo31-ezgif.com-optiwebp.webp'; 
+
+    // 2. Precarga de tu cursor personalizado (Se queda igual porque es imagen)
+  const preloadJukeboxCursor = new Image();
+  preloadJukeboxCursor.src = 'neoncursor4.png';
+
+    const preloadJukeboxBgSvg = new Image();
+  preloadJukeboxBgSvg.src = 'mini-footer9.svg';
+
+    
+})();

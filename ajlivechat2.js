@@ -785,8 +785,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 1. Abrir la ventana flotante en formato compacto
       pipWindow = await window.documentPictureInPicture.requestWindow({
-        width: 270,
-        height: 155,
+        width: 265,
+        height: 165,
       });
 
       // 2. Inyectar la fuente Orbitron directamente en el head del widget flotante
@@ -802,7 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="widget-content">
             <!-- Animación exclusiva de la rocola -->
             <div class="album-art-container"> 
-        <img id="mini-jukebox-animation" src="CopiadeSinttulo31-ezgif.com-optiwebp.webp" alt="Jukebox"> 
+        <img id="mini-jukebox-animation" src="CopiadeCopiadeSinttulo2-ezgif.com-gif-to-webp-converter.webp" alt="Jukebox"> 
         </div>
             
             <div class="track-info">
@@ -844,30 +844,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <span></span>
             <span></span>
             <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+           
+         
             
           </div>
 
@@ -925,7 +903,7 @@ document.addEventListener("DOMContentLoaded", () => {
           display: flex; width: 100%; align-items: center; gap: 16px; margin-top: -20px; margin-left: -10px;
         }
         .album-art-container img {
-          width: 145px; height: 145px; border-radius: 39px;
+          width: 135px; height: 135px; border-radius: 39px;
           border: 0px solid #87ffff; /* Borde Cian Orbitron */
           box-shadow: 0 0 0px rgba(73, 255, 246, 0.2);
           object-fit: cover; background-color: transparent;
@@ -1022,30 +1000,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 /* CONTENEDOR DEL ESPECTRO SONORO */
         .mini-audio-spectrum {
-          display: none;
+          display: flex;
           align-items: flex-end;
           justify-content: center;
           gap: 3px;
           
-          margin: 0px 0 15px 0px;
+          margin: 0px 0 75px 85px;
           width: 100%;
-          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                      opacity 0.8s ease, 
-                      height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                      opacity 2s ease, 
+                      height 2s cubic-bezier(0.16, 1, 0.3, 1);
           transform-origin: bottom;
+
+          background-image: linear-gradient(to top, #87ffff 20%, #d83ca4 100%);
+          background-size: 100% 28px;
+          background-repeat: no-repeat;
+          background-position: bottom;
           
+          /* Opcional: Un resplandor combinado de fondo */
+          filter: drop-shadow(0 0 4px rgba(73, 255, 246, 0.3));
           
         }
 
         /* DISEÑO DE LAS BARRITAS INDIVIDUALES */
         .mini-audio-spectrum span {
-          display: none;
-          width: 3px;
+          display: block;
+          width: 4px;
           height: 3px; /* Altura en estado quieto (mínima) */
-          background-color: #ff87e5;
-          box-shadow: 0 0 6px #ff00c8;
+           background: inherit;
+          background-attachment: fixed;
+          
+          /* Agrega un brillo general sutil */
+          box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
           border-radius: 1px;
-          margin-top: 10px;
+          margin-top: -85px;
+          
           animation: bounceSpectrum 1.2s ease infinite alternate;
           animation-play-state: paused; /* Inicia pausada por defecto */
           
@@ -1069,63 +1058,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
                 /* DISPOSICIÓN ASIMÉTRICA EN PIRÁMIDE (48 BARRITAS) */
-        /* Extremo izquierdo (Bajo) */
-        .mini-audio-spectrum span:nth-child(1) { animation-delay: 0.2s; animation-duration: 1.8s; --max-h: 6px; }
-        .mini-audio-spectrum span:nth-child(2) { animation-delay: 0.5s; animation-duration: 2.2s; --max-h: 6px; }
-        .mini-audio-spectrum span:nth-child(3) { animation-delay: 0.1s; animation-duration: 1.6s; --max-h: 7px; }
-        .mini-audio-spectrum span:nth-child(4) { animation-delay: 0.6s; animation-duration: 2.5s; --max-h: 7px; }
-        .mini-audio-spectrum span:nth-child(5) { animation-delay: 0.3s; animation-duration: 2.0s; --max-h: 8px; }
-        .mini-audio-spectrum span:nth-child(6) { animation-delay: 0.7s; animation-duration: 1.9s; --max-h: 8px; }
+    
+        .mini-audio-spectrum span:nth-child(1) { animation-delay: 0.2s; animation-duration: 1.8s; --max-h: 4px; }
         
-        /* Subida lado izquierdo */
-        .mini-audio-spectrum span:nth-child(7) { animation-delay: 0.4s; animation-duration: 2.3s; --max-h: 9px; }
-        .mini-audio-spectrum span:nth-child(8) { animation-delay: 0.2s; animation-duration: 1.7s; --max-h: 9px; }
-        .mini-audio-spectrum span:nth-child(9) { animation-delay: 0.5s; animation-duration: 2.6s; --max-h: 10px; }
-        .mini-audio-spectrum span:nth-child(10) { animation-delay: 0.1s; animation-duration: 2.1s; --max-h: 10px; }
-        .mini-audio-spectrum span:nth-child(11) { animation-delay: 0.6s; animation-duration: 1.8s; --max-h: 11px; }
-        .mini-audio-spectrum span:nth-child(12) { animation-delay: 0.3s; animation-duration: 2.4s; --max-h: 11px; }
-        .mini-audio-spectrum span:nth-child(13) { animation-delay: 0.7s; animation-duration: 2.0s; --max-h: 12px; }
-        .mini-audio-spectrum span:nth-child(14) { animation-delay: 0.2s; animation-duration: 1.9s; --max-h: 12px; }
-        .mini-audio-spectrum span:nth-child(15) { animation-delay: 0.4s; animation-duration: 2.7s; --max-h: 13px; }
-        .mini-audio-spectrum span:nth-child(16) { animation-delay: 0.1s; animation-duration: 1.6s; --max-h: 13px; }
-        .mini-audio-spectrum span:nth-child(17) { animation-delay: 0.5s; animation-duration: 2.2s; --max-h: 14px; }
-        .mini-audio-spectrum span:nth-child(18) { animation-delay: 0.3s; animation-duration: 2.5s; --max-h: 14px; }
-        .mini-audio-spectrum span:nth-child(19) { animation-delay: 0.6s; animation-duration: 1.8s; --max-h: 15px; }
-        .mini-audio-spectrum span:nth-child(20) { animation-delay: 0.2s; animation-duration: 2.1s; --max-h: 15px; }
-        .mini-audio-spectrum span:nth-child(21) { animation-delay: 0.4s; animation-duration: 2.6s; --max-h: 16px; }
-        .mini-audio-spectrum span:nth-child(22) { animation-delay: 0.7s; animation-duration: 2.0s; --max-h: 16px; }
+        .mini-audio-spectrum span:nth-child(2) { animation-delay: 0.1s; animation-duration: 1.6s; --max-h: 7px; }
+    
+        .mini-audio-spectrum span:nth-child(3) { animation-delay: 0.7s; animation-duration: 1.9s; --max-h: 8px; }
         
-        /* Centro (Picos más altos) */
-        .mini-audio-spectrum span:nth-child(23) { animation-delay: 0.1s; animation-duration: 1.7s; --max-h: 18px; }
-        .mini-audio-spectrum span:nth-child(24) { animation-delay: 0.5s; animation-duration: 2.4s; --max-h: 18px; }
-        .mini-audio-spectrum span:nth-child(25) { animation-delay: 0.3s; animation-duration: 1.9s; --max-h: 18px; }
-        .mini-audio-spectrum span:nth-child(26) { animation-delay: 0.6s; animation-duration: 2.3s; --max-h: 18px; }
+    
+        .mini-audio-spectrum span:nth-child(4) { animation-delay: 0.4s; animation-duration: 2.3s; --max-h: 9px; }
         
-        /* Bajada lado derecho */
-        .mini-audio-spectrum span:nth-child(27) { animation-delay: 0.2s; animation-duration: 2.1s; --max-h: 16px; }
-        .mini-audio-spectrum span:nth-child(28) { animation-delay: 0.4s; animation-duration: 1.8s; --max-h: 16px; }
-        .mini-audio-spectrum span:nth-child(29) { animation-delay: 0.7s; animation-duration: 2.5s; --max-h: 15px; }
-        .mini-audio-spectrum span:nth-child(30) { animation-delay: 0.1s; animation-duration: 2.0s; --max-h: 15px; }
-        .mini-audio-spectrum span:nth-child(31) { animation-delay: 0.5s; animation-duration: 1.6s; --max-h: 14px; }
-        .mini-audio-spectrum span:nth-child(32) { animation-delay: 0.3s; animation-duration: 2.2s; --max-h: 14px; }
-        .mini-audio-spectrum span:nth-child(33) { animation-delay: 0.6s; animation-duration: 2.7s; --max-h: 13px; }
-        .mini-audio-spectrum span:nth-child(34) { animation-delay: 0.2s; animation-duration: 1.9s; --max-h: 13px; }
-        .mini-audio-spectrum span:nth-child(35) { animation-delay: 0.4s; animation-duration: 2.4s; --max-h: 12px; }
-        .mini-audio-spectrum span:nth-child(36) { animation-delay: 0.1s; animation-duration: 1.7s; --max-h: 12px; }
-        .mini-audio-spectrum span:nth-child(37) { animation-delay: 0.5s; animation-duration: 2.1s; --max-h: 11px; }
-        .mini-audio-spectrum span:nth-child(38) { animation-delay: 0.3s; animation-duration: 1.8s; --max-h: 11px; }
-        .mini-audio-spectrum span:nth-child(39) { animation-delay: 0.6s; animation-duration: 2.6s; --max-h: 10px; }
-        .mini-audio-spectrum span:nth-child(40) { animation-delay: 0.2s; animation-duration: 2.0s; --max-h: 10px; }
-        .mini-audio-spectrum span:nth-child(41) { animation-delay: 0.4s; animation-duration: 1.6s; --max-h: 9px; }
-        .mini-audio-spectrum span:nth-child(42) { animation-delay: 0.7s; animation-duration: 2.3s; --max-h: 9px; }
+        .mini-audio-spectrum span:nth-child(5) { animation-delay: 0.5s; animation-duration: 2.6s; --max-h: 20px; }
+       
+        .mini-audio-spectrum span:nth-child(6) { animation-delay: 0.6s; animation-duration: 1.8s; --max-h: 16px; }
+  
+        .mini-audio-spectrum span:nth-child(7) { animation-delay: 0.2s; animation-duration: 1.9s; --max-h: 14px; }
+  
+        .mini-audio-spectrum span:nth-child(8) { animation-delay: 0.1s; animation-duration: 1.6s; --max-h: 23px; }
+       
+        .mini-audio-spectrum span:nth-child(9) { animation-delay: 0.3s; animation-duration: 2.5s; --max-h: 18px; }
+        .mini-audio-spectrum span:nth-child(10) { animation-delay: 0.6s; animation-duration: 1.8s; --max-h: 25px; }
+    
+        .mini-audio-spectrum span:nth-child(11) { animation-delay: 0.7s; animation-duration: 2.0s; --max-h: 26px; }
         
-        /* Extremo derecho (Bajo) */
-        .mini-audio-spectrum span:nth-child(43) { animation-delay: 0.1s; animation-duration: 1.9s; --max-h: 8px; }
-        .mini-audio-spectrum span:nth-child(44) { animation-delay: 0.5s; animation-duration: 2.5s; --max-h: 8px; }
-        .mini-audio-spectrum span:nth-child(45) { animation-delay: 0.3s; animation-duration: 1.7s; --max-h: 7px; }
-        .mini-audio-spectrum span:nth-child(46) { animation-delay: 0.6s; animation-duration: 2.1s; --max-h: 7px; }
-        .mini-audio-spectrum span:nth-child(47) { animation-delay: 0.2s; animation-duration: 1.8s; --max-h: 6px; }
-        .mini-audio-spectrum span:nth-child(48) { animation-delay: 0.4s; animation-duration: 2.4s; --max-h: 6px; }
+  
+        .mini-audio-spectrum span:nth-child(12) { animation-delay: 0.1s; animation-duration: 1.7s; --max-h: 28px; }
+       
+      
+        .mini-audio-spectrum span:nth-child(13) { animation-delay: 0.6s; animation-duration: 2.3s; --max-h: 28px; }
+        
+
+        .mini-audio-spectrum span:nth-child(14) { animation-delay: 0.2s; animation-duration: 2.1s; --max-h: 26px; }
+       
+        .mini-audio-spectrum span:nth-child(15) { animation-delay: 0.7s; animation-duration: 2.5s; --max-h: 18px; }
+      
+        .mini-audio-spectrum span:nth-child(16) { animation-delay: 0.5s; animation-duration: 1.6s; --max-h: 24px; }
+
+        .mini-audio-spectrum span:nth-child(17) { animation-delay: 0.2s; animation-duration: 1.9s; --max-h: 14px; }
+        .mini-audio-spectrum span:nth-child(18) { animation-delay: 0.4s; animation-duration: 2.4s; --max-h: 22px; }
+        
+        .mini-audio-spectrum span:nth-child(19) { animation-delay: 0.5s; animation-duration: 2.1s; --max-h: 16px; }
+    
+        .mini-audio-spectrum span:nth-child(20) { animation-delay: 0.6s; animation-duration: 2.6s; --max-h: 20px; }
+    
+        .mini-audio-spectrum span:nth-child(21) { animation-delay: 0.7s; animation-duration: 2.3s; --max-h: 9px; }
+        
+       
+        .mini-audio-spectrum span:nth-child(22) { animation-delay: 0.1s; animation-duration: 1.9s; --max-h: 8px; }
+
+        .mini-audio-spectrum span:nth-child(23) { animation-delay: 0.6s; animation-duration: 2.1s; --max-h: 7px; }
+      
+        .mini-audio-spectrum span:nth-child(24) { animation-delay: 0.4s; animation-duration: 2.4s; --max-h: 4px; }
 
 
         /* ANIMACIÓN DE SUBIDA Y BAJADA */
@@ -1302,7 +1285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inyectar el diseño con la misma estética Orbitron/Neón de tu web
     banner.innerHTML = `
       <div class="banner-body">
-        <span class="banner-icon">🔮</span>
+        <span class="banner-icon">📟</span>
         <div class="banner-text">
           <p class="banner-title">MINI-PLAYER AVAILABLE</p>
           <p class="banner-desc">Keep using the reproduction controls while browsing other tabs.</p>
@@ -1362,7 +1345,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const preloadJukeboxAnim = new Image(); 
-    preloadJukeboxAnim.src = 'CopiadeSinttulo31-ezgif.com-optiwebp.webp'; 
+    preloadJukeboxAnim.src = 'CopiadeCopiadeSinttulo2-ezgif.com-gif-to-webp-converter.webp'; 
 
     // 2. Precarga de tu cursor personalizado (Se queda igual porque es imagen)
   const preloadJukeboxCursor = new Image();

@@ -1290,7 +1290,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="banner-title">MINI-PLAYER AVAILABLE</p>
           <p class="banner-desc">Keep using the reproduction controls while browsing other tabs.</p>
         </div>
-        <button id="banner-btn-accept" class="b-btn b-accept">LAUNCH!</button>
+        <button id="banner-btn-accept" class="b-btn b-accept">LAUNCH !</button>
         <button id="banner-btn-close" class="b-btn b-close">✕</button>
       </div>
     `;

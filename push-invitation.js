@@ -122,6 +122,7 @@ const PushInvitation = {
     },
 
     wasAnswered() {
+        return true; // Desactiva el cartel simulando que ya fue respondido
         const accepted = localStorage.getItem("taj_push_accepted");
         const declined = localStorage.getItem("taj_push_declined");
         const later = localStorage.getItem("taj_push_later");

@@ -785,7 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 1. Abrir la ventana flotante en formato compacto
       pipWindow = await window.documentPictureInPicture.requestWindow({
-        width: 280,
+        width: 275,
         height: 163,
       });
 

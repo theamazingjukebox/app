@@ -2420,7 +2420,9 @@ function initYouTubePlayer(videoId) {
     }
 
         // 🔥 limpiar previo
-        if (qualityInterval) clearInterval(qualityInterval);
+        if (qualityInterval) {
+            clearInterval(qualityInterval);
+        }
 
         // 🔥 insistir durante los primeros segundos
         qualityInterval = setInterval(() => {
@@ -2429,15 +2431,17 @@ function initYouTubePlayer(videoId) {
             }
         }, 500);
 
-        if (event.data === YT.PlayerState.PLAYING) {
+        
     startEndWatcher();
-}
+
         
 
         // 🔥 detener después de estabilizar
         setTimeout(() => {
             clearInterval(qualityInterval);
         }, 4000);
+
+    }
         
         
 
@@ -2446,7 +2450,7 @@ function initYouTubePlayer(videoId) {
             playNextVideo();
         }, 200);
     }
-}
+},
             
             
             onError: () => {

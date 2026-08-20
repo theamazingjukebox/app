@@ -110,6 +110,16 @@
             background-color: black;
         }
 
+.chat-welcome {
+    color: rgba(220, 235, 235, 0.65);
+    font-style: italic;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 8px 12px;
+    opacity: 0.85;
+}
+
         #emoji-button {
             margin-left: auto;
             cursor: pointer;

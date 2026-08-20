@@ -195,7 +195,7 @@ const messagesContainer = document.getElementById("messages");
 const welcomeMessage = `
     <li class="system chat-welcome">
         Welcome to The Amazing Jukebox Live Chat.<br>
-        Please be polite, enjoy the music and feel free to spread the good word. 🎶
+        Please be polite, enjoy the music and feel free to spread the good word.
     </li>
 `;
 

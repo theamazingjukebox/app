@@ -1004,11 +1004,11 @@ background-image: url('boton-3.1.webp');
     
 
     /* Sustituyendo el texto por una imagen */
-    background-image: url('NOW-PLAYING-18-8-2024.png');
-    background-size: 50%; /* Ajusta la imagen al tamaño del botón */
+    background-image: url('Copia de Sin título (15).gif');
+    background-size: 55%; /* Ajusta la imagen al tamaño del botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen dentro del botón */
-    width: 325px; /* Ajusta el ancho del botón según la imagen */
+    width: 500px; /* Ajusta el ancho del botón según la imagen */
     height: 40px; /* Ajusta la altura del botón según la imagen */
     text-indent: -9999px; /* Oculta el texto */
     transition: transform -2.0s ease;
@@ -1303,7 +1303,7 @@ li.system2 {
     width: 66px;
     align-content: center;
     align-self: center;
-    padding: 1px 141px;
+    padding: 1px 40px;
     height: 25px;
 
 }
@@ -1430,6 +1430,138 @@ button, a, img {
     100% {
         left: 100%;
     }
+}
+
+
+/* ==========================================
+   THE AMAZING JUKEBOX
+   LIVE CHAT TICKER
+========================================== */
+
+.live-chat-ticker {
+
+    width: 440px;
+    height: 30px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    margin-left: -29px;
+    margin-top: -6px;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 234, 255, 0.08),
+            rgba(216, 60, 164, 0.10),
+            rgba(0, 234, 255, 0.08)
+        );
+
+    border: 1px solid rgba(0, 234, 255, 0.30);
+
+    box-shadow:
+        0 0 8px rgba(0, 234, 255, 0.20),
+        0 0 14px rgba(216, 60, 164, 0.10);
+
+}
+
+
+/* contenido que se mueve */
+
+.live-chat-track {
+
+    display: flex;
+
+    width: max-content;
+
+    white-space: nowrap;
+
+    animation:
+        liveTickerMove 18s linear infinite;
+
+}
+
+
+/* texto */
+
+.live-chat-text {
+
+    display: inline-flex;
+    align-items: center;
+
+    padding-right: 60px;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1.2px;
+
+    color: #8fffff;
+
+    text-shadow:
+        0 0 5px rgba(0, 234, 255, 0.6),
+        0 0 10px rgba(216, 60, 164, 0.25);
+
+}
+
+
+/* punto LIVE */
+
+.live-chat-text::before {
+
+    content: "●";
+
+    color: #ff3d91;
+
+    margin-right: 8px;
+
+    font-size: 10px;
+
+    text-shadow:
+        0 0 6px #ff3d91,
+        0 0 12px rgba(255, 61, 145, 0.60);
+
+    animation:
+        livePulse 1.4s ease-in-out infinite;
+
+}
+
+
+/* movimiento derecha → izquierda */
+
+@keyframes liveTickerMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* pulso del punto LIVE */
+
+@keyframes livePulse {
+
+    0%,
+    100% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
 }
 
     
@@ -2486,6 +2618,13 @@ window.addEventListener("load", () => {
             setChatState(false);
         }, 500);
 
+        // 🔥 3. reabrir con height mayor
+        setTimeout(() => {
+            chatContainer.scrollTop = 0;
+            chatContainer.style.height = "300px"; // 👈 tu nuevo tamaño final
+            isChatExpanded = true; // mantener estado coherente
+        }, 1000);
+
         // 🔥 2. ocultar loader DESPUÉS
         setTimeout(() => {
             loader.style.opacity = "0";
@@ -2520,6 +2659,75 @@ function waitForYTAndPlay() {
 
     }, 100);
 }
+
+
+/* ==========================================
+   THE AMAZING JUKEBOX
+   LIVE CHAT DATE + TIME
+========================================== */
+
+function updateLiveChatTicker() {
+
+    const tickerElements =
+        document.querySelectorAll(".live-chat-text");
+
+    if (!tickerElements.length) return;
+
+
+    const now = new Date();
+
+
+    // DD/MM/YYYY
+    const date = now.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+
+
+    // HH:MM AM/PM
+    const time = now.toLocaleTimeString(
+        "en-US",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        }
+    );
+
+
+    const tickerText =
+        `LIVE CHAT  ·  ${date}  ·  ${time}  ·  THE AMAZING JUKEBOX  ·`;
+
+
+    tickerElements.forEach(element => {
+
+        element.textContent = tickerText;
+
+    });
+
+}
+
+
+/* iniciar */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        updateLiveChatTicker();
+
+        // actualizar cada segundo
+        setInterval(
+            updateLiveChatTicker,
+            1000
+        );
+
+    }
+);
 
 
 
@@ -2579,6 +2787,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                     <li><a href="#" class="menu-item" id="about-us-link">About Us</a></li>
                     <li><a href="#" class="menu-item" id="contact-us-link">Contact</a></li>
                     <li><a href="#" class="menu-item" id="get-the-app-link">Get the App</a></li>
+                    <li><a href="#" class="menu-item" id="key-features-link">Key Features</a></li>
                 </ul>
             </nav>
         </div>
@@ -2632,6 +2841,24 @@ OneSignalDeferred.push(async function (OneSignal) {
 <img id="install-app-btn" src="output-onlinepngtools (33).webp" alt="" width="165" height="auto">
 </p>
     
+</div>
+
+
+<div id="key-features-content" class="info-box4">
+    <br>
+    <br>
+    
+    <h2>🗝️ Features</h2>
+     <p>
+  <span style= "font-family: 'Orbitron', Times, serif; font-size: 10px; justify-content: center;"> -<b>Algorithm-Free Curation</b>: Focuses on uncovering forgotten hits, B-sides, and obscure tracks across multiple eras with a serious team archiving effort behind the curation to protect this musical heritage from being buried by mainstream algorithms.<br> -<b>Interactive Community</b>: Features a synchronized, real-time live chat where listeners can vibe together and instantly share track links directly into the stream.<br>-<b>Zero Friction</b>: No sign-ups, no log-ins, no cost—no ads. You just open it, press play, and enjoy.<br>-<b>Clean Interface</b>: Designed to act like a minimal background jukebox with a subtle hypnotic visual presence that focuses entirely on content delivery without clutter.<br>-<b>Continuous Evolution</b>: The platform is under constant research and growth, with new hand-picked tracks added regularly to expand the collection.<br>-<b>Disco Mode</b>: Features a special built-in ambient mode button designed to transform your screen and set the perfect tones for a whimsical experience.<br>-<b>Nostalgic Revival</b>: Brings back the magical, serendipitous discovery of the golden age of music television and radio, adapted seamlessly into a modern digital space.<br>-<b>Mini-Player</b>: Optimized and adapted to stay with you across PC sessions.<br>-<b>Compliance</b>: It streams directly through the public YouTube embedded player according to the official terms.
+
+
+<br>Our goal as developers — is to deliver an innovative, friction-free music experience where any user can discover something special every time and leave feeling uplifted.</span>
+
+<br>
+
+</p>
+
 </div>
 
 <script src="script.js"></script>
@@ -2723,7 +2950,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                 <div class="emoji" onclick="selectEmoji('🔥')">🔥</div>
                 <div class="emoji" onclick="selectEmoji('👏')">👏</div>
                 <div class="emoji" onclick="selectEmoji('🎶')">🎶</div>
-                <div class="emoji" onclick="selectEmoji('🤔')">🤔</div>
+                <div class="emoji" onclick="selectEmoji('👽')">👽</div>
                 <div class="emoji" onclick="selectEmoji('😍')">😍</div>
                 <div class="emoji" onclick="selectEmoji('🌟')">🌟</div>
                 <div class="emoji" onclick="selectEmoji('😎')">😎</div>
@@ -2748,11 +2975,18 @@ OneSignalDeferred.push(async function (OneSignal) {
                         <!-- Agrega el mensaje de bienvenida aquí -->
                         <li class="system2">
                             
-                            <img src="live5.webp" alt="Live Chat" style="width: 90px; height: 30px; margin-left: -29px; margin-top: -6px;">
-                            
-                            <span class="halloween-glow" style= "vertical-align: middle; margin-left: 0px;">          
-                            </span>
-                        </li>
+                            <div class="live-chat-ticker">
+
+        <div class="live-chat-track">
+
+            <span class="live-chat-text"></span>
+            <span class="live-chat-text"></span>
+
+        </div>
+
+    </div>
+
+</li>
                     </ul>
                     
                 
@@ -2760,7 +2994,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                     <form id="message-form">
                         <textarea id="message-input" placeholder="Type your message..."></textarea>
                         <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
-                        <div id="emoji-button" onclick="toggleEmojiPicker()">😊</div>
+                        <div id="emoji-button" onclick="toggleEmojiPicker()">👽</div>
                       <button id="message-btn" type="submit">Send</button>
                     </form>
                     <button class="custom-button" id="listen-button" onclick="shareCurrentSong()">🎶 NOW PLAYING</button>

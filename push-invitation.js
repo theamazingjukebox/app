@@ -39,7 +39,7 @@ const PushInvitation = {
                 this.showResponse(
                     "💎", 
                     "You're all set!", 
-                    "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
+                    "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎶"
                 );
                 return;
             }
@@ -53,7 +53,7 @@ const PushInvitation = {
                         this.showResponse(
                             "💎", 
                             "You're all set!", 
-                            "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎵"
+                            "You'll now receive occasional notifications whenever a new gem joins The Amazing Jukebox.\n\nEnjoy the music! 🎶"
                         );
                     } else {
                         console.log("El usuario no concedió el permiso.");

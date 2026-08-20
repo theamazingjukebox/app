@@ -78,7 +78,7 @@ const PushInvitation = {
             this.showResponse(
                 "⏰", 
                 "No problem.", 
-                "We'll remind you again in about 7 days.\n\nEnjoy the music! 🎵"
+                "You can enable notifications later from Settings.\n\nEnjoy the music! 🎵"
             );
         });
 
@@ -88,7 +88,7 @@ const PushInvitation = {
             this.showResponse(
                 "❤️", 
                 "No problem.", 
-                "We won't ask again.\n\nYou can always enable notifications later from Settings.\n\nEnjoy the music! 🎵"
+                "You can always enable notifications from Settings.\n\nEnjoy the music! 🎵"
             );
         });
     },
@@ -150,7 +150,7 @@ open() {
     },
 
     resetCard(){
-        this.icon.innerHTML = '<img src="alerts-logo.png" alt="">';
+        this.icon.innerHTML = '<img src="alerts-logo.webp" alt="">';
         this.title.textContent = "Never miss a new gem";
         this.text.textContent = "Receive an occasional notification whenever a carefully curated song joins The Amazing Jukebox.";
         this.enableBtn.style.display = "";

@@ -1016,7 +1016,7 @@ transparent 65%
 
 @media (min-width: 768px) {
     .info-box2 {
-        margin-top: 15%; 
+        margin-top: 24%; 
         margin-left: 47%;
         
         
@@ -1031,7 +1031,7 @@ transparent 65%
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box2 {
-        margin-top: 11.95%;   
+        margin-top: 19.95%;   
         left: 37%;   
             
     }
@@ -1041,7 +1041,7 @@ transparent 65%
        all and (-webkit-display-mode: standalone) {
 
     .info-box2 {
-        margin-top: 15%; 
+        margin-top: 24%; 
     }
 }
 
@@ -1049,7 +1049,7 @@ transparent 65%
        all and (-webkit-display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
   
   .info-box2 {
-    margin-top: 12%; /* Valor específico para computadoras */
+    margin-top: 20%; /* Valor específico para computadoras */
   }
 
 }

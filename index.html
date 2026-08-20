@@ -431,53 +431,7 @@ body {
     }
 }
 
-
-#notifications-button {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 172.86px; /* ajusta al ancho real del botón */
-  display: block;
-  
-
-  padding: 12px 20px;
-  font-size: 24px;
-  font-weight: bold;
-  font-family: Orbitron, sans-serif;
-  -webkit-tap-highlight-color: transparent;
-
-  color: #00eaff;
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid rgba(0, 234, 255, 0.5);
-  border-radius: 8px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 10px rgba(0, 234, 255, 0.5),
-    0 0 20px rgba(0, 234, 255, 0.3);
-
-  transition: all 0.2s ease;
-
-  z-index: 9999;
-}
     
-
-#notifications-button:active {
-            box-shadow: none;
-            transform: scale(0.93); /* Simula un botón presionado */
-        }
-
-@media (display-mode: standalone) {
-
-  #notifications-button {
-         display: block;
-        
-    }
-}
-
 
 #install-app-btn {
    display: block;
@@ -503,7 +457,30 @@ body {
             transform: scale(0.93); /* Simula un botón presionado */
         }
 
+
+#notifications-button {
+   display: block;
+  margin: 0 auto;
+
+  left: 0;
+  right: 0;
+  cursor: pointer;  
     
+ width: 50;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition: all 0.2s ease;
+
+
+}
+    
+
+#notifications-button:active {
+            box-shadow: none;
+            transform: scale(0.93); /* Simula un botón presionado */
+        }
+
 
 #video-container {
     position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
@@ -2821,7 +2798,6 @@ OneSignalDeferred.push(async function (OneSignal) {
         
         
 <button id="bg-toggle-btn">- switch -</button>
-<button id="notifications-button">Notifications</button>
 
         
         <header id="top-banner">
@@ -2839,6 +2815,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                     <li><a href="#" class="menu-item" id="contact-us-link">Contact</a></li>
                     <li><a href="#" class="menu-item" id="get-the-app-link">Get the App</a></li>
                     <li><a href="#" class="menu-item" id="key-features-link">Key Features</a></li>
+                    <li><a href="#" class="menu-item" id="enable-alerts-link">Enable Alerts</a></li>
                 </ul>
             </nav>
         </div>
@@ -2908,6 +2885,22 @@ OneSignalDeferred.push(async function (OneSignal) {
 
 <br>
 
+</p>
+
+</div>
+        
+
+<div id="enable-alerts-content" class="info-box5">
+    <br>
+    <br>
+    
+    <h2></h2>
+     <p>
+  <i>Stay in the loop, only when it matters.</i><br><br>Receive the latest news from the Jukebox via Push alerts.
+
+<br>
+
+         <img id="notifications-button" src="alerts.webp" alt="" width="165" height="auto">
 </p>
 
 </div>

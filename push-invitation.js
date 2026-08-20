@@ -150,7 +150,7 @@ open() {
     },
 
     resetCard(){
-        this.icon.innerHTML = '<img src="push-logo.webp" alt="">';
+        this.icon.innerHTML = '<img src="alerts-logo.png" alt="">';
         this.title.textContent = "Never miss a new gem";
         this.text.textContent = "Receive an occasional notification whenever a carefully curated song joins The Amazing Jukebox.";
         this.enableBtn.style.display = "";

@@ -106,6 +106,16 @@ const PushInvitation = {
         }, this.delay);
     },
 
+   // ==========================
+// APERTURA MANUAL
+// ==========================
+
+open() {
+    this.resetCard();
+    this.show();
+},
+   
+
     show() {
         if (!this.overlay) return;
         this.overlay.classList.add("fade");
@@ -179,6 +189,20 @@ const PushInvitation = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+   
     PushInvitation.init();
+   
+  const notificationsButton =
+        document.getElementById("notifications-button");
+
+    if (notificationsButton) {
+
+        notificationsButton.addEventListener("click", () => {
+
+            PushInvitation.open();
+
+        });
+    }
+
 });
 

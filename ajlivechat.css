@@ -52,7 +52,7 @@
 #chat {
             position: absolute; /* Posiciona el botón sobre la imagen */
     top: 85%; /* Ajusta este valor para colocar el botón verticalmente */
-    left: 49%; /* Centra horizontalmente */
+    left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
     border: 3px solid rgba(37, 99, 114, 0.596);
     border-radius: 15px;
@@ -599,6 +599,12 @@ font-size: 1.4em;
 }
 
 #menu.show ul li:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+#menu.show ul li:nth-child(4) {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 0.4s;
@@ -1199,6 +1205,109 @@ transparent 65%
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box3 {
         margin-top: 11.5%;    
+        left: 37%;   
+            
+    }
+}
+
+
+.info-box4 {
+    display: none;
+
+    position: absolute;
+
+    overflow: hidden;
+
+    margin-top: 63%;
+
+    left: 32.3%;
+
+    transform: translate(-50%, -50%);
+
+    background:rgba(18,22,30,.78);
+color:#dffcff;
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    font-family:Orbitron,monospace;
+
+    
+
+    text-shadow:
+        0 0 8px rgba(73,255,246,.18);
+
+    border-radius:24px;
+
+    padding:20px;
+
+    z-index:999;
+
+    max-width:219px;
+
+    min-height:100px;
+
+    transition:all .30s ease;
+
+    border:1px solid rgba(0,255,255,.18);
+
+    box-shadow:
+        0 12px 45px rgba(0,0,0,.45),
+        0 0 35px rgba(0,255,255,.18);
+
+    animation:glassPulse 2.8s ease-in-out infinite;
+
+}
+
+/* ===========================
+   Glow Animation
+=========================== */
+
+@keyframes glassPulse{
+
+0%{
+
+box-shadow:
+0 12px 45px rgba(0,0,0,.45),
+0 0 18px rgba(0,255,255,.12);
+
+}
+
+50%{
+
+box-shadow:
+0 14px 50px rgba(0,0,0,.48),
+0 0 30px rgba(0,255,255,.24);
+
+}
+
+100%{
+
+box-shadow:
+0 12px 45px rgba(0,0,0,.45),
+0 0 18px rgba(0,255,255,.12);
+
+}
+
+}
+
+
+
+@media (min-width: 768px) {
+    .info-box4 {
+        margin-top: 50%;
+        margin-left: 47%;
+        
+    }
+}
+
+.info-box4.show {
+    display: block; /* Mostrar cuadro cuando esté activo */
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .info-box4 {
+        margin-top: 37.3%;    
         left: 37%;   
             
     }

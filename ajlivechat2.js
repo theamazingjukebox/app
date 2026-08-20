@@ -182,25 +182,55 @@ function saveMessageToDatabase(sender, message) {
 
 
   
-  
-  const MESSAGES_TO_LOAD = 1;
-  // Referencia para el chat
-  const fetchChat = db.ref("messages/");
-  
-  // Manejo del evento child_added
-  
-// Cambia el manejo del evento child_added para que funcione con la nueva lógica
-fetchChat.limitToLast(MESSAGES_TO_LOAD).on("child_added", function (snapshot) {
-    const messages = snapshot.val();
-    const message = `<li class=${username === messages.username ? "sent" : "receive"}><span>${messages.username}: </span>${messages.message}</li>`;
+  // ==============================
+// 💬 LIVE CHAT - WELCOME MESSAGE
+// ==============================
 
-    // Añade el mensaje al contenedor de mensajes
-    const messagesContainer = document.getElementById("messages");
+const fetchChat = db.ref("messages/");
+const messagesContainer = document.getElementById("messages");
+
+
+// Mensaje local de bienvenida.
+// NO se guarda en Firebase.
+const welcomeMessage = `
+    <li class="system chat-welcome">
+        Welcome to The Amazing Jukebox Live Chat.<br>
+        Please be polite, enjoy the music and feel free to spread the good word. 🎶
+    </li>
+`;
+
+messagesContainer.innerHTML += welcomeMessage;
+
+
+// Firebase entrega inicialmente el último mensaje existente.
+// Lo ignoramos para que el usuario vea primero la bienvenida.
+let initialMessageIgnored = false;
+
+fetchChat.limitToLast(1).on("child_added", function(snapshot) {
+
+    if (!initialMessageIgnored) {
+
+        initialMessageIgnored = true;
+        return;
+
+    }
+
+    const messages = snapshot.val();
+
+    const message = `
+        <li class="${username === messages.username ? "sent" : "receive"}">
+            <span>${messages.username}: </span>
+            ${messages.message}
+        </li>
+    `;
+
     messagesContainer.innerHTML += message;
 
-    // Desplázate automáticamente hacia abajo
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    messagesContainer.scrollTop =
+        messagesContainer.scrollHeight;
+
 });
+  
   
   // Llama a la función para mostrar la ventana emergente
   showUsernameModal();

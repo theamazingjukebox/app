@@ -2392,8 +2392,7 @@ function initYouTubePlayer(videoId) {
             clearInterval(qualityInterval);
         }, 4000);
         
-        PushInvitation.schedule();
-    }
+        
 
     if (event.data === YT.PlayerState.ENDED) {
         setTimeout(() => {

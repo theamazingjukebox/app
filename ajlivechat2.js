@@ -196,7 +196,7 @@ const welcomeMessage = `
     <li class="system chat-welcome">
         — Welcome to The Amazing Jukebox LIVE CHAT —<br>
         Please be polite, enjoy the music and feel free to have fun.<br>
-        &blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;
+        &blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;
     </li>
 `;
 

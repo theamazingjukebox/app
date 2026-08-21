@@ -2890,60 +2890,70 @@ document.addEventListener(
 
 
 // ========================================================
-// MÓDULO INTERACTIVO: FOLDER DE COMENTARIOS (WEB PRINCIPAL)
+// MÓDULO INTERACTIVO: FOLDER DE COMENTARIOS AUTOMÁTICO V1.2
 // ========================================================
 (function() {
   let isWebFolderOpen = false;
   let lastCheckedVideoIdForWebComments = "";
+  let currentMaxResults = 4; // Límite inicial de comentarios
 
   document.addEventListener('DOMContentLoaded', () => {
     const folderContainer = document.getElementById('main-folder-wrapper');
     const folderTabTrigger = document.getElementById('main-folder-tab');
 
     if (folderTabTrigger && folderContainer) {
-      // Evento de clic para expandir o contraer la pestaña
+      // Evento de clic para expandir o contraer la pestaña lateral
       folderTabTrigger.addEventListener('click', () => {
         isWebFolderOpen = !isWebFolderOpen;
         
         if (isWebFolderOpen) {
           folderContainer.classList.add('folder-active');
-          // Disparamos la carga de comentarios de inmediato si está sonando algo
-          fetchWebYouTubeComments();
+          // Al abrir, reseteamos el límite a 4 y cargamos
+          currentMaxResults = 4;
+          fetchWebYouTubeComments(true);
         } else {
           folderContainer.classList.remove('folder-active');
         }
       });
     }
+
+    // 🔥 AUTOMATIZACIÓN TOTAL: Observador que detecta el cambio de canción en YouTube
+    const ytPlayerElement = document.getElementById('youtube-player');
+    if (ytPlayerElement) {
+      const observer = new MutationObserver(() => {
+        // Si el folder está abierto y el iframe de YouTube cambia por un Next, actualiza solo
+        if (isWebFolderOpen) {
+          setTimeout(() => {
+            currentMaxResults = 4; // Reseteamos el contador para la nueva canción
+            fetchWebYouTubeComments(true);
+          }, 600); // Pequeño delay para asegurar que el índice global ya cambió
+        }
+      });
+      // Vigila si se meten nuevos elementos o iframes dentro del contenedor de YT
+      observer.observe(ytPlayerElement, { childList: true, subtree: true });
+    }
   });
 
-  // FUNCIÓN ASÍNCRONA PARA LLAMAR AL ENDPOINT DE GOOGLE
-  async function fetchWebYouTubeComments() {
-    // Si la pestaña del folder físico está cerrada, no consumas recursos
+  // FUNCIÓN ASÍNCRONA CORREGIDA PARA LLAMAR AL ENDPOINT DE GOOGLE
+  async function fetchWebYouTubeComments(isNewTrack = false) {
     if (!isWebFolderOpen) return;
 
-    
     if (typeof videos !== 'undefined' && typeof currentVideoIndex !== 'undefined' && currentVideoIndex >= 0) {
       const currentSongObj = videos[currentVideoIndex];
-      
-      // 🔥 Forzamos a leer .src (ej: "yt:Nj6IKIPteuE") en lugar de la .key (yt1)
       const currentSongSrc = currentSongObj.src; 
-      
-      // Ahora sí, removemos el prefijo "yt:" de forma exacta
       const ytId = currentSongSrc.replace("yt:", "").trim();
       const container = document.getElementById('main-comments-container');
 
-
-      // 🛡️ CONTROL DE PROTECCIÓN DE CUOTA: Si es el mismo video que ya cargó, no vuelvas a gastar la API
-      if (ytId === lastCheckedVideoIdForWebComments) return;
-      lastCheckedVideoIdForWebComments = ytId;
-
-      if (container) {
-        container.innerHTML = '<p class="main-comment-status">DECODING DATA CHANNELS...</p>';
+      // Si es la misma canción y no estamos pidiendo "cargar más", frena para cuidar la cuota
+      if (!isNewTrack && ytId === lastCheckedVideoIdForWebComments && currentMaxResults === 4) return;
+      
+      if (isNewTrack) {
+        lastCheckedVideoIdForWebComments = ytId;
+        if (container) container.innerHTML = '<p class="main-comment-status">DECODING DATA CHANNELS...</p>';
       }
 
-      // 🔥 INSERTA AQUÍ TU CLAVE OFICIAL DE GOOGLE DEVELOPER CONSOLE
       const GOOGLE_API_KEY = "AIzaSyCE5XnV-IORMlGFr59ArYQSgOvOLdQ8RCY"; 
-      const url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=4&videoId=${ytId}&key=${GOOGLE_API_KEY}`;
+      const url = `https://googleapis.com{currentMaxResults}&videoId=${ytId}&key=${GOOGLE_API_KEY}`;
 
       try {
         const response = await fetch(url);
@@ -2951,14 +2961,14 @@ document.addEventListener(
         const data = await response.json();
 
         if (container) {
-          container.innerHTML = ""; // Limpiamos el texto de carga
+          container.innerHTML = ""; // Limpiamos la terminal
           
           if (!data.items || data.items.length === 0) {
             container.innerHTML = '<p class="main-comment-status">NO LOG ARCHIVES FOR THIS TRACK</p>';
             return;
           }
 
-          // Inyectamos de forma segura los 4 comentarios más populares
+          // Inyectamos los comentarios
           data.items.forEach(item => {
             const snippet = item.snippet.topLevelComment.snippet;
             const author = snippet.authorDisplayName;
@@ -2969,6 +2979,31 @@ document.addEventListener(
             commentEl.innerHTML = `<span class="main-comment-user">${author.toUpperCase()}</span>${text}`;
             container.appendChild(commentEl);
           });
+
+          // 🔥 INTERFAZ: Inyectar dinámicamente el botón de "Cargar Más" al fondo del scroll
+          if (currentMaxResults < 16 && data.items.length >= currentMaxResults) {
+            const loadMoreBtn = document.createElement('button');
+            loadMoreBtn.id = 'mini-load-more-trigger';
+            loadMoreBtn.innerText = '[ DECODE MORE LOGS ]';
+            
+            // Estilos estéticos inline para el botón dentro de la terminal
+            loadMoreBtn.style.cssText = `
+              background: none; border: none; color: #87ffff; font-family: 'Orbitron', monospace;
+              font-size: 9px; cursor: pointer; display: block; margin: 15px auto 5px auto;
+              text-shadow: 0 0 4px #00ffff; letter-spacing: 1px; transition: all 0.2s;
+            `;
+            
+            loadMoreBtn.onmouseover = () => loadMoreBtn.style.color = '#d83ca4';
+            loadMoreBtn.onmouseout = () => loadMoreBtn.style.color = '#87ffff';
+            
+            loadMoreBtn.addEventListener('click', () => {
+              currentMaxResults += 4; // Incrementamos de 4 en 4
+              loadMoreBtn.innerText = '[ DECODING... ]';
+              fetchWebYouTubeComments(false); // Llamamos con false para mantener la memoria del ID
+            });
+            
+            container.appendChild(loadMoreBtn);
+          }
         }
       } catch (err) {
         console.error("Error cargando bitácoras de comentarios:", err);
@@ -2978,24 +3013,8 @@ document.addEventListener(
       }
     }
   }
-
-  // CONECTAR AL CAMBIO AUTOMÁTICO DE CANCIÓN
-  // Buscamos tu función global de cambiar de canción para inyectar la actualización automática
-  const originalPlayNextVideo = window.playNextVideo || playNextVideo;
-  if (typeof originalPlayNextVideo === 'function') {
-    window.playNextVideo = function() {
-      // Ejecutamos primero tu lógica nativa de cambiar de video intacta
-      originalPlayNextVideo.apply(this, arguments);
-      
-      // Esperamos un momento corto a que cargue el nuevo índice y actualizamos comentarios
-      setTimeout(() => {
-        if (isWebFolderOpen) {
-          fetchWebYouTubeComments();
-        }
-      }, 800);
-    };
-  }
 })();
+
 
 
 

@@ -2953,7 +2953,7 @@ document.addEventListener(
       }
 
       const GOOGLE_API_KEY = "AIzaSyCE5XnV-IORMlGFr59ArYQSgOvOLdQ8RCY"; 
-      const url = `https://googleapis.com{currentMaxResults}&videoId=${ytId}&key=${GOOGLE_API_KEY}`;
+      const url = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=${currentMaxResults}&videoId=${ytId}&key=${GOOGLE_API_KEY}`;
 
       try {
         const response = await fetch(url);

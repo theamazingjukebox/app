@@ -195,7 +195,7 @@ const messagesContainer = document.getElementById("messages");
 const welcomeMessage = `
     <li class="system chat-welcome">
         [ AJ_SYSTEM_BOOT // READY ]<br>
-        DECODING SONIC SIGNALS... 🟢 YOU ARE NOW TUNED INTO THE DIGITAL SANCTUARY OF TIMELESS CLASSICS AND HIDDEN GEMS. SAY HELLO, SHARE A TRACK, AND LET THE JUKEBOX DO THE REST. DISCOVERY IS AN ADVENTURE.
+        Decoding sonic signals...  🟢 You are now tuned into the digital sanctuary of timeless classics and hidden gems. Say hello, share a track, and let the jukebox do the rest. Discovery is an adventure.
     </li>
 `;
 

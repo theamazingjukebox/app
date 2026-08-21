@@ -2510,6 +2510,11 @@ function initYouTubePlayer(videoId) {
                     event.target.mute();
                 }
 
+                if (currentVideoIndex === 0) {
+                    event.target.pauseVideo(); // Se queda congelado en el frame 0 listo para el usuario
+                    console.log("⏸️ Carga inicial en pausa, esperando clic manual.");
+                } else {
+
                 event.target.playVideo();
            
             },
@@ -2819,6 +2824,7 @@ function waitForYTAndPlay() {
         if (window.YT && YT.Player && ytPlayer && isPlayerReady) {
             clearInterval(interval);
             console.log("✅ YT listo, iniciando video");
+            playNextVideo();
             
         }
 
@@ -2826,6 +2832,7 @@ function waitForYTAndPlay() {
         if (attempts > 20) {
             clearInterval(interval);
             console.warn("⚠️ YT tardó demasiado, fallback");
+            playNextVideo();
             
         }
 

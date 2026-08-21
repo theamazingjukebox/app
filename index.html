@@ -2686,17 +2686,16 @@ function initYouTubePlayer(videoId) {
     likeButton.disabled = false;
 
 
-         // ========================================================
+          // ========================================================
     // 🔥 ACTUALIZACIÓN AUTOMÁTICA DE COMENTARIOS AL DAR NEXT
     // ========================================================
-    // Esperamos 800ms a que el reproductor cargue el nuevo video e ID
     setTimeout(() => {
-        // Buscamos si la función de cargar comentarios de la web existe en la ventana
-        if (typeof fetchWebYouTubeComments === 'function') {
-            // Le mandamos 'true' para confirmarle que es una canción nueva
-            fetchWebYouTubeComments(true); 
+        // Apuntamos directamente a la ventana global window
+        if (typeof window.fetchWebYouTubeComments === 'function') {
+            window.fetchWebYouTubeComments(true); 
         }
     }, 800);
+
 }
 
     function likeSong() {
@@ -3010,6 +3009,8 @@ document.addEventListener(
       }
     }
   }
+
+     window.fetchWebYouTubeComments = fetchWebYouTubeComments; 
 })();
 
 

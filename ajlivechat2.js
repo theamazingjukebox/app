@@ -194,7 +194,8 @@ const messagesContainer = document.getElementById("messages");
 // NO se guarda en Firebase.
 const welcomeMessage = `
     <li class="system chat-welcome">
-        — Welcome to The Amazing Jukebox LIVE CHAT —<br>
+        [ AJ_SYSTEM_BOOT // READY ]<br>
+        DECODING SONIC SIGNALS... 🟢 YOU ARE NOW TUNED INTO THE DIGITAL SANCTUARY OF TIMELESS CLASSICS AND HIDDEN GEMS. SAY HELLO, SHARE A TRACK, AND LET THE JUKEBOX DO THE REST. DISCOVERY IS AN ADVENTURE.<br>
         &blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;&blk12;
     </li>
 `;

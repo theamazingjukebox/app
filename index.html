@@ -2921,12 +2921,17 @@ document.addEventListener(
     // Si la pestaña del folder físico está cerrada, no consumas recursos
     if (!isWebFolderOpen) return;
 
-    // Validamos que tus estructuras globales de videos existan y tengan un índice activo
+    
     if (typeof videos !== 'undefined' && typeof currentVideoIndex !== 'undefined' && currentVideoIndex >= 0) {
       const currentSongObj = videos[currentVideoIndex];
-      const currentSongKey = currentSongObj.key || currentSongObj.src;
-      const ytId = currentSongKey.replace("yt:", "").trim();
+      
+      // 🔥 Forzamos a leer .src (ej: "yt:Nj6IKIPteuE") en lugar de la .key (yt1)
+      const currentSongSrc = currentSongObj.src; 
+      
+      // Ahora sí, removemos el prefijo "yt:" de forma exacta
+      const ytId = currentSongSrc.replace("yt:", "").trim();
       const container = document.getElementById('main-comments-container');
+
 
       // 🛡️ CONTROL DE PROTECCIÓN DE CUOTA: Si es el mismo video que ya cargó, no vuelvas a gastar la API
       if (ytId === lastCheckedVideoIdForWebComments) return;

@@ -2684,6 +2684,19 @@ function initYouTubePlayer(videoId) {
 
     const likeButton = document.getElementById("like-button");
     likeButton.disabled = false;
+
+
+         // ========================================================
+    // 🔥 ACTUALIZACIÓN AUTOMÁTICA DE COMENTARIOS AL DAR NEXT
+    // ========================================================
+    // Esperamos 800ms a que el reproductor cargue el nuevo video e ID
+    setTimeout(() => {
+        // Buscamos si la función de cargar comentarios de la web existe en la ventana
+        if (typeof fetchWebYouTubeComments === 'function') {
+            // Le mandamos 'true' para confirmarle que es una canción nueva
+            fetchWebYouTubeComments(true); 
+        }
+    }, 800);
 }
 
     function likeSong() {
@@ -2917,22 +2930,6 @@ document.addEventListener(
       });
     }
 
-    // 🔥 AUTOMATIZACIÓN TOTAL: Observador que detecta el cambio de canción en YouTube
-    const ytPlayerElement = document.getElementById('youtube-player');
-    if (ytPlayerElement) {
-      const observer = new MutationObserver(() => {
-        // Si el folder está abierto y el iframe de YouTube cambia por un Next, actualiza solo
-        if (isWebFolderOpen) {
-          setTimeout(() => {
-            currentMaxResults = 4; // Reseteamos el contador para la nueva canción
-            fetchWebYouTubeComments(true);
-          }, 600); // Pequeño delay para asegurar que el índice global ya cambió
-        }
-      });
-      // Vigila si se meten nuevos elementos o iframes dentro del contenedor de YT
-      observer.observe(ytPlayerElement, { childList: true, subtree: true });
-    }
-  });
 
   // FUNCIÓN ASÍNCRONA CORREGIDA PARA LLAMAR AL ENDPOINT DE GOOGLE
   async function fetchWebYouTubeComments(isNewTrack = false) {
@@ -3157,11 +3154,11 @@ OneSignalDeferred.push(async function (OneSignal) {
     
     <h2></h2>
      <p>
-  <i>Stay in the loop, only when it matters.</i><br><br>Receive the latest news from the Jukebox via Push alerts.
+  <i>Stay in the loop, only when it matters.</i><br><br>Receive the latest news from the Jukebox via Push alerts ↓ ↓ ↓
 
 <br>
 
-         <img id="notifications-button" src="alerts.webp" alt="" width="165" height="auto">
+         <img id="notifications-button" src="alerts5.webp" alt="" width="165" height="auto">
 </p>
 
 </div>

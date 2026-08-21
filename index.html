@@ -2459,6 +2459,7 @@ let ytPlayer = null;
 let isPlayerReady = false;
 let qualityInterval = null;
 let endCheckInterval = null;
+let soundEnabled = true;
 
 
 
@@ -2818,14 +2819,14 @@ function waitForYTAndPlay() {
         if (window.YT && YT.Player && ytPlayer && isPlayerReady) {
             clearInterval(interval);
             console.log("✅ YT listo, iniciando video");
-            playNextVideo();
+            
         }
 
         // 🔒 fallback (evita loop infinito)
         if (attempts > 20) {
             clearInterval(interval);
             console.warn("⚠️ YT tardó demasiado, fallback");
-            playNextVideo();
+            
         }
 
     }, 100);
@@ -2934,6 +2935,10 @@ document.addEventListener(
   // FUNCIÓN ASÍNCRONA CORREGIDA PARA LLAMAR AL ENDPOINT DE GOOGLE
   async function fetchWebYouTubeComments(isNewTrack = false) {
     if (!isWebFolderOpen) return;
+
+      if (isNewTrack) {
+      currentMaxResults = 4; 
+    }
 
     if (typeof videos !== 'undefined' && typeof currentVideoIndex !== 'undefined' && currentVideoIndex >= 0) {
       const currentSongObj = videos[currentVideoIndex];

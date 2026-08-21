@@ -2459,6 +2459,7 @@ let ytPlayer = null;
 let isPlayerReady = false;
 let qualityInterval = null;
 let endCheckInterval = null;
+let soundEnabled = true;
 
 function startEndWatcher() {
     if (endCheckInterval) clearInterval(endCheckInterval);
@@ -2937,7 +2938,7 @@ document.addEventListener(
 
       // 🔥 INSERTA AQUÍ TU CLAVE OFICIAL DE GOOGLE DEVELOPER CONSOLE
       const GOOGLE_API_KEY = "AIzaSyCE5XnV-IORMlGFr59ArYQSgOvOLdQ8RCY"; 
-      const url = `https://googleapis.com{ytId}&key=${GOOGLE_API_KEY}`;
+      const url = `https://www.googleapis.com{/youtube/v3/commentThreads?part=snippet&maxResults=4&videoId=}&key=${GOOGLE_API_KEY}`;
 
       try {
         const response = await fetch(url);

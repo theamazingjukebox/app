@@ -113,7 +113,7 @@
 .chat-welcome {
     color: rgba(220, 235, 235, 0.65);
     font-style: italic;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
     text-align: center;
     padding: 8px 12px;
@@ -1031,7 +1031,7 @@ transparent 65%
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box2 {
-        margin-top: 19.95%;   
+        margin-top: 19.5%;   
         left: 37%;   
             
     }

@@ -2509,14 +2509,6 @@ function initYouTubePlayer(videoId) {
                 } else {
                     event.target.mute();
                 }
-
-                if (currentVideoIndex === 0) {
-                    event.target.pauseVideo(); // Se queda congelado en el frame 0 listo para el usuario
-                    console.log("⏸️ Carga inicial en pausa, esperando clic manual.");
-                } else {
-
-                event.target.playVideo();
-           }
            
         },
             
@@ -2637,17 +2629,22 @@ function initYouTubePlayer(videoId) {
         
 
        if (!ytPlayer) {
-            initYouTubePlayer(videoId);
+            initYouTubePlayer(videoId); // Inicializa el reproductor por primera vez
         } else {
-            ytPlayer.loadVideoById(videoId);
-
-            if (soundEnabled) {
-                ytPlayer.unMute();
-                ytPlayer.setVolume(100);
+            // 🔥 CONTROL DE ARRANQUE: Si es la primera canción al cargar la página,
+            // cargamos el ID pero NO forzamos el play automático.
+            if (currentVideoIndex === 0) {
+                ytPlayer.cueVideoById(videoId); // 'cue' prepara el video en el segundo 0 absoluto con su póster nativo de YT
+                console.log("🔮 Video presentado en el segundo 0 con póster original de YT.");
+            } else {
+                // Si el usuario ya está interactuando y dio Next, se reproduce normal
+                ytPlayer.loadVideoById(videoId);
+                if (soundEnabled) {
+                    ytPlayer.unMute();
+                    ytPlayer.setVolume(100);
+                }
             }
         }
-
-    } 
     // ======================
     // 🧯 MP4 FALLBACK
     // ======================

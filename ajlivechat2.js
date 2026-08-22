@@ -193,9 +193,11 @@ const messagesContainer = document.getElementById("messages");
 // Mensaje local de bienvenida.
 // NO se guarda en Firebase.
 const welcomeMessage = `
-    <li class="system chat-welcome">
-        [ AJ_SYSTEM_BOOT // READY ]<br>
-        Decoding sonic signals...  🟢 You are now tuned into the digital sanctuary of timeless classics and hidden gems. Say hello, share a track, and let the jukebox do the rest. Discovery is an adventure.
+    <li class="chat-welcome">
+        <span class="system-title">[ AJ_SYSTEM_BOOT // READY ]</span>
+        <p class="system-body">
+            Decoding sonic signals... <span class="neon-led">⑉</span> You are now tuned into the digital sanctuary of timeless classics and hidden gems. Say hello, share a track, and let the jukebox do the rest. Discovery is an adventure.
+        </p>
     </li>
 `;
 

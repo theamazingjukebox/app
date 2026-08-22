@@ -110,14 +110,57 @@
             background-color: black;
         }
 
-.chat-welcome {
-    color: rgba(220, 235, 235, 0.65);
-    font-style: italic;
-    font-size: 12px;
-    line-height: 1.5;
+/* ========================================================
+   CÓDIGO DE BIENVENIDA OPTIMIZADO (ESTRUCTURA EXACTA)
+   ======================================================== */
+
+/* El contenedor principal de la bienvenida */
+#messages .chat-welcome {
+    list-style: none;
     text-align: center;
-    padding: 8px 12px;
-    opacity: 0.85;
+    padding: 12px 14px;
+    background-color: rgba(18, 22, 30, 0.4); /* Fondo translúcido de terminal */
+    border: 1px dashed rgba(132, 179, 172, 0.2); /* Borde punteado sutil */
+    border-radius: 8px;
+    margin: 7px auto;
+    width: 90%;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* El título principal: Cian Orbitron Puro y Nítido */
+#messages .chat-welcome .system-title {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    color: #87ffff; /* Tu Cian Orbitron exacto */
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-shadow: none !important; /* Quitamos el neón para máxima nitidez */
+}
+
+/* El cuerpo del mensaje: Texto plano Monospace Claro */
+#messages .chat-welcome .system-body {
+    font-family: monospace; 
+    font-weight: normal;
+    font-size: 12px;
+    color: #dffcff; /* Tu color claro secundario */
+    line-height: 1.5;
+    margin: 0;
+    text-shadow: none !important; /* Cero resplandores fastidiosos */
+}
+
+
+/* EL EFECTO LED: Resplandor de neón exclusivo para el círculo verde */
+#messages .chat-welcome .neon-led {
+
+        
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        font-family: Orbitron; 
+    display: inline-block;
+        opacity: 0.85;
+    
 }
 
 
@@ -288,33 +331,6 @@
     font-size: 14px;
    
 }
-
-.system {
-    font-family: Orbitron;  /* Puedes cambiar la fuente según tus preferencias */
-    font-weight: bold;
-    color: rgba(220, 235, 235, 0.65);
-    background-color: transparent;
-    border: 0px solid rgba(152, 251, 152, 0);
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
- 
-
-  .system2 {
-    background-color: #34db9b00; /* Cambia el color de fondo aquí */
-    color: white; /* Cambia el color del texto aquí */
-    padding: 0px; /* Ajusta el espacio interno si es necesario */
-    border-top-left-radius: 0px; /* Agrega bordes redondeados si lo deseas */
-    border-top-right-radius: 0px;
-    border: 0px solid rgba(152, 251, 152, 0);
-    border-radius: 5px; 
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0), 0px 0px 20px rgba(255, 255, 255, 0);
-    font-family: monospace;
-    font-weight: bold;
-    font-size: 16px;
-  }
 
   #message-form {
     display: flex;

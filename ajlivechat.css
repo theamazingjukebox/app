@@ -151,6 +151,13 @@
     text-shadow: none !important; /* Cero resplandores fastidiosos */
 }
 
+@media (min-width: 768px) {
+    #messages .chat-welcome .system-body {
+        font-size: 11px;
+        
+    }
+}
+
 
 /* EL EFECTO LED: Resplandor de neón exclusivo para el círculo verde */
 #messages .chat-welcome .neon-led {

@@ -158,6 +158,13 @@
     }
 }
 
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #messages .chat-welcome .system-body {
+        font-size: 12px;
+        
+    }
+}
+
 
 /* EL EFECTO LED: Resplandor de neón exclusivo para el círculo verde */
 #messages .chat-welcome .neon-led {

@@ -2988,13 +2988,27 @@ document.addEventListener(
     const folderTabTrigger = document.getElementById('main-folder-tab');
 
     if (folderTabTrigger && folderContainer) {
-      // Evento de clic para expandir o contraer la pestaña lateral
+      // Capturamos el ID exacto de tu HTML: "main-tab-arrow"
+      const tabArrow = document.getElementById('main-tab-arrow'); 
+
       folderTabTrigger.addEventListener('click', () => {
         isWebFolderOpen = !isWebFolderOpen;
-        
+
+        if (tabArrow) {
+          // ⏳ Fase 1: Desvanecemos la flecha original suavemente (se vuelve invisible)
+          tabArrow.style.opacity = '0';
+          
+          setTimeout(() => {
+            // Pasado un pestañeo (150ms), cambiamos el texto en total oscuridad
+            tabArrow.innerText = isWebFolderOpen ? '›' : '‹';
+            // ⏳ Fase 2: Volvemos a encender la flecha con su nuevo estado
+            tabArrow.style.opacity = '1';
+          }, 300);
+        }
+
         if (isWebFolderOpen) {
           folderContainer.classList.add('folder-active');
-          // Al abrir, reseteamos el límite a 4 y cargamos
+
           currentMaxResults = 4;
           fetchWebYouTubeComments(true);
         } else {
@@ -3002,7 +3016,7 @@ document.addEventListener(
         }
       });
     }
-});
+  });
 
   // FUNCIÓN ASÍNCRONA CORREGIDA PARA LLAMAR AL ENDPOINT DE GOOGLE
   async function fetchWebYouTubeComments(isNewTrack = false) {

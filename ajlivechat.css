@@ -120,7 +120,7 @@
     text-align: center;
     padding: 12px 14px;
     background-color: rgba(18, 22, 30, 0.4); /* Fondo translúcido de terminal */
-    border: 1px dashed rgba(132, 179, 172, 0.2); /* Borde punteado sutil */
+    border: 1px dashed rgba(255, 251, 24, 0.329); /* Borde punteado sutil */
     border-radius: 8px;
     margin: 7px auto;
     width: 90%;

@@ -1612,24 +1612,89 @@ button, a, img {
   border: 2px solid #d83ca4; /* Tu rosa neón exacto */
   border-right: none;
   border-radius: 12px 0 0 12px;
+  cursor: pointer;
+  box-shadow: -5px 0 20px rgba(216, 60, 164, 0.3);
+  transition: background-color 0.2s;     
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  box-shadow: -5px 0 20px rgba(216, 60, 164, 0.3);
-  transition: background-color 0.2s;
+
+-webkit-tap-highlight-color: transparent;
 }
-.main-folder-tab-trigger:hover {
-  background-color: rgba(216, 60, 164, 0.15);
+
+@media (min-width: 768px) {
+    .main-folder-tab-trigger {
+        width: 39px;
+  height: 90px;
+        
+    }
 }
+
+@media (hover: hover) and (pointer: fine) {
+
+    .main-folder-tab-trigger:hover {
+        background-color: rgba(216, 60, 164, 0.15);
+    }
+
+}
+    
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.main-folder-tab-trigger {
+        width: 39px;
+  height: 90px;
+        
+    }
+}
+    
+
+.main-folder-tab-trigger:active {
+            box-shadow: none;
+            transform: scale(0.93); /* Simula un botón presionado */
+        }
+
+    
 #main-tab-arrow {
   color: #87ffff; /* Tu cian Orbitron exacto */
   font-family: 'Orbitron', monospace;
   font-size: 22px;
-  font-weight: bold;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
   text-shadow: 0 0 6px #00ffff;
   user-select: none;
+   align-items: center;
+  justify-content: center;
+
+
+
+  /* Reset tipográfico para evitar que la fuente empuje el texto hacia abajo */
+  display: block;
+  line-height: 1;
+  margin-top: -2px; /* Micro-ajuste para compensar el peso visual de la fuente */
+
+  /* 🔥 EFECTO PREMUM: Transición de suavizado para la opacidad */
+  transition: opacity 3s ease-in-out;
+  opacity: 1; /* Inicia encendida */
+
+
+
+}
+
+
+
+@media (min-width: 768px) {
+    #main-tab-arrow {
+        font-size: 44px;
+        
+    }
+}
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+#main-tab-arrow {
+        font-size: 44px;
+        
+    }
 }
 
 /* PANEL TERMINAL DE COMENTARIOS */
@@ -1659,7 +1724,8 @@ button, a, img {
   padding: 16px;
 }
 .main-folder-container.folder-active #main-tab-arrow {
-  transform: rotate(180deg); /* La flecha cambia de dirección > indicando cierre */
+  /* Eliminamos por completo los rotate() que causaban locuras en el eje */
+  background: transparent;
 }
 
 /* TEXTOS INTERNOS DE LA TERMINAL DE COMENTARIOS */

@@ -119,7 +119,9 @@
     list-style: none;
     text-align: center;
     padding: 12px 14px;
-    background-color: rgba(18, 22, 30, 0.4); /* Fondo translúcido de terminal */
+    background-color: rgba(18,22,30,.6); /* Cambia el color de fondo aquí */
+        backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
     border: 1px dashed rgba(255, 251, 24, 0.329); /* Borde punteado sutil */
     border-radius: 8px;
     margin: 7px auto;

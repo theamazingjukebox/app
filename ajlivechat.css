@@ -149,6 +149,7 @@
     font-size: 12px;
     color: #dffcff; /* Tu color claro secundario */
     line-height: 1.5;
+    opacity: 0.7;    
     margin: 0;
     text-shadow: none !important; /* Cero resplandores fastidiosos */
 }
@@ -178,6 +179,8 @@
         opacity: 0.85;
     
 }
+
+
 
 
 

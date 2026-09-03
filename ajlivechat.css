@@ -141,7 +141,7 @@
     display: block;
     font-family: 'Orbitron', monospace;
     font-weight: bold;
-    color: #87ffff; /* Tu Cian Orbitron exacto */
+    color: rgba(255, 251, 24, 0.329); /* Tu Cian Orbitron exacto */
     font-size: 11px;
     letter-spacing: 0.5px;
     margin-bottom: 6px;

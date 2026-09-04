@@ -2929,8 +2929,7 @@ window.addEventListener("load", () => {
         // 🔥 3. reabrir con height mayor
         setTimeout(() => {
             chatContainer.scrollTop = 0;
-            chatContainer.style.height = "300px"; // 👈 tu nuevo tamaño final
-            isChatExpanded = true; // mantener estado coherente
+            setChatState(true);
         }, 1000);
 
         // 🔥 2. ocultar loader DESPUÉS

@@ -150,7 +150,7 @@
     font-size: 11px;
     letter-spacing: 0.5px;
     margin-bottom: 6px;
-    text-shadow: none !important; /* Quitamos el neón para máxima nitidez */
+    
 }
 
 /* El cuerpo del mensaje: Texto plano Monospace Claro */

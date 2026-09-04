@@ -1329,7 +1329,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inyectar el diseño con la misma estética Orbitron/Neón de tu web
     banner.innerHTML = `
       <div class="banner-body">
-        <span class="banner-icon">🔮</span>
+        <span class="banner-icon">📺</span>
         <div class="banner-text">
           <p class="banner-title">MINI-PLAYER AVAILABLE</p>
           <p class="banner-desc">Keep using the reproduction controls while browsing other tabs.</p>

@@ -54,7 +54,7 @@
     top: 85%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
-     border: 2px solid transparent;
+     border: 3px solid transparent;
           border-radius: 24px; /* ¡Ahora el navegador SÍ respetará las esquinas! */
 
           /* 2. EL TRUCO MAESTRO: Doble fondo separado por comas */

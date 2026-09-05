@@ -1356,7 +1356,23 @@ document.addEventListener("DOMContentLoaded", () => {
         to { transform: translateY(0); opacity: 1; }
       }
       .banner-body { display: flex; align-items: center; gap: 12px; position: relative; }
-      .banner-icon { font-size: 22px; }
+      .banner-icon { 
+  font-size: 22px; 
+  /* La animación corre de forma infinita y continua */
+  animation: pulsoSombraMax 3.5s infinite ease-in-out; 
+}
+
+/* El brillo actual se convierte en el límite máximo */
+@keyframes pulsoSombraMax {
+  0%, 100% {
+    /* Estado mínimo: el brillo se reduce a casi nada */
+    text-shadow: 0 0 4px rgba(0, 255, 255, 0.05);
+  }
+  50% {
+    /* Estado máximo: TU GLOW ORIGINAL EXACTO */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.30);
+  }
+}
       .banner-text { flex: 1; display: flex; flex-direction: column; }
       .banner-title { color: #87ffff; font-size: 11px; font-weight: bold; margin: 0 0 2px 0; letter-spacing: 0.5px; }
       .banner-desc { color: #dffcff; font-size: 9px; margin: 0; line-height: 1.2; font-family: sans-serif; }

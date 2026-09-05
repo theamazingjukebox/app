@@ -785,6 +785,19 @@ text-shadow:
 
 0 0 10px rgba(0,255,255,.30);   
 
+animation: pulsoSombraMax 3.5s infinite ease-in-out; 
+}
+
+/* El brillo actual se convierte en el límite máximo */
+@keyframes pulsoSombraMax {
+  0%, 100% {
+    /* Estado mínimo: el brillo se reduce a casi nada */
+    text-shadow: 0 0 4px rgba(0, 255, 255, 0.05);
+  }
+  50% {
+    /* Estado máximo: TU GLOW ORIGINAL EXACTO */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.30);
+  }
 }
 
 @media (min-width:768px) and (hover:hover) and (pointer:fine){
@@ -3435,7 +3448,7 @@ OneSignalDeferred.push(async function (OneSignal) {
 <br>
 
         <button class="sidebar-action alerts-action" id="notifications-button">
-  <span class="action-icon">✦</span>
+  <span class="action-icon">🛎</span>
 
   <span class="action-copy">
    

@@ -928,7 +928,7 @@ document.addEventListener("DOMContentLoaded", () => {
           /* El primer fondo es tu color oscuro (recortado al contenido). El segundo es el degradado que actuará como borde */
           background-image: url("footer5.svg"), 
                             linear-gradient(rgba(18, 22, 30, 0.90), rgba(18, 22, 30, 0.90)), 
-                            linear-gradient(135deg, #d83ca4, #87ffff);
+                            linear-gradient(135deg, #87ffff, #d83ca4);
           
           /* Indicamos cómo se debe recortar cada capa de fondo */
           background-clip: padding-box, padding-box, border-box;

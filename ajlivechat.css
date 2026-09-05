@@ -193,7 +193,7 @@
     display: block;
     font-family: 'Orbitron', monospace;
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.685);
+    color: rgba(33, 180, 131, 0.685);
     text-shadow: 
         0 0 5px rgba(255, 255, 255, 0.8), /* Brillo suave */
         0 0 10px rgb(162, 0, 255),   /* Brillo rosa */

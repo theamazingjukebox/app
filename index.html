@@ -1860,6 +1860,104 @@ button, a, img {
 }
 
 
+
+
+.sidebar-action {
+  position: relative;
+  width: 100%;
+  
+  /* Control estricto de la altura del recuadro */
+  height: 46px !important; 
+  min-height: 46px !important;
+  max-height: 46px !important;
+  
+  /* Alineación horizontal absoluta */
+  display: flex !important;
+  flex-direction: row !important; /* Fuerza una fila de izquierda a derecha */
+  align-items: center !important; /* Centra verticalmente el icono, texto y flecha */
+  justify-content: space-between !important; /* Distribuye: Izquierda, Centro y Derecha */
+  gap: 12px;
+  padding: 0 12px;
+
+  color: #dfffff;
+  font-family: inherit;
+  cursor: pointer;
+  background: linear-gradient(#101923, #101923) padding-box, linear-gradient(135deg, #87ffff, #d83ca4) border-box;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  box-shadow: 0 0 12px rgba(135, 255, 255, 0.12), inset 0 0 14px rgba(216, 60, 164, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.sidebar-action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient( 135deg, rgba(135, 255, 255, 0.13), rgba(216, 60, 164, 0.13) );
+  transition: opacity 0.22s ease;
+}
+
+.sidebar-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(135, 255, 255, 0.35), 0 0 18px rgba(216, 60, 164, 0.22), inset 0 0 16px rgba(135, 255, 255, 0.06);
+}
+
+.sidebar-action:hover::before {
+  opacity: 1;
+}
+
+/* Icono (Tamaño original restaurado) */
+.action-icon {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px; /* Evita que el icono se deforme o encoja */
+  display: grid;
+  place-items: center;
+  color: #87ffff;
+  font-size: 17px;
+  background: rgba(5, 16, 24, 0.8);
+  border: 1px solid rgba(135, 255, 255, 0.55);
+  border-radius: 9px;
+  text-shadow: 0 0 5px #87ffff, 2px 1px 5px #d83ca4;
+}
+
+/* Contenedor del texto en una sola línea */
+.action-copy {
+  position: relative;
+  z-index: 1;
+  flex: 1; /* Ocupa todo el espacio intermedio disponible */
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* CLAVE: Prohíbe terminantemente que el texto salte de línea */
+}
+
+/* Texto Small (Tamaño original restaurado) */
+.action-copy small {
+  margin: 0; 
+  color: rgba(220, 255, 255, 0.65);
+  font-size: 9px; 
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+/* Flechas (Tamaño original restaurado) */
+.action-arrow {
+  position: relative;
+  z-index: 1;
+  color: #d83ca4;
+  font-size: 24px; 
+  line-height: 1;
+  flex: 0 0 auto; /* Evita que las flechas se encojan */
+  display: flex;
+  align-items: center;
+}
+
+
     
 </style>
 <script>
@@ -3290,9 +3388,18 @@ OneSignalDeferred.push(async function (OneSignal) {
   You can install The Amazing Jukebox © as an App for quick access, full screen mode and special features ✨📲 — Do it directly from your browser or click the button below.
 <br>Enjoy!
 <br>
+<br>
 
+<button class="sidebar-action install-action" id="install-app-btn">
+  <span class="action-icon">⤓</span>
 
-<img id="install-app-btn" src="output-onlinepngtools (33).webp" alt="" width="165" height="auto">
+  <span class="action-copy">
+    <small>Install the jukebox</small>
+  </span>
+
+  
+</button>
+         
 </p>
     
 </div>
@@ -3325,8 +3432,20 @@ OneSignalDeferred.push(async function (OneSignal) {
   <i>Stay in the loop, only when it matters ✅✅</i><br><br>Receive the latest news from the Jukebox via Push alerts ↓ ↓ ↓
 
 <br>
+<br>
 
-         <img id="notifications-button" src="alerts6.webp" alt="" width="165" height="auto">
+        <button class="sidebar-action alerts-action" id="enable-alerts-btn">
+  <span class="action-icon">✦</span>
+
+  <span class="action-copy">
+   
+    <small>Turn on notifications</small>
+  </span>
+
+ 
+</button>
+
+         
 </p>
 
 </div>

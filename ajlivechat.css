@@ -125,7 +125,7 @@
     list-style: none;
     text-align: center;
     padding: 12px 14px;
-    background-color: rgba(18,22,30,.6); 
+    background-color: #29b2c41f;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     
@@ -146,7 +146,7 @@
 /* Efecto al pasar el cursor en PC */
 #messages .chat-welcome:hover {
     border-color: rgba(255, 251, 24, 0.6); /* El borde se ilumina solo un poco más */
-    background-color: rgba(22, 28, 38, 0.7); /* Cambio de fondo casi imperceptible */
+    background-color: rgba(44, 184, 204, 0.2);/* Cambio de fondo casi imperceptible */
     
     /* 1. GLITCH DE TEXTO: Hace que las letras tengan un sutil reflejo cian y rosa */
     text-shadow: 1px 1px 0px rgba(0, 255, 255, 0.5), -1px -1px 0px rgba(216, 60, 164, 0.5) !important;

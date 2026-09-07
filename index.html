@@ -1576,7 +1576,7 @@ button, a, img {
             rgba(0, 234, 255, 0.08)
         );
 
-    border: 1px solid rgba(0, 234, 255, 0.30);
+    border: 1px solid #d83ca4;
 
     box-shadow:
         0 0 8px rgba(0, 234, 255, 0.20),
@@ -1937,6 +1937,13 @@ button, a, img {
   border: 1px solid rgba(135, 255, 255, 0.55);
   border-radius: 6px;
   text-shadow: 0 0 5px #87ffff, 2px 1px 5px #d83ca4;
+}
+
+.icon-img {
+  width: 15px;  /* Ajusta el tamaño de la flecha dentro del recuadro */
+  height: 15px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Contenedor del texto en una sola línea */
@@ -3404,7 +3411,10 @@ OneSignalDeferred.push(async function (OneSignal) {
 <br>
 
 <button class="sidebar-action install-action" id="install-app-btn">
-  <span class="action-icon">⤓</span>
+  <!-- Reemplazamos el símbolo por la etiqueta img -->
+  <span class="action-icon">
+    <img src="icondownload.png" alt="Download" class="icon-img">
+  </span>
 
   <span class="action-copy">
     <small>Install the jukebox</small>
@@ -3448,7 +3458,7 @@ OneSignalDeferred.push(async function (OneSignal) {
 <br>
 
         <button class="sidebar-action alerts-action" id="notifications-button">
-  <span class="action-icon">🛎</span>
+  <span class="action-icon">✦</span>
 
   <span class="action-copy">
    

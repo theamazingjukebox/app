@@ -1608,7 +1608,7 @@ button, a, img {
     display: inline-flex;
     align-items: center;
 
-    padding-right: 60px;
+    padding-right: 15px;
 
     font-family: 'Orbitron', sans-serif;
 
@@ -1675,6 +1675,16 @@ button, a, img {
         opacity: 1;
     }
 
+}
+
+    
+.live-chat-logo {
+    height: 30px;
+    width: auto;
+    padding-left: 65px;
+    margin-left: 28px;
+    vertical-align: middle;
+    object-fit: contain;
 }
 
 
@@ -3140,9 +3150,17 @@ function updateLiveChatTicker() {
         `LIVE CHAT  ·  ${date}  ·  ${time}  ·  THE AMAZING JUKEBOX  ·`;
 
 
-    tickerElements.forEach(element => {
+     tickerElements.forEach(element => {
 
         element.textContent = tickerText;
+
+        const logo = document.createElement("img");
+
+        logo.src = "icon512.png"; // cambia aquí la ruta
+        logo.className = "live-chat-logo";
+        logo.alt = "";
+
+        element.appendChild(logo);
 
     });
 
@@ -3160,7 +3178,7 @@ document.addEventListener(
         // actualizar cada segundo
         setInterval(
             updateLiveChatTicker,
-            1000
+            30000
         );
 
     }

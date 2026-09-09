@@ -3113,76 +3113,62 @@ function waitForYTAndPlay() {
    LIVE CHAT DATE + TIME
 ========================================== */
 
-function updateLiveChatTicker() {
-
-    const tickerElements =
-        document.querySelectorAll(".live-chat-text");
-
-    if (!tickerElements.length) return;
-
-
+// Función auxiliar para obtener solo la cadena de tiempo actualizada
+function getLiveTime() {
     const now = new Date();
-
-
+    
     // DD/MM/YYYY
-    const date = now.toLocaleDateString(
-        "en-GB",
-        {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        }
-    );
-
-
-    // HH:MM AM/PM
-    const time = now.toLocaleTimeString(
-        "en-US",
-        {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true
-        }
-    );
-
-
-    const tickerText =
-        `LIVE CHAT  ·  ${date}  ·  ${time}  ·  THE AMAZING JUKEBOX  ·`;
-
-
-     tickerElements.forEach(element => {
-
-        element.textContent = tickerText;
-
-        const logo = document.createElement("img");
-
-        logo.src = "icon512.png"; // cambia aquí la ruta
-        logo.className = "live-chat-logo";
-        logo.alt = "";
-
-        element.appendChild(logo);
-
+    const date = now.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
     });
 
+    // HH:MM AM/PM
+    const time = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
+
+    return `LIVE CHAT  ·  ${date}  ·  ${time}  ·  THE AMAZING JUKEBOX  ·  `;
 }
 
+function initLiveChatTicker() {
+    const tickerElements = document.querySelectorAll(".live-chat-text");
+    if (!tickerElements.length) return;
+
+    tickerElements.forEach(element => {
+        // 1. Limpiamos el contenedor
+        element.innerHTML = "";
+
+        // 2. Creamos un contenedor de texto dedicado (span) para poder actualizarlo sin tocar la imagen
+        const textNode = document.createElement("span");
+        textNode.className = "ticker-text-data";
+        textNode.textContent = getLiveTime();
+        element.appendChild(textNode);
+
+        // 3. Creamos e inyectamos la imagen una SOLA vez desde el inicio
+        const logo = document.createElement("img");
+        logo.src = "icon512.png"; // mantiene tu ruta
+        logo.className = "live-chat-logo";
+        logo.alt = "";
+        element.appendChild(logo);
+    });
+
+    // 4. Configurar el intervalo para actualizar EXCLUSIVAMENTE el texto del reloj, dejando intacta la imagen
+    setInterval(() => {
+        const timeString = getLiveTime();
+        document.querySelectorAll(".ticker-text-data").forEach(node => {
+            node.textContent = timeString;
+        });
+    }, 1000);
+}
 
 /* iniciar */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        updateLiveChatTicker();
-
-        // actualizar cada segundo
-        setInterval(
-            updateLiveChatTicker,
-            1000
-        );
-
-    }
-);
+document.addEventListener("DOMContentLoaded", () => {
+    initLiveChatTicker();
+});
 
 
 

@@ -385,50 +385,77 @@ body {
 }
 
 
+/* ========================================================
+   BOTÓN SWITCH DE FONDO DE LA PWA (ESTILO CÁPSULA NEÓN)
+   ======================================================== */
 #bg-toggle-btn {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px; /* Subimos un pelín el margen inferior para que respire con el borde rosa */
   left: 0;
   right: 0;
   margin: auto;
-  width: 145px; /* ajusta al ancho real del botón */
-  display: none;
   
+  /* Ajuste de dimensiones exactas al formato cápsula */
+  width: 115px; 
+  height: 42px;
+  padding: 0 16px;
 
-  padding: 12px 20px;
-  font-size: 20px;
+  /* Tipografía nativa Orbitron Cyberpunk Nítida */
+  font-size: 10px;
   font-weight: bold;
-  font-family: Orbitron, sans-serif;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #87ffff; /* Tu cian Orbitron oficial para el texto */
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+  
+  /* Evita el destello azul móvil */
   -webkit-tap-highlight-color: transparent;
-
-  color: #00eaff;
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid rgba(0, 234, 255, 0.5);
-  border-radius: 8px;
-
   cursor: pointer;
 
-  box-shadow:
-    0 0 10px rgba(0, 234, 255, 0.5),
-    0 0 20px rgba(0, 234, 255, 0.3);
-
-  transition: all 0.2s ease;
-
+  /* 🔥 TRUCO MAESTRO: Degradado de marco cruzado rosa/cian con fondo oscuro traslúcido */
+  background: linear-gradient(#101923, #101923) padding-box, 
+              linear-gradient(135deg, #87ffff, #d83ca4) border-box;
+  border: 1px solid transparent;
+  border-radius: 13px; /* Bordes redondeados idénticos al sidebar-action */
+  
+  /* Sombras y resplandores combinados de tu ecosistema web */
+  box-shadow: 0 0 12px rgba(135, 255, 255, 0.15), 
+              inset 0 0 14px rgba(216, 60, 164, 0.05);
+              
+  /* Transición de inercia suave para efectos táctiles */
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s;
+  
+  /* Oculto por defecto en navegadores convencionales */
+  display: none; 
   z-index: 9999;
 }
-    
 
+/* EFECTO HOVER PARA COMPUTADORAS (Si abren la PWA en escritorio) */
+@media (hover: hover) and (pointer: fine) {
+  #bg-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(135, 255, 255, 0.35), 
+                0 0 20px rgba(216, 60, 164, 0.22), 
+                inset 0 0 16px rgba(135, 255, 255, 0.06);
+    color: #fff;
+  }
+}
+
+/* EFECTO TÁCTIL INTEGRADOR AL PRESIONAR (Móviles, Tablets y PC) */
 #bg-toggle-btn:active {
-            box-shadow: none;
-            transform: scale(0.93); /* Simula un botón presionado */
-        }
+  transform: scale(0.93); /* Efecto de contracción mecánica realista */
+  box-shadow: 0 0 5px rgba(135, 255, 255, 0.1), inset 0 0 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease;
+}
 
+/* DISPARADOR: Solo se renderiza si la PWA está instalada y abierta como App */
 @media (display-mode: standalone) {
-
   #bg-toggle-btn {
-         display: block;
-        
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
     
@@ -3296,7 +3323,7 @@ OneSignalDeferred.push(async function (OneSignal) {
 </video>
         
         
-<button id="bg-toggle-btn">switch</button>
+<button id="bg-toggle-btn">- switch -</button>
 
         
         <header id="top-banner">

@@ -285,6 +285,14 @@
             transform: scale(0.78); /* Simula un botón presionado */
         }
 
+@media (hover: hover) and (pointer: fine) {
+
+    #message-btn:hover {
+        background-color: rgba(156, 77, 124, 0.336);
+    }
+
+}
+
 
         /* Agrega este estilo para el contenedor de emojis */
        #emoji-container {

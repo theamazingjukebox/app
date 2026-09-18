@@ -2808,39 +2808,19 @@ function initYouTubePlayer(videoId) {
         }, 300);
     }
 
-        // 🔥 limpiar previo
-        if (qualityInterval) {
-            clearInterval(qualityInterval);
-        }
+         if (ytPlayer && isPlayerReady) {
+                        ytPlayer.setPlaybackQuality('small');
+                    }
+                    
+                    startEndWatcher();
+                }
 
-        // 🔥 insistir durante los primeros segundos
-        qualityInterval = setInterval(() => {
-            if (ytPlayer && isPlayerReady) {
-                ytPlayer.setPlaybackQuality('small');
-            }
-        }, 500);
-
-        
-    startEndWatcher();
-
-        
-
-        // 🔥 detener después de estabilizar
-        setTimeout(() => {
-            clearInterval(qualityInterval);
-        }, 4000);
-
-    }
-        
-        
-
-    if (event.data === YT.PlayerState.ENDED) {
-        setTimeout(() => {
-            playNextVideo();
-        }, 200);
-    }
-},
-            
+                if (event.data === YT.PlayerState.ENDED) {
+                    setTimeout(() => {
+                        playNextVideo();
+                    }, 200);
+                }
+            },
             
             onError: () => {
                 console.log("YT error → siguiente video");
@@ -2849,7 +2829,6 @@ function initYouTubePlayer(videoId) {
         }
     });
 }
-
     
       let currentVideoIndex = -1;
     const videoPlayer = document.createElement("video");

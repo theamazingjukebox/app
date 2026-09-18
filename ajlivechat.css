@@ -218,6 +218,13 @@
     text-shadow: none !important; /* Cero resplandores fastidiosos */
 }
 
+#messages .chat-welcome .system-body:hover {
+   
+    /* 1. GLITCH DE TEXTO: Hace que las letras tengan un sutil reflejo cian y rosa */
+    text-shadow: 1px 1px 0px rgba(0, 255, 255, 0.5), -1px -1px 0px rgba(216, 60, 164, 0.5) !important;
+    
+}
+
 @media (min-width: 768px) {
     #messages .chat-welcome .system-body {
         font-size: 9px;

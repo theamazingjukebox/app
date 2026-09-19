@@ -2822,11 +2822,21 @@ function initYouTubePlayer(videoId) {
         }, 300);
     }
 
-         if (ytPlayer && isPlayerReady) {
-                        ytPlayer.setPlaybackQuality('small');
+         if (qualityInterval) {
+                        clearInterval(qualityInterval);
                     }
+
+                    qualityInterval = setInterval(() => {
+                        if (ytPlayer && isPlayerReady) {
+                            ytPlayer.setPlaybackQuality('small');
+                        }
+                    }, 500);
                     
                     startEndWatcher();
+
+                    setTimeout(() => {
+                        clearInterval(qualityInterval);
+                    }, 4000);
                 }
 
                 if (event.data === YT.PlayerState.ENDED) {

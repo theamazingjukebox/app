@@ -1165,7 +1165,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 5. FUNCIÓN PARA SINCRONIZAR TEXTOS Y ESTADO DE PLAY
       function syncWidgetData() {
-        const activePlayer = window.ytPlayer || ytPlayer;
+        if (!pipWindow || pipWindow.closed) return;
+          const activePlayer = window.ytPlayer || ytPlayer;
         
         if (typeof videos !== 'undefined' && typeof currentVideoIndex !== 'undefined' && currentVideoIndex >= 0) {
           const currentSongObj = videos[currentVideoIndex];

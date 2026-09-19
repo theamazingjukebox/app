@@ -1987,6 +1987,32 @@ button, a, img {
 }
 
 
+/* ========================================================
+   GLOW PULSANTE INDEPENDIENTE PARA EL EMOJI DEL CHAT
+   ======================================================== */
+
+/* Apuntamos con precisión quirúrgica al emoji de la bocina dentro de tu nuevo botón */
+#chat #listen-button .icon-emoji {
+    
+  text-shadow:
+
+0 0 10px rgba(0,255,255,.30);   
+
+animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetición */
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 0; /* Invisible */
+  }
+  50% {
+    opacity: 1; /* Visible */
+  }
+  100% {
+    opacity: 0; /* Vuelve a desaparecer */
+  }
+}
+
     
 </style>
 <script>
@@ -3617,7 +3643,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                     <button class="sidebar-action share-track-action" id="listen-button" onclick="shareCurrentSong()">
   <!-- Micro-celda digital para el icono -->
   <span class="action-icon">
-    <span class="icon-emoji" style="text-shadow: 0 0 5px #87ffff;">🔊</span>
+    <span class="icon-emoji">🔊</span>
   </span>
 
   <!-- Contenedor del texto en Orbitron -->

@@ -109,6 +109,9 @@
     
         }
 
+#messages::-webkit-scrollbar { width: 3px; }
+#messages::-webkit-scrollbar-thumb { background: #d83ca4; border-radius: 4px; }
+
         #chat-input {
             position: fixed;   
             display: flex;

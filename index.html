@@ -2787,7 +2787,8 @@ function initYouTubePlayer(videoId) {
             modestbranding: 1,
             rel: 0,
             playsinline: 1,
-            iv_load_policy: 3
+            iv_load_policy: 3,
+            disablekb: 1 
             
         },
         events: {
@@ -3060,41 +3061,39 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// ======================
-// 🎬 WINDOW LOAD (visual + loader + chat animación)
-// ======================
+// ========================================================
+// 🎬 WINDOW LOAD CORREGIDO (EVITA DESFASES EN EL DOM)
+// ========================================================
 window.addEventListener("load", () => {
-
     const loader = document.getElementById("loading-screen");
     const chatContainer = document.getElementById("chat");
 
     requestAnimationFrame(() => {
-
-        // 🔥 1. tu comportamiento original (abrir → cerrar)
+        // 1. Abrimos el chat de forma oficial a través de tu función controladora
         setChatState(true);
 
+        // 2. Lo cerramos limpiamente para que las variables se queden en orden
         setTimeout(() => {
-            chatContainer.scrollTop = 0;
+            if (chatContainer) chatContainer.scrollTop = 0;
             setChatState(false);
         }, 500);
 
-        // 🔥 3. reabrir con height mayor
+        // 3. Lo abrimos a su altura final oficial (310px como lo tienes abajo) de forma correcta
         setTimeout(() => {
-            chatContainer.scrollTop = 0;
-            setChatState(true);
+            if (chatContainer) chatContainer.scrollTop = 0;
+            setChatState(true); // 🔥 Corrección: Usamos la función nativa en lugar de inyectar .style.height
         }, 1000);
 
-        // 🔥 2. ocultar loader DESPUÉS
+        // 4. Ocultamos el loader en paz
         setTimeout(() => {
-            loader.style.opacity = "0";
-
-            setTimeout(() => {
-                loader.style.display = "none";
-            }, 300);
-
+            if (loader) {
+                loader.style.opacity = "0";
+                setTimeout(() => { loader.style.display = "none"; }, 300);
+            }
         }, 550);
     });
 });
+
 
 function waitForYTAndPlay() {
     let attempts = 0;

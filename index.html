@@ -1992,11 +1992,15 @@ button, a, img {
    ======================================================== */
 
 /* Apuntamos con precisión quirúrgica al emoji de la bocina dentro de tu nuevo botón */
-#chat #listen-button .icon-emoji {
-    
-  text-shadow:
+#chat #listen-button .icon-img-share {
+       
+width: 14px;      /* Dimensiones perfectas para que encaje al centro de la micro-celda */
+  height: 14px;
+  object-fit: contain;
+  display: block;
 
-0 0 10px rgba(0,255,255,.30);   
+
+filter: drop-shadow(0 0 10px rgba(0,255,255,.30));  
 
 animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetición */
 }
@@ -2012,7 +2016,6 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
     opacity: 0; /* Vuelve a desaparecer */
   }
 }
-
     
 </style>
 <script>
@@ -3652,7 +3655,8 @@ OneSignalDeferred.push(async function (OneSignal) {
                     <button class="sidebar-action share-track-action" id="listen-button" onclick="shareCurrentSong()">
   <!-- Micro-celda digital para el icono -->
   <span class="action-icon">
-    <span class="icon-emoji">🔊</span>
+    
+        <img src="g18234.svg" alt="Sound" class="icon-img-share">
   </span>
 
   <!-- Contenedor del texto en Orbitron -->

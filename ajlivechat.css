@@ -1662,7 +1662,7 @@ box-shadow:
 
 
 /* ========================================================
-   FONDO DISCO MODE CON EFECTO ESTROBOSCÓPICO RÍTMICO
+   FONDO DISCO MODE: AURORA LÍQUIDA CYBERPUNK (12 ETAPAS)
    ======================================================== */
 #disco-background {
     position: absolute;
@@ -1672,60 +1672,53 @@ box-shadow:
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background-color: #000000; /* Base negra sólida */
     
-    /* 🔥 EL EFECTO: Animación rítmica infinita que emula luces estroboscópicas traslúcidas */
-    animation: strobePulse 14.6s infinite ease-in-out;
+    /* 🔥 Activamos la nueva animación de 12 etapas con un tiempo más pausado (4s) 
+       para dar una sensación líquida y flotante muy premium */
+    animation: auroraStrobePulse 16s infinite ease-in-out;
 }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-    #disco-background {
-        /* En escritorio aumentamos ligeramente la velocidad para más dinamismo */
-        animation: strobePulse 14.8s infinite ease-in-out;
-    }
-}
-
-/* --- FOTOGRAMAS ESTROBOSCÓPICOS DE ALTA FLUIDEZ (9 ETAPAS) --- */
-@keyframes strobePulse {
+/* --- MAPA MATEMÁTICO DE 12 ETAPAS FLUIDAS ---
+   Cada paso altera el color suavemente y la opacidad cambia con micro-saltos de max 0.05 */
+@keyframes auroraStrobePulse {
     0%, 100% {
-        /* Estado base estable (Tu opacidad original exacta 0.35) */
-        opacity: 0.45;
-        filter: brightness(1);
+        /* 🔥 EL ANCLA: El inicio y el final son exactamente idénticos en color y opacidad */
+        background-color: rgba(0, 234, 255, 0.20); 
     }
-    15% {
-        /* Descenso suave hacia la penumbra */
-        opacity: 0.55;
-        filter: brightness(0.92);
+    8.33% {
+        background-color: rgba(0, 210, 255, 0.24); 
     }
-    30% {
-        /* Valle de oscuridad: El fondo se vuelve denso antes del estallido */
-        opacity: 0.59;
-        filter: brightness(0.85);
+    16.66% {
+        background-color: rgba(50, 150, 255, 0.28); 
     }
-    45% {
-        /* Recuperación gradual de la luz de fondo */
-        opacity: 0.65;
-        filter: brightness(0.95);
+    25% {
+        background-color: rgba(120, 90, 240, 0.32); 
     }
-    60% {
-        /* Inicio del destello ascendente */
-        opacity: 0.67;
-        filter: brightness(1.10);
+    33.33% {
+        background-color: rgba(190, 60, 200, 0.35); 
     }
-    72% {
-        /* 🔥 EL CLÍMAX DEL DESTELLO: El neón rosa estalla con suavidad al máximo */
-        opacity: 0.75;
-        filter: brightness(1.25);
+    41.66% {
+        background-color: rgba(216, 60, 164, 0.31); 
     }
-    85% {
-        /* Atenuación controlada post-destello */
-        opacity: 0.67;
-        filter: brightness(1.10);
+    50% {
+        background-color: rgba(216, 60, 164, 0.26); 
     }
-    93% {
-        /* Regreso amortiguado al estado de reposo */
-        opacity: 0.55;
-        filter: brightness(1.02);
+    58.33% {
+        background-color: rgba(216, 60, 164, 0.22); 
+    }
+    66.66% {
+        background-color: rgba(180, 70, 200, 0.18); 
+    }
+    75% {
+        background-color: rgba(100, 120, 240, 0.15); 
+    }
+    83.33% {
+        /* Desaceleración cromática hacia el cian original */
+        background-color: rgba(0, 190, 255, 0.16); 
+    }
+    91.66% {
+        /* 🔥 AJUSTE: El tono y la opacidad quedan a solo un pestañeo de fundirse con el 0% */
+        background-color: rgba(0, 225, 255, 0.18); 
     }
 }
 

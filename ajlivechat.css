@@ -1661,6 +1661,9 @@ box-shadow:
 
 
 
+/* ========================================================
+   FONDO DISCO MODE CON EFECTO ESTROBOSCÓPICO RÍTMICO
+   ======================================================== */
 #disco-background {
     position: absolute;
     top: 0;
@@ -1669,14 +1672,60 @@ box-shadow:
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background-color: #00000069; /* Fondo oscuro general */
+    background-color: #000000; /* Base negra sólida */
     
-
+    /* 🔥 EL EFECTO: Animación rítmica infinita que emula luces estroboscópicas traslúcidas */
+    animation: strobePulse 9.6s infinite ease-in-out;
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #disco-background {
-        background-color: #00000089;
+        /* En escritorio aumentamos ligeramente la velocidad para más dinamismo */
+        animation: strobePulse 9.8s infinite ease-in-out;
+    }
+}
+
+/* --- FOTOGRAMAS ESTROBOSCÓPICOS DE ALTA FLUIDEZ (9 ETAPAS) --- */
+@keyframes strobePulse {
+    0%, 100% {
+        /* Estado base estable (Tu opacidad original exacta 0.35) */
+        opacity: 0.45;
+        filter: brightness(1);
+    }
+    15% {
+        /* Descenso suave hacia la penumbra */
+        opacity: 0.55;
+        filter: brightness(0.92);
+    }
+    30% {
+        /* Valle de oscuridad: El fondo se vuelve denso antes del estallido */
+        opacity: 0.59;
+        filter: brightness(0.85);
+    }
+    45% {
+        /* Recuperación gradual de la luz de fondo */
+        opacity: 0.65;
+        filter: brightness(0.95);
+    }
+    60% {
+        /* Inicio del destello ascendente */
+        opacity: 0.67;
+        filter: brightness(1.10);
+    }
+    72% {
+        /* 🔥 EL CLÍMAX DEL DESTELLO: El neón rosa estalla con suavidad al máximo */
+        opacity: 0.75;
+        filter: brightness(1.25);
+    }
+    85% {
+        /* Atenuación controlada post-destello */
+        opacity: 0.67;
+        filter: brightness(1.10);
+    }
+    93% {
+        /* Regreso amortiguado al estado de reposo */
+        opacity: 0.55;
+        filter: brightness(1.02);
     }
 }
 

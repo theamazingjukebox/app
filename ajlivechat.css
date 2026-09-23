@@ -1674,7 +1674,7 @@ box-shadow:
     overflow: hidden;
     
     /* Mantenedora de tus 16s para que el viaje de 22 pasos sea una seda flotante */
-    animation: auroraStrobePulse 36s infinite ease-in-out;
+    animation: auroraStrobePulse 34s infinite ease-in-out;
 }
 
 /* --- MAPA MATEMÁTICO DE 22 ETAPAS ULTRA-FLUIDAS ---

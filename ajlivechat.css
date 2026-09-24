@@ -1657,7 +1657,7 @@ box-shadow:
         0 0 30px rgba(255, 0, 255, 1);   /* Brillo rosa aún más intenso */
     border-radius: 5px;
     z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
-animation: parpadeo 1s infinite; /* Nombre de la animación, duración y repetición */
+animation: parpadeo 1.5s infinite; /* Nombre de la animación, duración y repetición */
 }
 
 @keyframes parpadeo {

@@ -2841,6 +2841,10 @@ function initYouTubePlayer(videoId) {
                     setTimeout(() => {
                         clearInterval(qualityInterval);
                     }, 4000);
+        
+                setTimeout(() => {
+                        triggerSmartGhostMouse();
+                    }, 3000); // Espera 3 segundos de reproducción antes de auditar
                 }
 
                 if (event.data === YT.PlayerState.ENDED) {
@@ -2988,7 +2992,7 @@ function initYouTubePlayer(videoId) {
         if (typeof window.fetchWebYouTubeComments === 'function') {
             window.fetchWebYouTubeComments(true); 
         }
-    }, 800);
+    }, 1500);
 
 }
 
@@ -3319,6 +3323,26 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 
+
+function triggerSmartGhostMouse() {
+    const playerContainer = document.getElementById("youtube-player");
+    if (!playerContainer || !ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+
+    // Solo actuamos si el video sigue reproduciéndose (PLAYING = 1)
+    if (ytPlayer.getPlayerState() === 1) {
+        console.log("🔍 Centinela: Ejecutando sacudida invisible para asegurar pantalla limpia.");
+        
+        // Simula la entrada del cursor para refrescar el foco nativo de la pantalla
+        const mouseOverEvent = new MouseEvent('mouseover', { bubbles: true, cancelable: true, view: window });
+        playerContainer.dispatchEvent(mouseOverEvent);
+
+        // Un pestañeo después (200ms), saca el cursor para forzar el desvanecimiento automático
+        setTimeout(() => {
+            const mouseLeaveEvent = new MouseEvent('mouseleave', { bubbles: true, cancelable: true, view: window });
+            playerContainer.dispatchEvent(mouseLeaveEvent);
+        }, 200);
+    }
+}
 
 
 

@@ -1684,16 +1684,16 @@ box-shadow:
        PARTE 1: EL VIAJE DEL CIAN AL PÚRPURA (ORIGINALES)
        ======================================================== */
     0%, 100% {
-        background-color: rgba(0, 234, 255, 0.20); /* 🔥 EL ANCLA CIAN */
+        background-color: rgba(0, 234, 255, 0.15); /* 🔥 EL ANCLA CIAN */
     }
     4.54% {
-        background-color: rgba(0, 215, 255, 0.23);
+        background-color: rgba(0, 215, 255, 0.17);
     }
     9.09% {
-        background-color: rgba(30, 170, 255, 0.26);
+        background-color: rgba(30, 170, 255, 0.19);
     }
     13.63% {
-        background-color: rgba(70, 130, 255, 0.27);
+        background-color: rgba(70, 130, 255, 0.23);
     }
     18.18% {
         background-color: rgba(120, 90, 240, 0.29); /* Tono violeta intermedio */
@@ -1763,7 +1763,7 @@ box-shadow:
         background-color: rgba(0, 190, 255, 0.16);
     }
     95.45% {
-        background-color: rgba(0, 222, 255, 0.18); /* Amortiguación final */
+        background-color: rgba(0, 222, 255, 0.16); /* Amortiguación final */
     }
 }
 

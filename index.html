@@ -2961,6 +2961,10 @@ function initYouTubePlayer(videoId) {
                 setTimeout(() => {
                         triggerSmartGhostMouse();
                     }, 3000); // Espera 3 segundos de reproducción antes de auditar
+        
+                setTimeout(() => {
+                        triggerSmartGhostTouch();
+                    }, 3200); // Se ejecuta un pestañeo después (3.2s) solo en móviles/tablets
                 }
 
                 if (event.data === YT.PlayerState.ENDED) {
@@ -3459,6 +3463,46 @@ function triggerSmartGhostMouse() {
         }, 200);
     }
 }
+
+
+
+// ========================================================
+// 📱 FUNCIÓN TOQUE FANTASMA INTELIGENTE V1.0 (EXCLUSIVO MÓVILES)
+// ========================================================
+function triggerSmartGhostTouch() {
+    const playerContainer = document.getElementById("youtube-player");
+    if (!playerContainer || !ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
+
+    // 1. Candado de seguridad: Solo actuamos en pantallas táctiles (pointer: coarse)
+    const isMobileTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (!isMobileTouch) return; // Si es PC con mouse, la función se apaga de inmediato
+
+    // 2. Solo actuamos si el video sigue en reproducción activa (PLAYING = 1)
+    if (ytPlayer.getPlayerState() === 1) {
+        console.log("📱 Centinela Táctil: Sacudida de toque fantasma activada en celular/tablet.");
+
+        // Creamos un evento de toque nativo simulado (touchstart)
+        const touchStartEvent = new TouchEvent('touchstart', {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+            touches: [new Touch({
+                identifier: Date.now(),
+                target: playerContainer,
+                clientX: playerContainer.getBoundingClientRect().left + 10,
+                clientY: playerContainer.getBoundingClientRect().top + 10
+            })]
+        });
+        playerContainer.dispatchEvent(touchStartEvent);
+
+        // Retiramos el dedo virtual un milisegundo después (touchend) para forzar el reposo y limpiar la pantalla
+        setTimeout(() => {
+            const touchEndEvent = new TouchEvent('touchend', { bubbles: true, cancelable: true, view: window });
+            playerContainer.dispatchEvent(touchEndEvent);
+        }, 50);
+    }
+}
+
 
 
 // ========================================================

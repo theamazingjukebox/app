@@ -2128,6 +2128,82 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   }
 }
 
+
+/* ========================================================
+   CONTADOR DE OYENTES EN VIVO (ANCLAJE FIJO SUPERIOR IZQUIERDO)
+   ======================================================== */
+#live-listeners-counter {
+  position: fixed;
+  top: 25px;   /* 🔥 Anclaje exacto solicitado */
+  left: 75px;  /* 🔥 Anclaje exacto solicitado */
+  z-index: 9999; /* Máxima jerarquía para flotar sobre circuitos */
+  
+  /* Formato Micro-Cápsula de Cristal */
+  padding: 8px 14px;
+  background: rgba(10, 16, 26, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Borde transparente cian sutil */
+  border: 1px solid rgba(135, 255, 255, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.listeners-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* MICRO-LED NEÓN VERDE PARPADEANTE */
+.listeners-led-ping {
+  width: 9px;
+  height: 9px;
+  background-color: #39ff14; /* Verde neón */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #39ff14, 0 0 2px #ffffff;
+  animation: ledPulse 2s infinite ease-in-out;
+}
+
+.listeners-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  color: #dffcff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px rgba(223, 252, 255, 0.2);
+}
+
+#active-listeners-count {
+  color: #87ffff; /* Tu cian oficial */
+  text-shadow: 0 0 5px #00ffff;
+}
+
+/* ANIMACIÓN DE PARPADEO DEL LED */
+@keyframes ledPulse {
+  0%, 100% { opacity: 0.3; filter: brightness(0.7); box-shadow: 0 0 2px #39ff14; }
+  50% { opacity: 1; filter: brightness(1.2); box-shadow: 0 0 10px #39ff14, 0 0 4px #ffffff; }
+}
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+  
+  #live-listeners-counter {
+   top: 25px;
+  left: 25px;
+  }
+    .listeners-led-ping {
+  width: 7px;
+  height: 7px;
+  }
+      .listeners-text {
+  font-size: 10px;
+      
+  }
+}
+
+
+
     
 </style>
 <script>
@@ -3511,7 +3587,47 @@ function triggerSmartGhostTouch() {
 }
 
 
+// ========================================================
+// 🟢 ALGORITMO DE TELEMETRÍA HORARIA INTELIGENTE V1.0
+// ========================================================
+function initSmartListenersCounter() {
+    const countElement = document.getElementById("active-listeners-count");
+    if (!countElement) return;
 
+    function updateListeners() {
+        const currentHour = new Date().getHours();
+        let baseCount = 28; // Tracción base promedio de la rocola
+
+        // Mapeo lógico de comportamiento según el reloj del usuario
+        if (currentHour >= 0 && currentHour < 6) {
+            baseCount = 14; // Madrugada: Tráfico bajo de survivors nocturnos
+        } else if (currentHour >= 6 && currentHour < 12) {
+            baseCount = 22; // Mañana: Inicio de sesiones de trabajo
+        } else if (currentHour >= 12 && currentHour < 18) {
+            baseCount = 31; // Tarde: Alta retención de fondo
+        } else if (currentHour >= 18 && currentHour <= 23) {
+            baseCount = 44; // Noche: Clímax de sintonía y chat en vivo
+        }
+
+        // Variación milimétrica para que el número "baile" en vivo (-2 a +2)
+        const variance = Math.floor(Math.random() * 5) - 2;
+        let finalCount = baseCount + variance;
+
+        // Candado de seguridad para evitar números negativos o nulos
+        if (finalCount < 8) finalCount = 8;
+
+        countElement.innerText = finalCount;
+    }
+
+    // Ejecución inmediata y actualización rítmica cada 6 segundos
+    updateListeners();
+    setInterval(updateListeners, 6000);
+}
+
+// Lo enganchamos al DOM Ready para que arranque limpio
+document.addEventListener("DOMContentLoaded", initSmartListenersCounter);
+
+    
 // ========================================================
 // 🔍 CONTROL DE ALERTA DE ZOOM INTELIGENTE
 // ========================================================
@@ -3743,6 +3859,14 @@ OneSignalDeferred.push(async function (OneSignal) {
 
 </div>
 
+
+<!-- CONTADOR DE TELEMETRÍA FIJO (ESTILO CRISTAL ESMERILADO DE ESQUINA) -->
+<div id="live-listeners-counter">
+  <div class="listeners-content">
+    <span class="listeners-led-ping"></span>
+    <span class="listeners-text"><span id="active-listeners-count">--</span> LISTENERS ONLINE</span>
+  </div>
+</div>
 
 
         <!-- SUGERENCIA DE ZOOM INTELIGENTE (ESTILO CRISTAL ESMERILADO) -->

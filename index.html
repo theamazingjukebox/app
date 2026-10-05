@@ -2920,7 +2920,6 @@ function startEndWatcher() {
 
     
 function initYouTubePlayer(videoId) {
-
     ytPlayer = new YT.Player("youtube-player", {
         videoId: videoId,
         host: "https://www.youtube-nocookie.com",
@@ -2948,28 +2947,22 @@ function initYouTubePlayer(videoId) {
                 } else {
                     event.target.mute();
                 }
-           
+                
+           // 🔥 RESTAURACIÓN: Forzamos la ejecución nativa directa desde el arranque
+                event.target.playVideo();
         },
             
 
             onStateChange: (event) => {
-
     if (event.data === YT.PlayerState.PLAYING) {
-
         const poster = document.getElementById("video-poster");
-
     if (poster) {
         poster.style.opacity = "0";
-
-        setTimeout(() => {
-            poster.style.display = "none";
-        }, 300);
+        setTimeout(() => { poster.style.display = "none"; }, 300);
     }
 
-         if (qualityInterval) {
-                        clearInterval(qualityInterval);
-                    }
-
+         if (qualityInterval) clearInterval(qualityInterval);
+                    
                     qualityInterval = setInterval(() => {
                         if (ytPlayer && isPlayerReady) {
                             ytPlayer.setPlaybackQuality('small');
@@ -2982,19 +2975,16 @@ function initYouTubePlayer(videoId) {
                         clearInterval(qualityInterval);
                     }, 4000);
         
-                setTimeout(() => {
-                        triggerSmartGhostMouse();
-                    }, 3000); // Espera 3 segundos de reproducción antes de auditar
-        
-                setTimeout(() => {
-                        triggerSmartGhostTouch();
-                    }, 3200); // Se ejecuta un pestañeo después (3.2s) solo en móviles/tablets
+                    // ========================================================
+                    // 🛡️ SISTEMA DE CENTINELAS MEJORADO (DOBLE COMPROBACIÓN)
+                    // ========================================================
+                    setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 2500); 
+                    setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 4500); 
                 }
+                
 
                 if (event.data === YT.PlayerState.ENDED) {
-                    setTimeout(() => {
-                        playNextVideo();
-                    }, 200);
+                    setTimeout(() => { playNextVideo(); }, 200);
                 }
             },
             
@@ -3056,7 +3046,6 @@ function initYouTubePlayer(videoId) {
     // 🎯 YOUTUBE
     // ======================
     if (currentSrc.startsWith("yt:")) {
-
         const videoId = currentSrc.replace("yt:", "");
 
         // ocultar MP4 (NO destruir YT)
@@ -3064,21 +3053,14 @@ function initYouTubePlayer(videoId) {
         videoPlayer.style.display = "none";
         
 
-       if (!ytPlayer) {
-            initYouTubePlayer(videoId); // Inicializa el reproductor por primera vez
+        if (!ytPlayer) {
+            initYouTubePlayer(videoId); 
         } else {
-            // 🔥 CONTROL DE ARRANQUE: Si es la primera canción al cargar la página,
-            // cargamos el ID pero NO forzamos el play automático.
-            if (currentVideoIndex === 0) {
-                ytPlayer.cueVideoById(videoId); // 'cue' prepara el video en el segundo 0 absoluto con su póster nativo de YT
-                console.log("🔮 Video presentado en el segundo 0 con póster original de YT.");
-            } else {
-                // Si el usuario ya está interactuando y dio Next, se reproduce normal
-                ytPlayer.loadVideoById(videoId);
-                if (soundEnabled) {
-                    ytPlayer.unMute();
-                    ytPlayer.setVolume(100);
-                }
+            // 🔥 CORRECCIÓN: Eliminamos el cueVideoById intermitente y regresamos a la carga directa limpia
+            ytPlayer.loadVideoById(videoId);
+            if (soundEnabled) {
+                ytPlayer.unMute();
+                ytPlayer.setVolume(100);
             }
         }
     }

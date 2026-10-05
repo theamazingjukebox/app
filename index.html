@@ -2948,9 +2948,10 @@ function initYouTubePlayer(videoId) {
                     event.target.mute();
                 }
                 
-           // 🔥 RESTAURACIÓN: Forzamos la ejecución nativa directa desde el arranque
-                event.target.playVideo();
-        },
+           // 🛑 CORRECCIÓN MANUAL: Removemos el playVideo(); para que la rockola
+                // espere pacientemente a que el usuario presione el botón físico de PLAY.
+                console.log("🟢 Terminal lista y sincronizada. Esperando interacción del usuario.");
+            },
             
 
             onStateChange: (event) => {

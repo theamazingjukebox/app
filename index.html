@@ -2203,6 +2203,152 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 }
 
 
+/* ========================================================
+   MÓDULO ESPEJO IZQUIERDO: BLOC DE NOTAS PERMANENTE
+   ======================================================== */
+#permanent-folder-wrapper {
+  position: fixed;
+  top: 0;
+  left: -330px; /* Espejo: Oculto a la izquierda (Ancho de 330px) */
+  width: 330px;
+  height: 100vh;
+  background: rgba(10, 16, 26, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-right: 1px solid rgba(135, 255, 255, 0.15); /* Borde en la derecha */
+  z-index: 9990;
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+/* Cuando la pestaña está activa, se desliza hacia el centro */
+#permanent-folder-wrapper.folder-left-active {
+  left: 0;
+}
+
+/* LA PESTAÑA DISPARADORA (ANCLADA A LA DERECHA DEL CONTENEDOR) */
+#permanent-folder-tab {
+  position: absolute;
+  top: 50%;
+  right: -35px; /* Sobresale hacia la derecha */
+  transform: translateY(-50%);
+  width: 35px;
+  height: 90px;
+  background: rgba(18, 22, 30, 0.9);
+  border: 1px solid rgba(135, 255, 255, 0.15);
+  border-left: none; /* Elimina la costura con el contenedor */
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+}
+
+#permanent-tab-arrow {
+  font-family: 'Orbitron', monospace;
+  font-size: 20px;
+  color: #87ffff;
+  text-shadow: 0 0 5px #00ffff;
+  transition: opacity 0.2s ease;
+  user-select: none;
+}
+
+/* CUERPO INTERNO DE LA TERMINAL */
+.permanent-folder-content {
+  flex: 1;
+  padding: 80px 20px 30px 20px; /* Margen superior para librar tu contador de oyentes */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  color: #d83ca4; /* Rosa neón oficial para diferenciarlo de YT */
+  text-shadow: 0 0 6px rgba(216, 60, 164, 0.4);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* INTERFAZ DE ESCRITURA NEÓN */
+.terminal-write-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(216, 60, 164, 0.2);
+  margin-bottom: 15px;
+}
+
+.terminal-write-zone input,
+.terminal-write-zone textarea {
+  background: rgba(5, 8, 15, 0.6);
+  border: 1px solid rgba(135, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #dffcff;
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.terminal-write-zone textarea {
+  height: 60px;
+  resize: none;
+}
+
+.terminal-write-zone input:focus,
+.terminal-write-zone textarea:focus {
+  border-color: #87ffff;
+  box-shadow: 0 0 8px rgba(135, 255, 255, 0.2);
+}
+
+.terminal-write-zone textarea::-webkit-scrollbar { width: 3px; }
+.terminal-write-zone textarea::-webkit-scrollbar-thumb { background: #d83ca4; border-radius: 4px; }
+
+#guestbook-submit-btn {
+  background: none;
+  border: 1px solid #d83ca4;
+  border-radius: 6px;
+  color: #d83ca4;
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  text-shadow: 0 0 4px rgba(216, 60, 164, 0.3);
+}
+
+#guestbook-submit-btn:hover {
+  background: rgba(216, 60, 164, 0.1);
+  color: #ff52c5;
+  border-color: #ff52c5;
+  text-shadow: 0 0 8px #ff52c5;
+}
+
+/* ÁREA DE SCROLL DE REGISTROS (COPIA FIEL DE TU SIDEBAR) */
+#permanent-comments-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Personalización del scrollbar tipo terminal */
+#permanent-comments-container::-webkit-scrollbar {
+  width: 4px;
+}
+#permanent-comments-container::-webkit-scrollbar-thumb {
+  background: rgba(216, 60, 164, 0.3);
+  border-radius: 2px;
+}
+
 
     
 </style>
@@ -3587,6 +3733,180 @@ function triggerSmartGhostTouch() {
 }
 
 
+// ==============================================================================
+// MÓDULO INTERACTIVO ESPEJO: BLOC DE NOTAS PERMANENTE V1.0 (FIREBASE CONNECT)
+// ==============================================================================
+(function() {
+  let isPermanentFolderOpen = false;
+  let permanentMaxResults = 4; // Límite inicial de registros a decodificar
+  let allLogsCache = []; // Memoria caché local para el "Decode More"
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const permContainer = document.getElementById('permanent-folder-wrapper');
+    const permTabTrigger = document.getElementById('permanent-folder-tab');
+    const permArrow = document.getElementById('permanent-tab-arrow');
+    const submitBtn = document.getElementById('guestbook-submit-btn');
+
+    // 1. CONTROL DE APERTURA / CIERRE SIMÉTRICO ASÍNCRONO
+    if (permTabTrigger && permContainer) {
+      permTabTrigger.addEventListener('click', () => {
+        isPermanentFolderOpen = !isPermanentFolderOpen;
+
+        if (permArrow) {
+          // Fase 1: Desvanecemos la flecha izquierda sutilmente
+          permArrow.style.opacity = '0';
+          
+          setTimeout(() => {
+            // Cambiamos el sentido de la flecha en total oscuridad
+            permArrow.innerText = isPermanentFolderOpen ? '‹' : '›';
+            permArrow.style.opacity = '1';
+          }, 300);
+        }
+
+        if (isPermanentFolderOpen) {
+          permContainer.classList.add('folder-left-active');
+          // Al abrir, reconectamos a los canales de la base de datos
+          fetchPermanentLogs();
+        } else {
+          permContainer.classList.remove('folder-left-active');
+        }
+      });
+    }
+
+    // 2. TRANSMISIÓN DE REGISTROS HACIA FIREBASE (MÉTODO WRITE)
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const nameInput = document.getElementById('guestbook-name-input');
+        const msgInput = document.getElementById('guestbook-msg-input');
+
+        if (!nameInput || !msgInput) return;
+
+        const name = nameInput.value.trim();
+        const msg = msgInput.value.trim();
+
+        // Candado de validación: Evita transmisiones vacías
+        if (name === "" || msg === "") {
+          alert("[ ERROR: DATA CHANNELS INCOMPLETE. FILL BOTH FIELDS ]");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "[ TRANSMITTING... ]";
+
+        // Obtener la fecha formateada actual (DD/MM/YYYY)
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        });
+
+        // Generamos la estructura del registro
+        const newLog = {
+          author: name.toUpperCase(),
+          text: msg,
+          timestamp: Date.now(),
+          dateString: formattedDate
+        };
+
+        // Inyectamos el registro de forma permanente en un nodo exclusivo de tu Firebase
+        firebase.database().ref('permanent_logs').push(newLog)
+          .then(() => {
+            // Limpieza e indicación de éxito en la terminal
+            nameInput.value = "";
+            msgInput.value = "";
+            submitBtn.disabled = false;
+            submitBtn.innerText = "[ TRANSMIT LOG ]";
+          })
+          .catch((error) => {
+            console.error("Firebase Transmission Error:", error);
+            alert("[ CRITICAL ERROR: TRANSMISSION CHANNEL INTERRUPTED ]");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "[ TRANSMIT LOG ]";
+          });
+      });
+    }
+  });
+
+  // 3. LECTURA Y DECODIFICACIÓN AUTOMÁTICA DE REGISTROS (MÉTODO READ)
+  function fetchPermanentLogs() {
+    const container = document.getElementById('permanent-comments-container');
+    if (!container || !isPermanentFolderOpen) return;
+
+    // Escuchamos el nodo en tiempo real. Al usar .on('value'), la terminal se actualiza sola si alguien más firma
+    firebase.database().ref('permanent_logs').orderByChild('timestamp').on('value', (snapshot) => {
+      allLogsCache = [];
+      
+      snapshot.forEach((childSnapshot) => {
+        allLogsCache.push(childSnapshot.val());
+      });
+
+      // Ordenamos para que las firmas más recientes aparezcan siempre arriba
+      allLogsCache.reverse();
+      
+      renderLogs();
+    }, (error) => {
+      console.error("Database Read Error:", error);
+      if (container) {
+        container.innerHTML = '<p class="main-comment-status" style="color:#d83ca4;">LOG STREAM TEMPORARILY OFFLINE 🌐</p>';
+      }
+    });
+  }
+
+  // 4. INTERFAZ: RENDERIZADO GRADUAL (DE 4 EN 4) "DECODE MORE REGISTROS"
+  function renderLogs() {
+    const container = document.getElementById('permanent-comments-container');
+    if (!container) return;
+
+    container.innerHTML = ""; // Limpiamos la terminal de carga
+
+    if (allLogsCache.length === 0) {
+      container.innerHTML = '<p class="main-comment-status">NO RECORDS FOUND. BE THE FIRST.</p>';
+      return;
+    }
+
+    // Tomamos solo el segmento de datos permitido por el límite actual
+    const logsToDisplay = allLogsCache.slice(0, permanentMaxResults);
+
+    logsToDisplay.forEach(log => {
+      const commentEl = document.createElement('div');
+      commentEl.className = 'main-comment-item';
+      // Inyectamos con tu misma clase y formato cian/rosa nativo de los comentarios
+      commentEl.innerHTML = `
+        <span class="main-comment-user" style="color:#d83ca4;">${log.author}</span> 
+        <span style="font-size:8px; color:rgba(135,255,255,0.4); margin-left:5px;">// ${log.dateString}</span>
+        <br>${log.text}
+      `;
+      container.appendChild(commentEl);
+    });
+
+    // Inyectamos dinámicamente el botón espejo de [ DECODE MORE REGISTROS ] al fondo del scroll
+    if (permanentMaxResults < allLogsCache.length) {
+      const decodeMoreBtn = document.createElement('button');
+      decodeMoreBtn.id = 'mini-load-more-trigger';
+      decodeMoreBtn.innerText = '[ DECODE MORE ]';
+      
+      decodeMoreBtn.style.cssText = `
+        background: none; border: none; color: #87ffff; font-family: 'Orbitron', monospace;
+        font-size: 9px; cursor: pointer; display: block; margin: 15px auto 5px auto;
+        text-shadow: 0 0 4px #00ffff; letter-spacing: 1px; transition: all 0.2s;
+      `;
+      
+      decodeMoreBtn.onmouseover = () => decodeMoreBtn.style.color = '#d83ca4';
+      decodeMoreBtn.onmouseout = () => decodeMoreBtn.style.color = '#87ffff';
+      
+      decodeMoreBtn.addEventListener('click', () => {
+        permanentMaxResults += 4; // Incrementamos el límite de 4 en 4 de forma simétrica
+        decodeMoreBtn.innerText = '[ DECODING... ]';
+        renderLogs(); // Re-renderiza con el nuevo rango de la caché
+      });
+      
+      container.appendChild(decodeMoreBtn);
+    }
+  }
+})();
+
+
 // ========================================================
 // 🟢 ALGORITMO DE TELEMETRÍA HORARIA INTELIGENTE V1.0
 // ========================================================
@@ -3859,6 +4179,33 @@ OneSignalDeferred.push(async function (OneSignal) {
 
 </div>
 
+
+<!-- MÓDULO INTERACTIVO ESPEJO: BLOC DE NOTAS PERMANENTE (LADO IZQUIERDO) -->
+<div id="permanent-folder-wrapper" class="folder-left">
+  
+  <!-- La Pestaña Disparadora (Espejo Izquierdo) -->
+  <div id="permanent-folder-tab">
+    <span id="permanent-tab-arrow">›</span>
+  </div>
+
+  <!-- El Contenedor de la Terminal -->
+  <div class="permanent-folder-content">
+    <h2 class="terminal-title">[ PERMANENT ARCHIVE LOGS <img src="icon512.png" alt="logo" style="width: 13%; vertical-align: middle;"> ]</h2>
+    
+    <!-- ÁREA DE ESCRITURA CON ESTÉTIICA ORBITRON -->
+    <div class="terminal-write-zone">
+      <input type="text" id="guestbook-name-input" placeholder="YOUR SIGN / CODE NAME..." maxlength="20">
+      <textarea id="guestbook-msg-input" placeholder="LEAVE A PERMANENT TRANSMISSION TO THE AMAZING JUKEBOX..." maxlength="140"></textarea>
+      <button id="guestbook-submit-btn">[ TRANSMIT LOG ]</button>
+    </div>
+
+    <!-- CONTENEDOR DE REGISTROS GUARDADOS -->
+    <div id="permanent-comments-container">
+      <!-- Los mensajes de Firebase se inyectarán aquí con el mismo formato nativo -->
+      <p class="main-comment-status">CONNECTING TO DATABASE CHANNELS...</p>
+    </div>
+  </div>
+</div>
 
 <!-- CONTADOR DE TELEMETRÍA FIJO (ESTILO CRISTAL ESMERILADO DE ESQUINA) -->
 <div id="live-listeners-counter">

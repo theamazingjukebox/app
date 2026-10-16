@@ -1674,7 +1674,7 @@ animation: parpadeo 1s infinite; /* Nombre de la animación, duración y repetic
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #disco-mode-label {
-        font-size: large;
+        font-size: medium;
     }
 }
 

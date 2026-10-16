@@ -3907,45 +3907,45 @@ function triggerSmartGhostTouch() {
 })();
 
 
-// ========================================================
-// 🟢 ALGORITMO DE TELEMETRÍA HORARIA INTELIGENTE V1.0
-// ========================================================
-function initSmartListenersCounter() {
-    const countElement = document.getElementById("active-listeners-count");
-    if (!countElement) return;
+// ==============================================================================
+// 🟢 REALTIME TELEMETRY ENGINE: CONTADOR DE OYENTES REAL CLOUD V42.0 (REPARADO)
+// ==============================================================================
+function initRealtimeListenersCounter() {
+    var countElement = document.getElementById("active-listeners-count");
+    if (!countElement || !window.db) return;
 
-    function updateListeners() {
-        const currentHour = new Date().getHours();
-        let baseCount = 28; // Tracción base promedio de la rocola
+    // Referencia al nodo volátil de presencia real en tu Firebase
+    var miPresenciaRef = window.db.ref("online_users").push();
+    var conectadoRef = window.db.ref(".info/connected");
 
-        // Mapeo lógico de comportamiento según el reloj del usuario
-        if (currentHour >= 0 && currentHour < 6) {
-            baseCount = 14; // Madrugada: Tráfico bajo de survivors nocturnos
-        } else if (currentHour >= 6 && currentHour < 12) {
-            baseCount = 22; // Mañana: Inicio de sesiones de trabajo
-        } else if (currentHour >= 12 && currentHour < 18) {
-            baseCount = 31; // Tarde: Alta retención de fondo
-        } else if (currentHour >= 18 && currentHour <= 23) {
-            baseCount = 44; // Noche: Clímax de sintonía y chat en vivo
+    // 🪐 ACCIÓN 1: REGISTRAR LA ENTRADA Y SALIDA DEL USUARIO (WRITE CHIP)
+    conectadoRef.on("value", function(snapshot) {
+        if (snapshot.val() === true) {
+            // Al desconectarse (cerrar pestaña), le ordenamos a Google borrar 
+            // esta muesca de la RAM de forma automatizada (onDisconnect)
+            miPresenciaRef.onDisconnect().remove();
+            
+            // Colocamos un '1' síncrono para marcar que este piloto está online
+            miPresenciaRef.set(1);
         }
+    });
 
-        // Variación milimétrica para que el número "baile" en vivo (-2 a +2)
-        const variance = Math.floor(Math.random() * 5) - 2;
-        let finalCount = baseCount + variance;
-
-        // Candado de seguridad para evitar números negativos o nulos
-        if (finalCount < 8) finalCount = 8;
-
-        countElement.innerText = finalCount;
-    }
-
-    // Ejecución inmediata y actualización rítmica cada 6 segundos
-    updateListeners();
-    setInterval(updateListeners, 6000);
+    // 🪐 ACCIÓN 2: CONTAR Y PINTAR LA AUDIENCIA MUNDIAL EN VIVO (READ CHIP)
+    window.db.ref("online_users").on("value", function(snapshot) {
+        var totalOyentesReales = snapshot.numChildren() || 1;
+        
+        // Formateamos con ceros a la izquierda (ej. 05, 150) para simetría Orbitron
+        var conteoFormateado = String(totalOyentesReales).padStart(2, '0');
+        
+        // Inyectamos el número crudo real en tu cápsula flotante neón de esquina
+        countElement.innerText = conteoFormateado;
+        console.log("🛰️ AUDIENCE TELEMETRY: Sintonía real actualizada a " + totalOyentesReales + " oyentes.");
+    });
 }
 
-// Lo enganchamos al DOM Ready para que arranque limpio
-document.addEventListener("DOMContentLoaded", initSmartListenersCounter);
+// Lo enganchamos al DOM Ready oficial para que despierte con el silbatazo inicial
+document.addEventListener("DOMContentLoaded", initRealtimeListenersCounter);
+
 
     
 // ========================================================

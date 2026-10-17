@@ -3908,15 +3908,19 @@ function triggerSmartGhostTouch() {
 
 
 // ==============================================================================
-// 🟢 REALTIME TELEMETRY ENGINE: CONTADOR DE OYENTES REAL CLOUD V42.2 (REPARADO)
+// 🟢 REALTIME TELEMETRY ENGINE: CONTADOR DE OYENTES HÍBRIDO (REAL + FLUIDEZ) V43.0
 // ==============================================================================
 function initRealtimeListenersCounter() {
     var countElement = document.getElementById("active-listeners-count");
-    // 🟢 CAMBIO DE CABLE: Nos colgamos directamente de tu variable 'db' nativa del chat
+    // 🟢 Nos colgamos directamente de tu variable 'db' nativa del chat
     if (!countElement || !db) return;
 
     var miPresenciaRef = db.ref("online_users").push();
     var conectadoRef = db.ref(".info/connected");
+
+    // Variables internas para gestionar la fluctuación orgánica independiente
+    var ultimoConteoReal = 1;
+    var variacionActual = 0;
 
     conectadoRef.on("value", function(snapshot) {
         if (snapshot.val() === true) {
@@ -3925,14 +3929,42 @@ function initRealtimeListenersCounter() {
         }
     });
 
+    // 1. Escuchador en tiempo real de Firebase
     db.ref("online_users").on("value", function(snapshot) {
-        var totalOyentesReales = snapshot.numChildren() || 1;
-        var conteoFormateado = String(totalOyentesReales).padStart(2, '0');
-        
-        countElement.innerText = conteoFormateado;
-        console.log("🛰️ AUDIENCE TELEMETRY: Conteo en vivo establecido en " + totalOyentesReales + " oyentes.");
+        ultimoConteoReal = snapshot.numChildren() || 1;
+        renderHibrido(); // Renderiza inmediatamente cuando cambia el conteo real
     });
+
+    // 2. Función encargada de calcular el rango híbrido y actualizar la interfaz
+    function renderHibrido() {
+        // Tu regla exacta: si hay 'N' oyentes reales, el rango oscila entre N y N + 6
+        // Ej: Con 1 oyente real, fluctúa entre 1 y 7. Con 2, entre 2 & 8. Con 100, entre 100 & 106.
+        var finalCount = ultimoConteoReal + variacionActual;
+
+        // Formateo visual estético (rellena con cero a la izquierda si es menor a 10)
+        var conteoFormateado = String(finalCount).padStart(2, '0');
+        countElement.innerText = conteoFormateado;
+        
+        console.log("🛰️ AUDIENCE TELEMETRY: Real: " + ultimoConteoReal + " | Renderizado con fluctuación: " + finalCount);
+    }
+
+    // 3. Bucle independiente para que el número "baile" de forma orgánica cada 5 segundos
+    // Cambia la variación gradualmente paso a paso para que no pegue saltos bruscos
+    setInterval(function() {
+        // Genera un número aleatorio entre 0 y 6
+        var nuevaVariacion = Math.floor(Math.random() * 7);
+        
+        // Suavizado: Si la nueva variación es mayor o menor, nos movemos solo 1 paso hacia ella
+        if (nuevaVariacion > variacionActual) {
+            variacionActual++;
+        } else if (nuevaVariacion < variacionActual) {
+            variacionActual--;
+        }
+        
+        renderHibrido();
+    }, 5000); // Se ejecuta cada 5 segundos (puedes cambiarlo a 6000 si prefieres 6 segundos)
 }
+
 
 
 

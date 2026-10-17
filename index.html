@@ -3631,6 +3631,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const commentEl = document.createElement('div');
             commentEl.className = 'main-comment-item';
             commentEl.innerHTML = `<span class="main-comment-user">${author.toUpperCase()}</span>${text}`;
+               // 🔥 Blindaje para YouTube: Evita que los movimientos del ratón en los comentarios despierten o alteren al player
+                        commentEl.addEventListener('mousemove', (e) => e.stopPropagation());
+                        commentEl.addEventListener('mouseover', (e) => e.stopPropagation());
+                        commentEl.addEventListener('mouseout', (e) => e.stopPropagation());
+
             container.appendChild(commentEl);
           });
 
@@ -3649,8 +3654,11 @@ document.addEventListener("DOMContentLoaded", () => {
             
             loadMoreBtn.onmouseover = () => loadMoreBtn.style.color = '#d83ca4';
             loadMoreBtn.onmouseout = () => loadMoreBtn.style.color = '#87ffff';
+
+               loadMoreBtn.addEventListener('mousemove', (e) => e.stopPropagation());
+
             
-            loadMoreBtn.addEventListener('click', () => {
+            loadMoreBtn.addEventListener('click', (e) => {
               currentMaxResults += 4; // Incrementamos de 4 en 4
               loadMoreBtn.innerText = '[ DECODING... ]';
               fetchWebYouTubeComments(false); // Llamamos con false para mantener la memoria del ID

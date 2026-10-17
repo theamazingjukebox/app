@@ -3197,13 +3197,13 @@ function initYouTubePlayer(videoId) {
                     setTimeout(() => {
                         clearInterval(qualityInterval);
                     }, 4000);
-        
+            }
                     // ========================================================
                     // 🛡️ SISTEMA DE CENTINELAS MEJORADO (DOBLE COMPROBACIÓN)
                     // ========================================================
                     setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 2500); 
                     setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 4500); 
-                }
+                
                 
 
                 if (event.data === YT.PlayerState.ENDED) {

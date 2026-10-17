@@ -3603,7 +3603,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (isNewTrack) {
         lastCheckedVideoIdForWebComments = ytId;
-        if (container) container.innerHTML = '<p class="main-comment-status">DECODING DATA CHANNELS...</p>';
+        if (container) container.innerHTML = `<p class="main-comment-status">DECODING DATA CHANNELS...</p>`;
       }
 
       const GOOGLE_API_KEY = "AIzaSyCE5XnV-IORMlGFr59ArYQSgOvOLdQ8RCY"; 
@@ -3618,7 +3618,7 @@ document.addEventListener("DOMContentLoaded", () => {
           container.innerHTML = ""; // Limpiamos la terminal
           
           if (!data.items || data.items.length === 0) {
-            container.innerHTML = '<p class="main-comment-status">NO LOG ARCHIVES FOR THIS TRACK</p>';
+            container.innerHTML = `<p class="main-comment-status">NO LOG ARCHIVES FOR THIS TRACK</p>`;
             return;
           }
 
@@ -3662,7 +3662,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (err) {
         console.error("Error cargando bitácoras de comentarios:", err);
         if (container) {
-          container.innerHTML = '<p class="main-comment-status" style="color:#d83ca4;">LOG STREAM TEMPORARILY OFFLINE 🌐</p>';
+          container.innerHTML = `<p class="main-comment-status" style="color:#d83ca4;">LOG STREAM TEMPORARILY OFFLINE 🌐</p>`;
         }
       }
     }

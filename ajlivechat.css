@@ -1691,6 +1691,7 @@ animation: parpadeo 1s infinite; /* Nombre de la animación, duración y repetic
     height: 100%;
     z-index: -1;
     overflow: hidden;
+        pointer-events: none;
     
     /* Mantenedora de tus 16s para que el viaje de 22 pasos sea una seda flotante */
     animation: auroraStrobePulse 34s infinite ease-in-out;

@@ -3199,10 +3199,12 @@ function initYouTubePlayer(videoId) {
                     }, 4000);
             }
                     // ========================================================
-                    // 🛡️ SISTEMA DE CENTINELAS MEJORADO (DOBLE COMPROBACIÓN)
-                    // ========================================================
-                    setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 2500); 
-                    setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 4500); 
+// 🛡️ SISTEMA DE CENTINELAS MEJORADO (CON RED DE SEGURIDAD TARDÍA)
+// ========================================================
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 2500); 
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 4500); 
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 7000); // 🔥 La red de seguridad a los 7 segundos
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 9500); 
                 
                 
 
@@ -3279,12 +3281,22 @@ function initYouTubePlayer(videoId) {
         if (!ytPlayer) {
             initYouTubePlayer(videoId); 
         } else {
-            // 🔥 CORRECCIÓN: Eliminamos el cueVideoById intermitente y regresamos a la carga directa limpia
+            // 🔥 CORRECCIÓN: Quitamos el foco previo del contenedor antes de cargar el nuevo track
+            const playerContainer = document.getElementById("youtube-player");
+            if (playerContainer) {
+                playerContainer.blur(); // Limpia focos residuales que congelan controles
+            }
+
             ytPlayer.loadVideoById(videoId);
             if (soundEnabled) {
                 ytPlayer.unMute();
                 ytPlayer.setVolume(100);
             }
+
+            // 🔥 RÁFAGA DE RESPALDO AL DAR NEXT:
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 1000);
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 3000);
+setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 7000);
         }
     }
     // ======================
@@ -3685,22 +3697,27 @@ function triggerSmartGhostMouse() {
     const playerContainer = document.getElementById("youtube-player");
     if (!playerContainer || !ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
 
-    // Solo actuamos si el video sigue reproduciéndose (PLAYING = 1)
-    if (ytPlayer.getPlayerState() === 1) {
-        console.log("🔍 Centinela: Ejecutando sacudida invisible para asegurar pantalla limpia.");
+    // Solo actuamos si el video sigue reproduciéndose (PLAYING = 1) o está en búfer (BUFFERING = 3)
+    const playerState = ytPlayer.getPlayerState();
+    if (playerState === 1 || playerState === 3) {
+        console.log("🔍 Centinela: Ejecutando sacudida invisible con coordenadas de salida reales.");
         
-        // Simula la entrada del cursor para refrescar el foco nativo de la pantalla
-        const mouseOverEvent = new MouseEvent('mouseover', { bubbles: true, cancelable: true, view: window });
+        // Simula la entrada del cursor en una esquina superior
+        const mouseOverEvent = new MouseEvent('mouseover', { 
+            bubbles: true, cancelable: true, view: window, clientX: 10, clientY: 10 
+        });
         playerContainer.dispatchEvent(mouseOverEvent);
 
-        // Un pestañeo después (200ms), saca el cursor para forzar el desvanecimiento automático
+        // 200ms después, forzamos la salida simulando que el ratón saltó mágicamente fuera del mapa
         setTimeout(() => {
-            const mouseLeaveEvent = new MouseEvent('mouseleave', { bubbles: true, cancelable: true, view: window });
+            const mouseLeaveEvent = new MouseEvent('mouseleave', { 
+                bubbles: true, cancelable: true, view: window, clientX: -9999, clientY: -9999 
+            });
             playerContainer.dispatchEvent(mouseLeaveEvent);
+            playerContainer.blur(); // Asegura romper cualquier fijación de foco
         }, 200);
     }
 }
-
 
 
 // ========================================================

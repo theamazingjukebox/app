@@ -3721,7 +3721,7 @@ function triggerSmartGhostMouse() {
 
 
 // ========================================================
-// 📱 FUNCIÓN TOQUE FANTASMA INTELIGENTE V1.0 (EXCLUSIVO MÓVILES)
+// 📱 FUNCIÓN TOQUE FANTASMA INTELIGENTE V1.1 (EXCLUSIVO MÓVILES)
 // ========================================================
 function triggerSmartGhostTouch() {
     const playerContainer = document.getElementById("youtube-player");
@@ -3729,13 +3729,14 @@ function triggerSmartGhostTouch() {
 
     // 1. Candado de seguridad: Solo actuamos en pantallas táctiles (pointer: coarse)
     const isMobileTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (!isMobileTouch) return; // Si es PC con mouse, la función se apaga de inmediato
+    if (!isMobileTouch) return; 
 
-    // 2. Solo actuamos si el video sigue en reproducción activa (PLAYING = 1)
-    if (ytPlayer.getPlayerState() === 1) {
-        console.log("📱 Centinela Táctil: Sacudida de toque fantasma activada en celular/tablet.");
+    // 2. Solo actuamos si el video sigue en reproducción activa (PLAYING = 1) o búfer (BUFFERING = 3)
+    const playerState = ytPlayer.getPlayerState();
+    if (playerState === 1 || playerState === 3) {
+        console.log("📱 Centinela Táctil: Sacudida de toque fantasma optimizada con liberación de foco.");
 
-        // Creamos un evento de toque nativo simulado (touchstart)
+        // Creamos un evento de toque nativo simulado (touchstart) en la esquina superior izquierda
         const touchStartEvent = new TouchEvent('touchstart', {
             bubbles: true,
             cancelable: true,
@@ -3749,10 +3750,13 @@ function triggerSmartGhostTouch() {
         });
         playerContainer.dispatchEvent(touchStartEvent);
 
-        // Retiramos el dedo virtual un milisegundo después (touchend) para forzar el reposo y limpiar la pantalla
+        // Retiramos el dedo virtual (touchend) y forzamos el fin de la fijación táctil
         setTimeout(() => {
             const touchEndEvent = new TouchEvent('touchend', { bubbles: true, cancelable: true, view: window });
             playerContainer.dispatchEvent(touchEndEvent);
+            
+            // 🔥 El escudo definitivo para móviles: rompe cualquier selección o foco que mantenga los controles fijos
+            playerContainer.blur(); 
         }, 50);
     }
 }

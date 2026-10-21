@@ -120,11 +120,12 @@
     }
 }
 
-    @media (min-width: 768px) {
+     @media (min-width: 768px) {
     body {
-        background-image: url('fondo2.webp'); /* Cambia el nombre de la imagen */
+        background-image: url('fnuevo4.2.webp'), url('fondo2.webp');
         background-color:#000;
-        background-size: cover;
+        background-size: cover, cover;
+        background-repeat: no-repeat, repeat;
         position: relative;
     }
 }
@@ -161,6 +162,7 @@
         font-size: 23px;
         z-index: 5;
         transition: all 0.2s ease;
+        display: none;
     }
 
     @media (min-width: 768px) {
@@ -236,6 +238,7 @@
         margin-left: 25px;
         z-index: 5;
         transition: all 0.2s ease;
+        display: none;
         
     }
 
@@ -366,6 +369,16 @@ body {
   top: 0;
   left: 0;
   z-index: 20;
+  pointer-events: none;
+  
+}
+
+
+.overlay2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 21;
   pointer-events: none;
   
 }
@@ -511,8 +524,8 @@ body {
 
 #video-container {
     position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
-    top: 46.9%; /* Centra verticalmente */
-    left: 49.9%; /* Centra horizontalmente */
+    top: 46%; /* Centra verticalmente */
+    left: 50.2%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     width: 267px; /* Ancho deseado */
     height: 191px; /* Altura deseada */
@@ -964,7 +977,7 @@ height:10px;
     #ad-container {
         
         position: absolute; /* Cambia a absolute para que se ajuste dentro del contenedor */
-    bottom: -35%; /* Centra verticalmente */
+    bottom: -34%; /* Centra verticalmente */
     left: 48.5%; /* Centra horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar */
     z-index: 2; /* Asegura que el video esté encima de la imagen */
@@ -998,7 +1011,7 @@ height:10px;
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .ad-image {
-        margin-bottom: -5%;
+        margin-bottom: -13%;
         width: 63%;
         margin-left: 11%;
     }
@@ -1006,7 +1019,7 @@ height:10px;
 
 @media (display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
 .ad-image {
-        margin-bottom: 1%;
+        margin-bottom: -7%;
         width: 63%;
         margin-left: 11%;
     }
@@ -1039,6 +1052,7 @@ background-image: url('boton-3.1.webp');
     background-position: center; /* Centra la imagen dentro del botón */
     
     text-indent: -9999px; /* Oculta el texto */
+        display: none;
         
 }
 
@@ -1351,7 +1365,7 @@ overflow: hidden;
 .logos8 {
     position: absolute;
     
-    bottom: -75.5%; /* Ajusta este valor para colocar el botón verticalmente */
+    bottom: -68.5%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
     
@@ -1366,7 +1380,7 @@ overflow: hidden;
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .logos8 {
         width: 90%;
-        bottom: -100%;
+        bottom: -103%;
         
     }
 }
@@ -1374,7 +1388,7 @@ overflow: hidden;
 @media (display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
 
   .logos8  {
-    bottom: -90%;
+    bottom: -93%;
   }
 
 }
@@ -2024,9 +2038,9 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
    ======================================================== */
 #zoom-smart-hint {
   position: fixed;
-  bottom: 18.5%;
-  left: 75px;
-  z-index: 9998; /* Justo abajo del botón switch pero arriba de la interfaz */
+  bottom: 25px;
+  left: 25px;
+  z-index: 9995; /* Justo abajo del botón switch pero arriba de la interfaz */
   
   /* Formato Cápsula de Cristal */
   width: 280px;
@@ -2208,7 +2222,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
    ======================================================== */
 #permanent-folder-wrapper {
   position: fixed;
-  top: 0;
+  top: -12.5%;
   left: -330px; /* Espejo: Oculto a la izquierda (Ancho de 330px) */
   width: 330px;
   height: 100vh;
@@ -2216,12 +2230,20 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-right: 1px solid rgba(135, 255, 255, 0.15); /* Borde en la derecha */
-  z-index: 9990;
+  z-index: 9998;
   transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
   display: flex;
 }
 
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+#permanent-folder-wrapper {
+        top: 3%;
+        
+    }
+}
+    
 /* Cuando la pestaña está activa, se desliza hacia el centro */
 #permanent-folder-wrapper.folder-left-active {
   left: 0;
@@ -2248,11 +2270,19 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 
 #permanent-tab-arrow {
   font-family: 'Orbitron', monospace;
-  font-size: 20px;
+  font-size: 44px;
   color: #87ffff;
   text-shadow: 0 0 5px #00ffff;
   transition: opacity 0.2s ease;
   user-select: none;
+}
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+#permanent-tab-arrow {
+        font-size: 44px;
+        
+    }
 }
 
 /* CUERPO INTERNO DE LA TERMINAL */
@@ -2348,6 +2378,200 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   background: rgba(216, 60, 164, 0.3);
   border-radius: 2px;
 }
+
+/* ========================================================
+   ESTILOS DE LA PESTAÑA DE COMANDOS DE PIEDRA CAFÉ
+   ======================================================== */
+.juke-commands-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 39.5%; /* Sincronizado simétricamente con tu barra derecha */
+  left: 69.9%; /* Se ancla al extremo derecho de la pantalla */
+  height: 240px;
+  z-index: 19; /* Flota de forma segura por encima del canvas y overlays */
+}
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+.juke-commands-container {
+        top: 38.5%; /* Sincronizado simétricamente con tu barra derecha */
+  left: 61.3%; /* Se ancla al extremo derecho de la pantalla */
+        
+    }
+}
+
+/* PESTAÑA DISPARADORA (IM_MÍMETICA AL TECLADO CAFÉ) */
+#juke-commands-tab {
+  width: 35px;
+  height: 70px;
+  /* Degradado que imita el biselado y la textura de la piedra del chasis inferior */
+  background: linear-gradient(135deg, #4d443f, #312a26) padding-box, 
+              linear-gradient(135deg, #6c5e57, #1e1917) border-box;
+  border: 2px solid transparent;
+  border-left: none;
+  border-radius: 0 10px 10px 0; /* Curvatura hacia la izquierda */
+  cursor: pointer;
+  box-shadow: -6px 4px 18px rgba(0, 0, 0, 0.6), inset -1px 1px 2px rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  transition: background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#juke-commands-tab:hover {
+  background: linear-gradient(135deg, #584c47, #382f2b) padding-box, 
+              linear-gradient(135deg, #87ffff, #d83ca4) border-box; /* Destello neón sutil en hover */
+}
+
+#juke-commands-arrow {
+  color: #c5b4aa; /* Tono arena texturizado */
+  font-family: monospace;
+  font-size: 26px;
+  margin-right: 3px;
+  font-weight: bold;
+  user-select: none;
+  line-height: 1;
+  display: block;
+  transition: opacity 0.25s ease-in-out, color 0.25s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* PANEL TERMINAL CONTENEDOR (ESTILO OBSIDIANA/PIEDRA OSCURA) */
+.juke-commands-board {
+  width: 0px; /* Cierra el panel de forma nativa al inicio */
+  height: 100%;
+  background-color: rgba(14, 16, 20, 0.96);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 2px solid #4d443f; /* Marco de piedra café */
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: -12px 12px 40px rgba(0, 0, 0, 0.7);
+  /* Transición cúbica premium idéntica a tu folder lateral */
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* CLASE INYECTADA POR JS AL ACTIVARSE */
+.juke-commands-container.commands-active .juke-commands-board {
+  width: 240px; /* Ancho cómodo para la botonera en móviles y PC */
+  opacity: 1;
+  padding: 14px;
+    z-index: 25;
+}
+
+/* DETALLES DE TEXTOS INTERNOS DE LA COMPUETA */
+.juke-board-header {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  color: #6c5e57;
+  letter-spacing: 0.8px;
+  font-weight: bold;
+  border-bottom: 1px dashed rgba(108, 94, 87, 0.3);
+  padding-bottom: 4px;
+}
+
+.juke-board-footer {
+  font-family: 'Orbitron', monospace;
+  font-size: 8px;
+  color: rgba(108, 94, 87, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+  padding-top: 2px;
+}
+
+/* ARQUITECTURA DE LA MATRIZ DE BOTONES */
+.juke-buttons-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.matrix-row {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+/* 🧱 DISEÑO DE BOTÓN PIXEL TALLADO (CAFÉ TEXTURIZADO) */
+.cmd-pixel-btn {
+  background: linear-gradient(135deg, #4d443f, #362e2a) padding-box, 
+              linear-gradient(135deg, #5c5048, #231d1b) border-box;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  color: #c5b4aa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.5), inset -1px 1px 1px rgba(255,255,255,0.05);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Dimensionamiento Simétrico de Filas */
+.btn-short {
+  flex: 1;
+  height: 44px;
+}
+
+.btn-long {
+  width: 100%;
+  height: 40px;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+}
+
+/* EFECTOS TÁCTILES MECÁNICOS (HOVER + CLICK REALISTA) */
+.cmd-pixel-btn:hover {
+  color: #87ffff;
+  border-color: rgba(135, 255, 255, 0.3);
+}
+
+.cmd-pixel-btn:active {
+  transform: scale(0.95) translateY(1px);
+  box-shadow: -1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* ICONOS VECTORIALES SVGS NÍTIDOS */
+.cmd-icon-svg {
+  width: 18px;
+  height: 18px;
+  fill: #c5b4aa;
+  transition: fill 0.2s ease;
+}
+
+.cmd-pixel-btn:hover .cmd-icon-svg {
+  fill: #87ffff;
+  filter: drop-shadow(0 0 4px #00ffff);
+}
+
+/* Color específico para el corazón en hover opcional */
+.cmd-pixel-btn:hover .icon-heart {
+  fill: #ff3d91;
+  filter: drop-shadow(0 0 4px #ff00ff);
+}
+
+/* RESPONSIVE PARA DISPOSITIVOS MÓVILES GRANDES */
+@media (max-width: 768px) {
+  .juke-commands-container {
+    top: 38%; /* Desplazamiento ergonómico para pantallas táctiles */
+  }
+  .cmd-pixel-btn {
+    height: 46px; /* Botones ligeramente más grandes para facilitar el toque digital */
+  }
+}
+
 
 
     
@@ -2541,7 +2765,7 @@ const videos = [
 { src: "yt:96Zw6CIpe9k", key: "yt179", liked: false },
 { src: "yt:S43YhQ_eGTw", key: "yt180", liked: false },
 { src: "yt:9cvKl9FqcHE", key: "yt181", liked: false },
-{ src: "yt:Jph8Xz7cbHo", key: "yt182", liked: false },
+{ src: "yt:JetrXTkZGUw", key: "yt182", liked: false },
 { src: "yt:cL55NhsiwyQ", key: "yt183", liked: false },
 { src: "yt:wsrvmNtWU4E", key: "yt184", liked: false },
 { src: "yt:EkU5QNHK3oY", key: "yt185", liked: false },
@@ -2920,7 +3144,7 @@ const songInfo = {
 "yt179": { id: 179, name: "Este Mundo Va", artist: "Miguel Bosé", links: "https://youtu.be/96Zw6CIpe9k" },
 "yt180": { id: 180, name: "New York Mining Disaster 1941", artist: "Bee Gees", links: "https://youtu.be/S43YhQ_eGTw" },
 "yt181": { id: 181, name: "Massachusetts", artist: "Bee Gees", links: "https://youtu.be/9cvKl9FqcHE" },
-"yt182": { id: 182, name: "Wild Horses", artist: "Prefab Sprout", links: "https://www.youtube.com/watch?v=Jph8Xz7cbHo" },
+"yt182": { id: 182, name: "Wild Horses", artist: "Prefab Sprout", links: "https://www.youtube.com/watch?v=JetrXTkZGUw" },
 "yt183": { id: 183, name: "You First", artist: "Paramore", links: "https://youtu.be/cL55NhsiwyQ" },
 "yt184": { id: 184, name: "Whiskey In The Jar", artist: "Metallica", links: "https://youtu.be/wsrvmNtWU4E" },
 "yt185": { id: 185, name: "Replay The Night", artist: "68 Beats", links: "https://youtu.be/EkU5QNHK3oY" },
@@ -4043,12 +4267,56 @@ OneSignalDeferred.push(async function (OneSignal) {
     
 <div id="info-container">
     
-    <div class="background-container">
-        <img src="8nov.webp" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;" />
-        <img src="nov2.3.webp" class="background-img overlay" alt="Overlay Image" />
+     <div class="background-container">
+        <canvas id="circuit-canvas" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;"></canvas>
+        <img src="v1nuevo.webp" class="background-img overlay" alt="Overlay Image" />
+        <img src="v1nuevo2.webp" class="background-img overlay2" alt="Overlay Image2" />
+        <!-- ========================================================
+   NUEVO MÓDULO: PESTAÑA DE COMANDOS RÚNICOS (UX OPTIMIZADA)
+   ======================================================== -->
+<div id="juke-commands-wrapper" class="juke-commands-container">
+  
+  <!-- La Pestaña Disparadora (Estilo Piedra Café Teclado) -->
+  <div id="juke-commands-tab">
+    <span id="juke-commands-arrow">›</span>
+  </div>
+
+  <!-- El Panel de la Terminal Interna con los 4 Botones -->
+  <div class="juke-commands-board">
+    <div class="juke-board-header">JUKEBOX_COMMANDS // CORE_v4</div>
+    
+    <div class="juke-buttons-matrix">
+      <!-- Fila Superior: Botones Cortos Gemelos -->
+      <div class="matrix-row row-top">
+        <button id="cmd-like-btn" class="cmd-pixel-btn btn-short" onclick="likeSong()">
+          <svg class="cmd-icon-svg icon-heart" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <button id="cmd-next-btn" class="cmd-pixel-btn btn-short" onclick="playNextVideo()">
+          <svg class="cmd-icon-svg icon-next" viewBox="0 0 24 24">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Fila Inferior: Botones Largos de Texto -->
+      <div class="matrix-row">
+        <button id="cmd-disco-btn" class="cmd-pixel-btn btn-long" onclick="toggleDiscoMode()">DISCO MODE</button>
+      </div>
+      <div class="matrix-row">
+        <button id="cmd-liked-list-btn" class="cmd-pixel-btn btn-long" onclick="showLikedSongs()">LIKED SONGS</button>
+      </div>
+    </div>
+
+    <div class="juke-board-footer">OS_SUB_SYSTEM_04</div>
+  </div>
+</div>
+
+        
         
 
-<video id="bg-video-1" autoplay muted loop playsinline poster="poster1.webp" class="background-video">
+<video id="bg-video-1" autoplay muted loop playsinline poster="bgimagenuevo.webp" class="background-video">
 </video>
 
 <video id="bg-video-2" muted loop playsinline class="background-video">
@@ -4490,6 +4758,248 @@ if ('serviceWorker' in navigator) {
 </div>
 
 <script src="push-invitation.js"></script>
+
+<script>
+
+// Encapsulamos el motor de los circuitos para que arranque de forma segura tras cargar el HTML
+document.addEventListener("DOMContentLoaded", function() {
+    const canvas = document.getElementById('circuit-canvas');
+    if (!canvas) return; 
+    
+    const ctx = canvas.getContext('2d');
+    const GRID_SIZE = 80;       
+    const CYAN_COLOR = '#a4efe9'; 
+    const MAX_PULSES = 19;       
+
+    let pulses = [];
+
+    // 🎯 RELACIÓN DE ASPECTO FIJA DE TU JUKEBOX (720 x 1280)
+    const ASPECT_RATIO = 710 / 1270;
+
+    function resizeCanvas() {
+        // Medimos el espacio físico asignado por tu CSS en la pantalla
+        let rectWidth = canvas.clientWidth;
+        let rectHeight = canvas.clientHeight;
+
+        // Si por carga inicial mide 0, forzamos un valor mínimo temporal basado en el contenedor
+        if (rectWidth === 0) rectWidth = 320;
+        if (rectHeight === 0) rectHeight = 568;
+
+        // 🧠 ALGORITMO OBJECT-FIT INTERNO: Calcula el tamaño real de la rocola en pantalla
+        let renderWidth = rectWidth;
+        let renderHeight = rectWidth / ASPECT_RATIO;
+
+        if (renderHeight > rectHeight) {
+            renderHeight = rectHeight;
+            renderWidth = rectHeight * ASPECT_RATIO;
+        }
+
+        // Asignamos las medidas matemáticas exactas de la Jukebox al lienzo interno
+        canvas.width = Math.floor(renderWidth);
+        canvas.height = Math.floor(renderHeight);
+
+        // Reiniciamos los pulsos para ajustarlos a la nueva escala real
+        if (pulses.length > 0) {
+            pulses.forEach(pulse => pulse.reset());
+        }
+    }
+
+    class CircuitPulse {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            const maxCols = Math.max(1, Math.floor(canvas.width / GRID_SIZE));
+            const maxRows = Math.max(1, Math.floor(canvas.height / GRID_SIZE));
+
+            // Los circuitos ahora nacen limitados estrictamente al ancho y alto real del renderizado
+            this.x = Math.floor(Math.random() * maxCols) * GRID_SIZE;
+            this.y = Math.floor(Math.random() * maxRows) * GRID_SIZE;
+            
+            this.length = 0;
+            this.maxLength = 3 + Math.floor(Math.random() * 5); 
+            this.speed = 1.5 + Math.random() * 2; 
+            this.history = [{x: this.x, y: this.y}];
+            this.dir = Math.floor(Math.random() * 4);
+            this.targetX = this.x;
+            this.targetY = this.y;
+            this.setNextTarget();
+        }
+
+        setNextTarget() {
+            const changeDir = Math.random() > 0.4;
+            if (changeDir) {
+                this.dir = (this.dir + (Math.random() > 0.5 ? 1 : -1) + 4) % 4;
+            }
+
+            if (this.dir === 0) this.targetX += GRID_SIZE;
+            if (this.dir === 1) this.targetY += GRID_SIZE;
+            if (this.dir === 2) this.targetX -= GRID_SIZE;
+            if (this.dir === 3) this.targetY -= GRID_SIZE;
+
+            this.length++;
+        }
+
+        update() {
+            let dx = this.targetX - this.x;
+            let dy = this.targetY - this.y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < this.speed) {
+                this.x = this.targetX;
+                this.y = this.targetY;
+                this.history.push({x: this.x, y: this.y});
+
+                // Si el pulso intenta salirse del lienzo proporcional calculated, se destruye
+                if (this.length >= this.maxLength || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                } else {
+                    this.setNextTarget();
+                }
+            } else {
+                this.x += (dx / dist) * this.speed;
+                this.y += (dy / dist) * this.speed;
+            }
+        }
+
+        draw() {
+            if (this.history.length < 2) return;
+
+            ctx.beginPath();
+            ctx.moveTo(this.history[0].x, this.history[0].y);
+            for (let i = 1; i < this.history.length; i++) {
+                ctx.lineTo(this.history[i].x, this.history[i].y);
+            }
+            ctx.lineTo(this.x, this.y);
+            ctx.strokeStyle = 'rgba(164, 239, 233, 0.25)'; 
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = CYAN_COLOR;
+            ctx.shadowBlur = 10; 
+            ctx.shadowColor = CYAN_COLOR;
+            ctx.fill();
+            ctx.shadowBlur = 0; 
+
+            this.history.forEach(point => {
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(164, 239, 233, 0.4)';
+                ctx.fill();
+            });
+        }
+    }
+
+    for (let i = 0; i < MAX_PULSES; i++) {
+        pulses.push(new CircuitPulse());
+    }
+
+        // ==========================================
+    // INYECCIÓN DE SISTEMA DE RASTREO DE MOUSE
+    // ==========================================
+    let mouse = { x: -1000, y: -1000 }; // Posición inicial fuera de la pantalla
+    const MAGNET_RADIUS = 120;          // Radio de atracción magnética en píxeles
+    const MAGNET_FORCE = 0.15;          // Intensidad del imán (0.01 suave a 0.5 muy brusco)
+
+    // Escuchamos el movimiento del mouse sobre el canvas de la rocola
+    canvas.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        // Convertimos las coordenadas de la pantalla a las coordenadas internas del dibujo del canvas
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    // Si el usuario saca el mouse de la rocola, limpiamos la posición para apagar el imán
+    canvas.addEventListener('mouseleave', function() {
+        mouse.x = -1000;
+        mouse.y = -1000;
+    });
+
+    // 🎯 FUNCIÓN ANIMATE_CIRCUITS ACTUALIZADA CON MAGNETISMO
+    function animateCircuits() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        pulses.forEach(pulse => {
+            // Calcular la distancia matemática entre la cabeza del circuito y el mouse del usuario
+            let dx = mouse.x - pulse.x;
+            let dy = mouse.y - pulse.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Si el circuito entra en el área del imán del mouse, lo atraemos
+            if (distance < MAGNET_RADIUS) {
+                // Modificamos sutilmente su trayectoria sumándole fuerza magnética hacia el cursor
+                pulse.x += dx * MAGNET_FORCE;
+                pulse.y += dy * MAGNET_FORCE;
+            }
+
+            pulse.update();
+            pulse.draw();
+        });
+
+        requestAnimationFrame(animateCircuits);
+    }
+
+
+    // El ResizeObserver ahora vigila los cambios físicos del contenedor para aplicar la proporción
+    const resizeObserver = new ResizeObserver(() => {
+        resizeCanvas();
+    });
+    resizeObserver.observe(canvas);
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', resizeCanvas);
+    
+    resizeCanvas();
+    animateCircuits();
+});
+
+
+// ==============================================================================
+// MÓDULO INTERACTIVO CENTRAL: BOTONERA DE COMANDOS RÚNICOS (EDICIÓN UX)
+// ==============================================================================
+(function() {
+  let isCommandsFolderOpen = false;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('juke-commands-wrapper');
+    const tabTrigger = document.getElementById('juke-commands-tab');
+    const arrow = document.getElementById('juke-commands-arrow');
+
+    if (tabTrigger && container) {
+      tabTrigger.addEventListener('click', () => {
+        isCommandsFolderOpen = !isCommandsFolderOpen;
+
+        if (arrow) {
+          // ⏳ Fase 1: Desvanecemos la flecha café en total sincronía (300ms)
+          arrow.style.opacity = '0';
+          
+          setTimeout(() => {
+            // Cambiamos el glifo de dirección en la oscuridad del frame
+            arrow.innerText = isCommandsFolderOpen ? '‹' : '›';
+            // Cambio de color sutil para indicar estado activo
+            arrow.style.color = isCommandsFolderOpen ? '#87ffff' : '#c5b4aa';
+            // ⏳ Fase 2: Re-iluminamos la flecha con su nueva dirección
+            arrow.style.opacity = '1';
+          }, 200);
+        }
+
+        // Activamos o removemos la clase para que el CSS estire el panel
+        if (isCommandsFolderOpen) {
+          container.classList.add('commands-active');
+        } else {
+          container.classList.remove('commands-active');
+        }
+      });
+    }
+  });
+})();
+
+
+
+</script>
     
 </body>
 </html>

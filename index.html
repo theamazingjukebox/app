@@ -4897,44 +4897,10 @@ document.addEventListener("DOMContentLoaded", function() {
         pulses.push(new CircuitPulse());
     }
 
-        // ==========================================
-    // INYECCIÓN DE SISTEMA DE RASTREO DE MOUSE
-    // ==========================================
-    let mouse = { x: -1000, y: -1000 }; // Posición inicial fuera de la pantalla
-    const MAGNET_RADIUS = 120;          // Radio de atracción magnética en píxeles
-    const MAGNET_FORCE = 0.15;          // Intensidad del imán (0.01 suave a 0.5 muy brusco)
-
-    // Escuchamos el movimiento del mouse sobre el canvas de la rocola
-    canvas.addEventListener('mousemove', function(e) {
-        const rect = canvas.getBoundingClientRect();
-        // Convertimos las coordenadas de la pantalla a las coordenadas internas del dibujo del canvas
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-    });
-
-    // Si el usuario saca el mouse de la rocola, limpiamos la posición para apagar el imán
-    canvas.addEventListener('mouseleave', function() {
-        mouse.x = -1000;
-        mouse.y = -1000;
-    });
-
-    // 🎯 FUNCIÓN ANIMATE_CIRCUITS ACTUALIZADA CON MAGNETISMO
-    function animateCircuits() {
+   function animateCircuits() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         pulses.forEach(pulse => {
-            // Calcular la distancia matemática entre la cabeza del circuito y el mouse del usuario
-            let dx = mouse.x - pulse.x;
-            let dy = mouse.y - pulse.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-
-            // Si el circuito entra en el área del imán del mouse, lo atraemos
-            if (distance < MAGNET_RADIUS) {
-                // Modificamos sutilmente su trayectoria sumándole fuerza magnética hacia el cursor
-                pulse.x += dx * MAGNET_FORCE;
-                pulse.y += dy * MAGNET_FORCE;
-            }
-
             pulse.update();
             pulse.draw();
         });

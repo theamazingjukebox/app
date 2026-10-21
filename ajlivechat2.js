@@ -697,7 +697,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgVideos = [
     {
       el: document.getElementById("bg-video-1"),
-      src: "Copia de 0212 (17Belvnuevo).webm"
+      src: ""
     },
     {
       el: document.getElementById("bg-video-2"),

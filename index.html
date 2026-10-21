@@ -2420,10 +2420,17 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   -webkit-tap-highlight-color: transparent;
 }
 
-#juke-commands-tab:hover {
-  background: linear-gradient(135deg, #584c47, #382f2b) padding-box, 
-              linear-gradient(135deg, #87ffff, #d83ca4) border-box; /* Destello neón sutil en hover */
+@media (hover: hover) and (pointer: fine) {
+  #juke-commands-tab:hover {
+    background: linear-gradient(135deg, #584c47, #382f2b) padding-box, 
+                linear-gradient(135deg, #87ffff, #d83ca4) border-box;
+  }
+  #juke-commands-tab:hover #juke-commands-arrow {
+    color: #87ffff;
+    text-shadow: 0 0 6px rgba(135, 255, 255, 0.6);
+  }
 }
+
 
 #juke-commands-arrow {
   color: #c5b4aa; /* Tono arena texturizado */
@@ -2533,14 +2540,47 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 }
 
 /* EFECTOS TÁCTILES MECÁNICOS (HOVER + CLICK REALISTA) */
-.cmd-pixel-btn:hover {
-  color: #87ffff;
-  border-color: rgba(135, 255, 255, 0.3);
+
+@media (hover: hover) and (pointer: fine) {
+  .cmd-pixel-btn:hover {
+    color: #87ffff;
+    border-color: rgba(135, 255, 255, 0.3);
+  }
+  .cmd-pixel-btn:hover .cmd-icon-svg {
+    fill: #87ffff;
+    filter: drop-shadow(0 0 4px #00ffff);
+  }
+  /* Color rosa exclusivo para el corazón en hover en PC */
+  .cmd-pixel-btn:hover .icon-heart {
+    fill: #ff3d91;
+    filter: drop-shadow(0 0 4px #ff00ff);
+  }
+}
+
+/* ========================================================
+   EFECTO TÁCTIL INSTANTÁNEO (PARA MÓVILES Y PANTALLAS TOUCH)
+   ======================================================== */
+#juke-commands-tab:active {
+  background: linear-gradient(135deg, #382f2b, #231c19) padding-box, 
+              linear-gradient(135deg, #87ffff, #d83ca4) border-box;
 }
 
 .cmd-pixel-btn:active {
   transform: scale(0.95) translateY(1px);
   box-shadow: -1px 1px 2px rgba(0,0,0,0.3);
+  color: #87ffff;
+  border-color: rgba(135, 255, 255, 0.4);
+}
+
+/* Al presionar en la pantalla, los iconos se iluminan al instante y se apagan al levantar el dedo */
+.cmd-pixel-btn:active .cmd-icon-svg {
+  fill: #87ffff;
+  filter: drop-shadow(0 0 6px #00ffff);
+}
+
+.cmd-pixel-btn:active .icon-heart {
+  fill: #ff3d91;
+  filter: drop-shadow(0 0 6px #ff00ff);
 }
 
 /* ICONOS VECTORIALES SVGS NÍTIDOS */
@@ -2551,16 +2591,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   transition: fill 0.2s ease;
 }
 
-.cmd-pixel-btn:hover .cmd-icon-svg {
-  fill: #87ffff;
-  filter: drop-shadow(0 0 4px #00ffff);
-}
 
-/* Color específico para el corazón en hover opcional */
-.cmd-pixel-btn:hover .icon-heart {
-  fill: #ff3d91;
-  filter: drop-shadow(0 0 4px #ff00ff);
-}
 
 /* RESPONSIVE PARA DISPOSITIVOS MÓVILES GRANDES */
 @media (max-width: 768px) {

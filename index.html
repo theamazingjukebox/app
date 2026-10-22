@@ -123,10 +123,10 @@
 
      @media (min-width: 768px) {
     body {
-        background-image: url('fnuevo4.2.svg'), url('fondo2.webp');
-        background-color:#000;
-        background-size: cover, cover;
-        background-repeat: no-repeat, repeat;
+        background-image: url('fnuevo4.2.svg');
+        background-color: #05080c;
+        background-size: cover;
+        background-repeat: no-repeat;
         position: relative;
     }
 }
@@ -2608,6 +2608,124 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 }
 
 
+/* ========================================================
+   ESTILOS DE TERMINAL PARA EL FOOTER MÍSTICO
+   ======================================================== */
+.juke-terminal-footer {
+  width: 100%;
+  padding: 40px 20px 30px 20px;
+  background-color: #05080c; /* Fondo negro profundo */
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Moldura divisoria superior estilo Chasis de Piedra Café */
+.footer-divider-stone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #362e2a, #4d443f, #362e2a);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.footer-beacon-content {
+  max-width: 600px;
+  margin: 0 auto 24px auto;
+}
+
+.beacon-status {
+  font-size: 11px;
+  color: #6c5e57;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin: 0 0 8px 0;
+}
+
+.beacon-status span {
+  color: #87ffff;
+  text-shadow: 0 0 6px rgba(135, 255, 255, 0.4);
+}
+
+.beacon-telemetry {
+  font-size: 12px;
+  color: #c5b4aa; /* Tono arena */
+  letter-spacing: 0.5px;
+  margin: 0 0 6px 0;
+}
+
+.beacon-telemetry strong {
+  color: #87ffff;
+  text-shadow: 0 0 5px rgba(135, 255, 255, 0.3);
+}
+
+/* Cursor parpadeante de consola */
+.beacon-cursor {
+  color: #d83ca4;
+  animation: telemetryBlink 1s infinite;
+}
+
+.beacon-manifest {
+  font-size: 9px;
+  color: rgba(197, 180, 170, 0.5); /* Arena apagado */
+  font-family: sans-serif; /* Alta legibilidad */
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* 🧱 BOTÓN DE DONACIÓN ESTILO PIEDRA COMPACTA */
+.btn-footer-donate {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto !important;
+  padding: 10px 20px;
+  font-size: 9px !important;
+  letter-spacing: 1.2px;
+  text-decoration: none; /* Elimina subrayado de enlace */
+  margin-bottom: 20px;
+}
+
+/* LED de transmisión parpadeante interno en el botón */
+.btn-glow-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #ff3d91; /* Rosa neón */
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff3d91;
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-footer-donate:hover .btn-glow-dot {
+    background-color: #87ffff;
+    box-shadow: 0 0 8px #00ffff;
+  }
+}
+
+.juke-copyright {
+  font-size: 8px;
+  color: rgba(108, 94, 87, 0.4);
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* ANIMACIONES */
+@keyframes telemetryBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes frequencyPulse {
+  0%, 100% { text-shadow: 0 0 4px rgba(135, 255, 255, 0.2); }
+  50% { text-shadow: 0 0 10px rgba(135, 255, 255, 0.6); }
+}
+
 
     
 </style>
@@ -4737,21 +4855,6 @@ OneSignalDeferred.push(async function (OneSignal) {
     
 
    
-    <div id="donate-button-container">
-    <a href="https://www.paypal.com/donate/?hosted_button_id=Q52DFRN8D4BS8" target="_blank">
-        <img src="pplnuevo6ink-1.webp" alt="Donar con PayPal" title="" width="200">
-    </a>
-</div>
-
-    
-     <img src="bannersub6.webp" alt="Logo" class="logos8" width="100%" title="">
-
-    
- <div id="ad-container">
-            <a href="https://www.instagram.com/flodz_/" target="_blank" rel="noopener noreferrer">
-            <img src="giff3 (1).gif" alt="Go Follow" class="ad-image">
-            </a>
-        </div>
 
     
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
@@ -5016,6 +5119,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 </script>
+
+
+<!-- ========================================================
+   NUEVO FOOTER: BEACON BROADCAST FREQUENCY & DONATIONS
+   ======================================================== -->
+<footer class="juke-terminal-footer">
+  <div class="footer-divider-stone"></div>
+  
+   <div class="footer-beacon-content">
+    <p class="beacon-status">[ NODE_STATUS :: <span>ONLINE</span> ]</p>
+    <p class="beacon-telemetry">
+      You have been tuned to the frequency <strong id="live-frequency">8809.135.43//5</strong> MHz 
+        
+      <br><span class="beacon-cursor">//</span> Digital Garden Node #004.
+    </p>
+    <p class="beacon-manifest">
+      Archiving audio waves, preserving zero-friction musical heritage, and avoiding mainstream algorithms since 2023.
+    </p>
+  </div>
+
+  <!-- Botón Sutil de PayPal de Piedra Café -->
+  <div class="footer-support-zone">
+    <a href="https://www.paypal.com/donate/?hosted_button_id=Q52DFRN8D4BS8" target="_blank" class="cmd-pixel-btn btn-footer-donate" title="Transmit support to the beacon">
+      <span class="btn-glow-dot"></span>
+      SUPPORT [ PAYPAL ]
+    </a>
+    <p class="juke-copyright">THE AMAZING JUKEBOX © 2026 · ALL FREQUENCY CHANNELS ARE OPEN.</p>
+  </div>
+</footer>
+
     
 </body>
 </html>

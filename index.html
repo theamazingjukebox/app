@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The Amazing Jukebox - Just Good Music 24/7</title>
+<title>The Amazing Jukebox :: //Portal_Access_Granted 🟢</title>
 <meta name="description" content="The Amazing Jukebox is an interactive music curation platform where music appears by chance rather than algorithms, turning each visit into a moment of discovery.">
 <meta name="viewport" content="width=device-width, initial-scale=0.31, maximum-scale=5, user-scalable=yes">
 <meta property="og:image" content="https://www.theamazingjukebox.com/1200x630.png">
@@ -4272,6 +4272,21 @@ function closeZoomHint() {
 }
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    let toggle = false;
+    
+    setInterval(() => {
+        // Intercambia el título cada 1.5 segundos simulando un cursor de consola latiendo
+        if (toggle) {
+            document.title = "The Amazing Jukebox :: //Portal_Access_Granted 🟢";
+        } else {
+            document.title = "The Amazing Jukebox :: //Portal_Access_Granted  "; // Cambia el tono del LED o pon un guion bajo "_"
+        }
+        toggle = !toggle;
+    }, 1500);
+});
+
+
 
 </script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -4303,7 +4318,7 @@ OneSignalDeferred.push(async function (OneSignal) {
      <div class="background-container">
         <canvas id="circuit-canvas" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;"></canvas>
         <img src="v1nuevo.webp" class="background-img overlay" alt="Overlay Image" />
-        <img src="v1nuevo2.svg" class="background-img overlay2" alt="Overlay Image2" />
+        <img src="v1nuevo.2.png" class="background-img overlay2" alt="Overlay Image2" />
         <!-- ========================================================
    NUEVO MÓDULO: PESTAÑA DE COMANDOS RÚNICOS (UX OPTIMIZADA)
    ======================================================== -->

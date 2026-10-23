@@ -1355,7 +1355,7 @@ document.addEventListener("DOMContentLoaded", () => {
       #pip-smart-banner {
         position: fixed; bottom: 25px; right: 25px; z-index: 10000;
         background-color: rgba(18, 22, 30, 0.9); backdrop-filter: blur(10px);
-        border: 2px solid #d83ca4; border-radius: 16px; padding: 12px 18px;
+       border: 1px solid rgba(135, 255, 255, 0.18); border-radius: 16px; padding: 12px 18px;
         box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(135,255,255,0.15);
         font-family: 'Orbitron', monospace; width: 320px;
         animation: slideInBanner 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;

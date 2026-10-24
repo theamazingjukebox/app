@@ -134,7 +134,7 @@
     -webkit-backdrop-filter: blur(18px);
     
     /* Regresamos a tu borde dashed original que se ve muy bien en estático */
-    border: 1px dashed rgba(255, 251, 24, 0.329); 
+    border: 1px dashed #b4916a;
     border-radius: 8px;
     margin: 7px auto;
     width: 90%;

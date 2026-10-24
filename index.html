@@ -2197,7 +2197,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 /* LA PESTAÑA DISPARADORA (ANCLADA A LA DERECHA DEL CONTENEDOR) */
 #permanent-folder-tab {
   position: absolute;
-  top: 44.5%;
+  top: 44.7%;
   right: -35px; /* Sobresale hacia la derecha */
   
   width: 39px;
@@ -4539,16 +4539,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // ==============================================================================
-// MOTOR HUD CENTRALIZADO: SEÑAL RECTIVA & TELEMETRÍA DE OYENTES EN VIVO
+// 1. MOTOR HUD: SENSOR REACTIVO DEL REPRODUCTOR DE YOUTUBE (SLOT AISLADO)
 // ==============================================================================
 document.addEventListener("DOMContentLoaded", function() {
     const telemetryText = document.getElementById("hud-live-telemetry");
-    const listenersElement = document.getElementById("hud-listeners-count");
     const ledIndicator = document.querySelector(".juke-hud-brand-standalone .capsule-led-pulse");
     
-    if (!telemetryText || !listenersElement || !ledIndicator) return;
+    if (!telemetryText || !ledIndicator) return;
 
-    // 1. SENSOR REACTIVO DEL REPRODUCTOR (Cada 500ms)
     setInterval(() => {
         const activePlayer = window.ytPlayer || ytPlayer;
         
@@ -4558,23 +4556,33 @@ document.addEventListener("DOMContentLoaded", function() {
             if (state === 1 || state === 3) {
                 telemetryText.innerText = "SIGNAL_DECODED // 320kbps";
                 telemetryText.style.color = "#87ffff";
-                // En PLAY el LED parpadea en verde rítmico
                 ledIndicator.style.backgroundColor = "#39ff14";
                 ledIndicator.style.boxShadow = "0 0 8px #39ff14";
             } else {
                 telemetryText.innerText = "SIGNAL_PAUSED // STANDBY";
                 telemetryText.style.color = "#6c5e57";
-                // En PAUSA el LED cambia al púrpura de tu paleta
                 ledIndicator.style.backgroundColor = "#d83ca4";
                 ledIndicator.style.boxShadow = "0 0 6px #d83ca4";
             }
         }
     }, 500);
+});
 
-      var miPresenciaRef = db.ref("online_users").push();
+// ==============================================================================
+// 2. REALTIME TELEMETRY ENGINE: CONTADOR DE OYENTES HÍBRIDO ADAPTADO AL CHASIS
+// ==============================================================================
+function initRealtimeListenersCounter() {
+    // 🎯 CORRECCIÓN CLAVE: Capturamos simultáneamente el ID viejo y el ID de tu nuevo chasis unificado
+    var legacyCountElement = document.getElementById("active-listeners-count");
+    var hudCountElement = document.getElementById("hud-listeners-count");
+    
+    // Si no hay base de datos de Firebase cargada en la página, abortamos por seguridad
+    if (!db) return;
+
+    var miPresenciaRef = db.ref("online_users").push();
     var conectadoRef = db.ref(".info/connected");
 
-    // Variables internas para gestionar la fluctuación orgánica independiente
+    // Variables internas para gestionar la fluctuación orgánica de tu repositorio oficial
     var ultimoConteoReal = 1;
     var variacionActual = 0;
 
@@ -4585,32 +4593,38 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 1. Escuchador en tiempo real de Firebase
+    // Escuchador en tiempo real nativo de tu Firebase
     db.ref("online_users").on("value", function(snapshot) {
         ultimoConteoReal = snapshot.numChildren() || 1;
-        renderHibrido(); // Renderiza inmediatamente cuando cambia el conteo real
+        renderHibrido(); // Renderiza inmediatamente cuando cambia la cuenta real en el servidor
     });
 
-
-      function renderHibrido() {
-        // Tu regla exacta: si hay 'N' oyentes reales, el rango oscila entre N y N + 6
-        // Ej: Con 1 oyente real, fluctúa entre 1 y 7. Con 2, entre 2 & 8. Con 100, entre 100 & 106.
+    // Función encargada de calcular el rango híbrido e inyectar el formato en el chasis
+    function renderHibrido() {
+        // Tu regla matemática exacta: Conteo Real + Fluctuación aleatoria (rango de N a N+6)
         var finalCount = ultimoConteoReal + variacionActual;
 
-        // Formateo visual estético (rellena con cero a la izquierda si es menor a 10)
+        // Formateo visual con cero a la izquierda si el número es menor a 10 (ej: "04")
         var conteoFormateado = String(finalCount).padStart(2, '0');
-        countElement.innerText = conteoFormateado;
+
+        // 🟢 INYECCIÓN COCOORDINADA: Actualiza el marcador viejo (si existe) y tu nuevo HUD superior
+        if (legacyCountElement) {
+            legacyCountElement.innerText = conteoFormateado;
+        }
         
-        console.log("🛰️ AUDIENCE TELEMETRY: Real: " + ultimoConteoReal + " | Renderizado con fluctuación: " + finalCount);
+        if (hudCountElement) {
+            // Mantenemos la palabra Explorers y usamos tu estructura interna separada por estilos
+            hudCountElement.innerText = `${finalCount} Explorers`;
+    }
+        
+        console.log("🛰️ AUDIENCE TELEMETRY: Real: " + ultimoConteoReal + " | HUD Unificado: " + finalCount);
     }
 
-    // 3. Bucle independiente para que el número "baile" de forma orgánica cada 5 segundos
-    // Cambia la variación gradualmente paso a paso para que no pegue saltos bruscos
+    // Bucle independiente de tu repositorio oficial para que el número "baile" de forma orgánica cada 5 segundos
     setInterval(function() {
-        // Genera un número aleatorio entre 0 y 6
         var nuevaVariacion = Math.floor(Math.random() * 7);
         
-        // Suavizado: Si la nueva variación es mayor o menor, nos movemos solo 1 paso hacia ella
+        // Suavizado de pasos: evita saltos bruscos en el chasis de la rocola
         if (nuevaVariacion > variacionActual) {
             variacionActual++;
         } else if (nuevaVariacion < variacionActual) {
@@ -4619,7 +4633,14 @@ document.addEventListener("DOMContentLoaded", function() {
         
         renderHibrido();
     }, 5000);
-    });
+}
+
+// Enganchamos la inicialización de Firebase tras cargar la estructura del DOM
+document.addEventListener("DOMContentLoaded", function() {
+    // Le damos un pequeño retraso de 300ms para asegurar que la conexión con 'db' esté establecida por tu script principal
+    setTimeout(initRealtimeListenersCounter, 300);
+});
+
 
 
 

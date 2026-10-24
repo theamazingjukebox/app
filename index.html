@@ -4571,6 +4571,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 500);
 
+      var miPresenciaRef = db.ref("online_users").push();
+    var conectadoRef = db.ref(".info/connected");
+
+    // Variables internas para gestionar la fluctuación orgánica independiente
+    var ultimoConteoReal = 1;
+    var variacionActual = 0;
+
+    conectadoRef.on("value", function(snapshot) {
+        if (snapshot.val() === true) {
+            miPresenciaRef.onDisconnect().remove();
+            miPresenciaRef.set(1);
+        }
+    });
+
+    // 1. Escuchador en tiempo real de Firebase
+    db.ref("online_users").on("value", function(snapshot) {
+        ultimoConteoReal = snapshot.numChildren() || 1;
+        renderHibrido(); // Renderiza inmediatamente cuando cambia el conteo real
+    });
+
+
       function renderHibrido() {
         // Tu regla exacta: si hay 'N' oyentes reales, el rango oscila entre N y N + 6
         // Ej: Con 1 oyente real, fluctúa entre 1 y 7. Con 2, entre 2 & 8. Con 100, entre 100 & 106.

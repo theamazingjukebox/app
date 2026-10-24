@@ -1582,14 +1582,14 @@ button, a, img {
             rgba(0, 234, 255, 0.08)
         );
 
-    border: 1px solid transparent;
+    border: 3px solid transparent;
           border-radius: 24px; /* ¡Ahora el navegador SÍ respetará las esquinas! */
 
           /* 2. EL TRUCO MAESTRO: Doble fondo separado por comas */
           /* El primer fondo es tu color oscuro (recortado al contenido). El segundo es el degradado que actuará como borde */
           background-image: url(".svg"), 
                             linear-gradient(rgba(18, 22, 30, 0.90), rgba(18, 22, 30, 0.90)), 
-                            linear-gradient(180deg, #00241f, #b4916a);
+                            linear-gradient(180deg, #004138, #004138);
           
           /* Indicamos cómo se debe recortar cada capa de fondo */
           background-clip: padding-box, padding-box, border-box;
@@ -1696,7 +1696,7 @@ button, a, img {
 
     
 .live-chat-logo {
-    height: 30px;
+    height: 27px;
     width: auto;
     padding-left: 45px;
     
@@ -1718,6 +1718,7 @@ button, a, img {
   z-index: 9995;   /* Justo por debajo de tu chat o popups principales */
 }
 
+
 /* PESTAÑA DEL FOLDER FÍSICO */
 .main-folder-tab-trigger {
   width: 26px;
@@ -1725,7 +1726,7 @@ button, a, img {
   background-color: rgba(18, 22, 30, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 2px solid #d83ca4; /* Tu rosa neón exacto */
+  border: 1px solid rgba(135, 255, 255, 0.15);
   border-right: none;
   border-radius: 12px 0 0 12px;
   cursor: pointer;
@@ -1770,7 +1771,9 @@ button, a, img {
             transform: scale(0.93); /* Simula un botón presionado */
         }
 
-    
+
+
+
 #main-tab-arrow {
   color: #87ffff; /* Tu cian Orbitron exacto */
   font-family: monospace;
@@ -1789,7 +1792,7 @@ button, a, img {
   
 
   /* 🔥 EFECTO PREMUM: Transición de suavizado para la opacidad */
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 3s ease-in-out;
   opacity: 1; /* Inicia encendida */
 
 
@@ -1820,7 +1823,7 @@ button, a, img {
   background-color: rgba(12, 14, 22, 0.95);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border: 2px solid #d83ca4;
+  border: 2px solid #87ffff;
   border-right: none;
   border-radius: 24px 0 0 24px;
   display: flex;
@@ -1839,10 +1842,13 @@ button, a, img {
   opacity: 1;
   padding: 16px;
 }
+
+
 .main-folder-container.folder-active #main-tab-arrow {
   /* Eliminamos por completo los rotate() que causaban locuras en el eje */
   background: transparent;
 }
+
 
 /* TEXTOS INTERNOS DE LA TERMINAL DE COMENTARIOS */
 .panel-terminal-header {
@@ -1958,7 +1964,7 @@ button, a, img {
   flex: 0 0 30px; /* Evita que el icono se deforme o encoja */
   display: grid;
   place-items: center;
-  color: #87ffff;
+   color: #87ffff;
   font-size: 14px;
   background: rgba(5, 16, 24, 0.8);
   border: 1px solid rgba(135, 255, 255, 0.55);
@@ -1996,13 +2002,22 @@ button, a, img {
 .action-arrow {
   position: relative;
   z-index: 1;
-  color: rgba(220, 255, 255, 0.65);
-  font-size: 27px; 
+   color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff00ff,
+        0 0 30px #3498db,
+        0 0 40px #3498db,
+        0 0 50px #3498db,
+        0 0 60px #3498db;
+  font-size: 24px; 
   line-height: 1;
   flex: 0 0 auto; /* Evita que las flechas se encojan */
   display: flex;
   align-items: center;
 }
+
 
 
 /* ========================================================
@@ -2148,80 +2163,6 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 
 
 /* ========================================================
-   CONTADOR DE OYENTES EN VIVO (ANCLAJE FIJO SUPERIOR IZQUIERDO)
-   ======================================================== */
-#live-listeners-counter {
-  position: fixed;
-  top: 25px;   /* 🔥 Anclaje exacto solicitado */
-  left: 75px;  /* 🔥 Anclaje exacto solicitado */
-  z-index: 9999; /* Máxima jerarquía para flotar sobre circuitos */
-  
-  /* Formato Micro-Cápsula de Cristal */
-  padding: 8px 14px;
-  background: rgba(10, 16, 26, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  
-  /* Borde transparente cian sutil */
-  border: 1px solid rgba(135, 255, 255, 0.15);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.listeners-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* MICRO-LED NEÓN VERDE PARPADEANTE */
-.listeners-led-ping {
-  width: 9px;
-  height: 9px;
-  background-color: #39ff14; /* Verde neón */
-  border-radius: 50%;
-  box-shadow: 0 0 8px #39ff14, 0 0 2px #ffffff;
-  animation: ledPulse 2s infinite ease-in-out;
-}
-
-.listeners-text {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 12px;
-  color: #dffcff;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-shadow: 0 0 4px rgba(223, 252, 255, 0.2);
-}
-
-#active-listeners-count {
-  color: #87ffff; /* Tu cian oficial */
-  text-shadow: 0 0 5px #00ffff;
-}
-
-/* ANIMACIÓN DE PARPADEO DEL LED */
-@keyframes ledPulse {
-  0%, 100% { opacity: 0.3; filter: brightness(0.7); box-shadow: 0 0 2px #39ff14; }
-  50% { opacity: 1; filter: brightness(1.2); box-shadow: 0 0 10px #39ff14, 0 0 4px #ffffff; }
-}
-
-@media (min-width:768px) and (hover:hover) and (pointer:fine){
-  
-  #live-listeners-counter {
-   top: 25px;
-  left: 25px;
-  }
-    .listeners-led-ping {
-  width: 7px;
-  height: 7px;
-  }
-      .listeners-text {
-  font-size: 10px;
-      
-  }
-}
-
-
-/* ========================================================
    MÓDULO ESPEJO IZQUIERDO: BLOC DE NOTAS PERMANENTE
    ======================================================== */
 #permanent-folder-wrapper {
@@ -2235,7 +2176,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   -webkit-backdrop-filter: blur(15px);
   border-right: 1px solid rgba(135, 255, 255, 0.15); /* Borde en la derecha */
   z-index: 9998;
-  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: left 3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
   display: flex;
 }
@@ -2247,7 +2188,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
         
     }
 }
-    
+
 /* Cuando la pestaña está activa, se desliza hacia el centro */
 #permanent-folder-wrapper.folder-left-active {
   left: 0;
@@ -2256,26 +2197,50 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 /* LA PESTAÑA DISPARADORA (ANCLADA A LA DERECHA DEL CONTENEDOR) */
 #permanent-folder-tab {
   position: absolute;
-  top: 50%;
+  top: 44%;
   right: -35px; /* Sobresale hacia la derecha */
-  transform: translateY(-50%);
+  
   width: 35px;
   height: 90px;
-  background: rgba(18, 22, 30, 0.9);
+   background-color: rgba(18, 22, 30, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(135, 255, 255, 0.15);
   border-left: none; /* Elimina la costura con el contenedor */
   border-radius: 0 12px 12px 0;
   cursor: pointer;
+     box-shadow: -5px 0 20px rgba(216, 60, 164, 0.3);
+  transition: background-color 0.2s;  
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+   
+    -webkit-tap-highlight-color: transparent;
 }
+
+
+@media (hover: hover) and (pointer: fine) {
+
+    #permanent-folder-tab:hover {
+        background-color: rgba(216, 60, 164, 0.15);
+    }
+
+}
+
+#permanent-folder-tab:active {
+            box-shadow: none;
+            transform: scale(0.93); /* Simula un botón presionado */
+        }
+
 
 #permanent-tab-arrow {
   font-family: 'Orbitron', monospace;
   font-size: 44px;
   color: #87ffff;
+     align-items: center;
+  justify-content: center;
+     display: block;
+  line-height: 1;
   text-shadow: 0 0 5px #00ffff;
   transition: opacity 0.2s ease;
   user-select: none;
@@ -2301,7 +2266,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 .terminal-title {
   font-family: 'Orbitron', monospace;
   font-size: 11px;
-  color: #d83ca4; /* Rosa neón oficial para diferenciarlo de YT */
+  color: #87ffff; /* Rosa neón oficial para diferenciarlo de YT */
   text-shadow: 0 0 6px rgba(216, 60, 164, 0.4);
   letter-spacing: 1px;
   margin-bottom: 20px;
@@ -2347,9 +2312,9 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 
 #guestbook-submit-btn {
   background: none;
-  border: 1px solid #d83ca4;
+  border: 1px solid #87ffff;
   border-radius: 6px;
-  color: #d83ca4;
+  color: #87ffff;
   font-family: 'Orbitron', monospace;
   font-size: 10px;
   font-weight: bold;
@@ -2362,7 +2327,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 
 #guestbook-submit-btn:hover {
   background: rgba(216, 60, 164, 0.1);
-  color: #ff52c5;
+  color: #87ffff;
   border-color: #ff52c5;
   text-shadow: 0 0 8px #ff52c5;
 }
@@ -2382,6 +2347,10 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   background: rgba(216, 60, 164, 0.3);
   border-radius: 2px;
 }
+
+
+
+
 
 /* ========================================================
    ESTILOS DE LA PESTAÑA DE COMANDOS DE PIEDRA CAFÉ
@@ -2616,6 +2585,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   padding: 40px 20px 30px 20px;
   background-color: #05080c; /* Fondo negro profundo */
   font-family: 'Orbitron', sans-serif;
+    border: none;
   text-align: center;
   position: relative;
   z-index: 10;
@@ -2628,7 +2598,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 7px;
   background: linear-gradient(90deg, #362e2a, #4d443f, #362e2a);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
@@ -2702,9 +2672,16 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .btn-footer-donate:hover .btn-glow-dot {
+  .btn-footer-donate:hover {
     background-color: #87ffff;
     box-shadow: 0 0 8px #00ffff;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-glow-dot:hover {
+    background-color: #ff3d91;
+    box-shadow: 0 0 6px #ff3d91;
   }
 }
 
@@ -2724,6 +2701,159 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 @keyframes frequencyPulse {
   0%, 100% { text-shadow: 0 0 4px rgba(135, 255, 255, 0.2); }
   50% { text-shadow: 0 0 10px rgba(135, 255, 255, 0.6); }
+}
+
+
+/* ========================================================
+   CHASIS HUD UNIFICADO CON CONTADOR DE OYENTES
+   ======================================================== */
+.juke-hud-brand-standalone {
+  position: fixed;
+  top: 25px;       /* 📍 CALIBRACIÓN MANUAL GENERAL */
+  left: 25px;      
+  background: rgba(10, 16, 26, 0.85); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #4d443f; /* Tu marco de piedra café oficial */
+  border-radius: 12px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.55), inset 0 0 10px rgba(0,0,0,0.5);
+  z-index: 9999; 
+  pointer-events: auto;
+}
+
+.hud-brand-top-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  background: linear-gradient(90deg, #362e2a, #4d443f, #362e2a);
+  border-radius: 12px 12px 0 0;
+}
+
+.hud-brand-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hud-brand-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 4px rgba(135, 255, 255, 0.15));
+}
+
+/* 🧬 LA CÁPSULA EXPANDIDA DE DOBLE CANAL */
+.hud-brand-capsule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 12px;
+  background: rgba(5, 8, 15, 0.6);
+  border: 1px solid rgba(108, 94, 87, 0.3);
+  border-radius: 6px;
+}
+
+/* El único LED indicador del chasis */
+.juke-hud-brand-standalone .capsule-led-pulse {
+  width: 6px;
+  height: 6px;
+  background-color: #39ff14;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #39ff14;
+  animation: ledPulse 2s infinite ease-in-out;
+}
+
+/* Divisor rúnico vertical interno */
+.capsule-internal-divider {
+  width: 1px;
+  height: 18px;
+  background-color: rgba(108, 94, 87, 0.25);
+  align-self: center;
+}
+
+.juke-hud-brand-standalone .capsule-text-stream {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.juke-hud-brand-standalone .capsule-tag {
+  font-size: 6.5px;
+  color: #6c5e57;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.juke-hud-brand-standalone #hud-live-telemetry {
+  font-size: 8.5px;
+  color: #87ffff; /* Tu cian Orbitron oficial */
+  text-shadow: 0 0 4px rgba(135, 255, 255, 0.2);
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Diseño específico para el número de los oyentes */
+.juke-hud-brand-standalone #hud-listeners-count {
+  font-size: 9px;
+  color: #d83ca4;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px rgba(135, 255, 255, 0.3);
+}
+
+/* 📱 RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+  .juke-hud-brand-standalone {
+    top: 8px;
+    left: 10px;
+    padding: 6px 8px;
+  }
+  .hud-brand-img { height: 22px; }
+  .hud-brand-flex { gap: 8px; }
+  .hud-brand-capsule { gap: 8px; padding: 4px 8px; }
+  .juke-hud-brand-standalone .capsule-tag { display: none; } /* Oculta etiquetas en móvil para no saturar */
+  .juke-hud-brand-standalone #hud-live-telemetry,
+  .juke-hud-brand-standalone #hud-listeners-count { font-size: 7.5px; }
+}
+
+@keyframes ledPulse {
+  0%, 100% { 
+    opacity: 0.35; 
+    filter: brightness(0.6); 
+    box-shadow: 0 0 4px currentColor; 
+  }
+  50% { 
+    opacity: 1; 
+    filter: brightness(1.3); 
+    box-shadow: 0 0 10px currentColor, 0 0 4px #ffffff; 
+  }
+}
+
+
+
+/* ========================================================
+   ESTILOS PARA LA CAPA DE HEXÁGONOS INTERACTIVOS
+   ======================================================== */
+#hex-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9; /* Se posiciona en la capa más alta para reaccionar sobre todo el sitio */
+  pointer-events: none; /* CRUCIAL: Los clics traspasan el lienzo hacia la Jukebox sin bloquear nada */
+  mix-blend-mode: screen; /* Mezcla el brillo cian de los hexágonos con las sombras del fondo */
+  opacity: 0.85; /* Controla la intensidad general del efecto */
 }
 
 
@@ -4408,6 +4538,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+// ==============================================================================
+// MOTOR HUD CENTRALIZADO: SEÑAL RECTIVA & TELEMETRÍA DE OYENTES EN VIVO
+// ==============================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    const telemetryText = document.getElementById("hud-live-telemetry");
+    const listenersElement = document.getElementById("hud-listeners-count");
+    const ledIndicator = document.querySelector(".juke-hud-brand-standalone .capsule-led-pulse");
+    
+    if (!telemetryText || !listenersElement || !ledIndicator) return;
+
+    // 1. SENSOR REACTIVO DEL REPRODUCTOR (Cada 500ms)
+    setInterval(() => {
+        const activePlayer = window.ytPlayer || ytPlayer;
+        
+        if (activePlayer && typeof activePlayer.getPlayerState === 'function') {
+            const state = activePlayer.getPlayerState();
+            
+            if (state === 1 || state === 3) {
+                telemetryText.innerText = "SIGNAL_DECODED // 320kbps";
+                telemetryText.style.color = "#87ffff";
+                // En PLAY el LED parpadea en verde rítmico
+                ledIndicator.style.backgroundColor = "#39ff14";
+                ledIndicator.style.boxShadow = "0 0 8px #39ff14";
+            } else {
+                telemetryText.innerText = "SIGNAL_PAUSED // STANDBY";
+                telemetryText.style.color = "#6c5e57";
+                // En PAUSA el LED cambia al púrpura de tu paleta
+                ledIndicator.style.backgroundColor = "#d83ca4";
+                ledIndicator.style.boxShadow = "0 0 6px #d83ca4";
+            }
+        }
+    }, 500);
+
+      function renderHibrido() {
+        // Tu regla exacta: si hay 'N' oyentes reales, el rango oscila entre N y N + 6
+        // Ej: Con 1 oyente real, fluctúa entre 1 y 7. Con 2, entre 2 & 8. Con 100, entre 100 & 106.
+        var finalCount = ultimoConteoReal + variacionActual;
+
+        // Formateo visual estético (rellena con cero a la izquierda si es menor a 10)
+        var conteoFormateado = String(finalCount).padStart(2, '0');
+        countElement.innerText = conteoFormateado;
+        
+        console.log("🛰️ AUDIENCE TELEMETRY: Real: " + ultimoConteoReal + " | Renderizado con fluctuación: " + finalCount);
+    }
+
+    // 3. Bucle independiente para que el número "baile" de forma orgánica cada 5 segundos
+    // Cambia la variación gradualmente paso a paso para que no pegue saltos bruscos
+    setInterval(function() {
+        // Genera un número aleatorio entre 0 y 6
+        var nuevaVariacion = Math.floor(Math.random() * 7);
+        
+        // Suavizado: Si la nueva variación es mayor o menor, nos movemos solo 1 paso hacia ella
+        if (nuevaVariacion > variacionActual) {
+            variacionActual++;
+        } else if (nuevaVariacion < variacionActual) {
+            variacionActual--;
+        }
+        
+        renderHibrido();
+    }, 5000);
+    });
+
+
+
 </script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
@@ -4438,7 +4632,7 @@ OneSignalDeferred.push(async function (OneSignal) {
      <div class="background-container">
         <canvas id="circuit-canvas" class="background-img" alt="Background Image" style="border-radius: 25px; display: block;"></canvas>
         <img src="Copia de v1.png" class="background-img overlay" alt="Overlay Image" />
-        <img src="v1nuevo.2.png" class="background-img overlay2" alt="Overlay Image2" />
+        <img src="Copia de v1.1.svg" class="background-img overlay2" alt="Overlay Image2" />
         <!-- ========================================================
    NUEVO MÓDULO: PESTAÑA DE COMANDOS RÚNICOS (UX OPTIMIZADA)
    ======================================================== -->
@@ -4662,8 +4856,40 @@ OneSignalDeferred.push(async function (OneSignal) {
   <div id="main-folder-tab" class="main-folder-tab-trigger">
     <span id="main-tab-arrow">‹</span>
   </div>
-
 </div>
+
+
+<!-- ========================================================
+   INSIGNIA HUD MAESTRA: LOGO + SEÑAL + OYENTES EN VIVO
+   ======================================================== -->
+<div class="juke-hud-brand-standalone">
+  <div class="hud-brand-top-border"></div>
+  
+  <div class="hud-brand-flex">
+
+      
+
+    <!-- Componente B: La Nueva Cápsula de Datos Doble -->
+    <div class="hud-brand-capsule">
+      <!-- Un solo LED maestro para todo el chasis -->
+      <div class="capsule-led-pulse"></div>
+      
+      <div class="capsule-text-stream">
+        <span class="capsule-tag">SIGNAL_DECODER</span>
+        <p id="hud-live-telemetry">STREAMING_STEREO // 320kbps</p>
+      </div>
+
+      <!-- Divisor tecnológico interno de la cápsula -->
+      <div class="capsule-internal-divider"></div>
+
+      <div class="capsule-text-stream text-listeners">
+        <span class="capsule-tag">USERS_ONLINE</span>
+        <p id="hud-listeners-count">--</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <!-- MÓDULO INTERACTIVO ESPEJO: BLOC DE NOTAS PERMANENTE (LADO IZQUIERDO) -->
@@ -4693,13 +4919,7 @@ OneSignalDeferred.push(async function (OneSignal) {
   </div>
 </div>
 
-<!-- CONTADOR DE TELEMETRÍA FIJO (ESTILO CRISTAL ESMERILADO DE ESQUINA) -->
-<div id="live-listeners-counter">
-  <div class="listeners-content">
-    <span class="listeners-led-ping"></span>
-    <span class="listeners-text"><span id="active-listeners-count">--</span> LISTENERS ONLINE</span>
-  </div>
-</div>
+
 
 
         <!-- SUGERENCIA DE ZOOM INTELIGENTE (ESTILO CRISTAL ESMERILADO) -->
@@ -4767,8 +4987,12 @@ OneSignalDeferred.push(async function (OneSignal) {
                 <button class="close-button" onclick="closeLikedSongs()">Close</button>
             </div>
         </div>
+     </div>
 
-        </div>
+    <!-- ========================================================
+   LIENZO SENSORIAL MAESTRO: MALLA HOLOGRÁFICA DE HEXÁGONOS
+   ======================================================== -->
+<canvas id="hex-grid-overlay"></canvas>
 
             <div id="emoji-container" style="display: none;">
                 <!-- Aquí puedes agregar más emojis según sea necesario -->
@@ -4781,7 +5005,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                 <div class="emoji" onclick="selectEmoji('🔥')">🔥</div>
                 <div class="emoji" onclick="selectEmoji('👏')">👏</div>
                 <div class="emoji" onclick="selectEmoji('🎶')">🎶</div>
-                <div class="emoji" onclick="selectEmoji('👽')">👽</div>
+                <div class="emoji" onclick="selectEmoji('👾')">👾</div>
                 <div class="emoji" onclick="selectEmoji('😍')">😍</div>
                 <div class="emoji" onclick="selectEmoji('🌟')">🌟</div>
                 <div class="emoji" onclick="selectEmoji('😎')">😎</div>
@@ -4825,7 +5049,7 @@ OneSignalDeferred.push(async function (OneSignal) {
                     <form id="message-form">
                         <textarea id="message-input" placeholder="Type your message..."></textarea>
                         <emoji-picker id="emoji-picker" style="display: none;"></emoji-picker>
-                        <div id="emoji-button" onclick="toggleEmojiPicker()">👽</div>
+                        <div id="emoji-button" onclick="toggleEmojiPicker()">👾</div>
                       <button id="message-btn" type="submit">Send</button>
                     </form>
                     <button class="sidebar-action share-track-action" id="listen-button" onclick="shareCurrentSong()">
@@ -5079,10 +5303,44 @@ document.addEventListener("DOMContentLoaded", function() {
         pulses.push(new CircuitPulse());
     }
 
-   function animateCircuits() {
+        // ==========================================
+    // INYECCIÓN DE SISTEMA DE RASTREO DE MOUSE
+    // ==========================================
+    let mouse = { x: -1000, y: -1000 }; // Posición inicial fuera de la pantalla
+    const MAGNET_RADIUS = 120;          // Radio de atracción magnética en píxeles
+    const MAGNET_FORCE = 0.15;          // Intensidad del imán (0.01 suave a 0.5 muy brusco)
+
+    // Escuchamos el movimiento del mouse sobre el canvas de la rocola
+    canvas.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        // Convertimos las coordenadas de la pantalla a las coordenadas internas del dibujo del canvas
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    // Si el usuario saca el mouse de la rocola, limpiamos la posición para apagar el imán
+    canvas.addEventListener('mouseleave', function() {
+        mouse.x = -1000;
+        mouse.y = -1000;
+    });
+
+    // 🎯 FUNCIÓN ANIMATE_CIRCUITS ACTUALIZADA CON MAGNETISMO
+    function animateCircuits() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         pulses.forEach(pulse => {
+            // Calcular la distancia matemática entre la cabeza del circuito y el mouse del usuario
+            let dx = mouse.x - pulse.x;
+            let dy = mouse.y - pulse.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Si el circuito entra en el área del imán del mouse, lo atraemos
+            if (distance < MAGNET_RADIUS) {
+                // Modificamos sutilmente su trayectoria sumándole fuerza magnética hacia el cursor
+                pulse.x += dx * MAGNET_FORCE;
+                pulse.y += dy * MAGNET_FORCE;
+            }
+
             pulse.update();
             pulse.draw();
         });
@@ -5147,6 +5405,124 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
+// ==============================================================================
+// MOTOR SENSORIAL: CUADRÍCULA DE HEXÁGONOS REVELADOS POR PROXIMIDAD DEL MOUSE
+// ==============================================================================
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    const canvas = document.getElementById('hex-grid-overlay');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    
+    // ⚙️ CALIBRACIÓN DEL EFECTO (Ajusta estos números a tu gusto)
+    const HEX_RADIUS = 23;       // Tamaño de los hexágonos en píxeles (más chico = más denso)
+    const REVEAL_RADIUS = 111;   // Radio de luz alrededor del mouse en píxeles
+    const CYAN_COLOR = '#a4efe9'; // El cian místico oficial de tu plataforma
+
+    let mouse = { x: -1000, y: -1000 };
+
+    // Sincronizar el lienzo con el tamaño total de la pantalla del usuario
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Rastreamos la posición física real del mouse en toda la ventana
+    window.addEventListener('mousemove', function(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    // Si el mouse sale de la ventana del navegador, apagamos la red
+    window.addEventListener('mouseleave', function() {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    // 📐 ALGORITMO GEOMÉTRICO: Dibuja un hexágono perfecto mediante ángulos de 60 grados
+    function drawHexagon(x, y, radius) {
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        let angle = (Math.PI / 3) * i;
+        ctx.lineTo(x + radius * Math.cos(angle), y + radius * Math.sin(angle));
+      }
+      ctx.closePath();
+    }
+
+       // 🔄 BUCLE DE RENDERIZADO INFINITO (CON GEOMETRÍA DE PANAL PERFECTA)
+    function renderHexGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (mouse.x === -1000) {
+        requestAnimationFrame(renderHexGrid);
+        return;
+      }
+
+      // 🧮 FÓRMULAS DE PANAL PERFECTO (Calculadas para evitar superposiciones)
+      // HEX_RADIUS determina el tamaño del hexágono. Modifica solo esta constante arriba si quieres cambiar la escala general.
+      const hexWidth = Math.sqrt(3) * HEX_RADIUS; 
+      const hSpacing = hexWidth;
+      const vSpacing = HEX_RADIUS * 1.5; // Distancia matemática exacta para encajar las filas entre sí
+
+      // Recorremos la pantalla en filas y columnas aplicando el entrelazado geométrico
+      for (let y = 0; y < canvas.height + HEX_RADIUS * 2; y += vSpacing) {
+        // Desplazamos las columnas de forma intercalada según la fila para un acoplamiento perfecto
+        let xOffset = (Math.floor(y / vSpacing) % 2 === 0) ? 0 : hexWidth / 2;
+
+        for (let x = -xOffset; x < canvas.width + hexWidth; x += hSpacing) {
+          
+          let dx = mouse.x - x;
+          let dy = mouse.y - y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < REVEAL_RADIUS) {
+            let opacity = 1 - (distance / REVEAL_RADIUS);
+            
+            ctx.save();
+            
+            // 📐 ROTACIÓN CORREGIDA A 90 GRADOS (Hexágonos con punta hacia arriba)
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+              let angle = (Math.PI / 3) * i + Math.PI / 2; // El "+ Math.PI / 2" bloquea la orientación en punta
+              ctx.lineTo(x + HEX_RADIUS * Math.cos(angle), y + HEX_RADIUS * Math.sin(angle));
+            }
+            ctx.closePath();
+            
+            // Estilo del trazo del hexágono hueco
+            ctx.strokeStyle = `rgba(164, 239, 233, ${opacity * 0.45})`; 
+            ctx.lineWidth = 1.2; // ✏️ Modifica esta línea para hacer las líneas más delgadas o gruesas
+            ctx.stroke();
+
+            // Resplandor y refuerzo de neón en los nodos más cercanos al cursor
+            if (distance < REVEAL_RADIUS * 0.4) {
+              ctx.shadowBlur = 8;
+              ctx.shadowColor = CYAN_COLOR;
+              ctx.strokeStyle = `rgba(164, 239, 233, ${opacity * 0.8})`;
+              ctx.lineWidth = 1.8;
+              ctx.stroke();
+            }
+            
+            ctx.restore();
+          }
+        }
+      }
+
+      requestAnimationFrame(renderHexGrid);
+    }
+
+
+    // Inicializar el bucle de renderizado
+    renderHexGrid();
+  });
+})();
+
+
+
+
 </script>
 
 
@@ -5157,7 +5533,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <div class="footer-divider-stone"></div>
   
    <div class="footer-beacon-content">
-    <p class="beacon-status">[ NODE_STATUS :: <span>ONLINE</span> ]</p>
+    <p class="beacon-status">[ NODE_CONNECTION_STATUS :: <span>SUCCESSFUL</span> ]</p>
     <p class="beacon-telemetry">
       You have been tuned to the frequency <strong id="live-frequency">8809.135.43//5</strong> MHz 
         

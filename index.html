@@ -1865,7 +1865,7 @@ button, a, img {
 .panel-terminal-header {
   font-family: 'Orbitron', monospace;
   font-size: 10px;
-  color: #d83ca4;
+  color: #6c5e57;
   letter-spacing: 1px;
   font-weight: bold;
   border-bottom: 1px dashed rgba(216, 60, 164, 0.3);
@@ -2208,7 +2208,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 /* LA PESTAÑA DISPARADORA (ANCLADA A LA DERECHA DEL CONTENEDOR) */
 #permanent-folder-tab {
   position: absolute;
-  top: 44.7%;
+  top: 48%;
   right: -35px; /* Sobresale hacia la derecha */
   
   width: 39px;
@@ -2237,6 +2237,23 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
     }
 
 }
+
+
+@media (min-width:768px) and (hover:hover) and (pointer:fine){
+
+#permanent-folder-tab {
+        top: 44.7%;
+        
+    }
+}
+
+@media (display-mode: standalone) and (min-width: 768px) {
+
+   #permanent-folder-tab {
+        top: 51%;
+    }
+}
+    
 
 #permanent-folder-tab:active {
             box-shadow: none;
@@ -2472,7 +2489,7 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
 .juke-board-footer {
   font-family: 'Orbitron', monospace;
   font-size: 8px;
-  color: rgba(108, 94, 87, 0.3);
+  color: rgba(135, 255, 255, 0.2);
   letter-spacing: 1px;
   text-align: center;
   padding-top: 2px;
@@ -2733,6 +2750,22 @@ animation: parpadeo 2s infinite; /* Nombre de la animación, duración y repetic
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.55), inset 0 0 10px rgba(0,0,0,0.5);
   z-index: 9999; 
   pointer-events: auto;
+}
+
+@media (display-mode: standalone) and (min-width: 768px) and (hover: hover) and (pointer: fine) {
+
+   .juke-hud-brand-standalone {
+        top: 25px;       /* 📍 CALIBRACIÓN MANUAL GENERAL */
+  left: 25px;  
+    }
+}
+
+@media (display-mode: standalone) and (min-width: 768px) {
+
+   .juke-hud-brand-standalone {
+        top: 175px;       /* 📍 CALIBRACIÓN MANUAL GENERAL */
+  left: 25px;  
+    }
 }
 
 .hud-brand-top-border {

@@ -12,23 +12,10 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   
   const db = firebase.database();
-
-  // 🟢 EL DETONADOR DE RED (ENCENDIDO SÍNCRONO):
-  // En cuanto nace tu variable de base de datos 'db' real, encendemos el contador.
-  // Al hacerlo aquí, garantizamos al 100% que las llaves de red estén abiertas y libres de '--'.
-  initRealtimeListenersCounter();
   
   let username = "";
   
-  function showUsernameModal() {
-    const usernameModal = document.getElementById("username-modal");
-    usernameModal.style.display = "block";
-  }
-  
-  function closeUsernameModal() {
-    const usernameModal = document.getElementById("username-modal");
-    usernameModal.style.display = "none";
-  }
+
   
   function setUsername() {
     const usernameInput = document.getElementById("username-input");
@@ -39,10 +26,10 @@ var firebaseConfig = {
         return;
     }
 
-    const usernameModal = document.getElementById("username-modal");
+    const usernameModal = document.getElementById("username-container");
     usernameModal.style.display = "none"; // Oculta la ventana emergente
 
-    const welcomeMessage = "Welcome, " + username + "!";
+    const welcomeMessage = "Bienvenido, " + username + "!";
     
     // Crear la colección en la base de datos y enviar los datos para el mensaje de bienvenida
     const timestamp = Date.now();
@@ -199,11 +186,19 @@ const messagesContainer = document.getElementById("messages");
 // NO se guarda en Firebase.
 const welcomeMessage = `
     <li class="chat-welcome">
-        <span class="system-title">[ INTERACTION_PORT :: READY ]</span>
-        <p class="system-body">
-           >> SONIC SIGNALS IN ORBIT...   <span class="neon-led"></span> // You are now tuned into the digital sanctuary of timeless classics and hidden gems. Say hello, share a track, and let the jukebox do the rest. Discovery is an adventure.
-        </p>
-    </li>
+    <span class="system-title">[ INTERACTION_PORT :: READY ]</span>
+    <p class="system-body">
+       >> SONIC SIGNALS IN ORBIT...   <span class="neon-led"></span> // You are now tuned into the digital sanctuary of timeless classics and hidden gems. Say hello, share a track, and let the jukebox do the rest. Discovery is an adventure.
+    </p>
+    
+    <!-- Entrada de usuario integrada en la bienvenida -->
+    <div id="username-container" class="welcome-username-box">
+        <div class="username-fields">
+          <input type="text" id="username-input" placeholder="Username" />
+          <button id="set-username-button" onclick="setUsername()">▶️</button>
+        </div>
+    </div>
+</li>
 `;
 
 messagesContainer.innerHTML += welcomeMessage;

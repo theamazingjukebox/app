@@ -203,7 +203,7 @@
         0 0 10px rgb(162, 0, 255),   /* Brillo rosa */
         0 0 20px rgba(162, 0, 255),   /* Brillo rosa más intenso */
         0 0 30px rgba(162, 0, 255);   /* Brillo rosa aún más intenso */
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.5px;
     margin-bottom: 6px;
     
@@ -213,7 +213,7 @@
 #messages .chat-welcome .system-body {
     font-family: monospace; 
     font-weight: normal;
-    font-size: 12px;
+    font-size: 10px;
     color: #dffcff; /* Tu color claro secundario */
     line-height: 1.5;
     opacity: 0.7;    
@@ -387,7 +387,7 @@
         padding: 10px;
         color: white;
         display: none; /* Inicialmente oculto */
-        z-index: 15;
+        z-index: 25;
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
@@ -407,7 +407,9 @@
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
     font-family: Orbitron;
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-top: 7px;
+    margin-bottom: 0px;
+        padding-bottom: -7px;
     width: 95px;
     
 }

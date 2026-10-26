@@ -51,7 +51,7 @@
 }
 #chat {
             position: absolute; /* Posiciona el botón sobre la imagen */
-    top: 75%; /* Ajusta este valor para colocar el botón verticalmente */
+    top: 80%; /* Ajusta este valor para colocar el botón verticalmente */
     left: 50%; /* Centra horizontalmente */
     transform: translate(-50%, -50%);
     border: 3px solid transparent;
@@ -80,7 +80,7 @@
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #chat {
-        top: 74.5%;
+        top: 79.5%;
     }
 }
 
@@ -230,14 +230,14 @@
 
 @media (min-width: 768px) {
     #messages .chat-welcome .system-body {
-        font-size: 9px;
+        font-size: 10px;
         
     }
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     #messages .chat-welcome .system-body {
-        font-size: 12px;
+        font-size: 10px;
         
     }
 }

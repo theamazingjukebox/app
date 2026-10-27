@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "The Amazing Jukebox",
-  "short_name": "The Amazing Jukebox",
+  "name": "",
+  "short_name": "",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

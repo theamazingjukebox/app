@@ -311,7 +311,7 @@
     flex-wrap: wrap;
     justify-content: center;
     position: absolute; /* Utiliza posición absoluta */
-    top: 90%; /* Coloca el contenedor debajo del cuadro de chat */
+    top: 86%; /* Coloca el contenedor debajo del cuadro de chat */
     left: 50%; /* Centra el contenedor horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta para centrar en pantalla */
     padding: 5px;

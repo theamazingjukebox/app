@@ -12,11 +12,19 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   
   const db = firebase.database();
-
   
   let username = "";
-  
 
+ function showUsernameModal() {
+    const usernameModal = document.getElementById("username-modal");
+    usernameModal.style.display = "none";
+  }
+  
+  function closeUsernameModal() {
+    const usernameModal = document.getElementById("username-modal");
+    usernameModal.style.display = "none";
+  }
+  
   
   function setUsername() {
     const usernameInput = document.getElementById("username-input");
@@ -30,7 +38,7 @@ var firebaseConfig = {
     const usernameModal = document.getElementById("username-container");
     usernameModal.style.display = "none"; // Oculta la ventana emergente
 
-    const welcomeMessage = "Bienvenido, " + username + "!";
+    const welcomeMessage = "Welcome, " + username + "!";
     
     // Crear la colección en la base de datos y enviar los datos para el mensaje de bienvenida
     const timestamp = Date.now();
@@ -55,7 +63,6 @@ var firebaseConfig = {
     // Además, puedes descomentar la siguiente línea si deseas redirigir al usuario después de establecer el nombre de usuario
     // window.location.href = "tu_pagina.html";
 }
-
 
   
   // Agrega esta función para seleccionar un emoji

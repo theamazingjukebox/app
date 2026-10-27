@@ -761,7 +761,7 @@ font-size: 1.4em;
         #6cffeb94 /* Color final, puedes elegir uno que haga buen contraste */
     );
 }
-}
+
 
 /* Para pantallas móviles */
 @media (max-width: 768px) {

@@ -13,10 +13,6 @@ var firebaseConfig = {
   
   const db = firebase.database();
 
-  // 🟢 EL DETONADOR DE RED (ENCENDIDO SÍNCRONO):
-  // En cuanto nace tu variable de base de datos 'db' real, encendemos el contador.
-  // Al hacerlo aquí, garantizamos al 100% que las llaves de red estén abiertas y libres de '--'.
-  initRealtimeListenersCounter();
   
   let username = "";
   

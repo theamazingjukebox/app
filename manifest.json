@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "",
-  "short_name": "",
+  "name": "theamazingjukebox",
+  "short_name": "theamazingjukebox",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

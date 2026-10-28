@@ -3961,12 +3961,15 @@ function setChatState(expanded) {
     chatContainer.style.height = expanded ? "310px" : "40px";
     toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
 
-   // 🔥 SIEMPRE que se contraiga (ya sea al cargar o al darle clic para cerrar)
+    // 🔥 SIEMPRE que se contraiga
     if (!expanded && messagesContainer) {
-        // Usamos un pequeño delay para asegurarnos de que el CSS ya aplicó los 40px
+        // 1. Forzamos un reseteo instantáneo a 0 para limpiar la caché del scroll del navegador
+        messagesContainer.scrollTop = 0;
+
+        // 2. En el siguiente ciclo de renderizado, aplicamos tu posición ideal mandatoria
         setTimeout(() => {
-            messagesContainer.scrollTop = 7; // 🎯 Tu medida ideal fija
-        }, 50); 
+            messagesContainer.scrollTop = 7; // 🎯 Tu medida ideal
+        }, 60); // ⏳ Le damos un margen de 60ms para que el CSS de 40px termine de asentarse
     }
 }
 
@@ -5603,7 +5606,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <br><span class="beacon-cursor">//</span> Digital Garden Node #004.
     </p>
     <p class="beacon-manifest">
-      Archiving audio waves, preserving zero-friction musical heritage, and avoiding mainstream algorithms since 2023.
+      Archiving audio waves, preserving zero-friction musical heritage, and channeling rare gems since 2023.
     </p>
   </div>
 

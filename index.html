@@ -3961,12 +3961,12 @@ function setChatState(expanded) {
     chatContainer.style.height = expanded ? "310px" : "40px";
     toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
 
-    // Si está colapsado, movemos la barrita rosa de los mensajes
+   // 🔥 SIEMPRE que se contraiga (ya sea al cargar o al darle clic para cerrar)
     if (!expanded && messagesContainer) {
-        requestAnimationFrame(() => {
-            // Ajusta este número (ej. 15, 20, 25) hasta que la barra rosa baje exactamente lo que necesitas
-            messagesContainer.scrollTop = 7; 
-        });
+        // Usamos un pequeño delay para asegurarnos de que el CSS ya aplicó los 40px
+        setTimeout(() => {
+            messagesContainer.scrollTop = 7; // 🎯 Tu medida ideal fija
+        }, 50); 
     }
 }
 

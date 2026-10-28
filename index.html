@@ -3957,7 +3957,7 @@ function setChatState(expanded) {
     if (!chatContainer || !toggleIcon) return; // 🔒 seguridad
 
     isChatExpanded = expanded;
-    chatContainer.style.height = expanded ? "310px" : "50px";
+    chatContainer.style.height = expanded ? "310px" : "40px";
     toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
 }
 
@@ -3984,7 +3984,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔥 estado inicial limpio
     setChatState(false);
-    chatContainer.scrollTop = 1;
+    chatContainer.scrollTop = 5;
 
 });
 
@@ -4002,14 +4002,14 @@ window.addEventListener("load", () => {
 
         // 2. Lo cerramos limpiamente para que las variables se queden en orden
         setTimeout(() => {
-            if (chatContainer) chatContainer.scrollTop = 0;
-            setChatState(false);
+            if (chatContainer) chatContainer.scrollTop = 5;
+            setChatState(true);
         }, 500);
 
         // 3. Lo abrimos a su altura final oficial (310px como lo tienes abajo) de forma correcta
         setTimeout(() => {
-            if (chatContainer) chatContainer.scrollTop = 0;
-            setChatState(true); // 🔥 Corrección: Usamos la función nativa en lugar de inyectar .style.height
+            if (chatContainer) chatContainer.scrollTop = 5;
+            setChatState(false); // 🔥 Corrección: Usamos la función nativa en lugar de inyectar .style.height
         }, 1000);
 
         // 4. Ocultamos el loader en paz

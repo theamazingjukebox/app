@@ -210,6 +210,20 @@
     
 }
 
+@media (min-width: 768px) {
+    #messages .chat-welcome .system-title {
+        font-size: 8px;
+        
+    }
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    #messages .chat-welcome .system-title {
+        font-size: 10px;
+        
+    }
+}
+
 /* El cuerpo del mensaje: Texto plano Monospace Claro */
 #messages .chat-welcome .system-body {
     font-family: monospace; 

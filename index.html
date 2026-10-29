@@ -3672,15 +3672,17 @@ const songInfo = {
 
 };
 
+
 // ======================
-// YOUTUBE SETUP (SANO Y SIN FUGAS)
+// YOUTUBE SETUP (PERSISTENTE)
 // ======================
 let ytPlayer = null;
 let isPlayerReady = false;
+let qualityInterval = null;
 let endCheckInterval = null;
 let soundEnabled = true;
 
-// Eliminamos por completo la variable qualityInterval porque ya no la usaremos de forma repetitiva
+
 
 function startEndWatcher() {
     if (endCheckInterval) clearInterval(endCheckInterval);
@@ -3688,21 +3690,18 @@ function startEndWatcher() {
     endCheckInterval = setInterval(() => {
         if (!ytPlayer || !isPlayerReady) return;
 
-        // Validamos que el reproductor esté reproduciendo antes de medir tiempos
-        if (ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) return;
-
         const duration = ytPlayer.getDuration();
         const current = ytPlayer.getCurrentTime();
 
-        // 🧯 Red de seguridad: si por alguna razón el evento ENDED nativo falla,
-        // este watcher cambia de canción, pero deteniendo el intervalo de inmediato.
-        if (duration && (duration - current < 0.4)) {
+        if (duration && (duration - current < 0.3)) {
             clearInterval(endCheckInterval);
             playNextVideo();
         }
-    }, 250); // 250ms es más que suficiente y consume menos CPU
+
+    }, 200);
 }
 
+    
 function initYouTubePlayer(videoId) {
     ytPlayer = new YT.Player("youtube-player", {
         videoId: videoId,
@@ -3715,59 +3714,59 @@ function initYouTubePlayer(videoId) {
             playsinline: 1,
             iv_load_policy: 3,
             disablekb: 1 
+            
         },
         events: {
             onReady: (event) => {
                 isPlayerReady = true;
 
-                // 🔒 Candado 1: Calidad baja obligatoria al nacer el reproductor
-                event.target.setPlaybackQuality('small');
+                // 🔥 calidad baja inicial (clave)
+    event.target.setPlaybackQuality('small');
 
-                if (soundEnabled) {
+                
+    if (soundEnabled) {
                     event.target.unMute();
                     event.target.setVolume(100);
                 } else {
                     event.target.mute();
                 }
-                console.log("🟢 Terminal lista y sincronizada.");
+                
+           // 🛑 CORRECCIÓN MANUAL: Removemos el playVideo(); para que la rockola
+                // espere pacientemente a que el usuario presione el botón físico de PLAY.
+                console.log("🟢 Terminal lista y sincronizada. Esperando interacción del usuario.");
             },
+            
 
             onStateChange: (event) => {
-                if (event.data === YT.PlayerState.PLAYING) {
-                    // 🔒 Candado 2: Reafirmamos al dar PLAY inicial para congelar el buffer de arranque
-                    if (ytPlayer && isPlayerReady) {
-                        ytPlayer.setPlaybackQuality('small');
-                    }
+    if (event.data === YT.PlayerState.PLAYING) {
+        const poster = document.getElementById("video-poster");
+    if (poster) {
+        poster.style.opacity = "0";
+        setTimeout(() => { poster.style.display = "none"; }, 300);
+    }
 
-                    const poster = document.getElementById("video-poster");
-                    if (poster) {
-                        poster.style.opacity = "0";
-                        setTimeout(() => { poster.style.display = "none"; }, 300);
-                    }
+         if (qualityInterval) clearInterval(qualityInterval);
+                    
+                    qualityInterval = setInterval(() => {
+                        if (ytPlayer && isPlayerReady) {
+                            ytPlayer.setPlaybackQuality('small');
+                        }
+                    }, 500);
                     
                     startEndWatcher();
-                }
+
+                    setTimeout(() => {
+                        clearInterval(qualityInterval);
+                    }, 4000);
+            }
+          
 
                 if (event.data === YT.PlayerState.ENDED) {
-                    if (endCheckInterval) clearInterval(endCheckInterval);
-                    setTimeout(() => { playNextVideo(); }, 150);
-                }
-            },
-
-            // 🔒 EL ESCUDO DEFINITIVO: Intercepta los intentos de auto-escalado de YouTube
-            onPlaybackQualityChange: (event) => {
-                // Si YouTube intenta cambiar la calidad a algo que NO sea 'small'
-                if (event.data !== 'small' && ytPlayer && isPlayerReady) {
-                    console.log(`⚠️ Alerta de desvío: YouTube intentó cambiar a [${event.data}]. Forzando retorno inmediato.`);
-                    
-                    // Lo regresamos a 'small' de un solo golpe. 
-                    // Al ejecutarse de forma síncrona en el evento, el buffer no llega a romperse.
-                    ytPlayer.setPlaybackQuality('small');
+                    setTimeout(() => { playNextVideo(); }, 200);
                 }
             },
             
             onError: () => {
-                if (endCheckInterval) clearInterval(endCheckInterval);
                 console.log("YT error → siguiente video");
                 playNextVideo();
             }

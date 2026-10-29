@@ -3673,15 +3673,14 @@ const songInfo = {
 };
 
 // ======================
-// YOUTUBE SETUP (PERSISTENTE)
+// YOUTUBE SETUP (SANO Y SIN FUGAS)
 // ======================
 let ytPlayer = null;
 let isPlayerReady = false;
-let qualityInterval = null;
 let endCheckInterval = null;
 let soundEnabled = true;
 
-
+// Eliminamos por completo la variable qualityInterval porque ya no la usaremos de forma repetitiva
 
 function startEndWatcher() {
     if (endCheckInterval) clearInterval(endCheckInterval);
@@ -3689,22 +3688,25 @@ function startEndWatcher() {
     endCheckInterval = setInterval(() => {
         if (!ytPlayer || !isPlayerReady) return;
 
+        // Validamos que el reproductor esté reproduciendo antes de medir tiempos
+        if (ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) return;
+
         const duration = ytPlayer.getDuration();
         const current = ytPlayer.getCurrentTime();
 
-        if (duration && (duration - current < 0.3)) {
+        // 🧯 Red de seguridad: si por alguna razón el evento ENDED nativo falla,
+        // este watcher cambia de canción, pero deteniendo el intervalo de inmediato.
+        if (duration && (duration - current < 0.4)) {
             clearInterval(endCheckInterval);
             playNextVideo();
         }
-
-    }, 200);
+    }, 250); // 250ms es más que suficiente y consume menos CPU
 }
 
-    
 function initYouTubePlayer(videoId) {
     ytPlayer = new YT.Player("youtube-player", {
         videoId: videoId,
-        host: "https://www.youtube-nocookie.com",
+        host: "https://youtube-nocookie.com",
         playerVars: {
             autoplay: 0,
             controls: 1,
@@ -3713,73 +3715,58 @@ function initYouTubePlayer(videoId) {
             playsinline: 1,
             iv_load_policy: 3,
             disablekb: 1 
-            
         },
         events: {
             onReady: (event) => {
                 isPlayerReady = true;
 
-                // 🔥 calidad baja inicial (clave)
-    event.target.setPlaybackQuality('small');
-
+                // 🔥 Se establece la calidad una única vez al estar listo
+                event.target.setPlaybackQuality('small');
                 
-    if (soundEnabled) {
+                if (soundEnabled) {
                     event.target.unMute();
                     event.target.setVolume(100);
                 } else {
                     event.target.mute();
                 }
-                
-           // 🛑 CORRECCIÓN MANUAL: Removemos el playVideo(); para que la rockola
-                // espere pacientemente a que el usuario presione el botón físico de PLAY.
-                console.log("🟢 Terminal lista y sincronizada. Esperando interacción del usuario.");
+                console.log("🟢 Terminal lista y sincronizada.");
             },
-            
 
             onStateChange: (event) => {
-    if (event.data === YT.PlayerState.PLAYING) {
-        const poster = document.getElementById("video-poster");
-    if (poster) {
-        poster.style.opacity = "0";
-        setTimeout(() => { poster.style.display = "none"; }, 300);
-    }
+                if (event.data === YT.PlayerState.PLAYING) {
+                    const poster = document.getElementById("video-poster");
+                    if (poster) {
+                        poster.style.opacity = "0";
+                        setTimeout(() => { poster.style.display = "none"; }, 300);
+                    }
 
-         if (qualityInterval) clearInterval(qualityInterval);
+                    // 🔥 EL CAMBIO CLAVE: Seteamos la calidad una sola vez al dar PLAY.
+                    // Al no usar un setInterval de 500ms, los móviles y PC no se saturan 
+                    // y los controles se ocultarán de forma nativa a los 2 segundos de juego.
+                    if (ytPlayer && isPlayerReady) {
+                        ytPlayer.setPlaybackQuality('small');
+                    }
                     
-                    qualityInterval = setInterval(() => {
-                        if (ytPlayer && isPlayerReady) {
-                            ytPlayer.setPlaybackQuality('small');
-                        }
-                    }, 500);
-                    
+                    // Arrancamos el vigilante de final de canción de forma limpia
                     startEndWatcher();
-
-                    setTimeout(() => {
-                        clearInterval(qualityInterval);
-                    }, 4000);
-            }
-                    // ========================================================
-// 🛡️ SISTEMA DE CENTINELAS MEJORADO (CON RED DE SEGURIDAD TARDÍA)
-// ========================================================
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 2500); 
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 4500); 
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 7000); // 🔥 La red de seguridad a los 7 segundos
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 9500); 
-                
-                
+                }
 
                 if (event.data === YT.PlayerState.ENDED) {
-                    setTimeout(() => { playNextVideo(); }, 200);
+                    // Detenemos el watcher para que no compita con este evento nativo
+                    if (endCheckInterval) clearInterval(endCheckInterval);
+                    setTimeout(() => { playNextVideo(); }, 150);
                 }
             },
             
             onError: () => {
+                if (endCheckInterval) clearInterval(endCheckInterval);
                 console.log("YT error → siguiente video");
                 playNextVideo();
             }
         }
     });
 }
+
     
       let currentVideoIndex = -1;
     const videoPlayer = document.createElement("video");
@@ -3853,10 +3840,7 @@ setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 9500);
                 ytPlayer.setVolume(100);
             }
 
-            // 🔥 RÁFAGA DE RESPALDO AL DAR NEXT:
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 1000);
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 3000);
-setTimeout(() => { triggerSmartGhostMouse(); triggerSmartGhostTouch(); }, 7000);
+
         }
     }
     // ======================
@@ -4268,74 +4252,6 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 
-
-function triggerSmartGhostMouse() {
-    const playerContainer = document.getElementById("youtube-player");
-    if (!playerContainer || !ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
-
-    // Solo actuamos si el video sigue reproduciéndose (PLAYING = 1) o está en búfer (BUFFERING = 3)
-    const playerState = ytPlayer.getPlayerState();
-    if (playerState === 1 || playerState === 3) {
-        console.log("🔍 Centinela: Ejecutando sacudida invisible con coordenadas de salida reales.");
-        
-        // Simula la entrada del cursor en una esquina superior
-        const mouseOverEvent = new MouseEvent('mouseover', { 
-            bubbles: true, cancelable: true, view: window, clientX: 10, clientY: 10 
-        });
-        playerContainer.dispatchEvent(mouseOverEvent);
-
-        // 200ms después, forzamos la salida simulando que el ratón saltó mágicamente fuera del mapa
-        setTimeout(() => {
-            const mouseLeaveEvent = new MouseEvent('mouseleave', { 
-                bubbles: true, cancelable: true, view: window, clientX: -9999, clientY: -9999 
-            });
-            playerContainer.dispatchEvent(mouseLeaveEvent);
-            playerContainer.blur(); // Asegura romper cualquier fijación de foco
-        }, 200);
-    }
-}
-
-
-// ========================================================
-// 📱 FUNCIÓN TOQUE FANTASMA INTELIGENTE V1.1 (EXCLUSIVO MÓVILES)
-// ========================================================
-function triggerSmartGhostTouch() {
-    const playerContainer = document.getElementById("youtube-player");
-    if (!playerContainer || !ytPlayer || typeof ytPlayer.getPlayerState !== 'function') return;
-
-    // 1. Candado de seguridad: Solo actuamos en pantallas táctiles (pointer: coarse)
-    const isMobileTouch = window.matchMedia("(pointer: coarse)").matches;
-    if (!isMobileTouch) return; 
-
-    // 2. Solo actuamos si el video sigue en reproducción activa (PLAYING = 1) o búfer (BUFFERING = 3)
-    const playerState = ytPlayer.getPlayerState();
-    if (playerState === 1 || playerState === 3) {
-        console.log("📱 Centinela Táctil: Sacudida de toque fantasma optimizada con liberación de foco.");
-
-        // Creamos un evento de toque nativo simulado (touchstart) en la esquina superior izquierda
-        const touchStartEvent = new TouchEvent('touchstart', {
-            bubbles: true,
-            cancelable: true,
-            view: window,
-            touches: [new Touch({
-                identifier: Date.now(),
-                target: playerContainer,
-                clientX: playerContainer.getBoundingClientRect().left + 10,
-                clientY: playerContainer.getBoundingClientRect().top + 10
-            })]
-        });
-        playerContainer.dispatchEvent(touchStartEvent);
-
-        // Retiramos el dedo virtual (touchend) y forzamos el fin de la fijación táctil
-        setTimeout(() => {
-            const touchEndEvent = new TouchEvent('touchend', { bubbles: true, cancelable: true, view: window });
-            playerContainer.dispatchEvent(touchEndEvent);
-            
-            // 🔥 El escudo definitivo para móviles: rompe cualquier selección o foco que mantenga los controles fijos
-            playerContainer.blur(); 
-        }, 50);
-    }
-}
 
 
 // ==============================================================================

@@ -3720,9 +3720,9 @@ function initYouTubePlayer(videoId) {
             onReady: (event) => {
                 isPlayerReady = true;
 
-                // 🔥 Se establece la calidad una única vez al estar listo
+                // 🔒 Candado 1: Calidad baja inicial obligatoria
                 event.target.setPlaybackQuality('small');
-                
+
                 if (soundEnabled) {
                     event.target.unMute();
                     event.target.setVolume(100);
@@ -3733,26 +3733,30 @@ function initYouTubePlayer(videoId) {
             },
 
             onStateChange: (event) => {
+                // 🔒 Candado 2: Si el video da PLAY, nos aseguramos de bajarlo a small de inmediato
                 if (event.data === YT.PlayerState.PLAYING) {
+                    if (ytPlayer && isPlayerReady) {
+                        ytPlayer.setPlaybackQuality('small');
+                    }
+
                     const poster = document.getElementById("video-poster");
                     if (poster) {
                         poster.style.opacity = "0";
                         setTimeout(() => { poster.style.display = "none"; }, 300);
                     }
-
-                    // 🔥 EL CAMBIO CLAVE: Seteamos la calidad una sola vez al dar PLAY.
-                    // Al no usar un setInterval de 500ms, los móviles y PC no se saturan 
-                    // y los controles se ocultarán de forma nativa a los 2 segundos de juego.
-                    if (ytPlayer && isPlayerReady) {
-                        ytPlayer.setPlaybackQuality('small');
-                    }
                     
-                    // Arrancamos el vigilante de final de canción de forma limpia
                     startEndWatcher();
                 }
 
+                // 🔒 Candado 3: Si el usuario tiene una red lenta o el video entra en BUFFERING (Estado 3),
+                // YouTube intentará recalcular la calidad. Lo interceptamos y lo obligamos a regresar a small.
+                if (event.data === YT.PlayerState.BUFFERING) {
+                    if (ytPlayer && isPlayerReady) {
+                        ytPlayer.setPlaybackQuality('small');
+                    }
+                }
+
                 if (event.data === YT.PlayerState.ENDED) {
-                    // Detenemos el watcher para que no compita con este evento nativo
                     if (endCheckInterval) clearInterval(endCheckInterval);
                     setTimeout(() => { playNextVideo(); }, 150);
                 }
@@ -3766,6 +3770,7 @@ function initYouTubePlayer(videoId) {
         }
     });
 }
+
 
     
       let currentVideoIndex = -1;

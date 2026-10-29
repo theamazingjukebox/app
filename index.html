@@ -55,10 +55,10 @@
     #toggle-icon {
     outline: none; 
      position: relative;
-    width: 20px; /* Ajusta el ancho de la imagen */
-    height: 21px; /* Ajusta la altura de la imagen */
-    left: -2px;
-    margin: -15px;
+    width: 19px; /* Ajusta el ancho de la imagen */
+    height: 19px; /* Ajusta la altura de la imagen */
+    left: -8px;
+    margin: -8px;
     top: -13px;
     transition: box-shadow 0.3s ease, transform 0.3s ease; /* Suaviza la transición */
 }
@@ -4623,7 +4623,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const state = activePlayer.getPlayerState();
             
             if (state === 1 || state === 3) {
-                telemetryText.innerText = "SIGNAL_DECODED // 320kbps";
+                telemetryText.innerText = "SIGNAL_STABLE // 320kbps";
                 telemetryText.style.color = "#87ffff";
                 ledIndicator.style.backgroundColor = "#39ff14";
                 ledIndicator.style.boxShadow = "0 0 8px #39ff14";

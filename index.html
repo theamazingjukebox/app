@@ -3961,29 +3961,15 @@ function setChatState(expanded) {
     chatContainer.style.height = expanded ? "310px" : "40px";
     toggleIcon.src = expanded ? "down17-2.png" : "down17.png";
 
-    // 🔥 SIEMPRE que se contraiga
+   // 🔥 SIEMPRE que se contraiga
     if (!expanded && messagesContainer) {
-        // 1. Reseteo instantáneo preventivo
+        // 1. Forzamos un reseteo instantáneo a 0 para limpiar la caché del scroll del navegador
         messagesContainer.scrollTop = 0;
 
-        // 2. Definimos la función que aplicará el scroll exacto
-        const aplicarScrollIdeal = () => {
+        // 2. En el siguiente ciclo de renderizado, aplicamos tu posición ideal mandatoria
+        setTimeout(() => {
             messagesContainer.scrollTop = 7; // 🎯 Tu medida ideal
-        };
-
-        // 3. Para PC: Escuchamos el final exacto de la animación CSS de encogimiento
-        chatContainer.addEventListener('transitionend', function alTerminarAnimacion(e) {
-            // Nos aseguramos de escuchar solo el cambio de altura
-            if (e.propertyName === 'height') {
-                aplicarScrollIdeal();
-                // Limpiamos el evento para que no se acumule en memoria
-                chatContainer.removeEventListener('transitionend', alTerminarAnimacion);
-            }
-        });
-
-        // 4. Respaldo (Móviles / Transiciones instantáneas sin CSS)
-        // Si el CSS no tiene transición o tarda, esto actúa como un salvavidas
-        setTimeout(aplicarScrollIdeal, 250); 
+        }, 60); // ⏳ Le damos un margen de 60ms para que el CSS de 40px termine de asentarse
     }
 }
 

@@ -849,7 +849,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 2. Inyectar la fuente Orbitron directamente en el head del widget flotante
       const fontLink = pipWindow.document.createElement('link');
       fontLink.rel = 'stylesheet';
-      fontLink.href = 'https://googleapis.com';
+      fontLink.href = 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap';
       pipWindow.document.head.appendChild(fontLink);
 
       // 3. Inyectar la interfaz optimizada con tu imagen animada local

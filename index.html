@@ -3706,7 +3706,7 @@ function startEndWatcher() {
 function initYouTubePlayer(videoId) {
     ytPlayer = new YT.Player("youtube-player", {
         videoId: videoId,
-        host: "https://www.youtube-nocookie.com",
+        host: "https://youtube-nocookie.com",
         playerVars: {
             autoplay: 0,
             controls: 1,
@@ -3720,7 +3720,7 @@ function initYouTubePlayer(videoId) {
             onReady: (event) => {
                 isPlayerReady = true;
 
-                // 🔒 Candado 1: Calidad baja inicial obligatoria
+                // 🔒 Candado 1: Calidad baja obligatoria al nacer el reproductor
                 event.target.setPlaybackQuality('small');
 
                 if (soundEnabled) {
@@ -3733,8 +3733,8 @@ function initYouTubePlayer(videoId) {
             },
 
             onStateChange: (event) => {
-                // 🔒 Candado 2: Si el video da PLAY, nos aseguramos de bajarlo a small de inmediato
                 if (event.data === YT.PlayerState.PLAYING) {
+                    // 🔒 Candado 2: Reafirmamos al dar PLAY inicial para congelar el buffer de arranque
                     if (ytPlayer && isPlayerReady) {
                         ytPlayer.setPlaybackQuality('small');
                     }
@@ -3748,17 +3748,21 @@ function initYouTubePlayer(videoId) {
                     startEndWatcher();
                 }
 
-                // 🔒 Candado 3: Si el usuario tiene una red lenta o el video entra en BUFFERING (Estado 3),
-                // YouTube intentará recalcular la calidad. Lo interceptamos y lo obligamos a regresar a small.
-                if (event.data === YT.PlayerState.BUFFERING) {
-                    if (ytPlayer && isPlayerReady) {
-                        ytPlayer.setPlaybackQuality('small');
-                    }
-                }
-
                 if (event.data === YT.PlayerState.ENDED) {
                     if (endCheckInterval) clearInterval(endCheckInterval);
                     setTimeout(() => { playNextVideo(); }, 150);
+                }
+            },
+
+            // 🔒 EL ESCUDO DEFINITIVO: Intercepta los intentos de auto-escalado de YouTube
+            onPlaybackQualityChange: (event) => {
+                // Si YouTube intenta cambiar la calidad a algo que NO sea 'small'
+                if (event.data !== 'small' && ytPlayer && isPlayerReady) {
+                    console.log(`⚠️ Alerta de desvío: YouTube intentó cambiar a [${event.data}]. Forzando retorno inmediato.`);
+                    
+                    // Lo regresamos a 'small' de un solo golpe. 
+                    // Al ejecutarse de forma síncrona en el evento, el buffer no llega a romperse.
+                    ytPlayer.setPlaybackQuality('small');
                 }
             },
             
@@ -3770,6 +3774,7 @@ function initYouTubePlayer(videoId) {
         }
     });
 }
+
 
 
     

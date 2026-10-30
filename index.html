@@ -3803,6 +3803,16 @@ function initYouTubePlayer(videoId) {
 
 }
     function playNextVideo() {
+
+          // 🧹 PURGA GENERAL PERIMETRAL: Detiene temporizadores secundarios antes de cambiar de track
+    if (typeof trackCheckInterval !== 'undefined' && trackCheckInterval) {
+        clearInterval(trackCheckInterval);
+        trackCheckInterval = null;
+    }
+    if (typeof endCheckInterval !== 'undefined' && endCheckInterval) {
+        clearInterval(endCheckInterval);
+        endCheckInterval = null;
+    }
  
     currentVideoIndex++;
 
@@ -4528,6 +4538,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         toggle = !toggle;
     }, 1500);
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const mainChat = document.getElementById("chat");
+    if (mainChat) {
+        ['mousemove', 'mouseover', 'mouseout'].forEach(eventType => {
+            mainChat.addEventListener(eventType, (e) => {
+                e.stopPropagation(); // El chat no estresará al reproductor bajo ninguna circunstancia
+            }, { passive: true });
+        });
+    }
 });
 
 

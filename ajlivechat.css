@@ -703,7 +703,7 @@ font-size: 1.4em;
 #menu.show {
     max-height: 500px; /* Altura máxima suficiente para el contenido */
     font-size: medium;
-    font-family: "Press Start 2P", system-ui;
+    font-family: 'Orbitron';
     margin-top: 4%;
     opacity: 1;
     
@@ -721,7 +721,7 @@ font-size: 1.4em;
     margin: 0;
     padding: 0;
     transform: 0.9s ease-out;
-    font-family: "Press Start 2P", system-ui;
+    font-family: 'Orbitron';
 }
 
 #menu ul li {
@@ -1013,9 +1013,7 @@ transparent 65%
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    font-family: "Press Start 2P", system-ui;
-
- font-size: 14px;
+    font-family: 'Orbitron';
 
     color:#dffcff;
 

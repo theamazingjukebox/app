@@ -934,7 +934,7 @@ document.addEventListener("DOMContentLoaded", () => {
           align-items: center; 
           
           /* 1. Definimos un borde transparente del grosor que quieras (ej. 2px o 3px) */
-          border: 2px solid transparent;
+          border: 4px solid transparent;
           border-radius: 24px; /* ¡Ahora el navegador SÍ respetará las esquinas! */
 
           /* 2. EL TRUCO MAESTRO: Doble fondo separado por comas */

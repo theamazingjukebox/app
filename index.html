@@ -3816,6 +3816,17 @@ function initYouTubePlayer(videoId) {
  
     currentVideoIndex++;
 
+              // ========================================================
+    // 🔥 ACTUALIZACIÓN AUTOMÁTICA DE COMENTARIOS AL DAR NEXT
+    // ========================================================
+ setTimeout(() => {
+        if (typeof window.fetchWebYouTubeComments === 'function') {
+            // Pasamos 'true' mandatorio para saltarnos el candado interno y limpiar la terminal
+            window.fetchWebYouTubeComments(true); 
+        }
+    }, 2500);
+
+
     if (currentVideoIndex >= videos.length) {
         currentVideoIndex = 0;
         shuffleArray(videos);
@@ -3908,15 +3919,6 @@ function initYouTubePlayer(videoId) {
     likeButton.disabled = false;
 
 }
-          // ========================================================
-    // 🔥 ACTUALIZACIÓN AUTOMÁTICA DE COMENTARIOS AL DAR NEXT
-    // ========================================================
-    setTimeout(() => {
-        // Apuntamos directamente a la ventana global window
-        if (typeof window.fetchWebYouTubeComments === 'function') {
-            window.fetchWebYouTubeComments(true); 
-        }
-    }, 1500);
 
         
 

@@ -3804,14 +3804,18 @@ function initYouTubePlayer(videoId) {
 }
     function playNextVideo() {
 
-          // 🧹 PURGA GENERAL PERIMETRAL: Detiene temporizadores secundarios antes de cambiar de track
+    // 🧹 PURGA GENERAL PERIMETRAL DE TIMERS (Incluyendo tu motor original)
+    if (typeof qualityInterval !== 'undefined' && qualityInterval) {
+        clearInterval(qualityInterval);
+        qualityInterval = null; // Destruye la ráfaga de 'small' de la canción anterior si se dio NEXT rápido
+    }
     if (typeof trackCheckInterval !== 'undefined' && trackCheckInterval) {
         clearInterval(trackCheckInterval);
-        trackCheckInterval = null;
+        trackCheckInterval = null; // Limpia el Mini-Player
     }
     if (typeof endCheckInterval !== 'undefined' && endCheckInterval) {
         clearInterval(endCheckInterval);
-        endCheckInterval = null;
+        endCheckInterval = null; // Limpia el vigilante de final de track
     }
  
     currentVideoIndex++;
@@ -4540,18 +4544,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1500);
 });
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    const mainChat = document.getElementById("chat");
-    if (mainChat) {
-        ['mousemove', 'mouseover', 'mouseout'].forEach(eventType => {
-            mainChat.addEventListener(eventType, (e) => {
-                e.stopPropagation(); // El chat no estresará al reproductor bajo ninguna circunstancia
-            }, { passive: true });
-        });
-    }
-});
-
+    
 
 
 // ==============================================================================

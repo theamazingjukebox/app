@@ -702,7 +702,7 @@ font-size: 1.4em;
 
 #menu.show {
     max-height: 500px; /* Altura máxima suficiente para el contenido */
-    font-size: medium;
+    font-size: large;
     font-family: 'Orbitron';
     margin-top: 4%;
     opacity: 1;

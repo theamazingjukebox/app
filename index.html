@@ -3804,19 +3804,15 @@ function initYouTubePlayer(videoId) {
 }
     function playNextVideo() {
 
-    // 🧹 PURGA GENERAL PERIMETRAL DE TIMERS (Incluyendo tu motor original)
-    if (typeof qualityInterval !== 'undefined' && qualityInterval) {
-        clearInterval(qualityInterval);
-        qualityInterval = null; // Destruye la ráfaga de 'small' de la canción anterior si se dio NEXT rápido
-    }
-    if (typeof trackCheckInterval !== 'undefined' && trackCheckInterval) {
-        clearInterval(trackCheckInterval);
-        trackCheckInterval = null; // Limpia el Mini-Player
-    }
-    if (typeof endCheckInterval !== 'undefined' && endCheckInterval) {
-        clearInterval(endCheckInterval);
-        endCheckInterval = null; // Limpia el vigilante de final de track
-    }
+    // 🧹 PURGA GENERAL PERIMETRAL DE TIMERS
+    if (typeof qualityInterval !== 'undefined' && qualityInterval) { clearInterval(qualityInterval); qualityInterval = null; }
+    if (typeof trackCheckInterval !== 'undefined' && trackCheckInterval) { clearInterval(trackCheckInterval); trackCheckInterval = null; }
+    if (typeof endCheckInterval !== 'undefined' && endCheckInterval) { clearInterval(endCheckInterval); endCheckInterval = null; }
+
+    // 🔥 DESBLOQUEO AUTOMÁTICO DE COMENTARIOS:
+    // Al resetear esta variable global en cada NEXT, obligamos a la pestaña de comentarios
+    // a entender que el track viejo murió y debe decodificar el nuevo registro de forma mandatoria.
+    lastCheckedVideoIdForWebComments = ""; 
  
     currentVideoIndex++;
 

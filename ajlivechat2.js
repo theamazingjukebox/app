@@ -1073,7 +1073,7 @@ document.addEventListener("DOMContentLoaded", () => {
           background-size: 100% 28px;
           background-repeat: no-repeat;
           background-position: bottom;
-          z-index: -9999;
+          z-index: 0;
           /* Opcional: Un resplandor combinado de fondo */
           filter: drop-shadow(0 0 4px rgba(73, 255, 246, 0.3));
           

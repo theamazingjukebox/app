@@ -1218,7 +1218,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Ejecutamos la sincronización inicial y el bucle cada medio segundo
       syncWidgetData();
-      trackCheckInterval = setInterval(syncWidgetData, 500);
+      trackCheckInterval = setInterval(syncWidgetData, 1000);
 
         
 

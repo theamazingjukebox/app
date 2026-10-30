@@ -3674,14 +3674,16 @@ const songInfo = {
 
 
 
-// ==========================================
-// YOUTUBE SETUP (MÁXIMO RENDIMIENTO - MEMORIA LIMPIA)
-// ==========================================
+// ======================
+// YOUTUBE SETUP (PERSISTENTE)
+// ======================
 let ytPlayer = null;
 let isPlayerReady = false;
-let qualityInterval = null; // 🔒 Único control centralizado
+let qualityInterval = null;
 let endCheckInterval = null;
 let soundEnabled = true;
+
+
 
 function startEndWatcher() {
     if (endCheckInterval) clearInterval(endCheckInterval);
@@ -3693,14 +3695,14 @@ function startEndWatcher() {
         const current = ytPlayer.getCurrentTime();
 
         if (duration && (duration - current < 0.3)) {
-            // Limpieza total preventiva e inmediata de todos los timers antes de cambiar de track
-            if (endCheckInterval) clearInterval(endCheckInterval);
-            if (qualityInterval) clearInterval(qualityInterval); 
+            clearInterval(endCheckInterval);
             playNextVideo();
         }
+
     }, 200);
 }
 
+    
 function initYouTubePlayer(videoId) {
     ytPlayer = new YT.Player("youtube-player", {
         videoId: videoId,
@@ -3713,76 +3715,65 @@ function initYouTubePlayer(videoId) {
             playsinline: 1,
             iv_load_policy: 3,
             disablekb: 1 
+            
         },
         events: {
             onReady: (event) => {
                 isPlayerReady = true;
-                event.target.setPlaybackQuality('small');
 
-                if (soundEnabled) {
+                // 🔥 calidad baja inicial (clave)
+    event.target.setPlaybackQuality('small');
+
+                
+    if (soundEnabled) {
                     event.target.unMute();
                     event.target.setVolume(100);
                 } else {
                     event.target.mute();
                 }
-                console.log("🟢 Terminal lista y sincronizada.");
+                
+           // 🛑 CORRECCIÓN MANUAL: Removemos el playVideo(); para que la rockola
+                // espere pacientemente a que el usuario presione el botón físico de PLAY.
+                console.log("🟢 Terminal lista y sincronizada. Esperando interacción del usuario.");
             },
+            
 
             onStateChange: (event) => {
-                if (event.data === YT.PlayerState.PLAYING) {
-                    const poster = document.getElementById("video-poster");
-                    if (poster) {
-                        poster.style.opacity = "0";
-                        setTimeout(() => { poster.style.display = "none"; }, 300);
-                    }
+    if (event.data === YT.PlayerState.PLAYING) {
+        const poster = document.getElementById("video-poster");
+    if (poster) {
+        poster.style.opacity = "0";
+        setTimeout(() => { poster.style.display = "none"; }, 300);
+    }
 
-                    // 🧹 PURGA DE MEMORIA MANDATORIA: Destruimos cualquier intervalo clonado anterior
-                    if (qualityInterval) {
-                        clearInterval(qualityInterval);
-                        qualityInterval = null;
-                    }
+         if (qualityInterval) clearInterval(qualityInterval);
                     
-                    // 🚀 ARRANCAMOS TU FUERZA BRUTA EFICIENTE
-                    // Ejecutamos el martilleo para congelar la calidad en móviles de inmediato
                     qualityInterval = setInterval(() => {
-                        if (ytPlayer && isPlayerReady && typeof ytPlayer.setPlaybackQuality === 'function') {
+                        if (ytPlayer && isPlayerReady) {
                             ytPlayer.setPlaybackQuality('small');
                         }
                     }, 500);
                     
                     startEndWatcher();
 
-                    // 🔒 EL SEGURO DE VIDA: Apagamos el intervalo de forma destructiva a los 2500ms
-                    // 2.5 segundos es el punto dulce matemático donde el buffer de móviles ya se congeló,
-                    // evitando que el hilo siga corriendo y estresando la memoria del navegador.
                     setTimeout(() => {
-                        if (qualityInterval) {
-                            clearInterval(qualityInterval);
-                            qualityInterval = null; // Liberación total para el Garbage Collector
-                            console.log("♻️ Memoria liberada con éxito. Calidad small consolidada.");
-                        }
-                    }, 4000); 
-                }
+                        clearInterval(qualityInterval);
+                    }, 4000);
+            }
+    
 
                 if (event.data === YT.PlayerState.ENDED) {
-                    // Detención mandatoria en cadena al terminar la canción
-                    if (endCheckInterval) clearInterval(endCheckInterval);
-                    if (qualityInterval) clearInterval(qualityInterval);
                     setTimeout(() => { playNextVideo(); }, 200);
                 }
             },
             
             onError: () => {
-                if (endCheckInterval) clearInterval(endCheckInterval);
-                if (qualityInterval) clearInterval(qualityInterval);
                 console.log("YT error → siguiente video");
                 playNextVideo();
             }
         }
     });
 }
-
-
 
 
     
@@ -3812,11 +3803,7 @@ function initYouTubePlayer(videoId) {
 
 }
     function playNextVideo() {
-         // 🔥 Purga destructiva al dar NEXT manual
-    if (qualityInterval) { clearInterval(qualityInterval); qualityInterval = null; }
-    if (endCheckInterval) { clearInterval(endCheckInterval); endCheckInterval = null; }
-
-
+ 
     currentVideoIndex++;
 
     if (currentVideoIndex >= videos.length) {

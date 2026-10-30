@@ -3759,15 +3759,6 @@ function initYouTubePlayer(videoId) {
                     setTimeout(() => {
                         clearInterval(qualityInterval);
                     }, 4000);
-
-                    setTimeout(() => {
-            if (document.activeElement && document.activeElement.tagName === "IFRAME") {
-                document.activeElement.blur(); // Quita el foco si estaba atrapado en el video
-            }
-            document.body.focus(); // Regresa el foco de forma segura a la interfaz de la rockola
-            window.focus();
-            console.log("🎯 Foco removido del reproductor para forzar el ocultamiento de controles.");
-        }, 1500); // Se ejecuta a los 1.5 segundos de empezar la canción, justo a tiempo.
         
             }
     
@@ -3818,6 +3809,20 @@ function initYouTubePlayer(videoId) {
     if (typeof qualityInterval !== 'undefined' && qualityInterval) { clearInterval(qualityInterval); qualityInterval = null; }
     if (typeof trackCheckInterval !== 'undefined' && trackCheckInterval) { clearInterval(trackCheckInterval); trackCheckInterval = null; }
     if (typeof endCheckInterval !== 'undefined' && endCheckInterval) { clearInterval(endCheckInterval); endCheckInterval = null; }
+
+        // ==============================================================================
+    // 🥊 COMANDO DE EXIGENCIA AGRESIVA (POSTMESSAGE PURGE)
+    // ==============================================================================
+    // Le inyectamos directamente al iFrame de YouTube la orden de que el usuario "removió" 
+    // el puntero, forzándolo a procesar la desaparición de los controles de manera mandatoria.
+    const iframe = document.querySelector("#video-container iframe");
+    if (iframe && iframe.contentWindow) {
+        try {
+            // Simulamos el comando nativo de la API de YouTube para limpiar estados de UI
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'hideVideoControls' }), '*');
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'blur' }), '*');
+        } catch(e) { console.log("PostMessage bloqueado temporalmente por transicion"); }
+    }
 
     // 🔥 DESBLOQUEO AUTOMÁTICO DE COMENTARIOS:
     // Al resetear esta variable global en cada NEXT, obligamos a la pestaña de comentarios

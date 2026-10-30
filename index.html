@@ -3759,6 +3759,16 @@ function initYouTubePlayer(videoId) {
                     setTimeout(() => {
                         clearInterval(qualityInterval);
                     }, 4000);
+
+                    setTimeout(() => {
+            if (document.activeElement && document.activeElement.tagName === "IFRAME") {
+                document.activeElement.blur(); // Quita el foco si estaba atrapado en el video
+            }
+            document.body.focus(); // Regresa el foco de forma segura a la interfaz de la rockola
+            window.focus();
+            console.log("🎯 Foco removido del reproductor para forzar el ocultamiento de controles.");
+        }, 1500); // Se ejecuta a los 1.5 segundos de empezar la canción, justo a tiempo.
+        
             }
     
 

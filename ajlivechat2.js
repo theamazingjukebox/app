@@ -1094,7 +1094,7 @@ document.addEventListener("DOMContentLoaded", () => {
           
           animation: bounceSpectrum 1.2s ease infinite alternate;
           animation-play-state: paused; /* Inicia pausada por defecto */
-          
+          z-index: -999;
         }
 
         /* CUANDO LA MÚSICA ESTÁ SONANDO (PLAY) */

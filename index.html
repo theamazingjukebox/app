@@ -3703,51 +3703,56 @@ function startEndWatcher() {
 }
 
     
-function initYouTubePlayer(videoId) {
+// 🔥 Modificamos la firma para recibir el estado de autoplay dinámico
+function initYouTubePlayer(videoId, autoPlayState = 0) {
+    isPlayerReady = false; // Forzamos reinicio de bandera
+
     ytPlayer = new YT.Player("youtube-player", {
         videoId: videoId,
         host: "https://www.youtube-nocookie.com",
         playerVars: {
-            autoplay: 0,
+            autoplay: autoPlayState, // 🎯 0 para la primera canción, 1 para las siguientes automáticas
             controls: 1,
             modestbranding: 1,
             rel: 0,
             playsinline: 1,
             iv_load_policy: 3,
             disablekb: 1 
-            
         },
         events: {
             onReady: (event) => {
                 isPlayerReady = true;
 
-                // 🔥 calidad baja inicial (clave)
-    event.target.setPlaybackQuality('small');
+                // 🔥 Tu calidad baja inicial nativa
+                event.target.setPlaybackQuality('small');
 
-                
-    if (soundEnabled) {
+                if (soundEnabled) {
                     event.target.unMute();
                     event.target.setVolume(100);
                 } else {
                     event.target.mute();
                 }
                 
-           // 🛑 CORRECCIÓN MANUAL: Removemos el playVideo(); para que la rockola
-                // espere pacientemente a que el usuario presione el botón físico de PLAY.
-                console.log("🟢 Terminal lista y sincronizada. Esperando interacción del usuario.");
+                // 🔥 Si es una canción automática (de la segunda en adelante), forzamos el Play inmediato
+                if (autoPlayState === 1) {
+                    event.target.playVideo();
+                } else {
+                    console.log("🟢 Terminal lista y sincronizada. Esperando interacción del usuario.");
+                }
             },
             
-
+            // 🔄 TU EVENTO ONSTATECHANGE EXACTAMENTE IGUAL A TU DISEÑO ORIGINAL:
             onStateChange: (event) => {
-    if (event.data === YT.PlayerState.PLAYING) {
-        const poster = document.getElementById("video-poster");
-    if (poster) {
-        poster.style.opacity = "0";
-        setTimeout(() => { poster.style.display = "none"; }, 300);
-    }
+                if (event.data === YT.PlayerState.PLAYING) {
+                    const poster = document.getElementById("video-poster");
+                    if (poster) {
+                        poster.style.opacity = "0";
+                        setTimeout(() => { poster.style.display = "none"; }, 300);
+                    }
 
-         if (qualityInterval) clearInterval(qualityInterval);
+                    if (qualityInterval) clearInterval(qualityInterval);
                     
+                    // Tu fuerza bruta de 4 segundos a small intacta y respetada:
                     qualityInterval = setInterval(() => {
                         if (ytPlayer && isPlayerReady) {
                             ytPlayer.setPlaybackQuality('small');
@@ -3759,9 +3764,7 @@ function initYouTubePlayer(videoId) {
                     setTimeout(() => {
                         clearInterval(qualityInterval);
                     }, 4000);
-        
-            }
-    
+                }
 
                 if (event.data === YT.PlayerState.ENDED) {
                     setTimeout(() => { playNextVideo(); }, 200);
@@ -3775,6 +3778,7 @@ function initYouTubePlayer(videoId) {
         }
     });
 }
+
 
 
     
@@ -3810,19 +3814,6 @@ function initYouTubePlayer(videoId) {
     if (typeof trackCheckInterval !== 'undefined' && trackCheckInterval) { clearInterval(trackCheckInterval); trackCheckInterval = null; }
     if (typeof endCheckInterval !== 'undefined' && endCheckInterval) { clearInterval(endCheckInterval); endCheckInterval = null; }
 
-        // ==============================================================================
-    // 🥊 COMANDO DE EXIGENCIA AGRESIVA (POSTMESSAGE PURGE)
-    // ==============================================================================
-    // Le inyectamos directamente al iFrame de YouTube la orden de que el usuario "removió" 
-    // el puntero, forzándolo a procesar la desaparición de los controles de manera mandatoria.
-    const iframe = document.querySelector("#video-container iframe");
-    if (iframe && iframe.contentWindow) {
-        try {
-            // Simulamos el comando nativo de la API de YouTube para limpiar estados de UI
-            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'hideVideoControls' }), '*');
-            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'blur' }), '*');
-        } catch(e) { console.log("PostMessage bloqueado temporalmente por transicion"); }
-    }
 
     // 🔥 DESBLOQUEO AUTOMÁTICO DE COMENTARIOS:
     // Al resetear esta variable global en cada NEXT, obligamos a la pestaña de comentarios
@@ -3860,81 +3851,48 @@ function initYouTubePlayer(videoId) {
     const videoContainer = document.getElementById("video-container");
 
     // ======================
-    // 🎯 YOUTUBE
+    // 🎯 YOUTUBE (ENFOQUE DESTRUCTIVO RE-ADAPTADO)
     // ======================
     if (currentSrc.startsWith("yt:")) {
         const videoId = currentSrc.replace("yt:", "");
 
-        // ocultar MP4 (NO destruir YT)
+        // Ocultar MP4
         videoPlayer.pause();
         videoPlayer.style.display = "none";
+
+        // Determinamos si es el primerísimo video de la sesión
+        const esPrimerVideo = (currentVideoIndex === 0 || !ytPlayer);
+
+        // 🧹 Si ya hay un iFrame viejo y no es la carga inicial, lo destruimos con su basura en caché
+        if (ytPlayer) {
+            try { ytPlayer.destroy(); } catch(e) {}
+            ytPlayer = null;
+            isPlayerReady = false;
+        }
+
+        // 🧱 Reconstruimos el nodo HTML limpio
+        const container = document.getElementById("video-container");
+        if (container) {
+            container.innerHTML = '<div id="video-poster"></div><div id="youtube-player"></div>';
+            
+            // Si es reproducción automática (no es el primero), ocultamos el poster rápido
+            if (!esPrimerVideo) {
+                const poster = document.getElementById("video-poster");
+                if (poster) poster.style.display = "none";
+            }
+        }
+
+        // Inicializamos el reproductor pasándole si debe arrancar solo o esperar
+        // Si es el primero, ira con autoplay: 0 (espera clic). Si es automático/Next, irá con autoplay: 1
+        initYouTubePlayer(videoId, esPrimerVideo ? 0 : 1);
+    }
+
         
-
-        if (!ytPlayer) {
-            initYouTubePlayer(videoId); 
-        } else {
-            // 🔥 CORRECCIÓN: Quitamos el foco previo del contenedor antes de cargar el nuevo track
-            const playerContainer = document.getElementById("youtube-player");
-            if (playerContainer) {
-                playerContainer.blur(); // Limpia focos residuales que congelan controles
-            }
-
-            ytPlayer.loadVideoById(videoId);
-            if (soundEnabled) {
-                ytPlayer.unMute();
-                ytPlayer.setVolume(100);
-            }
-
-
-        }
-    }
-    // ======================
-    // 🧯 MP4 FALLBACK
-    // ======================
-    else {
-
-        // ocultar YT visualmente (NO destruir)
-        if (ytPlayer && isPlayerReady) {
-            ytPlayer.pauseVideo();
-
-        }
-
-        videoPlayer.style.display = "block";
-
-        if (!videoContainer.contains(videoPlayer)) {
-            videoContainer.appendChild(videoPlayer);
-        }
-
-        videoPlayer.src = currentSrc;
-        videoPlayer.load();
-
-        // SIEMPRE iniciar muted (clave autoplay)
-
-        videoPlayer.muted = true;
-
-        const playPromise = videoPlayer.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-
-                if (soundEnabled) {
-                    setTimeout(() => {
-                        videoPlayer.muted = false;
-                        videoPlayer.volume = 1;
-                    }, 50);
-                }
-
-            }).catch(() => {
-                console.log("Autoplay bloqueado");
-            });
-        }
-    }
 
     const likeButton = document.getElementById("like-button");
     likeButton.disabled = false;
 
 }
-
         
 
     function likeSong() {
@@ -4742,7 +4700,7 @@ OneSignalDeferred.push(async function (OneSignal) {
         
         
 
-<video id="bg-video-1" autoplay muted loop playsinline poster="v1 (4).png" class="background-video">
+<video id="bg-video-1" autoplay muted loop playsinline poster="v1 (7).png" class="background-video">
 </video>
 
 <video id="bg-video-2" muted loop playsinline class="background-video">

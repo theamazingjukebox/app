@@ -618,7 +618,7 @@ font-size: 1.4em;
     margin-top: -45px;
     margin-right: 25px;
     transition: color 0.3s ease;
-    font-family: 'Orbitron';
+     font-family: "Press Start 2P", system-ui;
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.8), 
                  0 0 15px rgba(0, 255, 255, 0.6), 
                  0 0 25px rgba(0, 255, 255, 0.4);
@@ -702,8 +702,8 @@ font-size: 1.4em;
 
 #menu.show {
     max-height: 500px; /* Altura máxima suficiente para el contenido */
-    font-size: large;
-    font-family: 'Orbitron';
+    font-size: medium;
+     font-family: "Press Start 2P", system-ui;
     margin-top: 4%;
     opacity: 1;
     
@@ -721,7 +721,7 @@ font-size: 1.4em;
     margin: 0;
     padding: 0;
     transform: 0.9s ease-out;
-    font-family: 'Orbitron';
+     font-family: "Press Start 2P", system-ui;
 }
 
 #menu ul li {
@@ -839,7 +839,9 @@ font-size: 1.4em;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    font-family: 'Orbitron';
+       font-family: "Press Start 2P", system-ui;
+
+ font-size: 12px;
 
     color:#dffcff;
 
@@ -1013,7 +1015,9 @@ transparent 65%
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    font-family: 'Orbitron';
+    font-family: "Press Start 2P", system-ui;
+
+ font-size: 14px;
 
     color:#dffcff;
 
@@ -1206,7 +1210,9 @@ transparent 65%
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    font-family: 'Orbitron';
+     font-family: "Press Start 2P", system-ui;
+
+ font-size: 13px;
 
     color:#dffcff;
 
@@ -1381,9 +1387,10 @@ color:#dffcff;
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
-    font-family:Orbitron,monospace;
+  font-family: "Press Start 2P", system-ui;
 
-    
+ font-size: 14px;
+        
 
     text-shadow:
         0 0 8px rgba(73,255,246,.18);
@@ -1484,8 +1491,9 @@ color:#dffcff;
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
-    font-family:Orbitron,monospace;
+    font-family: "Press Start 2P", system-ui;
 
+ font-size: 14px;
     
 
     text-shadow:

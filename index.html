@@ -1473,6 +1473,19 @@ button, a, img {
 }
 
 
+@media (display-mode: standalone) {
+  body {
+    padding-top: 145px;
+    background:
+      linear-gradient(to bottom,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0) 80px),
+        rgba(0, 0, 0, 0) 125px);
+      
+  }
+}
+    
+
 @supports (-webkit-touch-callout: none) {
   @media (display-mode: standalone) {
     body {
@@ -4793,7 +4806,7 @@ OneSignalDeferred.push(async function (OneSignal) {
   </span>
 
   <span class="action-copy">
-    <small>Install the jukebox</small>
+    <small>Install App</small>
   </span>
 
   
@@ -4840,7 +4853,7 @@ OneSignalDeferred.push(async function (OneSignal) {
 
   <span class="action-copy">
    
-    <small>Turn on notifications</small>
+    <small>Activate</small>
   </span>
 
  

@@ -1212,7 +1212,7 @@ transparent 65%
 
      font-family: "Press Start 2P", system-ui;
 
- font-size: 13px;
+ font-size: 14px;
 
     color:#dffcff;
 
@@ -1465,7 +1465,7 @@ box-shadow:
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
     .info-box4 {
-        margin-top: 37.3%;    
+        margin-top: 36.3%;    
         left: 37%;   
             
     }

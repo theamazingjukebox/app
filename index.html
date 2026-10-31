@@ -3850,8 +3850,9 @@ function initYouTubePlayer(videoId, autoPlayState = 0) {
     const currentSrc = current.src;
     const videoContainer = document.getElementById("video-container");
 
+
     // ======================
-    // 🎯 YOUTUBE (ENFOQUE DESTRUCTIVO RE-ADAPTADO)
+    // 🎯 YOUTUBE (ENFOQUE DE RELEVO INTELIGENTE)
     // ======================
     if (currentSrc.startsWith("yt:")) {
         const videoId = currentSrc.replace("yt:", "");
@@ -3860,32 +3861,41 @@ function initYouTubePlayer(videoId, autoPlayState = 0) {
         videoPlayer.pause();
         videoPlayer.style.display = "none";
 
-        // Determinamos si es el primerísimo video de la sesión
         const esPrimerVideo = (currentVideoIndex === 0 || !ytPlayer);
-
-        // 🧹 Si ya hay un iFrame viejo y no es la carga inicial, lo destruimos con su basura en caché
-        if (ytPlayer) {
-            try { ytPlayer.destroy(); } catch(e) {}
-            ytPlayer = null;
-            isPlayerReady = false;
-        }
-
-        // 🧱 Reconstruimos el nodo HTML limpio
-        const container = document.getElementById("video-container");
-        if (container) {
-            container.innerHTML = '<div id="video-poster"></div><div id="youtube-player"></div>';
-            
-            // Si es reproducción automática (no es el primero), ocultamos el poster rápido
-            if (!esPrimerVideo) {
-                const poster = document.getElementById("video-poster");
-                if (poster) poster.style.display = "none";
+        
+        // 📜 DETECTOR DE PESTAÑA OCULTA
+        // Si la página NO está visible, usamos el método persistente para que no se corte la música
+        if (document.hidden && ytPlayer && isPlayerReady) {
+            console.log("🎵 Pestaña en segundo plano: Usando carga persistente continua.");
+            ytPlayer.loadVideoById(videoId);
+            if (soundEnabled) {
+                ytPlayer.unMute();
+                ytPlayer.setVolume(100);
             }
-        }
+        } 
+        // Si la página SÍ está visible (o es el primer video), usamos el enfoque destructivo antibug
+        else {
+            console.log("🥊 Pestaña visible: Usando reciclaje destructivo de iFrame.");
+            
+            if (ytPlayer) {
+                try { ytPlayer.destroy(); } catch(e) {}
+                ytPlayer = null;
+                isPlayerReady = false;
+            }
 
-        // Inicializamos el reproductor pasándole si debe arrancar solo o esperar
-        // Si es el primero, ira con autoplay: 0 (espera clic). Si es automático/Next, irá con autoplay: 1
-        initYouTubePlayer(videoId, esPrimerVideo ? 0 : 1);
+            const container = document.getElementById("video-container");
+            if (container) {
+                container.innerHTML = '<div id="video-poster"></div><div id="youtube-player"></div>';
+                if (!esPrimerVideo) {
+                    const poster = document.getElementById("video-poster");
+                    if (poster) poster.style.display = "none";
+                }
+            }
+
+            initYouTubePlayer(videoId, esPrimerVideo ? 0 : 1);
+        }
     }
+ 
 
         
 

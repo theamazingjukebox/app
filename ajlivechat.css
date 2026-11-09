@@ -870,9 +870,7 @@ font-size: 1.4em;
 
         0 0 26px rgba(57,184,255,.10);
 
-    animation:
 
-        panelPulse 3.5s ease-in-out infinite;
 
 }
 
@@ -1046,9 +1044,7 @@ transparent 65%
 
         0 0 26px rgba(57,184,255,.10);
 
-    animation:
-
-        panelPulse 3.5s ease-in-out infinite;
+    
 
 }
 
@@ -1241,9 +1237,7 @@ transparent 65%
 
         0 0 26px rgba(57,184,255,.10);
 
-    animation:
-
-        panelPulse 3.5s ease-in-out infinite;
+ 
 
 }
 
@@ -1413,7 +1407,7 @@ color:#dffcff;
         0 12px 45px rgba(0,0,0,.45),
         0 0 35px rgba(0,255,255,.18);
 
-    animation:glassPulse 2.8s ease-in-out infinite;
+   
 
 }
 
@@ -1517,7 +1511,7 @@ color:#dffcff;
         0 12px 45px rgba(0,0,0,.45),
         0 0 35px rgba(0,255,255,.18);
 
-    animation:glassPulse 2.8s ease-in-out infinite;
+    
 
 }
 

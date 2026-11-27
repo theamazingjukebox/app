@@ -16,9 +16,10 @@
 <link rel="stylesheet" type="text/css" href="./ajlivechat.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=block" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="manifest" href="/manifest.json">
+<link rel="preload" as="image" href="icon512.png" fetchpriority="high">
 <style>
 
     button, a, img {
@@ -746,7 +747,7 @@ all and (-webkit-display-mode:standalone){
 
     border:1px solid rgba(0,255,255,.18);
 
-    padding:30px 45px;
+    padding: 0px 45px 30px 45px;
 
     color:#87ffff;
 
@@ -872,6 +873,28 @@ font-size:35px;
 }
 
 }
+
+
+.loading-icon img {
+ height: 177px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    
+}
+
+
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .loading-icon img {
+       height: 97px;
+    width: auto;
+        display: block;
+        margin: 0 auto;
+            
+    }
+}
+
 
 .loading-message{
 
@@ -4979,7 +5002,11 @@ OneSignalDeferred.push(async function (OneSignal) {
 
         <div id="loading-screen">
   <div class="loading-box">
-    <div class="loading-title">🕹️</div>
+     <div class="loading-icon">
+        
+        <img src="icon512.png" alt="">
+
+        </div>
 
     <div class="loading-message">
       Preparing the jukebox... 
